@@ -2,7 +2,8 @@ Identification
 
 	Project: Futural
 	File   : README.md
-	Author : Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>
+	Author : Annika Granlund <annika.granlund@futurable.fi>
+			 , Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>
 	Date   : 2012-08-30
 
 Application
