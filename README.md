@@ -17,6 +17,7 @@ Copyright
 
 	GPL version 3 or any later version.
 	For more information about GPLv3, see LICENCE.txt
+	in the root of the repository
 	or http://www.gnu.org/licenses/gpl-3.0.txt
 
 Authors
