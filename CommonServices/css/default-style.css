@@ -1,0 +1,118 @@
+@CHARSET "UTF-8";
+
+/**
+ * css file default-style.css
+ * author: Annika Granlund 2011 <annika@futurable.fi>
+ */
+
+/* *** DEFAULT SETTINGS OFF *** */
+html, body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, a, hr{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body {
+	font-size: 100.01%; /* Fix for some browser bugs */
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	font-size: 100%;
+}
+/* *** END OD DEFAULT SETTING OFF *** */
+
+body {
+	background-color: #eee;
+	font-family: Arial, Verdana, Helvetica, Sans-Serif;
+}
+
+/* TEXT SIZES */
+h1 {
+	font-size: 18px;
+}
+
+h2 {
+	font-size: 16px;
+}
+
+p {
+	font-size: 14px;
+}
+
+/* BASIC TEXT DECORATIONS */
+.cursive {
+	font-style: italic;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+
+/* FLOATS */
+.floatRight {
+	float: right;
+}
+
+.floatLeft {
+	float: left;
+}
+
+.alignRight{
+	text-align: right;
+}
+
+.alignLeft {
+	text-align: left;
+}
+
+.center  {
+	text-align: center;
+}
+
+.clear {
+	clear: both;
+}
+
+
+/* GENERAL MARGINS */
+.margin10top {
+	margin-top: 10px;
+}
+
+.margin20top {
+	margin-top: 20px;
+}
+
+.margin10bottom {
+	margin-bottom: 10px;
+}
+
+.margin20bottom {
+	margin-bottom: 20px;
+}
+
+.margin10left {
+	margin-left: 10px;	
+}
+
+.margin20left {
+	margin-left: 20px;	
+}
+
+/* GENERAL FOR LISTS */
+ul {
+	list-style-type: square;
+	list-style-position: inside;
+}
+
+/* GENERAL FOR TABLES */
+table td, th {
+	text-align: left;
+	vertical-align: top;
+}
