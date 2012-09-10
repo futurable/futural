@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Database configuration -->
+
+<DatabaseConnection>
+	<dbhost>localhost</dbhost>
+	<dbuser>futural</dbuser>
+	<dbpass>futural</dbpass>
+	<dbname>futural</dbname>
+</DatabaseConnection>
