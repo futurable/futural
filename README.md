@@ -3,8 +3,8 @@ Identification
 	Project: Futural
 	File   : README.md
 	Author : Annika Granlund <annika.granlund@futurable.fi>
-			 Jarmo Kortetj‰rvi <jarmo.kortetjarvi@futurable.fi>
-	Date   : 2012-09-05
+			 Jarmo Kortetj√§rvi <jarmo.kortetjarvi@futurable.fi>
+	Date   : 2012-09-10
 
 Application
 
@@ -23,7 +23,7 @@ Copyright
 Authors
 
 	Annika Granlund <annika.granlund@futurable.fi>
-	Jarmo Kortetj‰rvi <jarmo.kortetjarvi@futurable.fi>
+	Jarmo Kortetj√§rvi <jarmo.kortetjarvi@futurable.fi>
 
 Directory structure
 
@@ -32,6 +32,16 @@ Directory structure
 
 	/
 	|
+	+--AuthComponent/
+	|	|	...
+	+--CommonServices/
+	|	|	...
+	+--Conf/
+	|	|	...
 	+--bank/
+	|	|	...
+	| LICENCE.txt
+	| README.md
+	
 
 End of file.
