@@ -140,13 +140,13 @@ Class IBANComponent{
 	# remove IBAN from the start, if present, and remove
 	# non basic roman letter / digit characters
 	public static function iban_to_machine_format($iban) {
-	 # Uppercase and trim spaces from left
-	 $iban = ltrim(strtoupper($iban));
-	 # Remove IBAN from start of string, if present
-	 $iban = preg_replace('/^IBAN/','',$iban);
-	 # Remove all non basic roman letter / digit characters
-	 $iban = preg_replace('/[^A-Z0-9]/','',$iban);
-	 return $iban;
+		# Uppercase and trim spaces from left
+		$iban = ltrim(strtoupper($iban));
+		# Remove IBAN from start of string, if present
+		$iban = preg_replace('/^IBAN/','',$iban);
+		# Remove all non basic roman letter / digit characters
+		$iban = preg_replace('/[^A-Z0-9]/','',$iban);
+		return $iban;
 	}
 	
 	# Get the country part from an IBAN
@@ -179,7 +179,7 @@ Class IBANComponent{
 		$result = self::iban_mod97_10($tempiban);
 		# checkvalue of 1 indicates correct IBAN checksum
 		if ($result != 1) {
-		return false;
+			return false;
 		}
 		return true;
 	}
@@ -187,44 +187,44 @@ Class IBANComponent{
 	# Find the correct checksum for an IBAN
 	#  $iban  The IBAN whose checksum should be calculated
 	public static function iban_find_checksum($iban) {
-	 $iban = self::iban_to_machine_format($iban);
-	 # move first 4 chars to right
-	 $left = substr($iban,0,2) . '00'; # but set right-most 2 (checksum) to '00'
-	 $right = substr($iban,4);
-	 # glue back together
-	 $tmp = $right . $left;
-	 # convert letters using conversion table
-	 $tmp = self::iban_checksum_string_replace($tmp);
-	 # get mod97-10 output
-	 $checksum = iban_mod97_10($tmp);
-	 return (98-$checksum);
+		$iban = self::iban_to_machine_format($iban);
+		# move first 4 chars to right
+		$left = substr($iban,0,2) . '00'; # but set right-most 2 (checksum) to '00'
+		$right = substr($iban,4);
+		# glue back together
+		$tmp = $right . $left;
+		# convert letters using conversion table
+		$tmp = self::iban_checksum_string_replace($tmp);
+		# get mod97-10 output
+		$checksum = iban_mod97_10($tmp);
+		return (98-$checksum);
 	}
 	
 	# Set the correct checksum for an IBAN
 	#  $iban  IBAN whose checksum should be set
 	public static function iban_set_checksum($iban) {
-	 $iban = iban_to_machine_format($iban);
-	 return substr($iban,0,2) . iban_find_checksum($iban) . substr($iban,4);
+		$iban = iban_to_machine_format($iban);
+		return substr($iban,0,2) . iban_find_checksum($iban) . substr($iban,4);
 	}
 	
 	# Character substitution required for IBAN MOD97-10 checksum validation/generation
 	#  $s  Input string (IBAN)
 	public static function iban_checksum_string_replace($s) {
-	 $iban_replace_chars = range('A','Z');
-	 foreach (range(10,35) as $tempvalue) { $iban_replace_values[]=strval($tempvalue); }
-	 return str_replace($iban_replace_chars,$iban_replace_values,$s);
+		$iban_replace_chars = range('A','Z');
+		foreach (range(10,35) as $tempvalue) { $iban_replace_values[]=strval($tempvalue); }
+		return str_replace($iban_replace_chars,$iban_replace_values,$s);
 	}
 	
 	# Perform MOD97-10 checksum calculation
 	#  $s  Input string (IBAN)
 	public static function iban_mod97_10($s) {
-	 $tr = intval(substr($s, 0, 1));
-	 for ($pos = 1; $pos < strlen($s); $pos++) {
-	  $tr *= 10;
-	  $tr += intval(substr($s,$pos,1));
-	  $tr %= 97;
-	 }
-	 return $tr;
+		$tr = intval(substr($s, 0, 1));
+		for ($pos = 1; $pos < strlen($s); $pos++) {
+			$tr *= 10;
+			$tr += intval(substr($s,$pos,1));
+			$tr %= 97;
+		}
+		return $tr;
 	}
 	
 	# Get an array of all the parts from an IBAN
@@ -242,15 +242,16 @@ Class IBANComponent{
 	
 	# Get the Bank ID (institution code) from an IBAN
 	public static function iban_get_bank_part($iban) {
-	 $iban 		= self::iban_to_machine_format($iban);
-	 $country 	= self::iban_get_country_part($iban);
-	 $start 	= self::iban_country_get_bankid_start_offset($country);
-	 $stop 		= self::iban_country_get_bankid_stop_offset($country);
-	 if($start!=''&&$stop!='') {
-	  	$bban 	= self::iban_get_bban_part($iban);
-	  	return substr($bban,$start,($stop-$start+1));
-	 }
-	 return '';
+		$iban 		= self::iban_to_machine_format($iban);
+		$country 	= self::iban_get_country_part($iban);
+		$start 		= self::iban_country_get_bankid_start_offset($country);
+		$stop 		= self::iban_country_get_bankid_stop_offset($country);
+		
+		if($start!=''&&$stop!='') {
+			$bban 	= self::iban_get_bban_part($iban);
+			return substr($bban,$start,($stop-$start+1));
+		}
+		return '';
 	}
 	
 	# Get the Branch ID (sort code) from an IBAN
@@ -272,14 +273,14 @@ Class IBANComponent{
 	
 	# Get the (branch-local) account ID from an IBAN
 	public static function iban_get_account_part($iban) {
-	 $iban 		= self::iban_to_machine_format($iban);
-	 $country 	= self::iban_get_country_part($iban);
-	 $start 	= self::iban_country_get_branchid_stop_offset($country);
-	 if($start!='') {
-	  $bban 	= self::iban_get_bban_part($iban);
-	  return substr($bban,$start+1);
-	 }
-	 return '';
+		$iban 		= self::iban_to_machine_format($iban);
+		$country 	= self::iban_get_country_part($iban);
+		$start 	= self::iban_country_get_branchid_stop_offset($country);
+		if($start!='') {
+			$bban 	= self::iban_get_bban_part($iban);
+			return substr($bban,$start+1);
+		}
+		return '';
 	}
 	
 	# Get the name of an IBAN country
@@ -403,8 +404,8 @@ Class IBANComponent{
 	
 	# Get information from the IBAN registry by example IBAN / code combination
 	public static function _iban_get_info($iban,$code) {
-	 $country = iban_get_country_part($iban);
-	 return _iban_country_get_info($country,$code);
+		$country = iban_get_country_part($iban);
+		return _iban_country_get_info($country,$code);
 	}
 	
 	# Get information from the IBAN registry by country / code combination
