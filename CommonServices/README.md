@@ -26,13 +26,13 @@ File structure
 
 	CommonServices/
 	|
-	|	README.md
 	|	CommonFunctions.php
 	|	Crypt.php
 	|	DatabaseConnect.php
 	|	DataValidator.php
 	|	Debug.php
 	|	Format.php
+	|	README.md
 	|	SessionManager.php
 	|
 	+--calendar/
