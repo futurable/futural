@@ -2,7 +2,7 @@ Identification
 
 	Project: Futural/CommonServices
 	File   : README.md
-	Author : Jarmo Kortetj‰rvi <jarmo.kortetjarvi@futurable.fi>
+	Author : Jarmo Kortetj√§rvi <jarmo.kortetjarvi@futurable.fi>
 	Date   : 2012-09-07
 
 Application
@@ -20,19 +20,19 @@ Copyright
 Authors
 
 	Annika Granlund <annika.granlund@futurable.fi>
-	Jarmo Kortetj‰rvi <jarmo.kortetjarvi@futurable.fi>
+	Jarmo Kortetj√§rvi <jarmo.kortetjarvi@futurable.fi>
 
 File structure
 
 	CommonServices/
 	|
-	|	README.md
 	|	CommonFunctions.php
 	|	Crypt.php
 	|	DatabaseConnect.php
 	|	DataValidator.php
 	|	Debug.php
 	|	Format.php
+	|	README.md
 	|	SessionManager.php
 	|
 	+--calendar/
