@@ -159,6 +159,8 @@ class AuthComponent {
 			
 			if ( $authenticated === true ) {
 				Debug::debug(get_class(), "getPupesoftUserRole", "Authenticated = $authenticated", 3);
+				
+				$userId = @mysql_real_escape_string($userId);
 				$query = "	SELECT 	profiilit 
 							FROM 	kuka 
 							WHERE	extranet = ''
@@ -204,6 +206,7 @@ class AuthComponent {
 		if ( is_string($userId) and is_string($password) ) {
 			Debug::debug(get_class(), "authenticatePupesoftUser", "Parameters correct", 2);
 			
+			$userId = @mysql_real_escape_string($userId);
 			$query = "	SELECT	salasana
 						FROM	kuka
 						WHERE	extranet = ''
