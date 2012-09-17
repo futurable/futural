@@ -132,7 +132,7 @@ class Crypt {
 		// Make 256bit encryption key using given key and predefined key
 		
 		// Get cryptKey from external file
-		$handle = file_get_contents("Conf/conf-futurality.xml", true);
+		$handle = file_get_contents("Conf/conf-environment.xml", true);
 		$xml = new SimpleXMLElement($handle);
 		$predefinedKey = $xml->cryptKey;
 
