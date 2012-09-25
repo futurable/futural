@@ -374,6 +374,7 @@ EOT;
 		<script type=\"text/javascript\">
 		$(function() {
 			$.datepicker.setDefaults($.datepicker.regional['{$lang}']);
+			$.datepicker.setDefaults({ dateFormat: 'dd.mm.yy' });
 			$( \"#eventDate\" ).datepicker( { minDate: '+0d' } );
 		});
 		</script>";
