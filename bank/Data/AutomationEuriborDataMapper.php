@@ -1,6 +1,4 @@
 <?php
-require_once 'DataMapper.php';
-
 /**
  *  AutomationEuriborDataMapper
  *
@@ -28,6 +26,8 @@ require_once 'DataMapper.php';
  *
  */
 
+require_once 'DataMapper.php';
+
 /**
  * AutomationEuriborDataMapper.php
  * Class for euribor object database queries.
@@ -38,7 +38,6 @@ require_once 'DataMapper.php';
  * @license   GPLv3 or any later version
  * @version   2011-07-01
  */
-
 class AutomationEuriborDataMapper extends DataMapper {
 	
 	public function __construct() {

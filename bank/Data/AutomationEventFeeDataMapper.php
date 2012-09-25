@@ -6,7 +6,6 @@
  *
  *      Copyright (C) 2012 Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>
  *
- *
  *  License
  *
  *      This file is part of project Futural/bank.

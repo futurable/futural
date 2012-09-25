@@ -1,8 +1,4 @@
 <?php
-require_once 'DataMapper.php';
-require_once 'Model/BankAccount.php';
-require_once 'Model/BankLoanAccount.php';
-
 /**
  *  UserDataMapper.php
  *
@@ -29,6 +25,10 @@ require_once 'Model/BankLoanAccount.php';
  *		along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+require_once 'DataMapper.php';
+require_once 'Model/BankAccount.php';
+require_once 'Model/BankLoanAccount.php';
 
 /**
  * UserDataMapper.php

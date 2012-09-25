@@ -1,6 +1,4 @@
 <?php
-require_once 'DataMapper.php';
-
 /**
  *  BankTransactionDataMapper.php
  *
@@ -26,6 +24,8 @@ require_once 'DataMapper.php';
  *		along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+require_once 'DataMapper.php';
 
 /**
  * BankTransactionDataMapper.php

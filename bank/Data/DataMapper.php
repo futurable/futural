@@ -1,7 +1,4 @@
 <?php
-require_once 'CommonServices/DatabaseConnect.php';
-require_once 'CommonServices/DataValidator.php';
-
 /**
  *  DataMapper.php
  *
@@ -27,6 +24,9 @@ require_once 'CommonServices/DataValidator.php';
  *		along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+require_once 'CommonServices/DatabaseConnect.php';
+require_once 'CommonServices/DataValidator.php';
 
 /**
  * DataMapper.php

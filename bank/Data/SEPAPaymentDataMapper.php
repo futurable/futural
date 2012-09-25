@@ -1,13 +1,10 @@
 <?php
-require_once 'DataMapper.php';
-
 /**
  *  SEPAPaymentDataMapper.php
  *
  *  Copyright information
  *
  *      Copyright (C) 2012 Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>
- *
  *
  *  License
  *
@@ -27,6 +24,8 @@ require_once 'DataMapper.php';
  *		along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+require_once 'DataMapper.php';
 
 /**
  * SEPAPaymentDataMapper.php
