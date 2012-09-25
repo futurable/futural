@@ -1,0 +1,931 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Futural bank\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-25 11:47+0200\n"
+"PO-Revision-Date: 2012-09-25 11:48+0200\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>\n"
+"Language-Team: Futurable Oy <info@futurable.fi>\n"
+"Language: fi_FI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: C:\\xampp\\htdocs\\futural\\bank\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.5.3\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: Model/BankLoanInfo.php:182
+msgid "Check loan amount"
+msgstr "Tarkista lainan määrä"
+
+#: Model/BankLoanInfo.php:186
+msgid "Check repayment"
+msgstr "Tarkista maksuerän määrä"
+
+#: Model/BankLoanInfo.php:190
+msgid "Check instalment"
+msgstr "Tarkista lyhennyksen määrä"
+
+#: Model/BankLoanInfo.php:193
+msgid "Check endDate"
+msgstr "Tarkista loppumispäivämäärä"
+
+#: Model/BankTransaction.php:165
+msgid "Check repicient name"
+msgstr "Tarkista saajan nimi"
+
+#: Model/BankTransaction.php:168
+msgid "Check sum"
+msgstr "Tarkista summa"
+
+#: Model/BankTransaction.php:171
+msgid "Check event date"
+msgstr "Tarkista eräpäivä"
+
+#: Model/BankTransaction.php:174
+msgid "Check reference number"
+msgstr "Tarkista viitenumero"
+
+#: Model/SEPAPayment.php:110
+msgid "Error while opening file. Please contact administration"
+msgstr "Virhe avattaessa tiedostoa. Ole hyvä ja ota yhteyttä ylläpitoon"
+
+#: Model/SEPAPayment.php:119
+msgid "File successfully saved"
+msgstr "Tiedosto tallennettu onnistuneesti"
+
+#: UI/BankLoanApplicationContent.php:76 UI/BankLoanApplicationContent.php:335
+#: UI/BankLoanApplicationContent.php:544
+msgid "days"
+msgstr "päivää"
+
+#: UI/BankLoanApplicationContent.php:79 UI/BankLoanApplicationContent.php:338
+#: UI/BankLoanApplicationContent.php:547
+msgid "weeks"
+msgstr "viikkoa"
+
+#: UI/BankLoanApplicationContent.php:82 UI/BankLoanApplicationContent.php:341
+#: UI/BankLoanApplicationContent.php:550
+msgid "months"
+msgstr "kuukautta"
+
+#: UI/BankLoanApplicationContent.php:96
+msgid "When repayment or instalment is given, loan term will be ignored."
+msgstr "Kun maksuerä tai lyhennys on annettu, laina-aikaa ei oteta huomioon."
+
+#: UI/BankLoanApplicationContent.php:185
+msgid "Loan application deleted succesfully"
+msgstr "Lainahakemus poistettu onnistuneesti"
+
+#: UI/BankLoanApplicationContent.php:186
+msgid "Error while deleting loan application."
+msgstr "Virhe poistaessa lainahakemusta"
+
+#: UI/BankLoanApplicationContent.php:186 UI/BankLoanApplicationContent.php:201
+#: UI/BankLoanApplicationContent.php:216
+msgid "Please try again later"
+msgstr "Ole hyvä ja yritä uudelleen"
+
+#: UI/BankLoanApplicationContent.php:200
+msgid "Loan application declined succesfully"
+msgstr "Lainahakemus hylättiin onnistuneesti"
+
+#: UI/BankLoanApplicationContent.php:201
+msgid "Error while declining loan application."
+msgstr "Virhe hylättäessä lainahakemusta"
+
+#: UI/BankLoanApplicationContent.php:215
+msgid "Loan application accepted succesfully"
+msgstr "Lainahakemus hyväksytty onnistuneesti"
+
+#: UI/BankLoanApplicationContent.php:216
+msgid "Error while accepting loan application."
+msgstr "Virhe hyväksyessä lainahakemusta"
+
+#: UI/BankLoanApplicationContent.php:219 UI/Navigation.php:96
+#: UI/Navigation.php:119 UI/Navigation.php:363
+msgid "Loan applications"
+msgstr "Lainahakemukset"
+
+#: UI/BankLoanApplicationContent.php:227
+msgid "Make a new loan application"
+msgstr "Tee uusi lainahakemus"
+
+#: UI/BankLoanApplicationContent.php:240
+msgid "Admin loan applications view"
+msgstr "Ylläpitäjän lainahakemukset-näkymä"
+
+#: UI/BankLoanApplicationContent.php:262
+msgid "Make a loan application"
+msgstr "Tee lainahakemus"
+
+#: UI/BankLoanApplicationContent.php:276 UI/BankLoanApplicationContent.php:359
+#: UI/BankLoanApplicationContent.php:431 UI/BankLoanApplicationContent.php:510
+msgid "Amount of loan"
+msgstr "Lainan määrä"
+
+#: UI/BankLoanApplicationContent.php:278 UI/BankLoanApplicationContent.php:362
+#: UI/BankLoanApplicationContent.php:433 UI/BankLoanApplicationContent.php:511
+#: UI/BankLoanContent.php:297
+msgid "Loan type"
+msgstr "Lainatyyppi"
+
+#: UI/BankLoanApplicationContent.php:280 UI/BankLoanApplicationContent.php:366
+#: UI/BankLoanApplicationContent.php:434 UI/BankLoanContent.php:350
+msgid "Repayment"
+msgstr "Maksuerä"
+
+#: UI/BankLoanApplicationContent.php:281 UI/BankLoanApplicationContent.php:371
+#: UI/BankLoanApplicationContent.php:435 UI/BankLoanContent.php:348
+msgid "Instalment"
+msgstr "Lyhennys"
+
+#: UI/BankLoanApplicationContent.php:284 UI/BankLoanApplicationContent.php:375
+#: UI/BankLoanApplicationContent.php:438
+msgid "Interval of repayment"
+msgstr "Maksuväli"
+
+#: UI/BankLoanApplicationContent.php:287 UI/BankLoanApplicationContent.php:441
+#: UI/BankLoanApplicationContent.php:515
+msgid "Loan term"
+msgstr "Laina-aika"
+
+#: UI/BankLoanApplicationContent.php:290 UI/BankLoanApplicationContent.php:385
+#: UI/BankLoanApplicationContent.php:444 UI/BankLoanApplicationContent.php:513
+msgid "Interest type"
+msgstr "Korkotyyppi"
+
+#: UI/BankLoanApplicationContent.php:304 UI/BankLoanApplicationContent.php:390
+#: UI/BankLoanApplicationContent.php:449 UI/NewTransactionContent.php:417
+#: UI/NewTransactionContent.php:467 UI/NewTransactionContent.php:506
+#: UI/NewTransactionContent.php:558 UI/NewTransactionContent.php:608
+msgid "Cancel"
+msgstr "Peruuta"
+
+#: UI/BankLoanApplicationContent.php:305 UI/BankLoanApplicationContent.php:450
+#: UI/NewTransactionContent.php:194 UI/NewTransactionContent.php:416
+#: UI/NewTransactionContent.php:466 UI/NewTransactionContent.php:557
+#: UI/NewTransactionContent.php:607
+msgid "Continue"
+msgstr "Jatka"
+
+#: UI/BankLoanApplicationContent.php:351
+msgid "Confirm loan application information"
+msgstr "Hyväksy lainahakemuksen tiedot"
+
+#: UI/BankLoanApplicationContent.php:380
+msgid "Loan Term"
+msgstr "Laina-aika"
+
+#: UI/BankLoanApplicationContent.php:391 UI/NewTransactionContent.php:505
+msgid "Confirm"
+msgstr "Hyväksy"
+
+#: UI/BankLoanApplicationContent.php:424
+msgid "Check loan application information"
+msgstr "Tarkista lainahakemuksen tiedot"
+
+#: UI/BankLoanApplicationContent.php:475
+msgid "Loan application is saved."
+msgstr "Lainahakemus on tallennettu."
+
+#: UI/BankLoanApplicationContent.php:476
+msgid "Go to loan applications"
+msgstr "Mene lainahakemuksiin"
+
+#: UI/BankLoanApplicationContent.php:476 UI/NewTransactionContent.php:136
+#: UI/NewTransactionContent.php:410
+msgid "or"
+msgstr "tai"
+
+#: UI/BankLoanApplicationContent.php:476
+msgid "return to front page"
+msgstr "palaa etusivulle"
+
+#: UI/BankLoanApplicationContent.php:479
+msgid "An error occured! Please try again in a moment."
+msgstr ""
+"Virhe suorittaessa toimintoa! Ole hyvä ja yritä hetken päästä uudelleen."
+
+#: UI/BankLoanApplicationContent.php:512
+msgid "Repayment info"
+msgstr "Takaisinmaksu"
+
+#: UI/BankLoanApplicationContent.php:514
+msgid "Repayment interval"
+msgstr "Maksuväli"
+
+#: UI/BankLoanApplicationContent.php:516
+msgid "Loan status"
+msgstr "Lainan tila"
+
+#: UI/BankLoanApplicationContent.php:566 UI/DuePaymentContent.php:188
+msgid "Delete"
+msgstr "Poista"
+
+#: UI/BankLoanApplicationContent.php:579
+msgid "Accept"
+msgstr "Hyväksy"
+
+#: UI/BankLoanApplicationContent.php:580
+msgid "Decline"
+msgstr "Hylkää"
+
+#: UI/BankLoanApplicationContent.php:605
+msgid "No open loan applications"
+msgstr "Ei avoimia lainahakemuksia"
+
+#: UI/BankLoanApplicationContent.php:624
+msgid "Fixed interest"
+msgstr "Kiinteä korko"
+
+#: UI/BankLoanApplicationContent.php:625
+msgid "1 month euribor"
+msgstr "1 kk euribor"
+
+#: UI/BankLoanApplicationContent.php:626
+msgid "3 month euribor"
+msgstr "3 kk euribor"
+
+#: UI/BankLoanApplicationContent.php:629
+msgid "Day"
+msgstr "Päivä"
+
+#: UI/BankLoanApplicationContent.php:630
+msgid "Week"
+msgstr "Viikko"
+
+#: UI/BankLoanApplicationContent.php:631
+msgid "Month"
+msgstr "Kuukausi"
+
+#: UI/BankLoanApplicationContent.php:635
+msgid "Open"
+msgstr "Avoin"
+
+#: UI/BankLoanApplicationContent.php:636
+msgid "Granted"
+msgstr "Myönnetty"
+
+#: UI/BankLoanApplicationContent.php:637
+msgid "Denied"
+msgstr "Evätty"
+
+#: UI/BankLoanApplicationContent.php:638
+msgid "Active"
+msgstr "Aktiivinen"
+
+#: UI/BankLoanApplicationContent.php:639
+msgid "Declined"
+msgstr "Hylätty"
+
+#: UI/BankLoanApplicationContent.php:640
+msgid "Paid"
+msgstr "Maksettu"
+
+#: UI/BankLoanApplicationContent.php:641
+msgid "Passive"
+msgstr "Passiivinen"
+
+#: UI/BankLoanApplicationContent.php:642
+msgid "Paused"
+msgstr "Tauolla"
+
+#: UI/BankLoanApplicationContent.php:643
+msgid "Removed"
+msgstr "Poistettu"
+
+#: UI/BankLoanContent.php:55
+msgid "Bank loans"
+msgstr "Lainat"
+
+#: UI/BankLoanContent.php:134
+msgid "Accept Date"
+msgstr "Hyväksymispvm"
+
+#: UI/BankLoanContent.php:135 UI/BankLoanContent.php:226
+#: UI/BankLoanContent.php:303 UI/BankTransactionsContent.php:277
+#: UI/DuePaymentContent.php:134 UI/NewTransactionContent.php:406
+#: UI/NewTransactionContent.php:460 UI/NewTransactionContent.php:495
+#: UI/NewTransactionContent.php:547 UI/NewTransactionContent.php:598
+msgid "Sum"
+msgstr "Summa"
+
+#: UI/BankLoanContent.php:136
+msgid "Loan account IBAN"
+msgstr "Lainatilin IBAN-numero"
+
+#: UI/BankLoanContent.php:137
+msgid "Details"
+msgstr "Tiedot"
+
+#: UI/BankLoanContent.php:138
+msgid "Payment plan"
+msgstr "Maksusuunnitelma"
+
+#: UI/BankLoanContent.php:166 UI/BankLoanContent.php:172
+msgid "View"
+msgstr "Tarkastele"
+
+#: UI/BankLoanContent.php:182
+msgid "You dont have bank loan accounts"
+msgstr "Ei aktiivisia lainatilejä"
+
+#: UI/BankLoanContent.php:223 UI/BankTransactionsContent.php:274
+#: UI/DuePaymentContent.php:131
+msgid "Event Date"
+msgstr "Eräpäivä"
+
+#: UI/BankLoanContent.php:224 UI/BankTransactionsContent.php:275
+#: UI/DuePaymentContent.php:132 UI/NewTransactionContent.php:397
+#: UI/NewTransactionContent.php:399 UI/NewTransactionContent.php:454
+#: UI/NewTransactionContent.php:494 UI/NewTransactionContent.php:541
+#: UI/NewTransactionContent.php:592
+msgid "Recipient name"
+msgstr "Saajan nimi"
+
+#: UI/BankLoanContent.php:224 UI/BankTransactionsContent.php:275
+#: UI/DuePaymentContent.php:132
+msgid "Recipient bank account"
+msgstr "Saajan IBAN"
+
+#: UI/BankLoanContent.php:225 UI/BankTransactionsContent.php:276
+#: UI/DuePaymentContent.php:133 UI/NewTransactionContent.php:387
+#: UI/NewTransactionContent.php:445 UI/NewTransactionContent.php:490
+#: UI/NewTransactionContent.php:533 UI/NewTransactionContent.php:584
+msgid "Payer name"
+msgstr "Maksajan nimi"
+
+#: UI/BankLoanContent.php:225 UI/BankTransactionsContent.php:276
+#: UI/DuePaymentContent.php:133
+msgid "Payer bank account"
+msgstr "Maksajan IBAN"
+
+#: UI/BankLoanContent.php:227 UI/BankTransactionsContent.php:278
+#: UI/DuePaymentContent.php:136 UI/NewTransactionContent.php:412
+#: UI/NewTransactionContent.php:462 UI/NewTransactionContent.php:501
+#: UI/NewTransactionContent.php:553 UI/NewTransactionContent.php:603
+msgid "Message"
+msgstr "Viesti"
+
+#: UI/BankLoanContent.php:262
+msgid "No transactions in this loan account yet"
+msgstr "Lainatilillä ei ole tapahtumia"
+
+#: UI/BankLoanContent.php:295
+msgid "Bank loan account"
+msgstr "Lainatili"
+
+#: UI/BankLoanContent.php:299
+msgid "Grant date"
+msgstr "Myöntämispvm"
+
+#: UI/BankLoanContent.php:301
+msgid "Accept date"
+msgstr "Hyväksymispvm"
+
+#: UI/BankLoanContent.php:305 UI/NewAccountContent.php:130
+msgid "Interest rate"
+msgstr "Korkoprosentti"
+
+#: UI/BankLoanContent.php:307
+msgid "Interest margin"
+msgstr "Korkomarginaali"
+
+#: UI/BankLoanContent.php:309
+msgid "Interest total"
+msgstr "Koron osuus"
+
+#: UI/BankLoanContent.php:349
+msgid "Interest"
+msgstr "Korko"
+
+#: UI/BankLoanContent.php:351
+msgid "Principal"
+msgstr "Pääoma"
+
+#: UI/BankLoanContent.php:504 UI/BankTransactionsContent.php:152
+msgid "Admin transactions view"
+msgstr "Ylläpitäjän tilitapahtumat -näkymä"
+
+#: UI/BankTransactionsContent.php:57
+msgid "Bank account transactions"
+msgstr "Tilitapahtumat"
+
+#: UI/BankTransactionsContent.php:99
+msgid "Give start date"
+msgstr "Anna aloituspäivämäärä"
+
+#: UI/BankTransactionsContent.php:104
+msgid "Give end date"
+msgstr "Anna lopetuspäivämäärä"
+
+#: UI/BankTransactionsContent.php:109
+msgid "Start date is not correct (format dd.mm.yyyy)"
+msgstr "Alkupäivämäärä on virheellinen (anna muodossa pp.kk.vvvv)"
+
+#: UI/BankTransactionsContent.php:114
+msgid "End date is not correct (format dd.mm.yyyy)"
+msgstr "Loppupäivämäärä on virheellinen (anna muodossa pp.kk.vvvv)"
+
+#: UI/BankTransactionsContent.php:119
+msgid "Start date can not be later than end date"
+msgstr "Alkupäivämäärä ei voi olla päättymispäivämäärän jälkeen"
+
+#: UI/BankTransactionsContent.php:124
+msgid "End date can not be in future"
+msgstr "Loppupäivämäärä ei voi olla tulevaisuudessa"
+
+#: UI/BankTransactionsContent.php:185
+msgid "Choose bank account and time range"
+msgstr "Valitse pankkitili ja aikaväli"
+
+#: UI/BankTransactionsContent.php:187 UI/BankTransactionsContent.php:257
+msgid "Bank account"
+msgstr "Pankkitili"
+
+#: UI/BankTransactionsContent.php:191
+msgid "Start date"
+msgstr "Aloituspvm"
+
+#: UI/BankTransactionsContent.php:192 UI/BankTransactionsContent.php:201
+msgid "End date"
+msgstr "Loppupvm"
+
+#: UI/BankTransactionsContent.php:200
+msgid "Start Date"
+msgstr "Aloituspvm"
+
+#: UI/BankTransactionsContent.php:205
+msgid "Get Transactions"
+msgstr "Hae tapahtumat"
+
+#: UI/BankTransactionsContent.php:255
+msgid "Company"
+msgstr "Yhtiö"
+
+#: UI/BankTransactionsContent.php:259
+msgid "Bank transactions by period"
+msgstr "Pankkitapahtumat aikavälillä"
+
+#: UI/BankTransactionsContent.php:261 UI/BankTransactionsContent.php:263
+#: UI/BankTransactionsContent.php:316
+msgid "Saldo"
+msgstr "Saldo"
+
+#: UI/BankTransactionsContent.php:278 UI/DuePaymentContent.php:135
+#: UI/NewTransactionContent.php:408 UI/NewTransactionContent.php:500
+#: UI/NewTransactionContent.php:549
+msgid "Reference number"
+msgstr "Viitenumero"
+
+#: UI/BankTransactionsContent.php:311
+msgid "Transaction total"
+msgstr "Tapahtumien summa"
+
+#: UI/BankTransactionsContent.php:336
+msgid "No bank transactions by period"
+msgstr "Ei pankkitapahtumia aikavälillä"
+
+#: UI/Content.php:158
+msgid "Signed in"
+msgstr "Kirjautuneena sisään"
+
+#: UI/Content.php:510
+msgid "Fixed repayment"
+msgstr "Kiinteä tasaerä"
+
+#: UI/Content.php:511
+msgid "Fixed Instalment"
+msgstr "Tasalyhennys"
+
+#: UI/Content.php:512
+msgid "Annuity (ARM)"
+msgstr "Annuiteetti"
+
+#: UI/DuePaymentContent.php:57
+msgid "Due payments"
+msgstr "Erääntyvät maksut"
+
+#: UI/DuePaymentContent.php:95
+msgid "Transaction delete successful"
+msgstr "Tapahtuman poisto onnistui"
+
+#: UI/DuePaymentContent.php:98
+msgid "Transaction delete not successful"
+msgstr "Tapahtuman poisto onnistui"
+
+#: UI/DuePaymentContent.php:137
+msgid "Delete payment"
+msgstr "Poista maksu"
+
+#: UI/DuePaymentContent.php:198
+msgid "Due payments total"
+msgstr "Erääntyvien maksujen summa"
+
+#: UI/FrontPageContent.php:44
+msgid "Welcome to Futural Bank!"
+msgstr "Tervetuloa Futural pankkiin!"
+
+#: UI/FrontPageContent.php:49
+msgid "This is the front page for Futural Bank"
+msgstr "Tämä on Futural pankin etusivu"
+
+#: UI/LoginContent.php:50
+msgid "Login to Futural Bank"
+msgstr "Kirjaudu Futural pankkiin"
+
+#: UI/LoginContent.php:52
+msgid "Username"
+msgstr "Käyttäjännimi"
+
+#: UI/LoginContent.php:54
+msgid "Password"
+msgstr "Salasana"
+
+#: UI/LoginContent.php:57
+msgid "Login"
+msgstr "Kirjaudu"
+
+#: UI/LoginContent.php:61
+msgid "Username or password was incorrect"
+msgstr "Käyttäjännimi tai salasana oli virheellinen"
+
+#: UI/LoginContent.php:65
+msgid "You were logged out due inactivity"
+msgstr "Sinut kirjattiin ulos automaattisesti"
+
+#: UI/Navigation.php:92 UI/Navigation.php:114 UI/Navigation.php:136
+#: UI/Navigation.php:359
+msgid "Front page"
+msgstr "Etusivu"
+
+#: UI/Navigation.php:93 UI/Navigation.php:360
+msgid "Open new account"
+msgstr "Perusta uusi tili"
+
+#: UI/Navigation.php:94 UI/Navigation.php:361
+msgid "Account information"
+msgstr "Tilin tiedot"
+
+#: UI/Navigation.php:95 UI/Navigation.php:115 UI/Navigation.php:362
+msgid "New transaction"
+msgstr "Uusi maksu"
+
+#: UI/Navigation.php:97 UI/Navigation.php:364
+msgid "Passive accounts"
+msgstr "Passiiviset tilit"
+
+#: UI/Navigation.php:98 UI/Navigation.php:117 UI/Navigation.php:137
+#: UI/Navigation.php:365
+msgid "Transactions"
+msgstr "Tilitapahtumat"
+
+#: UI/Navigation.php:99 UI/Navigation.php:121 UI/Navigation.php:140
+#: UI/Navigation.php:366
+msgid "Log out"
+msgstr "Kirjaudu ulos"
+
+#: UI/Navigation.php:116 UI/Navigation.php:138 UI/Navigation.php:368
+msgid "Payments for due"
+msgstr "Erääntyvät maksut"
+
+#: UI/Navigation.php:118 UI/Navigation.php:139 UI/Navigation.php:367
+msgid "Loans"
+msgstr "Lainat"
+
+#: UI/Navigation.php:120 UI/Navigation.php:369 UI/SEPAPaymentContent.php:58
+msgid "SEPA payments"
+msgstr "SEPA-maksut"
+
+#: UI/NewAccountContent.php:56
+msgid "New account"
+msgstr "Uusi tili"
+
+#: UI/NewAccountContent.php:83
+msgid "You have insufficient privileges to display this page"
+msgstr "Sinulla ei ole oikeuksia tarkastella tätä sivua"
+
+#: UI/NewAccountContent.php:84
+msgid ""
+"If you think you should be able to view this content, please contact "
+"administation"
+msgstr ""
+"Jos mielestäsi sinulla pitäisi olla oikeudet sivun tarkasteluun, ota "
+"yhteyttä ylläpitoon"
+
+#: UI/NewAccountContent.php:107
+msgid "Saving account successful"
+msgstr "Tilin tallennus onnistui"
+
+#: UI/NewAccountContent.php:109
+msgid "Saving account failed"
+msgstr "Tilin tallennus epäonnistui"
+
+#: UI/NewAccountContent.php:111
+msgid "Check the account information"
+msgstr "Tarkista tilin tiedot"
+
+#: UI/NewAccountContent.php:123
+msgid "Owner info"
+msgstr "Omistajan tiedot"
+
+#: UI/NewAccountContent.php:125
+msgid "Account owner"
+msgstr "Tilin omistaja"
+
+#: UI/NewAccountContent.php:126
+msgid "Account owner name"
+msgstr "Tilin omistajan nimi"
+
+#: UI/NewAccountContent.php:127
+msgid "Account name"
+msgstr "Tilin nimi"
+
+#: UI/NewAccountContent.php:128
+msgid "IBAN"
+msgstr "IBAN"
+
+#: UI/NewAccountContent.php:131
+msgid "Account status"
+msgstr "Tilin tila"
+
+#: UI/NewAccountContent.php:134
+msgid "Create account"
+msgstr "Luo pankkitili"
+
+#: UI/NewAccountContent.php:145
+msgid "Erronous account owner."
+msgstr "Virheellinen tilin omistaja"
+
+#: UI/NewAccountContent.php:149
+msgid "Erronous account owner name."
+msgstr "Virheellinen tilin omistajan nimi."
+
+#: UI/NewAccountContent.php:153
+msgid "Erronous account name."
+msgstr "Virheellinen tilin nimi."
+
+#: UI/NewAccountContent.php:157
+msgid "Erronous IBAN number."
+msgstr "Virheellinen IBAN numero."
+
+#: UI/NewAccountContent.php:161
+msgid "Erronous BIC number."
+msgstr "Virheellinen BIC numero."
+
+#: UI/NewAccountContent.php:165
+msgid "Erronous interest rate."
+msgstr "Virheellinen korkoprosentti"
+
+#: UI/NewAccountContent.php:169
+msgid "Erronous status."
+msgstr "Virheellinen lainan tila"
+
+#: UI/NewTransactionContent.php:58
+msgid "New payment"
+msgstr "Uusi maksu"
+
+#: UI/NewTransactionContent.php:119
+msgid "Bank account saldo is insufficient"
+msgstr "Tilin saldo ei riitä"
+
+#: UI/NewTransactionContent.php:135
+msgid "Payment done"
+msgstr "Maksu tehty"
+
+#: UI/NewTransactionContent.php:136
+msgid "Make new payment"
+msgstr "Tee uusi maksu"
+
+#: UI/NewTransactionContent.php:137
+msgid "Go back to front page"
+msgstr "Palaa etusivulle"
+
+#: UI/NewTransactionContent.php:140 UI/NewTransactionContent.php:335
+msgid "Something went wrong. Please, try again later."
+msgstr "Jotain meni pieleen. Ole hyvä ja yritä uudelleen"
+
+#: UI/NewTransactionContent.php:176
+msgid "Give recipient IBAN"
+msgstr "Anna saajan IBAN"
+
+#: UI/NewTransactionContent.php:178 UI/NewTransactionContent.php:393
+#: UI/NewTransactionContent.php:452 UI/NewTransactionContent.php:492
+#: UI/NewTransactionContent.php:539 UI/NewTransactionContent.php:590
+msgid "Recipient IBAN"
+msgstr "Saajan IBAN"
+
+#: UI/NewTransactionContent.php:182
+msgid "Check recipient account"
+msgstr "Tarkista saajan tili"
+
+#: UI/NewTransactionContent.php:185
+msgid "Given IBAN has an unknown bank SWIFT."
+msgstr "Annetun IBAN koodin SWIFT-osa on tuntematon."
+
+#: UI/NewTransactionContent.php:186
+msgid "External payments are not supported."
+msgstr "Ulkoiset maksut ei ole tuettu."
+
+#: UI/NewTransactionContent.php:384 UI/NewTransactionContent.php:442
+#: UI/NewTransactionContent.php:530 UI/NewTransactionContent.php:581
+msgid "Payer info"
+msgstr "Maksajan tiedot"
+
+#: UI/NewTransactionContent.php:386 UI/NewTransactionContent.php:444
+#: UI/NewTransactionContent.php:489 UI/NewTransactionContent.php:532
+#: UI/NewTransactionContent.php:583
+msgid "Payer IBAN"
+msgstr "Maksajan IBAN"
+
+#: UI/NewTransactionContent.php:391 UI/NewTransactionContent.php:450
+#: UI/NewTransactionContent.php:537 UI/NewTransactionContent.php:588
+msgid "Recipient info"
+msgstr "Saajan tiedot"
+
+#: UI/NewTransactionContent.php:394 UI/NewTransactionContent.php:453
+#: UI/NewTransactionContent.php:493 UI/NewTransactionContent.php:540
+#: UI/NewTransactionContent.php:591
+msgid "Recipient BIC"
+msgstr "Saajan BIC"
+
+#: UI/NewTransactionContent.php:404 UI/NewTransactionContent.php:458
+#: UI/NewTransactionContent.php:487 UI/NewTransactionContent.php:545
+#: UI/NewTransactionContent.php:596
+msgid "Payment info"
+msgstr "Maksun tiedot"
+
+#: UI/NewTransactionContent.php:407 UI/NewTransactionContent.php:461
+#: UI/NewTransactionContent.php:497 UI/NewTransactionContent.php:548
+#: UI/NewTransactionContent.php:600
+msgid "Due date"
+msgstr "Eräpäivä"
+
+#: UI/NewTransactionContent.php:462 UI/NewTransactionContent.php:603
+msgid "Extra loan repayment"
+msgstr "Ylimääräinen lainan lyhennys"
+
+#: UI/PageNotFoundContent.php:48
+msgid "The page you were trying to find doesn't exist"
+msgstr "Hakemaasi sivua ei löydy"
+
+#: UI/SEPAPaymentContent.php:102
+msgid "Create payments from SEPA-formatted XML-file"
+msgstr "Tee maksuja SEPA-pankkiaineistosta"
+
+#: UI/SEPAPaymentContent.php:107
+msgid "Create transactions"
+msgstr "Tee tapahtumat"
+
+#: UI/SEPAPaymentContent.php:113
+msgid "No file selected."
+msgstr "Ei valittua tiedostoa."
+
+#: UI/SEPAPaymentContent.php:119
+msgid "You can only upload valid XML-formatted SEPA payments"
+msgstr ""
+"Voit luoda tapahtumia vain valideista XML-muotoilluista SEPA-aineistoista"
+
+#: UI/SEPAPaymentContent.php:130
+msgid "Payments saved."
+msgstr "Maksutapahtumat tallennettu."
+
+#: UI/SEPAPaymentContent.php:134
+msgid "Download bank statement in SEPA-format"
+msgstr "Lataa tilitapahtumat SEPA-muodossa"
+
+#: UI/SEPAPaymentContent.php:136
+msgid "Download statement"
+msgstr "Lataa tapahtumat"
+
+#: UI/SEPAPaymentContent.php:187
+msgid "The SEPA payment data you gave is for another bank."
+msgstr "Antamasi SEPA-aineisto on eri pankkiin."
+
+#: UI/SEPAPaymentContent.php:200
+msgid "You can only make payments from accounts you own."
+msgstr "Voit tehdä maksuja vain omistamiltasi tileiltä"
+
+#: UI/SEPAPaymentContent.php:219
+msgid "External payments are not yet supported."
+msgstr "Ulkoisia maksuja ei vielä tueta."
+
+#: UI/SEPAPaymentContent.php:219 UI/SEPAPaymentContent.php:232
+msgid "Sorry for the inconvenience."
+msgstr "Pahoittelemme häiriötä."
+
+#: UI/SEPAPaymentContent.php:232
+msgid "Only Euro payments are supported."
+msgstr "Vain Euromaksut on tuettu."
+
+#: UI/SEPAPaymentContent.php:252
+msgid "Payment ID"
+msgstr "Tapahtuma"
+
+#: UI/SEPAPaymentContent.php:252
+msgid "is invalid and was not saved."
+msgstr "on viallinen, eikä sitä voitu tallentaa."
+
+#: UI/SEPAPaymentContent.php:256
+msgid "You have errors in you payment data. No transactions were made."
+msgstr "Maksuaineisto on viallinen. Tapahtumia ei voitu luoda."
+
+#~ msgid "Notification payment for repayment"
+#~ msgstr "Huomautusmaksu"
+
+#~ msgid "Overdue interest for repayment"
+#~ msgstr "Viivästysmaksu"
+
+#~ msgid "Loan repayment"
+#~ msgstr "Lainan maksuerä"
+
+#~ msgid ""
+#~ "Oivapankki web-services allow you to manage your banking and financial "
+#~ "management in an easy and safe way. "
+#~ msgstr ""
+#~ "Oivapankin verkkopalvelussa hoidat pankki- ja rahoitusasiasi helposti ja "
+#~ "turvallisesti. "
+
+#~ msgid ""
+#~ "Oivapankki provides versatile banking services to both private and "
+#~ "corporate customers. "
+#~ msgstr ""
+#~ "Oivapankki tarjoaa monipuolisia pankkipalveluja sekä yrityksille että "
+#~ "yksityishenkilöille.  "
+
+#~ msgid ""
+#~ "In addition to normal banking services you can apply for a loan in our "
+#~ "online bank. As you get our loan offer back to your online bank, you can "
+#~ "then decide on suitable financing."
+#~ msgstr ""
+#~ "Normaalien pankkipalveluiden lisäksi voit tehdä verkkopankissamme "
+#~ "lainahakemuksen.  Saat lainatarjouksen kätevästi verkossa ja voit sitten "
+#~ "päättää lainan ottamisesta."
+
+#~ msgid ""
+#~ "Oivapankki has offices in several locations, but the main efforts are in "
+#~ "the online banking. "
+#~ msgstr ""
+#~ "Oivapankilla on useita konttoreita, mutta pankkimme panostaa erityisesti "
+#~ "verkkopalveluihin.  "
+
+#~ msgid "In 2010 Oivapankki employed 350 people. "
+#~ msgstr "Vuonna 2010 Oivapankissa oli töissä yhteensä 350 henkilöä. "
+
+#~ msgid ""
+#~ "Oivapankki has ca. 23000 customers with the majority being small and "
+#~ "midsize enterprises. "
+#~ msgstr ""
+#~ "Oivapankilla on asiakkaita n. 23000, joista merkittävä osa on pk-"
+#~ "yritysasiakkaita. "
+
+#~ msgid ""
+#~ "The easy and flexible online banking makes Oivapankki the number one bank "
+#~ "for SME companies."
+#~ msgstr ""
+#~ "Oivapankki onkin yritysten ykköspankki erityisesti verkkoasioinnin "
+#~ "helppouden takia."
+
+#~ msgid ""
+#~ "Oivapankki values are close customer orientation and cost efficient. "
+#~ msgstr "Oivapankin arvoina ovat asiakaslähtöisyys ja kustannustehokkuus. "
+
+#~ msgid ""
+#~ "We aim at cost efficient customer service that enables also our customer "
+#~ "to be competitive."
+#~ msgstr ""
+#~ "Pyrimme kustannustehokkaaseen asiakaspalveluun, joka edesauttaa myös "
+#~ "asiakkaidemme kilpailukykyä."
+
+#~ msgid "Error"
+#~ msgstr "Virhe"
+
+#~ msgid ""
+#~ "Oivapankki has offices in several locations, but the main efforts are in "
+#~ "the \n"
+#~ "\t\t\t\t\t\t\tonline banking. In 2010 Oivapankki employed 350 people. "
+#~ "Oivapankki has ca. 23000 customers with \n"
+#~ "\t\t\t\t\t\t\tthe majority being small and midsize enterprises. The easy "
+#~ "and flexible online banking makes \n"
+#~ "\t\t\t\t\t\t\tOivapankki the number one bank for SME companies."
+#~ msgstr ""
+#~ "Oivapankilla on useita konttoreita, mutta pankkimme panostaa erityisesti "
+#~ "verkkopalveluihin.  Vuonna 2010 Oivapankissa oli töissä yhteensä 350 "
+#~ "henkilöä. Oivapankilla on asiakkaita n. 23000, joista merkittävä osa on "
+#~ "pk-yritysasiakkaita. Oivapankki onkin yritysten ykköspankki erityisesti "
+#~ "verkkoasioinnin helppouden takia."
+
+#~ msgid "Accepted"
+#~ msgstr "Hyväksytty"
+
+#~ msgid "Start date is not correct"
+#~ msgstr "Alkupäivämäärä on virheellinen"
+
+#~ msgid "Bank transactions"
+#~ msgstr "Tilitapahtumat"
+
+#~ msgid "Account transactions"
+#~ msgstr "Tilitapahtumat"

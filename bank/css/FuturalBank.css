@@ -1,0 +1,272 @@
+@CHARSET "UTF-8";
+
+.disclaimer {
+	margin: 0 auto;
+	text-align: center;
+	padding: 2px 0 10px 0;
+	border-bottom: 1px solid #000;
+	margin-bottom: 10px;
+	color: #eee;
+	background-color: #000;
+}
+
+.disclaimer p {
+	margin-bottom: 0;
+}
+
+.disclaimer a:link, .disclaimer a:visited {
+	color: #eee;
+}
+
+.disclaimer a:hover {
+	color: #C8DA30;
+}
+
+body {
+	background-color: #555;
+}
+
+#container {
+	width: 1000px;
+	margin: 0 auto;
+	background-color: #fff;
+	box-shadow: 10px 10px 15px #000;
+	border-radius: 5px;
+}
+
+#header {
+	/* background-image: url("../images/logo.png"); */
+	background-color: #A8CF38;
+	background-repeat: no-repeat;
+	height: 130px;
+	border-bottom: 5px solid #A8CF38;
+	margin-bottom: 20px;
+	border-radius: 5px 5px 0 0;
+}
+
+#navigation {
+	width: 20%;
+	float: left;
+	font-weight: bold;
+}
+#navigation img, #navigation a{
+	border-style: none;
+}
+
+#loginBox {
+	float: right;
+	margin: 10px;
+	margin-top: -80px;
+}
+#langBox{
+	float: right;
+	margin-right: 10px;
+	margin-top: -140px;
+}
+#langBox a{
+	text-decoration: none;
+	color: #000;
+	font-weight: bold;
+}
+#langBox a:hover{
+	color: #fff;
+}
+
+#content, #loginContent {
+	background-color: #fff;
+	width: 75%;
+	min-height: 200px;
+	float: right;
+	padding: 15px;
+}
+
+#footer {
+	clear: both;
+	/* background-image: url("../images/footer-bg.png"); */
+	background-color: #A8CF38;
+	background-repeat: no-repeat;
+	height: 120px;
+	border-radius: 0 0 5px 5px;
+}
+
+.incorrect {
+	font-weight: bold;
+	color: #ff0909;
+}
+
+.blueBg {
+	background-color: #A8CF38;
+}
+
+/* NAVIGATION */
+ul#navi {
+	list-style-type: none;
+}
+
+#navi a.active {
+	color: #A8CF38;
+}
+
+#navi a{
+	color: #000;
+	text-decoration: none;
+}
+
+#navi a:hover{
+	color: #C8DA30;
+}
+
+/* FORMS */
+#form, .form {
+	width: 90%;
+	font-size: 90%;
+}
+
+#form fieldset, .form fieldset {
+	border: 1px solid black;
+	padding: 5px 10px;
+}
+
+#form legend, .form legend {
+	/* font-size: 90%; */
+}
+
+/* Input-field */
+input, select, textarea{
+	background-color: #fcfeff;
+}
+input:hover, select:hover, textarea:hover{
+	background-color: #f2feff;
+}
+
+#form input[type="text"], .form input[type="text"] {
+	width: 50%;
+}
+
+/* Submit-button */
+input[type="submit"]{
+	float: right;
+	background-color: #fff;
+	border: 3px solid #A8CF38;
+	font-weight: bold;
+	margin-top: 1%;
+}
+input[type="submit"]:hover{
+	background-color: #C8DA30;
+}
+
+#form label, .form label {
+	float: left;
+	text-align: right;
+	width: 25%;
+	clear: left;
+}
+
+/* space after label field */
+#form label:after, .form label:after {
+	content: "\00a0";
+}
+
+#form span, .form span {
+	width: 70%;
+	float: left;
+}
+
+#loanTermFields span{
+	width: 6.5%;	
+}
+
+/* Loan applications status */
+.deleteLoan, .declineLoan, .acceptLoan{
+	font-weight: bold;
+	float: right;
+}
+
+.deleteLoan {
+	color: #e10000;
+}
+.declineLoan{
+	color: #e17d00;
+}
+.acceptLoan{
+	color: #00960f;
+}
+.openStatus, .deniedStatus, .grantedStatus{
+	padding-top: 5%;
+	display: block;
+	text-align: center;
+	font-weight: bold;
+}
+.openStatus{
+	color: #e17d00;
+}
+.deniedStatus{
+	color: #e10000;
+}
+.grantedStatus{
+	color: #00960f;
+}
+
+/* INFO BOXES */
+.info {
+	width: 70%;
+	font-size: 90%;
+	clear: both;
+}
+
+.info fieldset {
+	border: none;
+	padding: 5px 20px;
+}
+
+.info label {
+	float: left;
+	text-align: left;
+	width: 60%;
+	clear: left;
+}
+
+.info span {
+	width: 40%;
+	float: left;
+}
+
+/* Loan term (day,week,month) */
+#loanApplicationForm label{
+	max-width: 120px;
+	margin-left: 20px;
+	text-align: left;
+}
+#loanTermDescription {
+	padding-left: 5px;
+}
+#loanTermWarning{
+	margin-left: 20px;
+}
+#loanTermWarning p {
+	padding: 5px 5px 0 5px;
+}
+
+/* TEXT DEFINITIONS */
+h1 {
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+p {
+	margin-bottom: 10px;
+}
+
+/* TABLE DEFINITIONS */
+table {
+	font-size: 90%;
+	width: 100%;
+}
+
+table td, th {
+	padding: 1px 4px;
+}
+
+.borderTop {
+	border-top: 1px dotted black;
+}
