@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BankBranches>
+
+	<BankBranch>
+		<BranchCode>970299</BranchCode>
+		<BIC>OIVAFIT0</BIC>
+		<BankName>Oivapankki</BankName>
+	</BankBranch>
+	
+	<BankBranch>
+		<BranchCode>970300</BranchCode>
+		<BIC>FUTUFIT0</BIC>
+		<BankName>Futural Bank</BankName>
+	</BankBranch>
+	
+</BankBranches>
