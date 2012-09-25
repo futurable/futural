@@ -24,6 +24,8 @@
 
 body {
 	background-color: #555;
+	font-family: arial, sans-serif;
+	font-size: 14px;
 }
 
 #container {
@@ -35,8 +37,8 @@ body {
 }
 
 #header {
-	/* background-image: url("../images/logo.png"); */
-	background-color: #A8CF38;
+	background-image: url("../images/logo.png");
+	background-color: #fff;
 	background-repeat: no-repeat;
 	height: 130px;
 	border-bottom: 5px solid #A8CF38;
@@ -46,6 +48,7 @@ body {
 
 #navigation {
 	width: 20%;
+	font-size: 16px;
 	float: left;
 	font-weight: bold;
 }
