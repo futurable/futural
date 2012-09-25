@@ -62,11 +62,14 @@ class Header {
 	<script type="text/javascript" src="js/disable_enter.js"></script>
 	
 	<!-- jquery UI -->
-	<link type="text/css" href="css/futural/jquery-ui-1.8.21.custom.css" rel="stylesheet" />	
-	<script type="text/javascript" src="../jquery-ui/js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="../jquery-ui/js/jquery-ui-1.8.21.custom.min.js"></script>
-	<script type="text/javascript" src="../jquery-ui/js/jquery.ui.datepicker-fi.js"></script>
-	<script type="text/javascript" src="../jquery-ui/js/jquery.ui.datepicker-en.js"></script>
+	<link type="text/css" href="css/jquery-ui.custom.css" rel="stylesheet" />	
+	<script type="text/javascript" src="../jquery-ui/jquery-1.8.2.js"></script>
+	<script type="text/javascript" src="../jquery-ui/ui/jquery.ui.core.js"></script>
+	<script type="text/javascript" src="../jquery-ui/ui/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="../jquery-ui/ui/jquery.ui.datepicker.js"></script>
+	<script type="text/javascript" src="../jquery-ui/ui/i18n/jquery.ui.datepicker-fi.js"></script>
+	<script type="text/javascript" src="../jquery-ui/ui/i18n/jquery.ui.datepicker-en-GB.js"></script>
+
 
 	<!-- favicon -->
 	<link rel="shortcut icon" href="images/favicon.ico" />

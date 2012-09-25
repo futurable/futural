@@ -150,6 +150,7 @@ input[type="submit"]{
 	border: 3px solid #A8CF38;
 	font-weight: bold;
 	margin-top: 1%;
+	margin-left: 5px;
 }
 input[type="submit"]:hover{
 	background-color: #C8DA30;
