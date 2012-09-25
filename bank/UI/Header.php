@@ -52,6 +52,9 @@ class Header {
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Futural Bank</title>
 	
+	<!-- favicon -->
+	<link rel=”shortcut icon” href=”images/favicon.ico” type=”image/x-icon” />
+				
 	<!-- styles -->
 	<link rel="stylesheet" type="text/css" href="../CommonServices/css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="css/FuturalBank.css" />
