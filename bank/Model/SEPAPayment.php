@@ -151,7 +151,7 @@ class SepaPayment {
 		$GrpHdr = $xml->BkToCstmrStmt->addChild('GrpHdr');
 		
 		// Create children
-		$TmpId = 'OIVAFILE'.substr(uniqid(), -8);
+		$TmpId = 'FUTUFILE'.substr(uniqid(), -8);
 		$this->setMsgId($TmpId);
 		$MsgId = $GrpHdr->addChild('MsgId', $TmpId);
 		$CreDtTm = $GrpHdr->addChild('CreDtTm', CommonFunctions::getUTCFormattedDate() );
@@ -171,7 +171,7 @@ class SepaPayment {
 		$Stmt = $xml->BkToCstmrStmt->addChild('Stmt');
 		
 		// Create Childen		
-		$Stmt->addChild('Id', 'OIVASTMT'.substr(uniqid(), -8));						// Identification
+		$Stmt->addChild('Id', 'FUTUSTMT'.substr(uniqid(), -8));						// Identification
 		$Stmt->addChild('ElctrncSeqNb', $this->getElctrncSeqNb());					// Electronic Sequence number
 		$Stmt->addChild('LglSeqNb', $this->getLglSeqNb());							// Legal Sequence number
 		$Stmt->addChild('CreDtTm', CommonFunctions::getUTCFormattedDate($CreDtTm));	// Creation DateTime, UTC-fomatted (Y-m-d\Th:m:iO)

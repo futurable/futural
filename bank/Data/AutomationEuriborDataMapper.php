@@ -77,18 +77,18 @@ class AutomationEuriborDataMapper extends DataMapper {
 				VALUES";
 			
 			foreach($euriborArray as $key => $value){
-				$interestID = "OIVA".$key;
+				$interestID = "FUTU".$key;
 				
 				$query .= "
 					(
-					'OIVAFIT0'
+					'FUTUFIT0'
 					, '$interestID'
 					, '$key'
 					, $value
 					, now()
 					, now()
-					, 'oivapankki'
-					, 'oivapankki'
+					, 'futuralbank'
+					, 'futuralbank'
 					),";
 			}
 			
