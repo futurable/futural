@@ -1,5 +1,4 @@
 <?php
-require_once 'bank/Data/BankLoanTransactionDataMapper.php';
 /**
  *  BankLoanTransaction
  *
@@ -26,6 +25,8 @@ require_once 'bank/Data/BankLoanTransactionDataMapper.php';
  *		along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+require_once 'bank/Data/BankLoanTransactionDataMapper.php';
 
 /**
  * BankLoanTransaction

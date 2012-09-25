@@ -1,6 +1,4 @@
 <?php
-require_once 'CommonServices/DataValidator.php';
-require_once 'bank/Data/BankTransactionDataMapper.php';
 /**
  *  BankTransaction.php
  *
@@ -27,6 +25,9 @@ require_once 'bank/Data/BankTransactionDataMapper.php';
  *		along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+require_once 'CommonServices/DataValidator.php';
+require_once 'bank/Data/BankTransactionDataMapper.php';
 
 /**
  * BankTransaction.php

@@ -1,12 +1,10 @@
 <?php
-require_once 'bank/Data/SEPAPaymentDataMapper.php';
 /**
  *  SEPAPayments.php
  *
  *  Copyright information
  *
  *      Copyright (C) 2012 Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>
- *
  *
  *  License
  *
@@ -26,6 +24,8 @@ require_once 'bank/Data/SEPAPaymentDataMapper.php';
  *		along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+require_once 'bank/Data/SEPAPaymentDataMapper.php';
 
 /**
  * SEPAPayments.php

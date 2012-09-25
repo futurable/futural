@@ -1,5 +1,4 @@
 <?php
-require_once 'Data/UserDataMapper.php';
 /**
  *  User.php
  *
@@ -26,6 +25,8 @@ require_once 'Data/UserDataMapper.php';
  *      
  *
  */
+
+require_once 'Data/UserDataMapper.php';
 
 /**
  * User.php

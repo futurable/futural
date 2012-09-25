@@ -1,5 +1,4 @@
 <?php
-require_once 'User.php';
 /**
  *  Admin.php
  *
@@ -25,6 +24,8 @@ require_once 'User.php';
  *		along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+require_once 'User.php';
 
 /**
  * Admin.php

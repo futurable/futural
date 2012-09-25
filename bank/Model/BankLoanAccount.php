@@ -1,8 +1,4 @@
 <?php
-require_once 'CommonServices/DataValidator.php';
-require_once 'bank/Data/BankLoanAccountDataMapper.php';
-require_once 'bank/Model/BankLoanInfo.php';
-
 /**
  *  BankLoanAccount.php
  *
@@ -29,6 +25,10 @@ require_once 'bank/Model/BankLoanInfo.php';
  *		along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+require_once 'CommonServices/DataValidator.php';
+require_once 'bank/Data/BankLoanAccountDataMapper.php';
+require_once 'bank/Model/BankLoanInfo.php';
 
 /**
  * BankLoanAccount.php
