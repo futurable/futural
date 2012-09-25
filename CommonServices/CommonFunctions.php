@@ -139,7 +139,7 @@ Class CommonFunctions{
 		$success = false;
 		
 		// Get include path from config file
-		$handle = file_get_contents("../Conf/conf-futurality.xml", true);
+		$handle = file_get_contents("../Conf/conf-environment.xml", true);
 		$xml = new SimpleXMLElement($handle);
 		$includePath = $xml->includePath;
 		
@@ -165,8 +165,8 @@ Class CommonFunctions{
 	public static function getDisclaimerDiv() {
 		$content = "<div class='disclaimer'>\n
 						<p>
-							This is <a href='#' rel='external'>Futurality</a> - virtual learning environment 
-							by <a href='http://futurable.fi/Index.php?page=Ymparisto' rel='external'>Futurable</a>.
+							This is <a href='http://futurable.fi/index.php/en/tuotteet-ja-palvelut/oppimisymparistot' rel='external'>Futural</a> - virtual learning environment 
+							by <a href='http://futurable.fi/index.php/en/' rel='external'>Futurable</a>.
 							<a href='#'>Give feedback</a>.
 						</p>
 					</div>\n";
