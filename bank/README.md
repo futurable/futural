@@ -29,9 +29,4 @@ Authors
 	Annika Granlund <annika.granlund@futurable.fi>
 	Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>
 
-File structure
-
-	bank/
-	|	README.md
-
 End of file.
