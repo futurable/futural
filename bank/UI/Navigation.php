@@ -180,17 +180,21 @@ class Navigation {
 	 */
 	public function displayInHtml() {
 		Debug::debug(get_class(), "displayInHtml", "Start");
+		
 		$navi = '';
 		
 		foreach( $this->currentNavigation as $page => $linkName ) {
 			$active = $this->getActiveLink( $page );
-			$class = ($active) ? "class='active'": "";
+			$isActive = ($active) ? "class='active'": "";
+			
+			$confirmJS = "onclick=\"return confirmBack('".gettext('Are you sure you want to log out?')."');\"";
+			$isLogout = ($page=='Logout') ? $confirmJS : "";
 			
 			// Navigation using images
 			//$navigationElement = $this->makeNavigationItemAsImage($page, $active);
 			//$navi .= "<li><a href='?page=$page'><img src='$navigationElement' alt='$linkName'/></a></li>\n";
 			
-			$navi .= "<li><a $class href='?page=$page'>$linkName</a></li>\n";
+			$navi .= "<li><a $isActive $isLogout href='?page=$page'>$linkName</a></li>\n";
 		}
 		
 		print <<<EOT

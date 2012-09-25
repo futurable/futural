@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Futural bank\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-25 11:47+0200\n"
-"PO-Revision-Date: 2012-09-25 11:48+0200\n"
+"POT-Creation-Date: 2012-09-25 17:23+0200\n"
+"PO-Revision-Date: 2012-09-25 17:23+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>\n"
 "Language-Team: Futurable Oy <info@futurable.fi>\n"
 "Language: fi_FI\n"
@@ -105,7 +105,7 @@ msgid "Error while accepting loan application."
 msgstr "Virhe hyväksyessä lainahakemusta"
 
 #: UI/BankLoanApplicationContent.php:219 UI/Navigation.php:96
-#: UI/Navigation.php:119 UI/Navigation.php:363
+#: UI/Navigation.php:119 UI/Navigation.php:367
 msgid "Loan applications"
 msgstr "Lainahakemukset"
 
@@ -158,16 +158,16 @@ msgid "Interest type"
 msgstr "Korkotyyppi"
 
 #: UI/BankLoanApplicationContent.php:304 UI/BankLoanApplicationContent.php:390
-#: UI/BankLoanApplicationContent.php:449 UI/NewTransactionContent.php:417
-#: UI/NewTransactionContent.php:467 UI/NewTransactionContent.php:506
-#: UI/NewTransactionContent.php:558 UI/NewTransactionContent.php:608
+#: UI/BankLoanApplicationContent.php:449 UI/NewTransactionContent.php:418
+#: UI/NewTransactionContent.php:468 UI/NewTransactionContent.php:507
+#: UI/NewTransactionContent.php:559 UI/NewTransactionContent.php:609
 msgid "Cancel"
 msgstr "Peruuta"
 
 #: UI/BankLoanApplicationContent.php:305 UI/BankLoanApplicationContent.php:450
-#: UI/NewTransactionContent.php:194 UI/NewTransactionContent.php:416
-#: UI/NewTransactionContent.php:466 UI/NewTransactionContent.php:557
-#: UI/NewTransactionContent.php:607
+#: UI/NewTransactionContent.php:194 UI/NewTransactionContent.php:417
+#: UI/NewTransactionContent.php:467 UI/NewTransactionContent.php:558
+#: UI/NewTransactionContent.php:608
 msgid "Continue"
 msgstr "Jatka"
 
@@ -179,7 +179,7 @@ msgstr "Hyväksy lainahakemuksen tiedot"
 msgid "Loan Term"
 msgstr "Laina-aika"
 
-#: UI/BankLoanApplicationContent.php:391 UI/NewTransactionContent.php:505
+#: UI/BankLoanApplicationContent.php:391 UI/NewTransactionContent.php:506
 msgid "Confirm"
 msgstr "Hyväksy"
 
@@ -196,7 +196,7 @@ msgid "Go to loan applications"
 msgstr "Mene lainahakemuksiin"
 
 #: UI/BankLoanApplicationContent.php:476 UI/NewTransactionContent.php:136
-#: UI/NewTransactionContent.php:410
+#: UI/NewTransactionContent.php:411
 msgid "or"
 msgstr "tai"
 
@@ -307,9 +307,9 @@ msgstr "Hyväksymispvm"
 
 #: UI/BankLoanContent.php:135 UI/BankLoanContent.php:226
 #: UI/BankLoanContent.php:303 UI/BankTransactionsContent.php:277
-#: UI/DuePaymentContent.php:134 UI/NewTransactionContent.php:406
-#: UI/NewTransactionContent.php:460 UI/NewTransactionContent.php:495
-#: UI/NewTransactionContent.php:547 UI/NewTransactionContent.php:598
+#: UI/DuePaymentContent.php:134 UI/NewTransactionContent.php:407
+#: UI/NewTransactionContent.php:461 UI/NewTransactionContent.php:496
+#: UI/NewTransactionContent.php:548 UI/NewTransactionContent.php:599
 msgid "Sum"
 msgstr "Summa"
 
@@ -339,10 +339,10 @@ msgid "Event Date"
 msgstr "Eräpäivä"
 
 #: UI/BankLoanContent.php:224 UI/BankTransactionsContent.php:275
-#: UI/DuePaymentContent.php:132 UI/NewTransactionContent.php:397
-#: UI/NewTransactionContent.php:399 UI/NewTransactionContent.php:454
-#: UI/NewTransactionContent.php:494 UI/NewTransactionContent.php:541
-#: UI/NewTransactionContent.php:592
+#: UI/DuePaymentContent.php:132 UI/NewTransactionContent.php:398
+#: UI/NewTransactionContent.php:400 UI/NewTransactionContent.php:455
+#: UI/NewTransactionContent.php:495 UI/NewTransactionContent.php:542
+#: UI/NewTransactionContent.php:593
 msgid "Recipient name"
 msgstr "Saajan nimi"
 
@@ -352,9 +352,9 @@ msgid "Recipient bank account"
 msgstr "Saajan IBAN"
 
 #: UI/BankLoanContent.php:225 UI/BankTransactionsContent.php:276
-#: UI/DuePaymentContent.php:133 UI/NewTransactionContent.php:387
-#: UI/NewTransactionContent.php:445 UI/NewTransactionContent.php:490
-#: UI/NewTransactionContent.php:533 UI/NewTransactionContent.php:584
+#: UI/DuePaymentContent.php:133 UI/NewTransactionContent.php:388
+#: UI/NewTransactionContent.php:446 UI/NewTransactionContent.php:491
+#: UI/NewTransactionContent.php:534 UI/NewTransactionContent.php:585
 msgid "Payer name"
 msgstr "Maksajan nimi"
 
@@ -364,9 +364,9 @@ msgid "Payer bank account"
 msgstr "Maksajan IBAN"
 
 #: UI/BankLoanContent.php:227 UI/BankTransactionsContent.php:278
-#: UI/DuePaymentContent.php:136 UI/NewTransactionContent.php:412
-#: UI/NewTransactionContent.php:462 UI/NewTransactionContent.php:501
-#: UI/NewTransactionContent.php:553 UI/NewTransactionContent.php:603
+#: UI/DuePaymentContent.php:136 UI/NewTransactionContent.php:413
+#: UI/NewTransactionContent.php:463 UI/NewTransactionContent.php:502
+#: UI/NewTransactionContent.php:554 UI/NewTransactionContent.php:604
 msgid "Message"
 msgstr "Viesti"
 
@@ -476,8 +476,8 @@ msgid "Saldo"
 msgstr "Saldo"
 
 #: UI/BankTransactionsContent.php:278 UI/DuePaymentContent.php:135
-#: UI/NewTransactionContent.php:408 UI/NewTransactionContent.php:500
-#: UI/NewTransactionContent.php:549
+#: UI/NewTransactionContent.php:409 UI/NewTransactionContent.php:501
+#: UI/NewTransactionContent.php:550
 msgid "Reference number"
 msgstr "Viitenumero"
 
@@ -558,47 +558,51 @@ msgid "You were logged out due inactivity"
 msgstr "Sinut kirjattiin ulos automaattisesti"
 
 #: UI/Navigation.php:92 UI/Navigation.php:114 UI/Navigation.php:136
-#: UI/Navigation.php:359
+#: UI/Navigation.php:363
 msgid "Front page"
 msgstr "Etusivu"
 
-#: UI/Navigation.php:93 UI/Navigation.php:360
+#: UI/Navigation.php:93 UI/Navigation.php:364
 msgid "Open new account"
 msgstr "Perusta uusi tili"
 
-#: UI/Navigation.php:94 UI/Navigation.php:361
+#: UI/Navigation.php:94 UI/Navigation.php:365
 msgid "Account information"
 msgstr "Tilin tiedot"
 
-#: UI/Navigation.php:95 UI/Navigation.php:115 UI/Navigation.php:362
+#: UI/Navigation.php:95 UI/Navigation.php:115 UI/Navigation.php:366
 msgid "New transaction"
 msgstr "Uusi maksu"
 
-#: UI/Navigation.php:97 UI/Navigation.php:364
+#: UI/Navigation.php:97 UI/Navigation.php:368
 msgid "Passive accounts"
 msgstr "Passiiviset tilit"
 
 #: UI/Navigation.php:98 UI/Navigation.php:117 UI/Navigation.php:137
-#: UI/Navigation.php:365
+#: UI/Navigation.php:369
 msgid "Transactions"
 msgstr "Tilitapahtumat"
 
 #: UI/Navigation.php:99 UI/Navigation.php:121 UI/Navigation.php:140
-#: UI/Navigation.php:366
+#: UI/Navigation.php:370
 msgid "Log out"
 msgstr "Kirjaudu ulos"
 
-#: UI/Navigation.php:116 UI/Navigation.php:138 UI/Navigation.php:368
+#: UI/Navigation.php:116 UI/Navigation.php:138 UI/Navigation.php:372
 msgid "Payments for due"
 msgstr "Erääntyvät maksut"
 
-#: UI/Navigation.php:118 UI/Navigation.php:139 UI/Navigation.php:367
+#: UI/Navigation.php:118 UI/Navigation.php:139 UI/Navigation.php:371
 msgid "Loans"
 msgstr "Lainat"
 
-#: UI/Navigation.php:120 UI/Navigation.php:369 UI/SEPAPaymentContent.php:58
+#: UI/Navigation.php:120 UI/Navigation.php:373 UI/SEPAPaymentContent.php:58
 msgid "SEPA payments"
 msgstr "SEPA-maksut"
+
+#: UI/Navigation.php:190
+msgid "Are you sure you want to log out?"
+msgstr "Oletko varma että haluat kirjautua ulos?"
 
 #: UI/NewAccountContent.php:56
 msgid "New account"
@@ -712,9 +716,9 @@ msgstr "Jotain meni pieleen. Ole hyvä ja yritä uudelleen"
 msgid "Give recipient IBAN"
 msgstr "Anna saajan IBAN"
 
-#: UI/NewTransactionContent.php:178 UI/NewTransactionContent.php:393
-#: UI/NewTransactionContent.php:452 UI/NewTransactionContent.php:492
-#: UI/NewTransactionContent.php:539 UI/NewTransactionContent.php:590
+#: UI/NewTransactionContent.php:178 UI/NewTransactionContent.php:394
+#: UI/NewTransactionContent.php:453 UI/NewTransactionContent.php:493
+#: UI/NewTransactionContent.php:540 UI/NewTransactionContent.php:591
 msgid "Recipient IBAN"
 msgstr "Saajan IBAN"
 
@@ -730,41 +734,41 @@ msgstr "Annetun IBAN koodin SWIFT-osa on tuntematon."
 msgid "External payments are not supported."
 msgstr "Ulkoiset maksut ei ole tuettu."
 
-#: UI/NewTransactionContent.php:384 UI/NewTransactionContent.php:442
-#: UI/NewTransactionContent.php:530 UI/NewTransactionContent.php:581
+#: UI/NewTransactionContent.php:385 UI/NewTransactionContent.php:443
+#: UI/NewTransactionContent.php:531 UI/NewTransactionContent.php:582
 msgid "Payer info"
 msgstr "Maksajan tiedot"
 
-#: UI/NewTransactionContent.php:386 UI/NewTransactionContent.php:444
-#: UI/NewTransactionContent.php:489 UI/NewTransactionContent.php:532
-#: UI/NewTransactionContent.php:583
+#: UI/NewTransactionContent.php:387 UI/NewTransactionContent.php:445
+#: UI/NewTransactionContent.php:490 UI/NewTransactionContent.php:533
+#: UI/NewTransactionContent.php:584
 msgid "Payer IBAN"
 msgstr "Maksajan IBAN"
 
-#: UI/NewTransactionContent.php:391 UI/NewTransactionContent.php:450
-#: UI/NewTransactionContent.php:537 UI/NewTransactionContent.php:588
+#: UI/NewTransactionContent.php:392 UI/NewTransactionContent.php:451
+#: UI/NewTransactionContent.php:538 UI/NewTransactionContent.php:589
 msgid "Recipient info"
 msgstr "Saajan tiedot"
 
-#: UI/NewTransactionContent.php:394 UI/NewTransactionContent.php:453
-#: UI/NewTransactionContent.php:493 UI/NewTransactionContent.php:540
-#: UI/NewTransactionContent.php:591
+#: UI/NewTransactionContent.php:395 UI/NewTransactionContent.php:454
+#: UI/NewTransactionContent.php:494 UI/NewTransactionContent.php:541
+#: UI/NewTransactionContent.php:592
 msgid "Recipient BIC"
 msgstr "Saajan BIC"
 
-#: UI/NewTransactionContent.php:404 UI/NewTransactionContent.php:458
-#: UI/NewTransactionContent.php:487 UI/NewTransactionContent.php:545
-#: UI/NewTransactionContent.php:596
+#: UI/NewTransactionContent.php:405 UI/NewTransactionContent.php:459
+#: UI/NewTransactionContent.php:488 UI/NewTransactionContent.php:546
+#: UI/NewTransactionContent.php:597
 msgid "Payment info"
 msgstr "Maksun tiedot"
 
-#: UI/NewTransactionContent.php:407 UI/NewTransactionContent.php:461
-#: UI/NewTransactionContent.php:497 UI/NewTransactionContent.php:548
-#: UI/NewTransactionContent.php:600
+#: UI/NewTransactionContent.php:408 UI/NewTransactionContent.php:462
+#: UI/NewTransactionContent.php:498 UI/NewTransactionContent.php:549
+#: UI/NewTransactionContent.php:601
 msgid "Due date"
 msgstr "Eräpäivä"
 
-#: UI/NewTransactionContent.php:462 UI/NewTransactionContent.php:603
+#: UI/NewTransactionContent.php:463 UI/NewTransactionContent.php:604
 msgid "Extra loan repayment"
 msgstr "Ylimääräinen lainan lyhennys"
 

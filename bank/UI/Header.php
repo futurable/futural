@@ -53,7 +53,7 @@ class Header {
 	<title>Futural Bank</title>
 	
 	<!-- favicon -->
-	<link rel=”shortcut icon” href=”images/favicon.ico” type=”image/x-icon” />
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 				
 	<!-- styles -->
 	<link rel="stylesheet" type="text/css" href="../CommonServices/css/normalize.css" />
@@ -63,6 +63,9 @@ class Header {
 	<script type="text/javascript" src="js/external.js"></script>
 	<!-- disable unwanted enter pushing -->
 	<script type="text/javascript" src="js/disable_enter.js"></script>
+	<!-- Confirm button pressing -->
+	<script type="text/javascript" src="js/confirm.js"></script>
+	
 	
 	<!-- jquery UI -->
 	<link type="text/css" href="css/jquery-ui.custom.css" rel="stylesheet" />	
