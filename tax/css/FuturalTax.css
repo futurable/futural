@@ -144,12 +144,12 @@ h3 {
 	background-color: #EBF3D5;
 	margin-left: 20px;
 	font-weight: bold;
-	padding: 10px 0;
+	padding: 0px 0;
 }
 #navigation ul{
-	margin: 0;
-	width: 200px;
+	margin: 10px 0 10px 0;
 	padding: 0;
+	width: 200px;
 }
 #navigation ul ul{
 	height: 0px;
