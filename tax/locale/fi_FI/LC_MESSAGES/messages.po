@@ -1,0 +1,608 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Futural Tax\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-26 14:03+0200\n"
+"PO-Revision-Date: 2012-10-26 14:03+0200\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>\n"
+"Language-Team: Futurable Oy <info@futurable.fi>\n"
+"Language: Finnish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: C:\\xampp\\htdocs\\futural\\tax\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: Model/Bank.php:79
+msgid "Please use valid event date!"
+msgstr "Ole hyvä, ja tarkista tapahtumapäivämäärä!"
+
+#: Model/Bank.php:90
+msgid "Own payment"
+msgstr "Oma maksu"
+
+#: Model/EC.php:112 Model/EC.php:116 Model/EC.php:120 Model/EC.php:124
+#: Model/EC.php:128 Model/EC.php:132 Model/VAT.php:153 Model/VAT.php:157
+#: Model/VAT.php:161 Model/VAT.php:165 Model/VAT.php:169 Model/VAT.php:173
+#: Model/VAT.php:177 Model/VAT.php:181 Model/VAT.php:185 Model/VAT.php:189
+#: Model/VAT.php:193 Model/VAT.php:197 Model/VAT.php:201 Model/VAT.php:205
+msgid "Please use numeric values!"
+msgstr "Ole hyvä, ja käytä numeerisia arvoja."
+
+#: Model/EC.php:178 Model/EC.php:215 Model/VAT.php:250 Model/VAT.php:299
+msgid "Count"
+msgstr "Laske"
+
+#: Model/EC.php:255
+msgid "Ennakonpidätyksen alaiset palkat ja muut suoritukset"
+msgstr "Ennakonpidätyksen alaiset palkat ja muut suoritukset"
+
+#: Model/EC.php:256
+msgid "Toimitettu ennakonpidätys"
+msgstr "Toimitettu ennakonpidätys"
+
+#: Model/EC.php:257
+msgid "Lähdeveron alaiset palkat ja muut suoritukset"
+msgstr "Lähdeveron alaiset palkat ja muut suoritukset"
+
+#: Model/EC.php:258
+msgid "Lähdevero palkoista yms."
+msgstr "Lähdevero palkoista yms."
+
+#: Model/EC.php:259
+msgid "Sosiaaliturvamaksun alaiset palkat"
+msgstr "Sosiaaliturvamaksun alaiset palkat"
+
+#: Model/EC.php:260
+msgid "Maksettava työnantajan sosiaaliturvamaksu"
+msgstr "Maksettava työnantajan sosiaaliturvamaksu"
+
+#: Model/EC.php:261 Model/EC.php:262 Model/VAT.php:484 Model/VAT.php:485
+msgid "Returnable/payable tax"
+msgstr "Maksettava vero / Palautukseen oikeuttava vero"
+
+#: Model/Transaction.php:223
+msgid "kausivero"
+msgstr "kausivero"
+
+#: Model/Transaction.php:224
+msgid "Tax payer"
+msgstr "Verovelvollinen"
+
+#: Model/Transaction.php:225
+msgid "Notifier"
+msgstr "Ilmoittaja"
+
+#: Model/Transaction.php:228
+msgid "Value added tax"
+msgstr "Arvonlisävero"
+
+#: Model/Transaction.php:238 UI/Content.php:327
+msgid "Declaration period"
+msgstr "Ilmoitusjakso"
+
+#: Model/Transaction.php:239 UI/Content.php:328
+msgid "Target season"
+msgstr "Kohdekausi"
+
+#: Model/Transaction.php:243 UI/Content.php:332
+#: UI/MonthlySummaryContent.php:132
+msgid "Month"
+msgstr "Kuukausi"
+
+#: Model/VAT.php:477
+msgid "23% tax"
+msgstr "23 %:n vero"
+
+#: Model/VAT.php:478
+msgid "13% tax"
+msgstr "13 %:n vero"
+
+#: Model/VAT.php:479
+msgid "9% tax"
+msgstr "9 %:n vero"
+
+#: Model/VAT.php:480
+msgid "Tax from products from EU"
+msgstr "Vero tavaraostoista muista EU-maista"
+
+#: Model/VAT.php:481
+msgid "Tax from services from EU"
+msgstr "Vero palveluostoista muista EU-maista"
+
+#: Model/VAT.php:482
+msgid "Tax from construction services (reverse charge)"
+msgstr "Vero rakentamispalvelun ostoista (käännetty verovelvollisuus)"
+
+#: Model/VAT.php:483
+msgid "Deductible tax"
+msgstr "Kohdekauden vähennettävä vero"
+
+#: Model/VAT.php:486
+msgid "Sales, 0% tax"
+msgstr "0-verokannan alainen liikevaihto"
+
+#: Model/VAT.php:487
+msgid "Product sales to EU"
+msgstr "Tavaran myynti muihin EU-maihin"
+
+#: Model/VAT.php:488
+msgid "Service sales to EU"
+msgstr "Palveluiden myynti muihin EU-maihin"
+
+#: Model/VAT.php:489
+msgid "Product purchase from EU"
+msgstr "Tavaraostot muista EU-maista"
+
+#: Model/VAT.php:490
+msgid "Service purchase from EU"
+msgstr "Palveluostot muista EU-maista"
+
+#: Model/VAT.php:491
+msgid "Sales from construction services (reverse charge)"
+msgstr "Rakentamispalvelun myynnit (käännetty verovelvollisuus)"
+
+#: Model/VAT.php:492
+msgid "Purchases from construction services (reverce charge)"
+msgstr "Rakentamispalvelun ostot (käännetty verovelvollisuus)"
+
+#: UI/Content.php:142
+msgid "Logout"
+msgstr "Kirjaudu ulos"
+
+#: UI/Content.php:149
+msgid "Choose company"
+msgstr "Valitse asiakas"
+
+#: UI/Content.php:411
+msgid "January"
+msgstr "tammikuu"
+
+#: UI/Content.php:412
+msgid "February"
+msgstr "helmikuu"
+
+#: UI/Content.php:413
+msgid "March"
+msgstr "maaliskuu"
+
+#: UI/Content.php:414
+msgid "April"
+msgstr "huhtikuu"
+
+#: UI/Content.php:415
+msgid "May"
+msgstr "toukokuu"
+
+#: UI/Content.php:416
+msgid "June"
+msgstr "kesäkuu"
+
+#: UI/Content.php:417
+msgid "July"
+msgstr "heinäkuu"
+
+#: UI/Content.php:418
+msgid "August"
+msgstr "elokuu"
+
+#: UI/Content.php:419
+msgid "September"
+msgstr "syyskuu"
+
+#: UI/Content.php:420
+msgid "October"
+msgstr "lokakuu"
+
+#: UI/Content.php:421
+msgid "November"
+msgstr "marraskuu"
+
+#: UI/Content.php:422
+msgid "December"
+msgstr "joulukuu"
+
+#: UI/Content.php:446
+msgid "Monday"
+msgstr "maanantai"
+
+#: UI/Content.php:447
+msgid "Tuesday"
+msgstr "tiistai"
+
+#: UI/Content.php:448
+msgid "Wednesday"
+msgstr "keskiviikko"
+
+#: UI/Content.php:449
+msgid "Thursday"
+msgstr "torstai"
+
+#: UI/Content.php:450
+msgid "Friday"
+msgstr "perjantai"
+
+#: UI/Content.php:451
+msgid "Saturday"
+msgstr "lauantai"
+
+#: UI/Content.php:452
+msgid "Sunday"
+msgstr "sunnuntai"
+
+#: UI/CorrectDeclarationContent.php:55
+msgid "Declaration - correcting sent declarations"
+msgstr "Ilmoittaminen - Ilmoitettujen tietojen korjaaminen"
+
+#: UI/CorrectDeclarationContent.php:135 UI/VATDeclarationContent.php:195
+msgid "VAT declaration information"
+msgstr "Ilmoitettavat tiedot"
+
+#: UI/CorrectDeclarationContent.php:154
+msgid "Declaration is successful."
+msgstr "Ilmoituksen tekeminen onnistui."
+
+#: UI/CorrectDeclarationContent.php:156
+msgid "Error while creating declaration. Please, try again"
+msgstr "Virhe ilmoitusta tehtäessä. Ole hyvä ja yritä myöhemmin uudelleen"
+
+#: UI/CorrectDeclarationContent.php:202
+msgid "Target period"
+msgstr "Kohdekausi"
+
+#: UI/CorrectDeclarationContent.php:203
+msgid "Sent"
+msgstr "Lähetetty"
+
+#: UI/CorrectDeclarationContent.php:204
+msgid "Declaration"
+msgstr "Ilmoitus"
+
+#: UI/CorrectDeclarationContent.php:232
+msgid "Make extra declaration"
+msgstr "Tee ylimääräinen ilmoitus"
+
+#: UI/CorrectDeclarationContent.php:259 UI/TransactionsContent.php:87
+msgid "There are no transactions yet"
+msgstr "Ei tapahtumia"
+
+#: UI/CorrectDeclarationContent.php:283 UI/CorrectDeclarationContent.php:340
+#: UI/ECDeclarationContent.php:152 UI/ECDeclarationContent.php:200
+#: UI/VATDeclarationContent.php:152 UI/VATDeclarationContent.php:203
+msgid "Euros"
+msgstr "Euroa"
+
+#: UI/CorrectDeclarationContent.php:287 UI/CorrectDeclarationContent.php:344
+#: UI/ECDeclarationContent.php:204 UI/VATDeclarationContent.php:156
+#: UI/VATDeclarationContent.php:207
+msgid "TODO: Vero kotimaan myynnistä verokannoittain"
+msgstr "Vero kotimaan myynnistä verokannoittain"
+
+#: UI/CorrectDeclarationContent.php:307 UI/CorrectDeclarationContent.php:361
+#: UI/ECDeclarationContent.php:168 UI/ECDeclarationContent.php:221
+#: UI/VATDeclarationContent.php:171 UI/VATDeclarationContent.php:224
+msgid "Cancel"
+msgstr "Peruuta"
+
+#: UI/CorrectDeclarationContent.php:308 UI/ECDeclarationContent.php:169
+#: UI/VATDeclarationContent.php:172
+msgid "Continue"
+msgstr "Jatka"
+
+#: UI/CorrectDeclarationContent.php:332 UI/ECDeclarationContent.php:193
+#: UI/VATDeclarationContent.php:196
+msgid "Check that information is correct before sending the declaration."
+msgstr "Tarkista ilmoitettavien tietojen oikeellisuus ja lähetä ilmoitus."
+
+#: UI/CorrectDeclarationContent.php:333 UI/ECDeclarationContent.php:194
+#: UI/VATDeclarationContent.php:197
+msgid "If needed you can change the information."
+msgstr "Tarvittaessa ilmoitettavia tietoja voi vielä muuttaa."
+
+#: UI/CorrectDeclarationContent.php:360 UI/ECDeclarationContent.php:220
+#: UI/VATDeclarationContent.php:223
+msgid "Correct declaration"
+msgstr "Muuta tietoja"
+
+#: UI/CorrectDeclarationContent.php:362 UI/ECDeclarationContent.php:222
+#: UI/VATDeclarationContent.php:225
+msgid "Save"
+msgstr "Tallenna"
+
+#: UI/CustomerInfoContent.php:51 UI/Navigation.php:342
+msgid "Customer information"
+msgstr "Asiakastiedot"
+
+#: UI/CustomerInfoContent.php:53
+msgid "Basic information"
+msgstr "Perustiedot"
+
+#: UI/CustomerInfoContent.php:57
+msgid "Name"
+msgstr "Nimi"
+
+#: UI/CustomerInfoContent.php:61
+msgid "Business ID"
+msgstr "Y-tunnus"
+
+#: UI/CustomerInfoContent.php:66
+msgid "Reporting information"
+msgstr "Ilmoitusjakson tiedot"
+
+#: UI/CustomerInfoContent.php:67
+msgid "Current declaration period information"
+msgstr "Voimassa olevat ilmoitusjaksotiedot"
+
+#: UI/CustomerInfoContent.php:72
+msgid "VAT declarations"
+msgstr "ALV-ilmoitukset"
+
+#: UI/CustomerInfoContent.php:73 UI/CustomerInfoContent.php:77
+msgid "Monthly"
+msgstr "Kuukausittain"
+
+#: UI/CustomerInfoContent.php:76
+msgid "Employer contributions"
+msgstr "Työnantajasuoritukset"
+
+#: UI/CustomerInfoContent.php:83
+msgid "Payment information"
+msgstr "Maksamisen tiedot"
+
+#: UI/CustomerInfoContent.php:85
+msgid "Reference number must always be used when making payment to tax account"
+msgstr "Verotilille maksettaessa on aina käytettävä viitenumeroa"
+
+#: UI/CustomerInfoContent.php:90
+msgid "Tax account payments customer-spesific reference number"
+msgstr "Verotilimaksujen asiakaskohtainen viite"
+
+#: UI/CustomerInfoContent.php:94
+msgid "Bank account number for tax account payments"
+msgstr "Verohallinnon tilinumerot verotilimaksuille"
+
+#: UI/CustomerInfoContent.php:98
+msgid "Bank"
+msgstr "Pankki"
+
+#: UI/DeclarationInfoContent.php:44
+msgid "Unprompted tax declarations"
+msgstr "Oma-aloitteisten verojen ilmoittaminen"
+
+#: UI/DeclarationInfoContent.php:46
+msgid ""
+"Value added tax, withholding tax and employers social security contributions "
+"are unprompted taxes that are declared for tax authorities via seasonal "
+"income tax declaration."
+msgstr ""
+"Arvonlisävero, ennakonpidätykset, työnantajan sosiaaliturvamaksu, "
+"lähdeverot, arpajaisvero ja vakuutusmaksuvero ovat oma-aloitteisia veroja, "
+"jotka ilmoitetaan Verohallinnolle kausiveroilmoituksella."
+
+#: UI/DeclarationInfoContent.php:48
+msgid "Declaration dates"
+msgstr "Ilmoittamisen määräpäivät"
+
+#: UI/DeclarationInfoContent.php:50
+msgid "Month as the declaration period"
+msgstr "Ilmoitusjakso on kuukausi"
+
+#: UI/DeclarationInfoContent.php:51
+msgid ""
+"The seasonal income tax declaration is due on 12. day of the month that the "
+"target period tax or payment declaration is due according the law."
+msgstr ""
+"Sähköinen kausiveroilmoitus on annettava viimeistään sen kalenterikuukauden "
+"12. päivänä, jona kohdekauden vero tai maksu on kyseistä veroa koskevan lain "
+"mukaan ilmoitettava. "
+
+#: UI/DeclarationInfoContent.php:54
+msgid "The next general due date is "
+msgstr "Seuraava yleinen eräpäivä on "
+
+#: UI/DeclarationInfoContent.php:55
+msgid ""
+"The next target period value added tax and employer contributions are due on "
+"this date."
+msgstr ""
+"Tällöin erääntyvät seuraavien kohdekausien arvonlisäverot ja "
+"työnantajasuoritukset."
+
+#: UI/ECDeclarationContent.php:56
+msgid "Declaration - Employer contributions declaration"
+msgstr "Ilmoittaminen - Työnantajasuoritusten ilmoittaminen"
+
+#: UI/ECDeclarationContent.php:118 UI/VATDeclarationContent.php:117
+msgid "Kausiveroilmoitus on vastaanotettu"
+msgstr "Kausiveroilmoitus on vastaanotettu"
+
+#: UI/ECDeclarationContent.php:121 UI/VATDeclarationContent.php:120
+msgid "Something wrong. Please try again later."
+msgstr "Jotakin on pielessä. Ole hyvä ja yritä myöhemmin uudelleen."
+
+#: UI/ECDeclarationContent.php:192
+msgid "Employer contribution declaration information"
+msgstr "Ilmoitettavat tiedot"
+
+#: UI/FrontPageContent.php:46
+msgid "Tax account status"
+msgstr "Verotilin tilanne"
+
+#: UI/FrontPageContent.php:51
+msgid "Saldo status"
+msgstr "Saldotilanne"
+
+#: UI/FrontPageContent.php:60 UI/TransactionsContent.php:55
+msgid "Tax account saldo"
+msgstr "Verotilin saldo"
+
+#: UI/FrontPageContent.php:61 UI/MonthlySummaryContent.php:154
+msgid "Transactions"
+msgstr "Tilitapahtumat"
+
+#: UI/LoginContent.php:50
+msgid "Login to Futural Tax"
+msgstr "Kirjaudu Futural Verottajaan"
+
+#: UI/LoginContent.php:52
+msgid "Username"
+msgstr "Käyttäjännimi"
+
+#: UI/LoginContent.php:54
+msgid "Password"
+msgstr "Salasana"
+
+#: UI/LoginContent.php:57
+msgid "Login"
+msgstr "Kirjaudu"
+
+#: UI/MonthlySummaryContent.php:42
+msgid "Tax account transactions - monthly summary"
+msgstr "Verotilin tapahtumat - Kuukausiyhteenvedot"
+
+#: UI/MonthlySummaryContent.php:71 UI/TransactionsContent.php:66
+msgid "Date"
+msgstr "Päivämäärä"
+
+#: UI/MonthlySummaryContent.php:72
+msgid "Transaction / message"
+msgstr "Tilitapahtuma / selite"
+
+#: UI/MonthlySummaryContent.php:73
+msgid "Amount"
+msgstr "Summa"
+
+#: UI/MonthlySummaryContent.php:78 UI/MonthlySummaryContent.php:103
+#: UI/MonthlySummaryContent.php:133 UI/MonthlySummaryContent.php:148
+msgid "Saldo"
+msgstr "Saldo"
+
+#: UI/MonthlySummaryContent.php:112
+msgid "Charges"
+msgstr "Veloitukset"
+
+#: UI/MonthlySummaryContent.php:113
+msgid "Credits"
+msgstr "Hyvitykset"
+
+#: UI/MonthlySummaryContent.php:114
+msgid "Transactions total"
+msgstr "Tilitapahtumat yhteensä"
+
+#: UI/MonthlySummaryContent.php:118
+msgid "There are no transactions"
+msgstr "Ei tilitapahtumia."
+
+#: UI/MonthlySummaryContent.php:123
+msgid "All transactions"
+msgstr "Kaikki tilitapahtumat"
+
+#: UI/MonthlySummaryContent.php:124
+msgid "Select month"
+msgstr "Valitse kuukausi"
+
+#: UI/Navigation.php:326
+msgid "Select company"
+msgstr "Valitse asiakas"
+
+#: UI/Navigation.php:327
+msgid "Front page"
+msgstr "Etusivu"
+
+#: UI/Navigation.php:328
+msgid "Tax account events"
+msgstr "Verotilin tapahtumat"
+
+#: UI/Navigation.php:330
+msgid "Account transactions"
+msgstr "Kirjatut tilitapahtumat"
+
+#: UI/Navigation.php:331
+msgid "Monthly summary"
+msgstr "Kuukausiyhteenvedot"
+
+#: UI/Navigation.php:334
+msgid "Tax declarations"
+msgstr "Ilmoittaminen"
+
+#: UI/Navigation.php:336
+msgid "Info"
+msgstr "Info"
+
+#: UI/Navigation.php:337
+msgid "VAT declaration"
+msgstr "Arvonlisäveron ilmoittaminen"
+
+#: UI/Navigation.php:338
+msgid "Employer's contributions"
+msgstr "Työnantajasuoritusten ilmoittaminen"
+
+#: UI/Navigation.php:339
+msgid "Correcting declarations"
+msgstr "Ilmoitettujen tietojen korjaaminen"
+
+#: UI/SelectCompanyContent.php:48
+msgid "Customer selection"
+msgstr "Asiakkaan valinta"
+
+#: UI/SelectCompanyContent.php:49
+msgid "Select customer to manage"
+msgstr "Valitse käsiteltävä asiakas"
+
+#: UI/SelectCompanyContent.php:52
+msgid "BusinessID"
+msgstr "Y-tunnus"
+
+#: UI/SelectCompanyContent.php:53
+msgid "Company name"
+msgstr "Nimi"
+
+#: UI/SelectCompanyContent.php:54
+msgid "Access rights"
+msgstr "Käyttöoikeudet"
+
+#: UI/SelectCompanyContent.php:61
+msgid "Browsing the tax account and making seasonal tax declarations"
+msgstr "Verotilin selaaminen ja kausiveroilmoittaminen"
+
+#: UI/TransactionsContent.php:46
+msgid "Tax account transactions - registered transactions"
+msgstr "Verotilin tapahtumat - Kirjatut tilitapahtumat"
+
+#: UI/TransactionsContent.php:67
+msgid "Transaction"
+msgstr "Tapahtuma"
+
+#: UI/TransactionsContent.php:68
+msgid "Sum"
+msgstr "Summa"
+
+#: UI/TransactionsContent.php:69
+msgid "TODO: maksamatta"
+msgstr "Maksamatta"
+
+#: UI/VATDeclarationContent.php:54
+msgid "Declaration - Value added tax declaration"
+msgstr "Ilmoittaminen - Arvonlisäveron ilmoittaminen"
+
+#~ msgid "kausiveroilmoitus"
+#~ msgstr "kausiveroilmoitus"
+
+#, fuzzy
+#~ msgid "Declaration period is a month"
+#~ msgstr "Ilmoitusjakso"
+
+#~ msgid "Choose customer"
+#~ msgstr "Asiakkaan valinta"
+
+#~ msgid " "
+#~ msgstr " "
+
+#~ msgid "Welcome to verottaja!"
+#~ msgstr "Tervetuloa Verottajaan!"
+
+#~ msgid "Log out"
+#~ msgstr "Kirjaudu ulos"
