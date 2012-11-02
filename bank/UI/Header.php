@@ -72,6 +72,8 @@ class Header {
 	<script type="text/javascript" src="../jquery-ui/jquery-1.8.2.js"></script>
 	<script type="text/javascript" src="../jquery-ui/ui/jquery.ui.core.js"></script>
 	<script type="text/javascript" src="../jquery-ui/ui/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="../jquery-ui/ui/jquery.ui.position.js"></script>
+	<script type="text/javascript" src="../jquery-ui/ui/jquery.ui.tooltip.js"></script>
 	<script type="text/javascript" src="../jquery-ui/ui/jquery.ui.datepicker.js"></script>
 	<script type="text/javascript" src="../jquery-ui/ui/i18n/jquery.ui.datepicker-fi.js"></script>
 	<script type="text/javascript" src="../jquery-ui/ui/i18n/jquery.ui.datepicker-en-GB.js"></script>

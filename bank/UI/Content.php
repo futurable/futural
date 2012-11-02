@@ -353,6 +353,49 @@ EOT;
 	}
 	
 	/**
+	 * Return input field for form in html format.
+	 *
+	 * @access protected
+	 * @param  string  $inputElementLabel
+	 * @param  string  $inputElementID
+	 * @param  string  $title
+	 * @param  array   $errors         	- possible errors (when form is validated)
+	 * @return string  $text
+	 */
+	protected function getFormInputElement( $inputElementLabel, $inputElementID, $title = false, $errors = false ) {
+		$text = '';
+	
+		if (is_string($inputElementLabel) and is_string($inputElementID)) {
+			$text = "
+				<div class='$inputElementID'>
+				<label>$inputElementLabel: </label>
+				<span><input type='text' name='$inputElementID' id='$inputElementID'";
+			
+			// If title is set, print the value
+			if(isset($title) and !empty($title)){
+				$text .= " title='$title'";
+			}
+			// If variable is posted (form is posted), print the value too
+			if (isset($_POST[ $inputElementID ])) {
+				$text .= "value='". $_POST[ $inputElementID ] ."' ";
+			}
+			// If errors is array and there is key named same as input field name, print class=incorrect
+			if (is_array($errors) and isset($errors[ $inputElementID ])) {
+				$text .= "class='incorrect' ";
+			}
+
+			$text .= "/>";
+					
+			if (is_array($errors) and isset($errors[ $inputElementID])) {
+				$text .= $errors[ $inputElementID ];
+			}
+				
+			$text .= "</span></div><!-- / $inputElementID -->";
+		}
+		return $text;
+	}
+	
+	/**
 	 * Get disabled form field
 	 * @param 	string 	$labelDefinition
 	 * @param 	string 	$inputFieldName
