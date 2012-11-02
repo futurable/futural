@@ -51,6 +51,11 @@ class BankLoanApplicationContent extends Content {
 		
 		$content = "
 		<script type='text/javascript'>
+			/* Tooltips */
+			$(function() {
+				$( document ).tooltip();
+			});
+				
 			function hideFields(){
 				var selectedType = document.getElementsByName('loanType').item(0).value;
 				
@@ -273,12 +278,12 @@ class BankLoanApplicationContent extends Content {
 		$form .= $this->getFormHiddenInputField('newLoanApplication', "true" );
 		
 		// Repayment
-		$form .= $this->getFormInputField( gettext("Amount of loan"), "loanAmount");
+		$form .= $this->getFormInputElement( gettext("Amount of loan"), "loanAmount", gettext("Insert the amount of the loan you want to apply"));
 	
 		$form .= $this->getFormDropDownMenuWithArrayKeyAsOptionValue( gettext("Loan type"), $loanTypes, "loanType", $loanTypeJS );
 		
-		$form .= $this->getFormInputField( gettext("Repayment"), "repayment", false, $loanRepaymentJS);
-		$form .= $this->getFormInputField( gettext("Instalment"), "instalment", false, $loanRepaymentJS);
+		$form .= $this->getFormInputElement( gettext("Repayment"), "repayment", gettext("Insert the planned repayment amount"));
+		$form .= $this->getFormInputElement( gettext("Instalment"), "instalment", gettext("Insert the planned instalment amount"));
 		
 		// Loan length
 		$form .= $this->getFormDropDownMenuWithArrayKeyAsOptionValue( gettext("Interval of repayment"), $repaymentIntervals, "repaymentInterval", $loanIntervalJS );
