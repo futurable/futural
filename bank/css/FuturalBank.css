@@ -134,34 +134,37 @@ ul#navi {
 	/* font-size: 90%; */
 }
 
-/* Input-field */
-input, select, textarea{
-	background-color: #fcfeff;
+/* Input-fields */
+input, select, options, textarea{
+	background-color: #EBF3D5;
+	box-shadow: inset -1px -1px 1px #000;
+	border: 1px solid #000;
+	padding: 5px;
+	border-radius: 5px;
+	margin-bottom: 2px;
 }
 input:hover, select:hover, textarea:hover{
-	background-color: #EBF3D5;
+	background-color: #A8CF38;
+}
+input:active{
+	box-shadow: inset 1px 1px 2px #000;
 }
 
 #form input[type="text"], .form input[type="text"] {
-	width: 50%;
+	width: 30%;
 }
 
 /* Submit-button */
 input[type="submit"]{
-	float: right;
-	background-color: #fff;
-	border: 2px outset #A8CF38;
-	box-shadow: 3px 3px 5px #000;
-	border-radius: 15px;
+	float: left;
 	font-weight: bold;
 	margin-top: 1%;
 	margin-left: 5px;
 	padding: 5px 15px;
 	display: block;
 }
-input[type="submit"]:hover{
-	background-color: #A8CF38;
-}
+
+/* Select-fields */
 
 #form label, .form label {
 	float: left;
@@ -258,9 +261,13 @@ input[type="submit"]:hover{
 #loanTermWarning p {
 	padding: 5px 5px 0 5px;
 }
+#loanTermDiv p{
+	display: inline;
+}
 
 /* TEXT DEFINITIONS */
 h1 {
+	font-size: 18px;
 	font-weight: bold;
 	margin-bottom: 20px;
 }
@@ -281,4 +288,10 @@ table td, th {
 
 .borderTop {
 	border-top: 1px dotted black;
+}
+.floatRight{
+	float: right;
+}
+.hidden{
+	display: none;
 }
