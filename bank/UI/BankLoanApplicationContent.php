@@ -121,8 +121,25 @@ class BankLoanApplicationContent extends Content {
 				// Form for loan application
 				$loanApplication = new BankLoanInfo();
 				$form = $this->displayLoanApplicationFormUsingObject($user, $loanApplication);
+				$loanCounter = $this->displayLoanCounterFrame();
 				
+				$content = '<script type="text/javascript" src="js/BankLoanApplicationLoanCounter.js"></script>'.$form.$loanCounter;
+		
+			/** 3.0 New loan application overview **/
+			if (isset($_POST[ 'checkLoanApplication' ]) and $_POST[ 'checkLoanApplication' ]) {
+				Debug::debug(get_class(), "doDisplayBusinessCustomerContentInHtml", "POST has checkLoanApplication variable.", 2);
+			
+				$loanApplication->fillObjectFromArray ( $loanApplication, $_POST );
+				$validated = $loanApplication->validateBankLoanInfo();
+				if($validated === true){
+					$form = $this->displayLoanApplicationInformationUsingObject($loanApplication);
+				}
+				else{
+					$form = $this->displayLoanApplicationInformationUsingObjectWithErrors($loanApplication, $validated);
+				}
+			
 				$content = $form;
+			}
 		}
 		/*
 		// Display new loan application
@@ -236,7 +253,6 @@ class BankLoanApplicationContent extends Content {
 		
 		$form .= "
 		<div class='form' id='loanApplicationDiv'>
-			<script></script>
 			<form action='' method='post' id='loanApplicationForm'>
 				<fieldset>
 					<legend>".gettext("Make a loan application")."</legend>";
@@ -583,6 +599,37 @@ class BankLoanApplicationContent extends Content {
 		}
 	}
 	
+	/**
+	 * Get frame for jquery loan counter
+	 */
+	private function displayLoanCounterFrame(){
+		$frame = "
+		<div id='loanCounterFrame'>
+			<div id='loanCounter'>
+				<h3>".gettext("Loan counter")."</h3>
+				<table id='loanCounterTable'>
+						<tr>
+							<th>".gettext("Loan amount")."</th>
+							<th>".gettext("Real amount")."</th>
+							<th>".gettext("Repayment")."</th>
+							<th>".gettext("Interest")."</th>
+							<th>".gettext("Instalment")."</th>
+							<th>".gettext("Loan term")."</th>
+						</tr>
+						<tr>
+							<td id='loanAmountTd'>0</td>
+							<td id='realAmountTd'>0</td>
+							<td id='repaymentTd'>0</td>
+							<td id='interestTd'>0</td>
+							<td id='instalmentTd'>0</td>
+							<td id='termTd'>0</td>
+						</tr>
+				</table>	
+			</div><!-- / loanCounter-->
+		</div><!-- / loanCounterFrame-->";
+	
+		return $frame;
+	}
 	/**
 	 * Get variables for loans
 	 * 

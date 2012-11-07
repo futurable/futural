@@ -246,6 +246,21 @@ input[type="submit"]{
 	float: left;
 }
 
+/* Loan application counter */
+#loanCounterFrame{
+	clear: both;
+	width: 90%;
+	display: block;
+	background: #ccc;
+	margin: 50px 0 20px 0;
+}
+#loanCounter{
+	padding: 10px;
+}
+#loanCounter td{
+	text-align: right;
+}
+
 /* Loan term (day,week,month) */
 #loanApplicationForm label{
 	max-width: 120px;
