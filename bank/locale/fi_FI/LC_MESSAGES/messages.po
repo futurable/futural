@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Futural bank\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-07 18:30+0200\n"
-"PO-Revision-Date: 2012-11-07 18:31+0200\n"
+"PO-Revision-Date: 2012-11-07 18:34+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>\n"
 "Language-Team: Futurable Oy <info@futurable.fi>\n"
 "Language: fi_FI\n"
@@ -84,7 +84,7 @@ msgstr "Lainan määrä"
 
 #: UI/BankLoanApplicationContent.php:272
 msgid "Insert the amount of the loan you want to apply"
-msgstr "Anna anotun lainan määrä"
+msgstr "Anna anottavan lainan määrä"
 
 #: UI/BankLoanApplicationContent.php:275 UI/BankLoanApplicationContent.php:353
 #: UI/BankLoanApplicationContent.php:424 UI/BankLoanApplicationContent.php:502
