@@ -25,12 +25,14 @@ $(document).ready(function(){
 			$(".loanTerm").fadeIn("slow");
 			
 			// Loanterm suffix
-			$( "#repaymentIntervalText" ).text( $("#repaymentInterval option:selected").text() );
+			var selected =  $("#repaymentInterval option:selected").val();
+			$( "#repaymentIntervalText" ).text( repaymentIntervalTexts[selected] );
 		}
 	});
 
 	$("#repaymentInterval").change(function(){
-		$( "#repaymentIntervalText" ).text( $("#repaymentInterval").val() );
+		var selected =  $("#repaymentInterval option:selected").val();
+		$( "#repaymentIntervalText" ).text( repaymentIntervalTexts[selected] );
 	});
 
 	/*// Loan term slider
@@ -52,7 +54,7 @@ $(document).ready(function(){
 	});
 	//*/
 
-	// Form validation
+	/*/ Form validation
 	$("#loanApplicationForm").validate({
 		rules: {
 			loanAmount: {
@@ -71,7 +73,7 @@ $(document).ready(function(){
 				max: 30
 			}
 		}
-	});
+	});//*/
 	
 	// Tooltips
 	$(function() {

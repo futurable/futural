@@ -49,8 +49,15 @@ class BankLoanApplicationContent extends Content {
 		// check user role
 		$userRole = $userObject->getRole();
 		
+		// Get required loan variables
+		$variables = $this->getLoanVariables();
+		foreach($variables as $key => $value){
+			${$key} = $value;
+		}
 		
-		$content = '<script type="text/javascript" src="js/BankLoanApplication.js"></script>';
+		$repaymentIntervalTextsJSON = json_encode($repaymentIntervalTexts);
+		$content = "<script type=\"text/javascript\">var repaymentIntervalTexts = jQuery.parseJSON('$repaymentIntervalTextsJSON')</script>";
+		$content .= '<script type="text/javascript" src="js/BankLoanApplication.js"></script>';
 		
 		if ( strcmp(trim($userRole), 'opiskelija') === 0 ) {
 			Debug::debug(get_class(), "doDisplayInHtml", "Profil = $userRole", 2);
@@ -620,6 +627,7 @@ class BankLoanApplicationContent extends Content {
 		$variables = array(	'loanTypes' => $loanTypes
 							, 'interestTypes' => $interestTypes
 							, 'repaymentIntervals' => $repaymentIntervals
+							, 'repaymentIntervalTexts' => $repaymentIntervalTexts
 							, 'loanTerms' => $loanTerms
 							, 'loanStatusArray' => $loanStatusArray );
 		
