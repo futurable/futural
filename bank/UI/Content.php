@@ -5,6 +5,7 @@
  *  Copyright information
  *
  *      Copyright (C) 2012 Annika Granlund <annika.granlund@futurable.fi>
+ *      			  2012 Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>
  *
  *  License
  *
@@ -41,10 +42,10 @@ require_once 'PageNotFoundContent.php';
  * Content.php
  * 
  * @package   UI
- * @author    Annika Granlund
- * @copyright 2012 <annika.granlund@futurable.fi>
+ * @author    Annika Granlund, Jarmo Kortetjärvi
+ * @copyright 2012 <annika.granlund@futurable.fi>, <jarmo.kortetjarvi@futurable.fi>
  * @license   GPLv3 or any later version
- * @version   2012-05-26
+ * @version   2012-11-07
  */
 abstract class Content {
 	
@@ -495,6 +496,93 @@ EOT;
 					<script type='text/javascript'>calendar.set('$inputFieldName');</script>
 EOT;
 		}
+		return $text;
+	}
+	
+	/**
+	 * Return input field for form in html format.
+	 *
+	 * @access protected
+	 * @param  string  $elementLabel
+	 * @param  string  $inputElementID
+	 * @param  string  $title
+	 * @param  array   $errors         	- possible errors (when form is validated)
+	 * @return string  $text
+	 */
+	protected function getFormInputElement( $elementLabel, $elementID, $title = false, $errors = false ) {
+		$text = '';
+	
+		if (is_string($elementLabel) and is_string($elementID)) {
+			$divID = $elementID."Div";
+			
+			$text = "
+			<div class='$elementID' id='$divID'>\n
+			\t<label>$elementLabel: </label>\n
+			\t<input type='text' name='$elementID' id='$elementID'";
+	
+			// If title is set, print the value
+			if(isset($title) and !empty($title)){
+				$text .= " title='$title'";
+			}
+			// If variable is posted (form is posted), print the value too
+			if (isset($_POST[ $elementID ])) {
+				$text .= "value='". $_POST[ $elementID ] ."' ";
+			}
+			// If errors is array and there is key named same as input field name, print class=incorrect
+			if (is_array($errors) and isset($errors[ $elementID ])) {
+				$text .= "class='incorrect' ";
+			}
+	
+			$text .= "/>\n";
+	
+			if (is_array($errors) and isset($errors[ $elementID])) {
+				$text .= $errors[ $elementID ];
+			}
+	
+			$text .= "</div><!-- / $divID -->\n\n";
+		}
+		return $text;
+	}
+	
+	/**
+	 * Return drop down menu (select) for form in html format.
+	 * Use array keys as option values
+	 * Do not enable multiple selections.
+	 *
+	 * @access protected
+	 * @param  string 	$elementLabel
+	 * @param  array  	$optionArray
+	 * @param  string 	$elementID
+	 * @param  string	$title 					default false
+	 * @return string 	$text
+	 */
+	protected function getFormSelectElement( $elementLabel, $optionArray, $elementID, $title = false ) {
+		$text = '';
+		$divID = $elementID."Div";
+		
+		if (is_string($elementLabel) AND is_array($optionArray) AND is_string($elementID)) {
+			$text = "<div class='$elementID' id='$divID'>\n \t<label>$elementLabel: </label>\n";
+	
+			$text .= "\t<select name='$elementID' id='$elementID'";
+			if(isset($title) AND !empty($title)){
+				$text .= " title='$title'";
+			}
+			$text .= ">\n";
+	
+			foreach ( $optionArray as $key => $value ) {
+				$text .= "\t\t";
+				// if form is posted and this value is selected, set selected
+				if (isset($_POST[ $elementID ]) AND $_POST[ $elementID ] == "$key") {
+					$text .= "<option value='$key' selected='selected'>$value</option>";
+				} else {
+					$text .= "<option value='$key'>$value</option>";
+				}
+				$text .= "\n";
+			}
+			$text .= "\t</select>\n";
+			$text .= "</div><!-- / $divID -->\n\n";
+		}
+	
 		return $text;
 	}
 	
