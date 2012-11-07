@@ -69,8 +69,8 @@ class Header {
 
 	<!-- JavaScript (jquery&jquery-ui) -->
 	<link type="text/css" href="css/jquery-ui.custom.css" rel="stylesheet" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    <script type="text/javascript src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
 	<script type="text/javascript" src="../jquery-ui/ui/i18n/jquery.ui.datepicker-fi.js"></script>
 	<script type="text/javascript" src="../jquery-ui/ui/i18n/jquery.ui.datepicker-en-GB.js"></script>
