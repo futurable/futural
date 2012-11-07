@@ -36,7 +36,7 @@ require_once 'CommonServices/Crypt.php';
  * @author    Jarmo Kortetjärvi
  * @copyright 2012 <jarmo.kortetjarvi@futurable.fi>
  * @license   GPLv3 or any later version
- * @version   2011-06-15
+ * @version   2012-11-07
  */
 class BankLoanApplicationContent extends Content {
 	public function __construct(){
@@ -49,86 +49,41 @@ class BankLoanApplicationContent extends Content {
 		// check user role
 		$userRole = $userObject->getRole();
 		
-		$content = "
-		<script type='text/javascript'>
-			/* Tooltips */
-			$(function() {
-				$( document ).tooltip();
-			});
-				
-			function hideFields(){
-				var selectedType = document.getElementsByName('loanType').item(0).value;
-				
-				if( selectedType != 'fixedRepayment' ){
-					document.getElementById('repayment').style.display = 'none';
-					document.getElementsByName('repayment').item(0).value = '';
-				}
-				else document.getElementById('repayment').style.display = 'block';
-				
-				if( selectedType != 'fixedInstalment' ){
-					document.getElementById('instalment').style.display = 'none';
-					document.getElementsByName('instalment').item(0).value = '';
-				}
-				else document.getElementById('instalment').style.display = 'block';			
-			}
-			
-			function getLoanTermLabel(){
-				var loanTermLabel = document.getElementById('loanTermDescription');
-				var loanTermSelected = document.getElementsByName('repaymentInterval').item(0).selectedIndex;
-				//var loanTermDescription = document.getElementsByName('repaymentInterval').item(0).options[loanTermSelected].text;
-				
-				if(loanTermSelected == '0'){
-					var loanTermDescription = '".gettext('days')."';
-				}
-				else if(loanTermSelected == '1'){
-					var loanTermDescription = '".gettext('weeks')."';
-				}
-				else if(loanTermSelected == '2'){
-					var loanTermDescription = '".gettext('months')."';
-				}
-				
-				loanTermLabel.innerHTML = loanTermDescription;
-			}
-			
-			function getLoanTermWarning(){
-				// Check if there's text in loan repayment info fields
-				var loanTermWarning = document.getElementById('loanTermWarning');
-				var loanRepaymentField = document.getElementsByName('repayment').item(0).value;
-				var loanInstalmentField = document.getElementsByName('instalment').item(0).value;
-				var loanTermField = document.getElementsByName('loanTerm').item(0);
-				
-				if(loanRepaymentField != '' || loanInstalmentField != ''){
-					var loanTermWarningText = '<p>".gettext('When repayment or instalment is given, loan term will be ignored.')."</p>';
-					loanTermField.disabled = 'disabled';
-					loanTermWarning.innerHTML = loanTermWarningText;
-				}
-				else{
-					loanTermWarning.innerHTML = '';
-					loanTermField.disabled = false;
-				}
-			}
-			
-			window.onload=function hideFieldsStart(){
-				hideFields();
-				getLoanTermLabel();
-			};
-		</script>";
+		
+		$content = '<script type="text/javascript" src="js/BankLoanApplication.js"></script>';
 		
 		if ( strcmp(trim($userRole), 'opiskelija') === 0 ) {
 			Debug::debug(get_class(), "doDisplayInHtml", "Profil = $userRole", 2);
 			// Student role content
-			$content .= $this->doDisplayBusinessCustomerContentInHtml($userObject );
-				
+			$content .= $this->doDisplayBusinessCustomerContentInHtml( $userObject );
+		
 		} else if ( strcmp(trim($userRole), 'Admin profil') === 0 ) {
 			Debug::debug(get_class(), "doDisplayInHtml", "Profil = $userRole", 2);
 			// Admin role content
-			$content .= $this->doDisplayAdminContentInHtml($userObject);
+			$content .= $this->doDisplayAdminContentInHtml( $userObject );
 			
 		}
 		
 		return $content;
 	}
 
+	/** Applicating a new loan
+	 *
+	 *	1.0 Current loan applications overview
+	 *		1.1 Loan application overview
+	 *			-> Go to 2.1
+	 *	2.0 New loan application
+	 *		2.1 Loan amount, interest type, repayment interval
+	 *			-> On successful data validation go to 2.2, else go to 2.1
+	 *		2.2. Repayment, instalment or loan term (depending on interest type)
+	 *			-> On successful data validation go to 3.1, else go to 2.2
+	 *	3.0 New loan application overview
+	 *		3.1 Loan application overview
+	 *			-> On successful data validation go to 4.1, else error
+	 *	4.0 Save new loan application
+	 *		4.1 Save loan application
+	 */
+	
 	/**
 	 * Get HTML-formatted content for business customers
 	 * 
@@ -138,37 +93,62 @@ class BankLoanApplicationContent extends Content {
 	private function doDisplayBusinessCustomerContentInHtml( User $user ) {
 		Debug::debug(get_class(), "doDisplayBusinessCustomerContentInHtml", "Start");
 		
+		$content = "<h1>".gettext('Loan applications')."</h1>";
+			
+		if(isset($loanStatusUpdate)){
+			$content .= "<p>$loanStatusUpdate</p>";
+		}
+		
+		/** 1.0 Current loan applications overview **/
+		if( !isset($_POST['newLoanApplication']) || isset($_POST['cancel']) ){
+			// 1.1 Loan application overview
+			$content .= $this->displayLoanApplicationStatusInHTMLFormat($user);
+			$content .= "<div class='floatRight'><p><form action='' method='post' id='newLoanApplicationForm' name='newLoanApplicationForm'>
+							<input type='submit' name='newLoanApplication' value='".gettext('Make a new loan application')."' />
+						</form></p></div>";
+		}
+		/** 2.0 New loan application **/
+		elseif( isset($_POST['newLoanApplication']) and !empty($_POST['newLoanApplication']) ){
+				Debug::debug(get_class(), "doDisplayBusinessCustomerContentInHtml", "POST has no checkLoanApplication variable.", 2);
+				
+				// Form for loan application
+				$loanApplication = new BankLoanInfo();
+				$form = $this->displayLoanApplicationFormUsingObject($user, $loanApplication);
+				
+				$content = $form;
+		}
+		/*
 		// Display new loan application
-		if( isset($_POST['newLoanApplication']) && !empty($_POST['newLoanApplication']) && !isset($_POST['cancel']) ){
+		if( isset($_POST['newLoanApplication']) AND !empty($_POST['newLoanApplication']) AND !isset($_POST['cancel']) ){
+			// Create loan application object
+			$loanApplication = new BankLoanInfo();
+			
 			// Display loan application summary
 			if (isset($_POST[ 'checkLoanApplication' ]) && $_POST[ 'checkLoanApplication' ]) {
 				Debug::debug(get_class(), "doDisplayBusinessCustomerContentInHtml", "POST has checkLoanApplication variable.", 2);
 				
-				$loanApplication = new BankLoanInfo();
 				$loanApplication->fillObjectFromArray ( $loanApplication, $_POST );
 				$validated = $loanApplication->validateBankLoanInfo();
-				
 				if($validated === true){
 					$form = $this->displayLoanApplicationInformationUsingObject($loanApplication);
 				}
 				else{
-					$form = $this->displayLoanApplicationInformationUsingObjectWithErrors($loanApplication, $validated);
+					$form = $this->displayLoanApplicationInformationUsingObject($loanApplication, $validated);
 				}
 				
 				$content = $form;
-				
 			}
 			// Save loan application
 			else if (isset($_POST[ 'saveLoanApplication' ]) and $_POST[ 'saveLoanApplication' ] ) {
 				Debug::debug(get_class(), "doDisplayBusinessCustomerContentInHtml", "saveLoanApplication button is pressed", 2);
 				$content = $this->displaySaveLoanApplication();
 			}
-			// Display loan application
+			// Display new loan application
 			else {
 				Debug::debug(get_class(), "doDisplayBusinessCustomerContentInHtml", "POST has no checkLoanApplication variable.", 2);
 				
 				// Form for loan application
-				$form = $this->displayLoanApplicationFormInHTMLFormat($user);
+				$form = $this->displayLoanApplicationFormUsingObject($user, $loanApplication);
 				
 				$content = $form;
 			}
@@ -187,8 +167,8 @@ class BankLoanApplicationContent extends Content {
 				// Save new status
 				$successful = $loanApplication->dataMapper->update( $loanApplication );
 				
-				if($successful === true) $loanStatusUpdate = gettext('Loan application deleted succesfully');
-				else $loanStatusUpdate = gettext('Error while deleting loan application.')."<br/>".gettext('Please try again later');
+				if($successful === true) $loanStatusUpdate = gettext('The loan application deleted succesfully');
+				else $loanStatusUpdate = gettext('Error while deleting the loan application.')."<br/>".gettext('Please try again later');
 			}
 			// User requested declination of the loan application
 			if(isset($_POST['declineLoan']) && isset($_POST['loanID'])){
@@ -202,8 +182,8 @@ class BankLoanApplicationContent extends Content {
 				// Save new status
 				$successful = $loanApplication->dataMapper->update( $loanApplication );
 				
-				if($successful === true) $loanStatusUpdate = gettext('Loan application declined succesfully');
-				else $loanStatusUpdate = gettext('Error while declining loan application.')."<br/>".gettext('Please try again later');
+				if($successful === true) $loanStatusUpdate = gettext('The loan application declined succesfully');
+				else $loanStatusUpdate = gettext('Error while declining the loan application.')."<br/>".gettext('Please try again later');
 			}
 			// User requested acception of the loan application
 			if(isset($_POST['acceptLoan']) && isset($_POST['loanID'])){
@@ -220,17 +200,7 @@ class BankLoanApplicationContent extends Content {
 				if($successful === true) $loanStatusUpdate = gettext('Loan application accepted succesfully');
 				else $loanStatusUpdate = gettext('Error while accepting loan application.')."<br/>".gettext('Please try again later');
 			}
-			
-			$content = "<h1>".gettext('Loan applications')."</h1>";
-			
-			if(isset($loanStatusUpdate)){
-				$content .= "<p>$loanStatusUpdate</p>";
-			}
-			
-			// Display users loan applications
-			$content .= $this->displayLoanApplicationStatusInHTMLFormat($user);
-			$content .= "<p><form action='' method='POST'><input type='submit' name='newLoanApplication' value='".gettext('Make a new loan application')."' /></form></p>";
-		}
+		*/
 			
 		return $content;
 	}
@@ -253,15 +223,13 @@ class BankLoanApplicationContent extends Content {
 	 * @param	User	$user
 	 * @return  mixed   $form
 	 */
-	private function displayLoanApplicationFormInHTMLFormat(User $user){
+	private function displayLoanApplicationFormUsingObject(User $user, BankLoanInfo $bankLoanInfo, $error = false){
 		
-		// Required JavaScipt functions
-		$loanTypeJS['onchange'] = 'hideFields()';
-		$loanIntervalJS['onchange'] = 'getLoanTermLabel()';
-		$loanRepaymentJS['onkeyup'] = 'getLoanTermWarning()';
+		$form = "<h1>".gettext("New loan application")."</h1>";
 		
-		$form = "
-		<div id='form'>
+		$form .= "
+		<div class='form' id='loanApplicationDiv'>
+			<script></script>
 			<form action='' method='post' id='loanApplicationForm'>
 				<fieldset>
 					<legend>".gettext("Make a loan application")."</legend>";
@@ -279,36 +247,28 @@ class BankLoanApplicationContent extends Content {
 		
 		// Repayment
 		$form .= $this->getFormInputElement( gettext("Amount of loan"), "loanAmount", gettext("Insert the amount of the loan you want to apply"));
-	
-		$form .= $this->getFormDropDownMenuWithArrayKeyAsOptionValue( gettext("Loan type"), $loanTypes, "loanType", $loanTypeJS );
 		
-		$form .= $this->getFormInputElement( gettext("Repayment"), "repayment", gettext("Insert the planned repayment amount"));
-		$form .= $this->getFormInputElement( gettext("Instalment"), "instalment", gettext("Insert the planned instalment amount"));
+		// Loan type
+		$form .= $this->getFormSelectElement( gettext("Loan type"), $loanTypes, "loanType", gettext("Select the loan repayment type") );
+		// Loan repayment
+		$form .= $this->getFormInputElement( gettext('Repayment'), 'repayment', gettext("Repayment amount") );
+		// Loan instalment
+		$form .= $this->getFormInputElement( gettext('Instalment'), 'instalment', gettext("Instalment amount") );
+		// Loan term
+		$form .= $this->getFormSelectElement( gettext("Loan term"), $loanTerms, 'loanTerm', gettext("Loan length") );
 		
-		// Loan length
-		$form .= $this->getFormDropDownMenuWithArrayKeyAsOptionValue( gettext("Interval of repayment"), $repaymentIntervals, "repaymentInterval", $loanIntervalJS );
+		// Loan repayment interval
+		$form .= $this->getFormSelectElement( gettext("Interval of repayment"), $repaymentIntervals, "repaymentInterval", gettext("Select how often you would like to pay instalments") );
 		
-		$form .= "<div id='loanTermFields'>";
-		$form .= $this->getFormDropDownMenu( gettext("Loan term"), $loanTerms, "loanTerm" );
-		$form .= "<span id='loanTermDescription'></span></div><br/><!-- / LoanTermFields --><span id='loanTermWarning' class='incorrect'></span>";
-		
-		$form .= $this->getFormDropDownMenuWithArrayKeyAsOptionValue( gettext("Interest type"), $interestTypes, "interestType" );
-				
-		/*/ Loan term options
-		$loanTermOptions = null;
-		foreach($loanTerms as $value){
-			$loanTermOptions .= "<option>$value</option>\n";
-		}
-		
-		$form .= "<label>".gettext('Loan term')."</label><span><select class='floatLeft' name='loanTerm'>$loanTermOptions</select><span id='loanTermDescription'></span></span>";
-		*/
+		// Interest type
+		$form .= $this->getFormSelectElement( gettext("Interest type"), $interestTypes, "interestType", gettext("Select the interest type you want to use") );
 		
 		$form .= "
 				</fieldset>
-					<p>
-					<input type='submit' value='".gettext('Cancel')."' name='cancel' />
-					<input type='submit' value='".gettext('Continue')."' name='checkLoanApplication' />
-					</p>
+					<div class='floatRight'><p>
+						<input type='submit' value='".gettext('Cancel')."' name='cancel' />
+						<input type='submit' value='".gettext('Continue')."' name='checkLoanApplication' />
+					</p></div>
 				
 			</form>
 		</div><!-- /form -->";
@@ -321,10 +281,10 @@ class BankLoanApplicationContent extends Content {
 	 * 
 	 * @access  private
 	 * @param 	BankLoanInfo $object
+	 * @param	string	$errors
 	 * @return  mixed   $form
 	 */
-	private function displayLoanApplicationInformationUsingObject(BankLoanInfo $object){	
-		
+	private function displayLoanApplicationInformationUsingObject(BankLoanInfo $object, $errors = false){
 		// Create loan ID
 		$loanID = uniqid('FUTUB');
 		
@@ -349,18 +309,21 @@ class BankLoanApplicationContent extends Content {
 				$loanTermDescription = null;
 		}
 		
+		$errorArray = (isset($errorArray) AND !empty($errorArray) AND is_array($errorArray)) ? $errorArray : array();
+		
 		$form = "
 		<div id='form'>
 			<form action='' method='post'>
 				<fieldset>
 					<legend>".gettext("Confirm loan application information")."</legend>";
 		
-			$form .= $this->getFormHiddenInputField('userId', $object->getAuthor() );
-			$form .= $this->getFormHiddenInputField('loanApplicant', $object->getLoanApplicant() );
-			$form .= $this->getFormHiddenInputField('loanID', $loanID );
-			$form .= $this->getFormHiddenInputField('newLoanApplication', "true" );
+			// Hidden fields
+			$form .= $this->getFormHiddenInputField( 'userId', $object->getAuthor() );
+			$form .= $this->getFormHiddenInputField( 'loanApplicant', $object->getLoanApplicant() );
+			$form .= $this->getFormHiddenInputField( 'loanID', $loanID );
+			$form .= $this->getFormHiddenInputField( 'newLoanApplication', "true" );
 			
-			$form .= $this->getFormHiddenInputField('loanAmount', $object->getLoanAmount());
+			$form .= $this->getFormHiddenInputField('loanAmount', $object->getLoanAmount() );
 			$form .= $this->getFormLabelField(gettext('Amount of loan'), number_format( $object->getLoanAmount(), 2, ",", " " )." &euro;" , 'loanAmount');
 			
 			$form .= $this->getFormHiddenInputField('loanType', $object->getLoanType());
@@ -392,8 +355,8 @@ class BankLoanApplicationContent extends Content {
 		$form .= "
 				</fieldset>
 				<p>
-				<input type='submit' value='".gettext('Cancel')."' name='cancel' />
 				<input type='submit' value='".gettext('Confirm')."' name='saveLoanApplication' />
+				<input type='submit' value='".gettext('Cancel')."' name='cancel' />
 				</p>
 			</form>
 		</div><!-- /form -->";
@@ -630,11 +593,18 @@ class BankLoanApplicationContent extends Content {
 								, "euribor1" => gettext("1 month euribor")
 								, "euribor3" => gettext("3 month euribor"));
 		
-		// Loan length
-		$repaymentIntervals = array (	"day" => gettext("Day")
-										, "week" => gettext("Week")
-										, "month" => gettext("Month") );
-		$loanTerms = range(5, 25);
+		// Loan repayment intervals
+		$repaymentIntervals = array (		"day" => gettext("Day")
+										, 	"week" => gettext("Week")
+										, 	"month" => gettext("Month") );
+		
+		// Loan repayment interval texts
+		$repaymentIntervalTexts = array (	"day" => gettext("days")
+										, 	"week" => gettext("weeks")
+										, 	"month" => gettext("months") );
+		
+		// Loan terms
+		$loanTerms = range(5,30);
 		
 		// Loan status
 		$loanStatusArray = array(	"open" => gettext("Open")
