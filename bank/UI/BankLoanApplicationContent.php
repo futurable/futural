@@ -610,18 +610,16 @@ class BankLoanApplicationContent extends Content {
 				<table id='loanCounterTable'>
 						<tr>
 							<th>".gettext("Loan amount")."</th>
-							<th>".gettext("Real amount")."</th>
-							<th>".gettext("Repayment")."</th>
 							<th>".gettext("Interest")."</th>
+							<th>".gettext("Real Amount")."</th>
 							<th>".gettext("Instalment")."</th>
 							<th>".gettext("Loan term")."</th>
 						</tr>
 						<tr>
 							<td id='loanAmountTd'>0</td>
+							<td id='interestAmountTd'>0</td>
 							<td id='realAmountTd'>0</td>
 							<td id='repaymentTd'>0</td>
-							<td id='interestTd'>0</td>
-							<td id='instalmentTd'>0</td>
 							<td id='termTd'>0</td>
 						</tr>
 				</table>	
@@ -655,10 +653,11 @@ class BankLoanApplicationContent extends Content {
 		// Loan repayment interval texts
 		$repaymentIntervalTexts = array (	"day" => gettext("days")
 										, 	"week" => gettext("weeks")
-										, 	"month" => gettext("months") );
+										, 	"month" => gettext("months")
+										, 	"year" => gettext("years") );
 		
 		// Loan terms
-		$loanTerms = range(5,30);
+		$loanTerms = array_combine(range(5,24), range(5,24));
 		
 		// Loan status
 		$loanStatusArray = array(	"open" => gettext("Open")

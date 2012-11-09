@@ -142,6 +142,8 @@ input, select, options, textarea{
 	padding: 5px;
 	border-radius: 5px;
 	margin-bottom: 2px;
+	box-sizing: content-box;
+	min-width: 30%;
 }
 input:hover, select:hover, textarea:hover{
 	background-color: #A8CF38;
@@ -162,6 +164,7 @@ input[type="submit"]{
 	margin-left: 5px;
 	padding: 5px 15px;
 	display: block;
+	box-sizing: border-box;
 }
 
 /* Select-fields */
