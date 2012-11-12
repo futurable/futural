@@ -281,7 +281,7 @@ class BankLoanApplicationContent extends Content {
 		$form .= $this->getFormSelectElement( gettext("Loan term"), $loanTerms, 'loanTerm', gettext("Loan length") );
 		
 		// Loan repayment interval
-		$form .= $this->getFormSelectElement( gettext("Interval of repayment"), $repaymentIntervals, "repaymentInterval", gettext("Select how often you would like to pay instalments") );
+		$form .= $this->getFormSelectElement( gettext("Interval of repayment"), $repaymentIntervals, "repaymentInterval", gettext("Select how often you would like to make repayments") );
 		
 		// Interest type
 		$form .= $this->getFormSelectElement( gettext("Interest type"), $interestTypes, "interestType", gettext("Select the interest type you want to use") );

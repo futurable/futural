@@ -37,7 +37,7 @@ require_once 'Model/BankLoanTransaction.php';
  * @author    Annika Granlund, Jarmo Kortetjärvi
  * @copyright 2012 <annika.granlund@futurable.fi>, <jarmo.kortetjarvi@futurable.fi>
  * @license   GPLv3 or any later version
- * @version   2011-06-28
+ * @version   2012-11-12
  */
 
 class NewTransactionContent extends Content {
@@ -179,7 +179,7 @@ EOT;
 					<span>";
 		
 		if ( $incorrect === true ) {
-			$form .= "<input type='text' name='recipientAccount' class='incorrect' value='{$_POST['recipientAccount']}'/>" . gettext('Check recipient account');
+			$form .= "<input type='text' name='recipientAccount' class='incorrect' value='{$_POST['recipientAccount']}'/><p class='incorrect'>" . gettext('Check recipient account') . "</p>";
 			if($invalidBranchCode === true){
 				$form .= "<p><br/>".
 				gettext('Given IBAN has an unknown bank SWIFT.')."<br/>".
@@ -191,7 +191,7 @@ EOT;
 		
 		$form .= "</span>
 				</fieldset>
-				<p><input type='submit' value='". gettext('Continue') ."' name='checkAccount' /></p>
+				<div class='floatRight'><p><input type='submit' value='". gettext('Continue') ."' name='checkAccount' /></p></div>
 			</form>
 		</div><!-- /form -->";
 		
@@ -404,9 +404,9 @@ EOT;
 				<fieldset>
 					<legend>". gettext('Payment info') ."</legend>";
 		
-		$form .= $this->getFormInputField( gettext('Sum'), 'sum');
-		$form .= $this->getFormInputField( gettext('Due date'),'eventDate');
-		$form .= $this->getFormInputField( gettext('Reference number'), 'referenceNumber');
+		$form .= $this->getFormInputElement( gettext('Sum'), 'sum');
+		$form .= $this->getFormInputElement( gettext('Due date'),'eventDate');
+		$form .= $this->getFormInputElement( gettext('Reference number'), 'referenceNumber');
 		$form .= "\n
 				<label class='bold'>". gettext('or') ." </label>\n
 				<br/>\n";
@@ -414,8 +414,10 @@ EOT;
 		$form .= $this->getFormHiddenInputField( 'archiveID' , $archiveID);
 					
 		$form .= "</fieldset>
-				<p><input type='submit' name='continuePayment' value='". gettext('Continue') ."' />
-				<input type='submit' name='cancel' value='". gettext('Cancel') ."' /></p>
+				<div class='floatRight'><p>
+					<input type='submit' name='cancel' value='". gettext('Cancel') ."' />
+					<input type='submit' name='continuePayment' value='". gettext('Continue') ."' />
+				</p></div>
 			</form>
 		</div><!-- /form -->";
 
@@ -464,8 +466,10 @@ EOT;
 		$form .= $this->getFormHiddenInputField( 'archiveID' , $archiveID);
 		
 		$form .= "</fieldset>
-				<p><input type='submit' name='continuePayment' value='". gettext('Continue') ."' />
-				<input type='submit' name='cancel' value='". gettext('Cancel') ."' /></p>
+				<div class='floatRight'><p>
+					<input type='submit' name='cancel' value='". gettext('Cancel') ."' />
+					<input type='submit' name='continuePayment' value='". gettext('Continue') ."' />
+				</p></div>
 			</form>
 		</div><!-- /form -->";
 		
@@ -502,10 +506,10 @@ EOT;
 		$form .= $this->getFormTextLabelWithHiddenInput(gettext('Message'), $object->getMessage(), 'message') ."\n";
 		$form .= $this->getFormHiddenInputField( 'archiveID' , $object->getArchiveID());
 		$form .= "</fieldset>
-				<p>
-				<input type='submit' name='savePayment' value='". gettext('Confirm') ."' />
-				<input type='submit' name='cancel' value='". gettext('Cancel') ."' />
-				</p>
+				<div class='floatRight'><p>
+					<input type='submit' name='cancel' value='". gettext('Cancel') ."' />
+					<input type='submit' name='savePayment' value='". gettext('Confirm') ."' />
+				</p></div>
 			</form>
 		</div><!-- /form -->";
 
@@ -524,8 +528,18 @@ EOT;
 	 */
 	private function displayNotValidNewPaymentUsingObjectAndErrorArray( BankTransaction $object, User $user, $errorArray ) {
 		if (is_array($errorArray)) {
-		
-			$form = "<div class='form'>
+			$lang = $user->getLanguage();
+			
+			$form = "
+			<script type=\"text/javascript\">
+			$(function() {
+			$.datepicker.setDefaults($.datepicker.regional['{$lang}']);
+			$.datepicker.setDefaults({ dateFormat: 'dd.mm.yy' });
+			$( \"#eventDate\" ).datepicker( { minDate: '+0d' } );
+			});
+			</script>
+			
+			 <div class='form'>
 			<form action='' method='post'>
 				<fieldset>
 					<legend>". gettext('Payer info') ."</legend>";
@@ -539,15 +553,15 @@ EOT;
 			
 			$form .= $this->getFormTextLabelWithHiddenInput( gettext('Recipient IBAN'), $object->getRecipientBankAccount(), 'recipientBankAccount');
 			$form .= $this->getFormTextLabelWithHiddenInput( gettext('Recipient BIC'), $this->getBICCodefromIBAN($object->getRecipientBankAccount()), 'recipientBIC');
-			$form .= $this->getFormInputField(gettext('Recipient name'), 'recipientName', $errorArray);
+			$form .= $this->getFormInputElement(gettext('Recipient name'), 'recipientName', false, $errorArray);
 			
 			$form .= "</fieldset>
 					<fieldset>
 						<legend>". gettext('Payment info') ."</legend>";
 			
-			$form .= $this->getFormInputField( gettext('Sum'), 'sum', $errorArray);
+			$form .= $this->getFormInputElement( gettext('Sum'), 'sum', false, $errorArray);
 			$form .= $this->getFormCalendarField(gettext('Due date'), 'eventDate', $errorArray);
-			$form .= $this->getFormInputField( gettext('Reference number'), 'referenceNumber', $errorArray);
+			$form .= $this->getFormInputElement( gettext('Reference number'), 'referenceNumber', false, $errorArray);
 			$form .= "\n
 					<label class='bold'>tai </label>\n
 					<br/>\n";
@@ -555,8 +569,10 @@ EOT;
 			$form .= $this->getFormHiddenInputField( 'archiveID' , $object->getArchiveID());
 						
 			$form .= "</fieldset>
-					<p><input type='submit' name='continuePayment' value='". gettext('Continue') ."' />
-					<input type='submit' name='cancel' value='". gettext('Cancel') ."' /></p>
+					<div class='floatRight'><p>
+						<input type='submit' name='cancel' value='". gettext('Cancel') ."' />
+						<input type='submit' name='continuePayment' value='". gettext('Continue') ."' />
+					</p></div>
 				</form>
 			</div><!-- /form -->";
 	
@@ -605,8 +621,10 @@ EOT;
 			$form .= $this->getFormHiddenInputField( 'archiveID' , $object->getArchiveID());
 						
 			$form .= "</fieldset>
-					<p><input type='submit' name='continuePayment' value='". gettext('Continue') ."' />
-					<input type='submit' name='cancel' value='". gettext('Cancel') ."' /></p>
+					<div class='floatRight'><p>
+						<input type='submit' name='cancel' value='". gettext('Cancel') ."' />
+						<input type='submit' name='continuePayment' value='". gettext('Continue') ."' />
+					</p></div>
 				</form>
 			</div><!-- /form -->";
 	

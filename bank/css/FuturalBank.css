@@ -96,6 +96,10 @@ body {
 	font-weight: bold;
 	color: #ff0909;
 }
+p.incorrect{
+	display: inline;
+	padding-left: 20px;
+}
 
 .blueBg {
 	background-color: #EBF3D5;
@@ -165,6 +169,7 @@ input[type="submit"]{
 	padding: 5px 15px;
 	display: block;
 	box-sizing: border-box;
+	min-width: 0px;
 }
 
 /* Select-fields */

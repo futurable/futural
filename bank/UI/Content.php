@@ -536,7 +536,7 @@ EOT;
 			$text .= "/>\n";
 	
 			if (is_array($errors) and isset($errors[ $elementID])) {
-				$text .= $errors[ $elementID ];
+				$text .= "<p class='incorrect'>{$errors[ $elementID ]}</p>";
 			}
 	
 			$text .= "</div><!-- / $divID -->\n\n";
