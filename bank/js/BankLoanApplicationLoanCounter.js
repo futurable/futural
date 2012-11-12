@@ -58,7 +58,7 @@ $(document).ready(function(){
 			$("#interestAmountTd").text( "--" );
 			$("#realAmountTd").text( "--" );
 			$("#repaymentTd").text( "--" );
-			$("#termTd").text( termText );
+			$("#termTd").text( "--" );
 		}
 	};
 	

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Futural bank\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-25 17:23+0200\n"
-"PO-Revision-Date: 2012-09-25 17:23+0200\n"
+"POT-Creation-Date: 2012-11-09 15:47+0200\n"
+"PO-Revision-Date: 2012-11-09 15:49+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>\n"
 "Language-Team: Futurable Oy <info@futurable.fi>\n"
 "Language: fi_FI\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: C:\\xampp\\htdocs\\futural\\bank\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: Model/BankLoanInfo.php:182
@@ -56,244 +56,264 @@ msgstr "Virhe avattaessa tiedostoa. Ole hyvä ja ota yhteyttä ylläpitoon"
 msgid "File successfully saved"
 msgstr "Tiedosto tallennettu onnistuneesti"
 
-#: UI/BankLoanApplicationContent.php:76 UI/BankLoanApplicationContent.php:335
-#: UI/BankLoanApplicationContent.php:544
-msgid "days"
-msgstr "päivää"
-
-#: UI/BankLoanApplicationContent.php:79 UI/BankLoanApplicationContent.php:338
-#: UI/BankLoanApplicationContent.php:547
-msgid "weeks"
-msgstr "viikkoa"
-
-#: UI/BankLoanApplicationContent.php:82 UI/BankLoanApplicationContent.php:341
-#: UI/BankLoanApplicationContent.php:550
-msgid "months"
-msgstr "kuukautta"
-
-#: UI/BankLoanApplicationContent.php:96
-msgid "When repayment or instalment is given, loan term will be ignored."
-msgstr "Kun maksuerä tai lyhennys on annettu, laina-aikaa ei oteta huomioon."
-
-#: UI/BankLoanApplicationContent.php:185
-msgid "Loan application deleted succesfully"
-msgstr "Lainahakemus poistettu onnistuneesti"
-
-#: UI/BankLoanApplicationContent.php:186
-msgid "Error while deleting loan application."
-msgstr "Virhe poistaessa lainahakemusta"
-
-#: UI/BankLoanApplicationContent.php:186 UI/BankLoanApplicationContent.php:201
-#: UI/BankLoanApplicationContent.php:216
-msgid "Please try again later"
-msgstr "Ole hyvä ja yritä uudelleen"
-
-#: UI/BankLoanApplicationContent.php:200
-msgid "Loan application declined succesfully"
-msgstr "Lainahakemus hylättiin onnistuneesti"
-
-#: UI/BankLoanApplicationContent.php:201
-msgid "Error while declining loan application."
-msgstr "Virhe hylättäessä lainahakemusta"
-
-#: UI/BankLoanApplicationContent.php:215
-msgid "Loan application accepted succesfully"
-msgstr "Lainahakemus hyväksytty onnistuneesti"
-
-#: UI/BankLoanApplicationContent.php:216
-msgid "Error while accepting loan application."
-msgstr "Virhe hyväksyessä lainahakemusta"
-
-#: UI/BankLoanApplicationContent.php:219 UI/Navigation.php:96
+#: UI/BankLoanApplicationContent.php:103 UI/Navigation.php:96
 #: UI/Navigation.php:119 UI/Navigation.php:367
 msgid "Loan applications"
 msgstr "Lainahakemukset"
 
-#: UI/BankLoanApplicationContent.php:227
+#: UI/BankLoanApplicationContent.php:114
 msgid "Make a new loan application"
 msgstr "Tee uusi lainahakemus"
 
-#: UI/BankLoanApplicationContent.php:240
+#: UI/BankLoanApplicationContent.php:239
 msgid "Admin loan applications view"
 msgstr "Ylläpitäjän lainahakemukset-näkymä"
 
-#: UI/BankLoanApplicationContent.php:262
+#: UI/BankLoanApplicationContent.php:252
+msgid "New loan application"
+msgstr "Uusi lainahakemus"
+
+#: UI/BankLoanApplicationContent.php:258
 msgid "Make a loan application"
 msgstr "Tee lainahakemus"
 
-#: UI/BankLoanApplicationContent.php:276 UI/BankLoanApplicationContent.php:359
-#: UI/BankLoanApplicationContent.php:431 UI/BankLoanApplicationContent.php:510
+#: UI/BankLoanApplicationContent.php:272 UI/BankLoanApplicationContent.php:350
+#: UI/BankLoanApplicationContent.php:422 UI/BankLoanApplicationContent.php:501
 msgid "Amount of loan"
 msgstr "Lainan määrä"
 
-#: UI/BankLoanApplicationContent.php:278 UI/BankLoanApplicationContent.php:362
-#: UI/BankLoanApplicationContent.php:433 UI/BankLoanApplicationContent.php:511
+#: UI/BankLoanApplicationContent.php:272
+msgid "Insert the amount of the loan you want to apply"
+msgstr "Anna anottavan lainan määrä"
+
+#: UI/BankLoanApplicationContent.php:275 UI/BankLoanApplicationContent.php:353
+#: UI/BankLoanApplicationContent.php:424 UI/BankLoanApplicationContent.php:502
 #: UI/BankLoanContent.php:297
 msgid "Loan type"
 msgstr "Lainatyyppi"
 
-#: UI/BankLoanApplicationContent.php:280 UI/BankLoanApplicationContent.php:366
-#: UI/BankLoanApplicationContent.php:434 UI/BankLoanContent.php:350
+#: UI/BankLoanApplicationContent.php:275
+msgid "Select the loan repayment type"
+msgstr "Valitse lainan takaisinmaksutapa"
+
+#: UI/BankLoanApplicationContent.php:277 UI/BankLoanApplicationContent.php:357
+#: UI/BankLoanApplicationContent.php:425 UI/BankLoanContent.php:350
 msgid "Repayment"
 msgstr "Maksuerä"
 
-#: UI/BankLoanApplicationContent.php:281 UI/BankLoanApplicationContent.php:371
-#: UI/BankLoanApplicationContent.php:435 UI/BankLoanContent.php:348
+#: UI/BankLoanApplicationContent.php:277
+msgid "Repayment amount"
+msgstr "Takaisinmaksun määrä"
+
+#: UI/BankLoanApplicationContent.php:279 UI/BankLoanApplicationContent.php:362
+#: UI/BankLoanApplicationContent.php:426 UI/BankLoanApplicationContent.php:615
+#: UI/BankLoanContent.php:348
 msgid "Instalment"
 msgstr "Lyhennys"
 
-#: UI/BankLoanApplicationContent.php:284 UI/BankLoanApplicationContent.php:375
-#: UI/BankLoanApplicationContent.php:438
-msgid "Interval of repayment"
-msgstr "Maksuväli"
+#: UI/BankLoanApplicationContent.php:279
+msgid "Instalment amount"
+msgstr "Lyhennyksen määrä"
 
-#: UI/BankLoanApplicationContent.php:287 UI/BankLoanApplicationContent.php:441
-#: UI/BankLoanApplicationContent.php:515
+#: UI/BankLoanApplicationContent.php:281 UI/BankLoanApplicationContent.php:432
+#: UI/BankLoanApplicationContent.php:506 UI/BankLoanApplicationContent.php:616
 msgid "Loan term"
 msgstr "Laina-aika"
 
-#: UI/BankLoanApplicationContent.php:290 UI/BankLoanApplicationContent.php:385
-#: UI/BankLoanApplicationContent.php:444 UI/BankLoanApplicationContent.php:513
+#: UI/BankLoanApplicationContent.php:281
+msgid "Loan length"
+msgstr "Lainan pituus"
+
+#: UI/BankLoanApplicationContent.php:284 UI/BankLoanApplicationContent.php:366
+#: UI/BankLoanApplicationContent.php:429
+msgid "Interval of repayment"
+msgstr "Maksuväli"
+
+#: UI/BankLoanApplicationContent.php:284
+msgid "Select how often you would like to make repayments"
+msgstr "Valitse kuinka usein haluat tehdä lyhennyksiä"
+
+#: UI/BankLoanApplicationContent.php:287 UI/BankLoanApplicationContent.php:376
+#: UI/BankLoanApplicationContent.php:435 UI/BankLoanApplicationContent.php:504
 msgid "Interest type"
 msgstr "Korkotyyppi"
 
-#: UI/BankLoanApplicationContent.php:304 UI/BankLoanApplicationContent.php:390
-#: UI/BankLoanApplicationContent.php:449 UI/NewTransactionContent.php:418
+#: UI/BankLoanApplicationContent.php:287
+msgid "Select the interest type you want to use"
+msgstr "Valitse haluttu koron tyyppi"
+
+#: UI/BankLoanApplicationContent.php:292 UI/BankLoanApplicationContent.php:382
+#: UI/BankLoanApplicationContent.php:440 UI/NewTransactionContent.php:418
 #: UI/NewTransactionContent.php:468 UI/NewTransactionContent.php:507
 #: UI/NewTransactionContent.php:559 UI/NewTransactionContent.php:609
 msgid "Cancel"
 msgstr "Peruuta"
 
-#: UI/BankLoanApplicationContent.php:305 UI/BankLoanApplicationContent.php:450
+#: UI/BankLoanApplicationContent.php:293 UI/BankLoanApplicationContent.php:441
 #: UI/NewTransactionContent.php:194 UI/NewTransactionContent.php:417
 #: UI/NewTransactionContent.php:467 UI/NewTransactionContent.php:558
 #: UI/NewTransactionContent.php:608
 msgid "Continue"
 msgstr "Jatka"
 
-#: UI/BankLoanApplicationContent.php:351
+#: UI/BankLoanApplicationContent.php:323 UI/BankLoanApplicationContent.php:535
+#: UI/BankLoanApplicationContent.php:654
+msgid "days"
+msgstr "päivää"
+
+#: UI/BankLoanApplicationContent.php:326 UI/BankLoanApplicationContent.php:538
+#: UI/BankLoanApplicationContent.php:655
+msgid "weeks"
+msgstr "viikkoa"
+
+#: UI/BankLoanApplicationContent.php:329 UI/BankLoanApplicationContent.php:541
+#: UI/BankLoanApplicationContent.php:656
+msgid "months"
+msgstr "kuukautta"
+
+#: UI/BankLoanApplicationContent.php:341
 msgid "Confirm loan application information"
 msgstr "Hyväksy lainahakemuksen tiedot"
 
-#: UI/BankLoanApplicationContent.php:380
+#: UI/BankLoanApplicationContent.php:371
 msgid "Loan Term"
 msgstr "Laina-aika"
 
-#: UI/BankLoanApplicationContent.php:391 UI/NewTransactionContent.php:506
+#: UI/BankLoanApplicationContent.php:381 UI/NewTransactionContent.php:506
 msgid "Confirm"
 msgstr "Hyväksy"
 
-#: UI/BankLoanApplicationContent.php:424
+#: UI/BankLoanApplicationContent.php:415
 msgid "Check loan application information"
 msgstr "Tarkista lainahakemuksen tiedot"
 
-#: UI/BankLoanApplicationContent.php:475
+#: UI/BankLoanApplicationContent.php:466
 msgid "Loan application is saved."
 msgstr "Lainahakemus on tallennettu."
 
-#: UI/BankLoanApplicationContent.php:476
+#: UI/BankLoanApplicationContent.php:467
 msgid "Go to loan applications"
 msgstr "Mene lainahakemuksiin"
 
-#: UI/BankLoanApplicationContent.php:476 UI/NewTransactionContent.php:136
+#: UI/BankLoanApplicationContent.php:467 UI/NewTransactionContent.php:136
 #: UI/NewTransactionContent.php:411
 msgid "or"
 msgstr "tai"
 
-#: UI/BankLoanApplicationContent.php:476
+#: UI/BankLoanApplicationContent.php:467
 msgid "return to front page"
 msgstr "palaa etusivulle"
 
-#: UI/BankLoanApplicationContent.php:479
+#: UI/BankLoanApplicationContent.php:470
 msgid "An error occured! Please try again in a moment."
 msgstr ""
 "Virhe suorittaessa toimintoa! Ole hyvä ja yritä hetken päästä uudelleen."
 
-#: UI/BankLoanApplicationContent.php:512
+#: UI/BankLoanApplicationContent.php:503
 msgid "Repayment info"
 msgstr "Takaisinmaksu"
 
-#: UI/BankLoanApplicationContent.php:514
+#: UI/BankLoanApplicationContent.php:505
 msgid "Repayment interval"
 msgstr "Maksuväli"
 
-#: UI/BankLoanApplicationContent.php:516
+#: UI/BankLoanApplicationContent.php:507
 msgid "Loan status"
 msgstr "Lainan tila"
 
-#: UI/BankLoanApplicationContent.php:566 UI/DuePaymentContent.php:188
+#: UI/BankLoanApplicationContent.php:557 UI/DuePaymentContent.php:188
 msgid "Delete"
 msgstr "Poista"
 
-#: UI/BankLoanApplicationContent.php:579
+#: UI/BankLoanApplicationContent.php:570
 msgid "Accept"
 msgstr "Hyväksy"
 
-#: UI/BankLoanApplicationContent.php:580
+#: UI/BankLoanApplicationContent.php:571
 msgid "Decline"
 msgstr "Hylkää"
 
-#: UI/BankLoanApplicationContent.php:605
+#: UI/BankLoanApplicationContent.php:596
 msgid "No open loan applications"
 msgstr "Ei avoimia lainahakemuksia"
 
-#: UI/BankLoanApplicationContent.php:624
+#: UI/BankLoanApplicationContent.php:609
+msgid "Loan counter"
+msgstr "Lainalaskuri"
+
+#: UI/BankLoanApplicationContent.php:612
+msgid "Loan amount"
+msgstr "Lainan määrä"
+
+#: UI/BankLoanApplicationContent.php:613 UI/BankLoanContent.php:349
+msgid "Interest"
+msgstr "Korko"
+
+#: UI/BankLoanApplicationContent.php:614
+msgid "Real Amount"
+msgstr "Todellinen määrä"
+
+#: UI/BankLoanApplicationContent.php:644
 msgid "Fixed interest"
 msgstr "Kiinteä korko"
 
-#: UI/BankLoanApplicationContent.php:625
+#: UI/BankLoanApplicationContent.php:645
 msgid "1 month euribor"
 msgstr "1 kk euribor"
 
-#: UI/BankLoanApplicationContent.php:626
+#: UI/BankLoanApplicationContent.php:646
 msgid "3 month euribor"
 msgstr "3 kk euribor"
 
-#: UI/BankLoanApplicationContent.php:629
+#: UI/BankLoanApplicationContent.php:649
 msgid "Day"
 msgstr "Päivä"
 
-#: UI/BankLoanApplicationContent.php:630
+#: UI/BankLoanApplicationContent.php:650
 msgid "Week"
 msgstr "Viikko"
 
-#: UI/BankLoanApplicationContent.php:631
+#: UI/BankLoanApplicationContent.php:651
 msgid "Month"
 msgstr "Kuukausi"
 
-#: UI/BankLoanApplicationContent.php:635
+#: UI/BankLoanApplicationContent.php:657
+msgid "years"
+msgstr "vuotta"
+
+#: UI/BankLoanApplicationContent.php:663
 msgid "Open"
 msgstr "Avoin"
 
-#: UI/BankLoanApplicationContent.php:636
+#: UI/BankLoanApplicationContent.php:664
 msgid "Granted"
 msgstr "Myönnetty"
 
-#: UI/BankLoanApplicationContent.php:637
+#: UI/BankLoanApplicationContent.php:665
 msgid "Denied"
 msgstr "Evätty"
 
-#: UI/BankLoanApplicationContent.php:638
+#: UI/BankLoanApplicationContent.php:666
 msgid "Active"
 msgstr "Aktiivinen"
 
-#: UI/BankLoanApplicationContent.php:639
+#: UI/BankLoanApplicationContent.php:667
 msgid "Declined"
 msgstr "Hylätty"
 
-#: UI/BankLoanApplicationContent.php:640
+#: UI/BankLoanApplicationContent.php:668
 msgid "Paid"
 msgstr "Maksettu"
 
-#: UI/BankLoanApplicationContent.php:641
+#: UI/BankLoanApplicationContent.php:669
 msgid "Passive"
 msgstr "Passiivinen"
 
-#: UI/BankLoanApplicationContent.php:642
+#: UI/BankLoanApplicationContent.php:670
 msgid "Paused"
 msgstr "Tauolla"
 
-#: UI/BankLoanApplicationContent.php:643
+#: UI/BankLoanApplicationContent.php:671
 msgid "Removed"
 msgstr "Poistettu"
 
@@ -398,10 +418,6 @@ msgstr "Korkomarginaali"
 msgid "Interest total"
 msgstr "Koron osuus"
 
-#: UI/BankLoanContent.php:349
-msgid "Interest"
-msgstr "Korko"
-
 #: UI/BankLoanContent.php:351
 msgid "Principal"
 msgstr "Pääoma"
@@ -489,19 +505,19 @@ msgstr "Tapahtumien summa"
 msgid "No bank transactions by period"
 msgstr "Ei pankkitapahtumia aikavälillä"
 
-#: UI/Content.php:158
+#: UI/Content.php:159
 msgid "Signed in"
 msgstr "Kirjautuneena sisään"
 
-#: UI/Content.php:510
+#: UI/Content.php:598
 msgid "Fixed repayment"
 msgstr "Kiinteä tasaerä"
 
-#: UI/Content.php:511
+#: UI/Content.php:599
 msgid "Fixed Instalment"
 msgstr "Tasalyhennys"
 
-#: UI/Content.php:512
+#: UI/Content.php:600
 msgid "Annuity (ARM)"
 msgstr "Annuiteetti"
 
@@ -837,14 +853,36 @@ msgstr "on viallinen, eikä sitä voitu tallentaa."
 msgid "You have errors in you payment data. No transactions were made."
 msgstr "Maksuaineisto on viallinen. Tapahtumia ei voitu luoda."
 
+#~ msgid "When repayment or instalment is given, loan term will be ignored."
+#~ msgstr ""
+#~ "Kun maksuerä tai lyhennys on annettu, laina-aikaa ei oteta huomioon."
+
+#~ msgid "Loan application deleted succesfully"
+#~ msgstr "Lainahakemus poistettu onnistuneesti"
+
+#~ msgid "Error while deleting loan application."
+#~ msgstr "Virhe poistaessa lainahakemusta"
+
+#~ msgid "Please try again later"
+#~ msgstr "Ole hyvä ja yritä uudelleen"
+
+#~ msgid "Loan application declined succesfully"
+#~ msgstr "Lainahakemus hylättiin onnistuneesti"
+
+#~ msgid "Error while declining loan application."
+#~ msgstr "Virhe hylättäessä lainahakemusta"
+
+#~ msgid "Loan application accepted succesfully"
+#~ msgstr "Lainahakemus hyväksytty onnistuneesti"
+
+#~ msgid "Error while accepting loan application."
+#~ msgstr "Virhe hyväksyessä lainahakemusta"
+
 #~ msgid "Notification payment for repayment"
 #~ msgstr "Huomautusmaksu"
 
 #~ msgid "Overdue interest for repayment"
 #~ msgstr "Viivästysmaksu"
-
-#~ msgid "Loan repayment"
-#~ msgstr "Lainan maksuerä"
 
 #~ msgid ""
 #~ "Oivapankki web-services allow you to manage your banking and financial "
