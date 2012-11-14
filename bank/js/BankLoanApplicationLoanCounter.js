@@ -1,3 +1,8 @@
+/**
+ * Loan Term calculator
+ * Uses German calculation technique (30 days a month, 360 days a year)
+ */
+
 $(document).ready(function(){
 	loanCounter = function(){
 		var loanAmount = $("#loanAmount").val();
@@ -10,6 +15,7 @@ $(document).ready(function(){
 		
 		var repayment = 0;
 		var term = 0;
+		var termUnit = 0;
 		
 		/** Helper variables **/
 		// Repayment interval
@@ -29,12 +35,25 @@ $(document).ready(function(){
 			denominator = Math.log( 1 + interestPart );
 			term = nominator / denominator;
 		}
+		else if( loanType = "fixedInstalment"){
+			// TODO: count it with the actual formula
+			instalment = $("#instalment").val();
+			repayment = instalment;
+			
+			nominator = -Math.log( 1 - (interestPart * loanAmount) / repayment );
+			denominator = Math.log( 1 + interestPart );
+			term = nominator / denominator;
+		}
 		// Fixed instalment
 		else if( loanType == "annuity" ){
-			var term = $("#loanTerm").val();
-
+			var loanTerm = $("#loanTerm").val();
+			var termMultiplier = getTermMultiplier();
+			
+			loanDays = loanTerm * termMultiplier;
+			term = loanDays / repaymentInterval;
+			
 			nominator = loanAmount * interestPart;
-			denominator = 1 - ( 1 / Math.pow( 1 + interestPart, term ) );
+			denominator = 1 - ( Math.pow( 1 + interestPart, -term ) );
 			repayment = nominator / denominator;
 		}
 		
@@ -47,14 +66,9 @@ $(document).ready(function(){
 		if( $.isNumeric(loanAmount) && $.isNumeric(realAmount) && $.isNumeric(repayment) && $.isNumeric(term) ){
 			prettyTerm = formatTermToHumanReadable( term );
 			var roundedRepayment = Math.round(repayment*100) / 100;
-			var ceiledTerm = Math.ceil(term);
 			
-			if(ceiledTerm <= 25){
-				$("#loanTerm").val( ceiledTerm );
-			}
-			else{
-				$("#loanTerm").val( 25 );
-			}
+			// Set annuity loan vars
+			setAnnuityVars(term);
 			$("#repayment").val( roundedRepayment );
 			
 			$("#loanAmountTd").text( loanAmount + " €" );
@@ -74,13 +88,8 @@ $(document).ready(function(){
 	
 	formatTermToHumanReadable = function( term ){
 		var interval = $("#repaymentInterval").val();
-		
-		if(interval == "day"){ repaymentInterval = 1; }
-		else if(interval == "week"){ repaymentInterval = 7; }
-		else if(interval == "month"){ repaymentInterval = 30; }
-		else if(interval == "year"){ repaymentInterval = 360; }
-		else { repaymentInterval = 0; }
-		term *= repaymentInterval;
+		var repaymentInterval = getRepaymentInterval();
+		term = Math.round( term * repaymentInterval);
 		
 		var years = 0;
 		var months = 0;
@@ -122,6 +131,54 @@ $(document).ready(function(){
 		}
 		
 		return prettyTerm;
+	};
+	
+	setAnnuityVars = function(term){
+		var repaymentInterval = getRepaymentInterval();
+		term *= repaymentInterval;
+		
+		var loanTerm = 0;
+		var loanTermUnit = null;
+		
+		if(term <= 900){ // 30 months = 900 days
+			loanTermUnit = 'month';
+			loanTerm = Math.ceil(term/30);
+		}
+		else if(term <= 30){ // Use days if applicable
+			loanTermUnit = 'day';
+			loanTerm = term;
+		}
+		else{ // Use years for long loans
+			loanTermUnit = 'year';
+			loanTerm = Math.ceil(term/360);
+		}
+		
+		$("#loanTerm").val(loanTerm);
+		$("#loanTermUnit").val(loanTermUnit);
+	};
+	
+	getRepaymentInterval = function(){
+		var interval = $("#repaymentInterval").val();
+		
+		if(interval == "day"){ repaymentInterval = 1; }
+		else if(interval == "week"){ repaymentInterval = 7; }
+		else if(interval == "month"){ repaymentInterval = 30; }
+		else if(interval == "year"){ repaymentInterval = 360; }
+		else { repaymentInterval = 0; };
+		
+		return repaymentInterval;
+	};
+	
+	getTermMultiplier = function(){
+		var termUnit = $("#loanTermUnit").val();
+		
+		if(termUnit == "day"){ termMultiplier = 1; }
+		else if(termUnit == "week"){ termMultiplier = 7; }
+		else if(termUnit == "month"){ termMultiplier = 30; }
+		else if(termUnit == "year"){ termMultiplier = 360; }
+		else{ termMultiplier = 0; }
+		
+		return termMultiplier;
 	};
 	
 	// Page load

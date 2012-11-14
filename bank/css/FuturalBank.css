@@ -82,7 +82,9 @@ body {
 	float: right;
 	padding: 15px;
 }
-
+#loginContent input{
+	min-width: 20px;
+}
 #footer {
 	clear: both;
 	/* background-image: url("../images/footer-bg.png"); */
@@ -286,6 +288,22 @@ input[type="submit"]{
 }
 #loanTermDiv p{
 	display: inline;
+}
+
+/* Loan term select */
+.loanTermSelect div{
+	display: inline;
+}
+.loanTermSelect #loanTerm{
+	display: inline-block;
+	width: 13%;
+}
+.loanTermSelect select{
+	min-width: 0;
+	width: 15%;
+}
+.loanTermSelect .loanTermUnit label{
+	display: none;
 }
 
 /* TEXT DEFINITIONS */

@@ -273,11 +273,14 @@ class BankLoanApplicationContent extends Content {
 		// Loan type
 		$form .= $this->getFormSelectElement( gettext("Loan type"), $loanTypes, "loanType", gettext("Select the loan repayment type"), $errors );
 		// Loan repayment
-		$form .= $this->getFormInputElement( gettext('Repayment'), 'repayment', gettext("Repayment amount"), $errors );
+		$form .= $this->getFormInputElement( gettext('Repayment'), 'repayment', gettext("Select the repayment amount"), $errors );
 		// Loan instalment
-		$form .= $this->getFormInputElement( gettext('Instalment'), 'instalment', gettext("Instalment amount"), $errors );
+		$form .= $this->getFormInputElement( gettext('Instalment'), 'instalment', gettext("Select the instalment amount"), $errors );
 		// Loan term
-		$form .= $this->getFormSelectElement( gettext("Loan term"), $loanTerms, 'loanTerm', gettext("Loan length"), $errors );
+		$form .= "<div class='loanTermSelect'>";
+		$form .= $this->getFormSelectElement( gettext("Loan term"), $loanTerms, 'loanTerm', gettext("Select the loan length"), $errors );
+		$form .= $this->getFormSelectElement( gettext("Loan term"), $repaymentIntervalTexts, 'loanTermUnit', gettext("Select the loan length"), $errors );
+		$form .= "</div><!-- / loanTermSelect -->";
 		// Loan repayment interval
 		$form .= $this->getFormSelectElement( gettext("Interval of repayment"), $repaymentIntervals, "repaymentInterval", gettext("Select how often you would like to make repayments"), $errors );
 		// Interest type
@@ -594,7 +597,7 @@ class BankLoanApplicationContent extends Content {
 										, 	"year" => gettext("years") );
 		
 		// Loan terms
-		$loanTerms = array_combine(range(5,25), range(5,25));
+		$loanTerms = array_combine(range(5,30), range(5,30));
 		
 		// Loan status
 		$loanStatusArray = array(	"open" => gettext("Open")
