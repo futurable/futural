@@ -4,8 +4,7 @@ $(document).ready(function(){
 	// Loanterm suffix
 	$( "#loanTermDiv").append( "<p id='repaymentIntervalText'>" + $("#repaymentInterval").val() + "</p>" );
 
-	// Toggling required fields
-	$("#loanType").change(function(){
+	toggleFields = function(){
 		// Show repayment
 		if($("#loanType").val() == "fixedRepayment"){
 			$(".repayment").fadeIn("slow");
@@ -28,6 +27,12 @@ $(document).ready(function(){
 			var selected =  $("#repaymentInterval option:selected").val();
 			$( "#repaymentIntervalText" ).text( repaymentIntervalTexts[selected] );
 		}
+	};
+	
+	// Toggling required fields
+	toggleFields();
+	$("#loanType").change(function(){
+		toggleFields();
 	});
 
 	$("#repaymentInterval").change(function(){
