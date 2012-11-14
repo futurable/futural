@@ -116,14 +116,14 @@ class BankLoanApplicationContent extends Content {
 		}
 		/** 2.0 New loan application **/
 		elseif( isset($_POST['newLoanApplication']) and !empty($_POST['newLoanApplication']) ){
-				Debug::debug(get_class(), "doDisplayBusinessCustomerContentInHtml", "POST has no checkLoanApplication variable.", 2);
-				
-				// Form for loan application
-				$loanApplication = new BankLoanInfo();
-				$form = $this->displayLoanApplicationFormUsingObject($user, $loanApplication);
-				$loanCounter = $this->displayLoanCounterFrame();
-				
-				$content = '<script type="text/javascript" src="js/BankLoanApplicationLoanCounter.js"></script>'.$form.$loanCounter;
+			Debug::debug(get_class(), "doDisplayBusinessCustomerContentInHtml", "POST has no checkLoanApplication variable.", 2);
+			
+			// Form for loan application
+			$loanApplication = new BankLoanInfo();
+			$form = $this->displayLoanApplicationFormUsingObject($user, $loanApplication);
+			$loanCounter = $this->displayLoanCounterFrame();
+			
+			$content = '<script type="text/javascript" src="js/BankLoanApplicationLoanCounter.js"></script>'.$form.$loanCounter;
 		
 			/** 3.0 New loan application overview **/
 			if (isset($_POST[ 'checkLoanApplication' ]) and $_POST[ 'checkLoanApplication' ]) {
@@ -135,7 +135,7 @@ class BankLoanApplicationContent extends Content {
 					$form = $this->displayLoanApplicationInformationUsingObject($loanApplication);
 				}
 				else{
-					$form = $this->displayLoanApplicationInformationUsingObjectWithErrors($loanApplication, $validated);
+					$form = $this->displayLoanApplicationFormUsingObject($user, $loanApplication, $validated);
 				}
 			
 				$content = $form;
@@ -247,7 +247,7 @@ class BankLoanApplicationContent extends Content {
 	 * @param	User	$user
 	 * @return  mixed   $form
 	 */
-	private function displayLoanApplicationFormUsingObject(User $user, BankLoanInfo $bankLoanInfo, $error = false){
+	private function displayLoanApplicationFormUsingObject(User $user, BankLoanInfo $bankLoanInfo, $errors = false){
 		
 		$form = "<h1>".gettext("New loan application")."</h1>";
 		
@@ -263,28 +263,27 @@ class BankLoanApplicationContent extends Content {
 			${$key} = $value;
 		}
 		
+		$errors = (isset($errors) AND !empty($errors) AND is_array($errors)) ? $errors : array();
+		
 		// Create form
 		$form .= $this->getFormHiddenInputField('userId', $user->getId() );
 		$form .= $this->getFormHiddenInputField('loanApplicant', $user->getCompany() );
 		$form .= $this->getFormHiddenInputField('newLoanApplication', "true" );
 		
 		// Repayment
-		$form .= $this->getFormInputElement( gettext("Amount of loan"), "loanAmount", gettext("Insert the amount of the loan you want to apply"));
-		
+		$form .= $this->getFormInputElement( gettext("Amount of loan"), "loanAmount", gettext("Insert the amount of the loan you want to apply"), $errors);
 		// Loan type
-		$form .= $this->getFormSelectElement( gettext("Loan type"), $loanTypes, "loanType", gettext("Select the loan repayment type") );
+		$form .= $this->getFormSelectElement( gettext("Loan type"), $loanTypes, "loanType", gettext("Select the loan repayment type"), $errors );
 		// Loan repayment
-		$form .= $this->getFormInputElement( gettext('Repayment'), 'repayment', gettext("Repayment amount") );
+		$form .= $this->getFormInputElement( gettext('Repayment'), 'repayment', gettext("Repayment amount"), $errors );
 		// Loan instalment
-		$form .= $this->getFormInputElement( gettext('Instalment'), 'instalment', gettext("Instalment amount") );
+		$form .= $this->getFormInputElement( gettext('Instalment'), 'instalment', gettext("Instalment amount"), $errors );
 		// Loan term
-		$form .= $this->getFormSelectElement( gettext("Loan term"), $loanTerms, 'loanTerm', gettext("Loan length") );
-		
+		$form .= $this->getFormSelectElement( gettext("Loan term"), $loanTerms, 'loanTerm', gettext("Loan length"), $errors );
 		// Loan repayment interval
-		$form .= $this->getFormSelectElement( gettext("Interval of repayment"), $repaymentIntervals, "repaymentInterval", gettext("Select how often you would like to make repayments") );
-		
+		$form .= $this->getFormSelectElement( gettext("Interval of repayment"), $repaymentIntervals, "repaymentInterval", gettext("Select how often you would like to make repayments"), $errors );
 		// Interest type
-		$form .= $this->getFormSelectElement( gettext("Interest type"), $interestTypes, "interestType", gettext("Select the interest type you want to use") );
+		$form .= $this->getFormSelectElement( gettext("Interest type"), $interestTypes, "interestType", gettext("Select the interest type you want to use"), $errors );
 		
 		$form .= "
 				</fieldset>
@@ -292,7 +291,6 @@ class BankLoanApplicationContent extends Content {
 						<input type='submit' value='".gettext('Cancel')."' name='cancel' />
 						<input type='submit' value='".gettext('Continue')."' name='checkLoanApplication' />
 					</p></div>
-				
 			</form>
 		</div><!-- /form -->";
 		
@@ -403,11 +401,6 @@ class BankLoanApplicationContent extends Content {
 				${$key} = $value;
 			}
 			
-			// Required JavaScipt functions
-			$loanTypeJS['onchange'] = 'hideFields()';
-			$loanIntervalJS['onchange'] = 'getLoanTermLabel()';
-			$loanRepaymentJS['onkeyup'] = 'getLoanTermWarning()';
-			
 			$form = "
 			<div id='form'>
 				<form action='' method='post' id='loanApplicationForm'>
@@ -430,8 +423,7 @@ class BankLoanApplicationContent extends Content {
 				
 				$form .= "<div id='loanTermFields'>";
 				$form .= $this->getFormDropDownMenu( gettext("Loan term"), $loanTerms, "loanTerm" );
-				$form .= "<span id='loanTermDescription'></span></div><!-- / loanTermFields--><span id='loanTermWarning' class='incorrect'></span>";
-				
+								
 				$form .= $this->getFormDropDownMenuWithArrayKeyAsOptionValue( gettext("Interest type"), $interestTypes, "interestType" );
 								
 			$form .= "

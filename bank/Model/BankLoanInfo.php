@@ -181,15 +181,13 @@ class BankLoanInfo {
 			and !DataValidator::isIntValid($this->loanAmount) ) ) {
 			$validated[ 'loanAmount' ] = gettext( 'Check loan amount' );
 		}
-		if ( $this->loanType == 'fixedRepayment' && empty($this->loanTerm) && ( empty($this->repayment) || ( !DataValidator::isDecimalValid($this->repayment) 
-			and !DataValidator::isIntValid($this->repayment) ))) {
+		if ( $this->loanType == 'fixedRepayment' and ( empty($this->repayment) or !DataValidator::isNumericValid($this->repayment) ) ) {
 			$validated[ 'repayment' ] = gettext( 'Check repayment' );
 		}
-		if ( $this->loanType == 'fixedInstalment' && empty($this->loanTerm) && ( empty($this->instalment) || ( !DataValidator::isDecimalValid($this->instalment) 
-			and !DataValidator::isIntValid($this->instalment) ))) {
+		if ( $this->loanType == 'fixedInstalment' and ( empty($this->instalment) or !DataValidator::isNumericValid($this->instalment) ) ) {
 			$validated[ 'instalment' ] = gettext( 'Check instalment' );
 		}
-		if ( empty($this->endDate) && $this->loanType == 'annuity' && !DataValidator::isDateValid($this->endDate) ) {
+		if ( $this->loanType == 'annuity' and ( empty($this->endDate) or !DataValidator::isDateEUROSyntaxValid($this->endDate) ) ) {
 			$validated[ 'endDate' ] = gettext( 'Check endDate' );
 		}
 		

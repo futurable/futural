@@ -78,17 +78,20 @@ $(document).ready(function(){
 		if(term > 30){
 			months = Math.floor(term / 30);
 			term = term - months * 30;
-		}
-		// Days
-		if(term > 0){
+			
 			// Don't print days when repayment interval is month
 			if( interval == "month" ){
 				months++;
-				days = 0;
+				term = 0;
+				if(months >= 12){
+					years++;
+					months -= 12;
+				}
 			}
-			else{
-				days = Math.ceil(term);
-			}
+		}
+		// Days
+		if(term > 0){
+			days = Math.ceil(term);
 		}
 		
 		// Formatting
