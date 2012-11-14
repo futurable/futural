@@ -16,9 +16,10 @@ $(document).ready(function(){
 		if(interval == "day"){ repaymentInterval = 1; }
 		else if(interval == "week"){ repaymentInterval = 7; }
 		else if(interval == "month"){ repaymentInterval = 30; }
+		else if(interval == "year"){ repaymentInterval = 360; }
 		else { repaymentInterval = 0; }
 
-		var days = 365; // TODO: get leap year
+		var days = 360; // TODO: change to actual amount?
 		var interestPart = interest / days * repaymentInterval;
 		
 		// Fixed repayment
@@ -38,19 +39,28 @@ $(document).ready(function(){
 		}
 		
 		realAmount = repayment * term;
-		var termInDays = term * repaymentInterval;
-		fillLoanCounterFrame( loanAmount, realAmount, repayment, termInDays );
+		fillLoanCounterFrame( loanAmount, realAmount, repayment, term );
 		
 	};
 	
-	fillLoanCounterFrame = function( loanAmount, realAmount, repayment, termInDays ){
-		if( $.isNumeric(loanAmount) && $.isNumeric(realAmount) && $.isNumeric(repayment) && $.isNumeric(termInDays) ){
-			prettyTerm = formatTermToHumanReadable( termInDays );
+	fillLoanCounterFrame = function( loanAmount, realAmount, repayment, term ){
+		if( $.isNumeric(loanAmount) && $.isNumeric(realAmount) && $.isNumeric(repayment) && $.isNumeric(term) ){
+			prettyTerm = formatTermToHumanReadable( term );
+			var roundedRepayment = Math.round(repayment*100) / 100;
+			var ceiledTerm = Math.ceil(term);
+			
+			if(ceiledTerm <= 25){
+				$("#loanTerm").val( ceiledTerm );
+			}
+			else{
+				$("#loanTerm").val( 25 );
+			}
+			$("#repayment").val( roundedRepayment );
 			
 			$("#loanAmountTd").text( loanAmount + " €" );
 			$("#interestAmountTd").text( Math.round((realAmount-loanAmount)*100) / 100 + " €" );
 			$("#realAmountTd").text( Math.round(realAmount*100) / 100 + " €" );
-			$("#repaymentTd").text( Math.round(repayment*100) / 100 + " €" );
+			$("#repaymentTd").text( roundedRepayment + " €" );
 			$("#termTd").text( prettyTerm );
 		}
 		else{			
@@ -65,30 +75,35 @@ $(document).ready(function(){
 	formatTermToHumanReadable = function( term ){
 		var interval = $("#repaymentInterval").val();
 		
+		if(interval == "day"){ repaymentInterval = 1; }
+		else if(interval == "week"){ repaymentInterval = 7; }
+		else if(interval == "month"){ repaymentInterval = 30; }
+		else if(interval == "year"){ repaymentInterval = 360; }
+		else { repaymentInterval = 0; }
+		term *= repaymentInterval;
+		
 		var years = 0;
 		var months = 0;
 		var days = 0;
-		
+
 		// Years
-		if(term > 365){
-			years = Math.floor(term / 365);
-			term = term - years * 365;
+		if( interval == "year" ){
+			years = Math.ceil(term / 360);
 		}
+		else{
+			years = Math.floor(term / 360);
+		}
+		term -= years * 360;
+		
 		// Months
-		if(term > 30){
+		if( interval == "day" ){
 			months = Math.floor(term / 30);
-			term = term - months * 30;
-			
-			// Don't print days when repayment interval is month
-			if( interval == "month" ){
-				months++;
-				term = 0;
-				if(months >= 12){
-					years++;
-					months -= 12;
-				}
-			}
 		}
+		else{
+			months = Math.ceil(term / 30);
+		}
+
+		term -= months * 30;
 		// Days
 		if(term > 0){
 			days = Math.ceil(term);
@@ -109,17 +124,14 @@ $(document).ready(function(){
 		return prettyTerm;
 	};
 	
+	// Page load
+	loanCounter();
+	
 	$("#loanApplicationForm input").keyup(function(){
-		// Amount is numeric
-		if( $.isNumeric( $("#loanAmount").val() ) ){
 			loanCounter();
-		}
 	});
 	$("#loanApplicationForm select").change(function(){
-		// Amount is numeric
-		if( $.isNumeric( $("#loanAmount").val() ) ){
 			loanCounter();
-		}
 	});
 	
 });

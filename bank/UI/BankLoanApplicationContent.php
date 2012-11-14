@@ -122,8 +122,6 @@ class BankLoanApplicationContent extends Content {
 			$loanApplication = new BankLoanInfo();
 			$form = $this->displayLoanApplicationFormUsingObject($user, $loanApplication);
 			$loanCounter = $this->displayLoanCounterFrame();
-			
-			$content = '<script type="text/javascript" src="js/BankLoanApplicationLoanCounter.js"></script>'.$form.$loanCounter;
 		
 			/** 3.0 New loan application overview **/
 			if (isset($_POST[ 'checkLoanApplication' ]) and $_POST[ 'checkLoanApplication' ]) {
@@ -137,9 +135,9 @@ class BankLoanApplicationContent extends Content {
 				else{
 					$form = $this->displayLoanApplicationFormUsingObject($user, $loanApplication, $validated);
 				}
-			
-				$content = $form;
 			}
+			
+			$content = '<script type="text/javascript" src="js/BankLoanApplicationLoanCounter.js"></script>'.$form.$loanCounter;
 		}
 		/*
 		// Display new loan application
@@ -305,7 +303,7 @@ class BankLoanApplicationContent extends Content {
 	 * @param	string	$errors
 	 * @return  mixed   $form
 	 */
-	private function displayLoanApplicationInformationUsingObject(BankLoanInfo $object, $errors = false){
+	private function displayLoanApplicationInformationUsingObject(BankLoanInfo $object){
 		// Create loan ID
 		$loanID = uniqid('FUTUB');
 		
@@ -375,67 +373,13 @@ class BankLoanApplicationContent extends Content {
 		
 		$form .= "
 				</fieldset>
-				<p>
-				<input type='submit' value='".gettext('Confirm')."' name='saveLoanApplication' />
-				<input type='submit' value='".gettext('Cancel')."' name='cancel' />
-				</p>
+					<div class='floatRight'><p>
+						<input type='submit' value='".gettext('Modify')."' name='modify' />
+						<input type='submit' value='".gettext('Confirm')."' name='saveLoanApplication' />
+					</p></div>
 			</form>
 		</div><!-- /form -->";
 		return $form;
-	}
-	
-	/**
-	 * Get HTML-formatted loan application summary with errors
-	 * 
-	 * @access  private
-	 * @param 	BankLoanApplication $object
-	 * @param	array	$errorArray
-	 * @return  mixed   $form
-	 */
-	private function displayLoanApplicationInformationUsingObjectWithErrors(BankLoanInfo $object, $errorArray){
-		
-		if(is_array($errorArray)){
-			// Get required arrays
-			$variables = $this->getLoanVariables();
-			foreach($variables as $key => $value){
-				${$key} = $value;
-			}
-			
-			$form = "
-			<div id='form'>
-				<form action='' method='post' id='loanApplicationForm'>
-					<fieldset>
-						<legend>".gettext("Check loan application information")."</legend>";
-			
-				$form .= $this->getFormHiddenInputField('userId', $object->getAuthor() );
-				$form .= $this->getFormHiddenInputField('loanApplicant', $object->getLoanApplicant() );
-				$form .= $this->getFormHiddenInputField('loanID', $object->getLoanID() );
-				$form .= $this->getFormHiddenInputField('newLoanApplication', "true" );
-				
-				$form .= $this->getFormInputField(gettext('Amount of loan'), 'loanAmount', $errorArray );
-				
-				$form .= $this->getFormDropDownMenuWithArrayKeyAsOptionValue( gettext("Loan type"), $loanTypes, "loanType", $loanTypeJS );
-				$form .= $this->getFormInputField(gettext('Repayment'), 'repayment', $errorArray, $loanRepaymentJS );
-				$form .= $this->getFormInputField(gettext('Instalment'), 'instalment', $errorArray, $loanRepaymentJS );
-				
-				// Loan length
-				$form .= $this->getFormDropDownMenuWithArrayKeyAsOptionValue( gettext("Interval of repayment"), $repaymentIntervals, "repaymentInterval", $loanIntervalJS );
-				
-				$form .= "<div id='loanTermFields'>";
-				$form .= $this->getFormDropDownMenu( gettext("Loan term"), $loanTerms, "loanTerm" );
-								
-				$form .= $this->getFormDropDownMenuWithArrayKeyAsOptionValue( gettext("Interest type"), $interestTypes, "interestType" );
-								
-			$form .= "
-					</fieldset>
-					<p>
-					<input type='submit' value='".gettext('Cancel')."' name='cancel'/>
-					<input type='submit' value='".gettext('Continue')."' name='checkLoanApplication' />
-					</p>
-				</form>
-			</div><!-- /form -->";
-			return $form;
-		}
 	}
 
 	/**
@@ -640,7 +584,8 @@ class BankLoanApplicationContent extends Content {
 		// Loan repayment intervals
 		$repaymentIntervals = array (		"day" => gettext("Day")
 										, 	"week" => gettext("Week")
-										, 	"month" => gettext("Month") );
+										, 	"month" => gettext("Month")
+										, 	"year" => gettext("Year") );
 		
 		// Loan repayment interval texts
 		$repaymentIntervalTexts = array (	"day" => gettext("days")
@@ -649,7 +594,7 @@ class BankLoanApplicationContent extends Content {
 										, 	"year" => gettext("years") );
 		
 		// Loan terms
-		$loanTerms = array_combine(range(5,24), range(5,24));
+		$loanTerms = array_combine(range(5,25), range(5,25));
 		
 		// Loan status
 		$loanStatusArray = array(	"open" => gettext("Open")
