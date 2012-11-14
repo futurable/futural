@@ -257,18 +257,19 @@ input[type="submit"]{
 }
 
 /* Loan application counter */
-#loanCounterFrame{
+#loanCounterFrame, #paymentPlanFrame{
 	clear: both;
 	width: 90%;
 	display: block;
 	background: #ccc;
 	margin: 50px 0 20px 0;
 }
-#loanCounter{
+#loanCounter, #paymentPlan{
 	padding: 10px;
 }
-#loanCounter td{
+#loanCounter td, #paymentPlan td{
 	text-align: right;
+	width: 20%;
 }
 
 /* Loan term (day,week,month) */

@@ -122,6 +122,7 @@ class BankLoanApplicationContent extends Content {
 			$loanApplication = new BankLoanInfo();
 			$form = $this->displayLoanApplicationFormUsingObject($user, $loanApplication);
 			$loanCounter = $this->displayLoanCounterFrame();
+			$paymentPlan = $this->displayPaymentPlanFrame();
 		
 			/** 3.0 New loan application overview **/
 			if (isset($_POST[ 'checkLoanApplication' ]) and $_POST[ 'checkLoanApplication' ]) {
@@ -137,7 +138,9 @@ class BankLoanApplicationContent extends Content {
 				}
 			}
 			
-			$content = '<script type="text/javascript" src="js/BankLoanApplicationLoanCounter.js"></script>'.$form.$loanCounter;
+			$content = '<script type="text/javascript" src="js/BankLoanApplicationLoanCounter.js"></script>';
+			$content .= $form;
+			$content .= $loanCounter.$paymentPlan;
 		}
 		/*
 		// Display new loan application
@@ -564,6 +567,36 @@ class BankLoanApplicationContent extends Content {
 				</table>	
 			</div><!-- / loanCounter-->
 		</div><!-- / loanCounterFrame-->";
+	
+		return $frame;
+	}
+	
+	/**
+	 * Get frame for jquery payment plan
+	 */
+	private function displayPaymentPlanFrame(){
+		$frame = "
+		<div id='paymentPlanFrame'>
+			<div id='paymentPlan'>
+				<h3>".gettext("Payment plan")."</h3>
+				<table id='paymentPlanTable'>
+						<tr>
+							<th>#</th>
+							<th>".gettext("Instalment")."</th>
+							<th>".gettext("Interest")."</th>
+							<th>".gettext("Repayment")."</th>
+							<th>".gettext("Principal")."</th>
+						</tr>
+						<tr>
+							<td id='repaymentNumberTd'>0</td>
+							<td id='instalmentTd'>0</td>
+							<td id='interestTd'>0</td>
+							<td id='repaymentTd'>0</td>
+							<td id='principalTD'>0</td>
+						</tr>
+				</table>	
+			</div><!-- / loanCounter-->
+		</div><!-- / paymentPlanFrame-->";
 	
 		return $frame;
 	}
