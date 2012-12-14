@@ -50,16 +50,10 @@ $(document).ready(function(){
 	};
 	
 	$("#loanApplicationForm input").keyup(function(){
-		// Amount is numeric
-		if( $.isNumeric( $("#loanAmount").val() ) ){
 			loanCounter();
-		}
 	});
 	$("#loanApplicationForm select").change(function(){
-		// Amount is numeric
-		if( $.isNumeric( $("#loanAmount").val() ) ){
 			loanCounter();
-		}
 	});
 	
 });
