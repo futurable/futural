@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Futural bank\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-09 15:44+0200\n"
-"PO-Revision-Date: 2012-11-09 15:45+0200\n"
+"POT-Creation-Date: 2012-11-09 15:47+0200\n"
+"PO-Revision-Date: 2012-11-09 15:49+0200\n"
 "Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>\n"
 "Language-Team: Futurable Oy <info@futurable.fi>\n"
 "Language: fi_FI\n"
@@ -94,20 +94,19 @@ msgstr "Lainatyyppi"
 
 #: UI/BankLoanApplicationContent.php:275
 msgid "Select the loan repayment type"
-msgstr "Valitse lainan maksutapa"
+msgstr "Valitse lainan takaisinmaksutapa"
 
 #: UI/BankLoanApplicationContent.php:277 UI/BankLoanApplicationContent.php:357
-#: UI/BankLoanApplicationContent.php:425 UI/BankLoanApplicationContent.php:614
-#: UI/BankLoanContent.php:350
+#: UI/BankLoanApplicationContent.php:425 UI/BankLoanContent.php:350
 msgid "Repayment"
 msgstr "Maksuerä"
 
 #: UI/BankLoanApplicationContent.php:277
 msgid "Repayment amount"
-msgstr "Maksuerän määrä"
+msgstr "Takaisinmaksun määrä"
 
 #: UI/BankLoanApplicationContent.php:279 UI/BankLoanApplicationContent.php:362
-#: UI/BankLoanApplicationContent.php:426 UI/BankLoanApplicationContent.php:616
+#: UI/BankLoanApplicationContent.php:426 UI/BankLoanApplicationContent.php:615
 #: UI/BankLoanContent.php:348
 msgid "Instalment"
 msgstr "Lyhennys"
@@ -117,7 +116,7 @@ msgid "Instalment amount"
 msgstr "Lyhennyksen määrä"
 
 #: UI/BankLoanApplicationContent.php:281 UI/BankLoanApplicationContent.php:432
-#: UI/BankLoanApplicationContent.php:506 UI/BankLoanApplicationContent.php:617
+#: UI/BankLoanApplicationContent.php:506 UI/BankLoanApplicationContent.php:616
 msgid "Loan term"
 msgstr "Laina-aika"
 
@@ -131,8 +130,8 @@ msgid "Interval of repayment"
 msgstr "Maksuväli"
 
 #: UI/BankLoanApplicationContent.php:284
-msgid "Select how often you would like to pay instalments"
-msgstr "Valitse kuinka usein haluat maksaa lyhennyksiä"
+msgid "Select how often you would like to make repayments"
+msgstr "Valitse kuinka usein haluat tehdä lyhennyksiä"
 
 #: UI/BankLoanApplicationContent.php:287 UI/BankLoanApplicationContent.php:376
 #: UI/BankLoanApplicationContent.php:435 UI/BankLoanApplicationContent.php:504
@@ -141,7 +140,7 @@ msgstr "Korkotyyppi"
 
 #: UI/BankLoanApplicationContent.php:287
 msgid "Select the interest type you want to use"
-msgstr "Valitse"
+msgstr "Valitse haluttu koron tyyppi"
 
 #: UI/BankLoanApplicationContent.php:292 UI/BankLoanApplicationContent.php:382
 #: UI/BankLoanApplicationContent.php:440 UI/NewTransactionContent.php:418
@@ -158,17 +157,17 @@ msgid "Continue"
 msgstr "Jatka"
 
 #: UI/BankLoanApplicationContent.php:323 UI/BankLoanApplicationContent.php:535
-#: UI/BankLoanApplicationContent.php:656
+#: UI/BankLoanApplicationContent.php:654
 msgid "days"
 msgstr "päivää"
 
 #: UI/BankLoanApplicationContent.php:326 UI/BankLoanApplicationContent.php:538
-#: UI/BankLoanApplicationContent.php:657
+#: UI/BankLoanApplicationContent.php:655
 msgid "weeks"
 msgstr "viikkoa"
 
 #: UI/BankLoanApplicationContent.php:329 UI/BankLoanApplicationContent.php:541
-#: UI/BankLoanApplicationContent.php:658
+#: UI/BankLoanApplicationContent.php:656
 msgid "months"
 msgstr "kuukautta"
 
@@ -246,71 +245,75 @@ msgstr "Lainalaskuri"
 msgid "Loan amount"
 msgstr "Lainan määrä"
 
-#: UI/BankLoanApplicationContent.php:613
-msgid "Real amount"
-msgstr "Todellinen määrä"
-
-#: UI/BankLoanApplicationContent.php:615 UI/BankLoanContent.php:349
+#: UI/BankLoanApplicationContent.php:613 UI/BankLoanContent.php:349
 msgid "Interest"
 msgstr "Korko"
 
-#: UI/BankLoanApplicationContent.php:646
+#: UI/BankLoanApplicationContent.php:614
+msgid "Real Amount"
+msgstr "Todellinen määrä"
+
+#: UI/BankLoanApplicationContent.php:644
 msgid "Fixed interest"
 msgstr "Kiinteä korko"
 
-#: UI/BankLoanApplicationContent.php:647
+#: UI/BankLoanApplicationContent.php:645
 msgid "1 month euribor"
 msgstr "1 kk euribor"
 
-#: UI/BankLoanApplicationContent.php:648
+#: UI/BankLoanApplicationContent.php:646
 msgid "3 month euribor"
 msgstr "3 kk euribor"
 
-#: UI/BankLoanApplicationContent.php:651
+#: UI/BankLoanApplicationContent.php:649
 msgid "Day"
 msgstr "Päivä"
 
-#: UI/BankLoanApplicationContent.php:652
+#: UI/BankLoanApplicationContent.php:650
 msgid "Week"
 msgstr "Viikko"
 
-#: UI/BankLoanApplicationContent.php:653
+#: UI/BankLoanApplicationContent.php:651
 msgid "Month"
 msgstr "Kuukausi"
 
-#: UI/BankLoanApplicationContent.php:664
+#: UI/BankLoanApplicationContent.php:657
+msgid "years"
+msgstr "vuotta"
+
+#: UI/BankLoanApplicationContent.php:663
 msgid "Open"
 msgstr "Avoin"
 
-#: UI/BankLoanApplicationContent.php:665
+#: UI/BankLoanApplicationContent.php:664
 msgid "Granted"
 msgstr "Myönnetty"
 
-#: UI/BankLoanApplicationContent.php:666
+#: UI/BankLoanApplicationContent.php:665
 msgid "Denied"
 msgstr "Evätty"
 
-#: UI/BankLoanApplicationContent.php:667
+#: UI/BankLoanApplicationContent.php:666
 msgid "Active"
 msgstr "Aktiivinen"
 
-#: UI/BankLoanApplicationContent.php:668
+#: UI/BankLoanApplicationContent.php:667
 msgid "Declined"
 msgstr "Hylätty"
 
-#: UI/BankLoanApplicationContent.php:669
+#: UI/BankLoanApplicationContent.php:668
 msgid "Paid"
 msgstr "Maksettu"
 
-#: UI/BankLoanApplicationContent.php:670
+#: UI/BankLoanApplicationContent.php:669
 msgid "Passive"
 msgstr "Passiivinen"
 
-#: UI/BankLoanApplicationContent.php:671
+#: UI/BankLoanApplicationContent.php:670
 msgid "Paused"
 msgstr "Tauolla"
 
-#: UI/BankLoanApplicationContent.php:672
+#: UI/BankLoanApplicationContent.php:671
 msgid "Removed"
 msgstr "Poistettu"
 

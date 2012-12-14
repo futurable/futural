@@ -164,7 +164,7 @@ class BankTransaction {
 		if ( !isset($this->recipientName) ) {
 			$validated[ 'recipientName' ] = gettext( 'Check repicient name' );
 		}
-		if ( !isset($this->sum)) {
+		if ( !isset($this->sum) or $this->sum <= 0 ) {
 			$validated[ 'sum' ] = gettext( 'Check sum' );
 		}
 		if ( !isset($this->eventDate)) {
@@ -175,7 +175,7 @@ class BankTransaction {
 		}
 		
 		// if every required field is set
-		if (isset($this->payerBankAccount) and isset($this->recipientBankAccount) and 
+		if ( empty($validated) and isset($this->payerBankAccount) and isset($this->recipientBankAccount) and 
 			isset($this->recipientName) and isset($this->sum) and 
 			isset($this->eventDate) and (isset($this->referenceNumber) or isset($this->message))) {
 				$validated = true;

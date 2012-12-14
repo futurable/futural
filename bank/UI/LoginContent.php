@@ -54,7 +54,7 @@ class LoginContent extends Content {
 				<p>" . gettext('Password'). " <br/>
 				<input type='password' name='password' /></p>
 				
-				<p><input type='submit' value='" . gettext('Login') . "' name='login' /></p>
+				<div class='floatRight'><p><input type='submit' value='" . gettext('Login') . "' name='login' /></p></div>
 			</form>";
 		
 		if(isset($_POST['login'])){

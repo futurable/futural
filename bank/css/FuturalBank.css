@@ -82,7 +82,9 @@ body {
 	float: right;
 	padding: 15px;
 }
-
+#loginContent input{
+	min-width: 20px;
+}
 #footer {
 	clear: both;
 	/* background-image: url("../images/footer-bg.png"); */
@@ -95,6 +97,10 @@ body {
 .incorrect {
 	font-weight: bold;
 	color: #ff0909;
+}
+p.incorrect{
+	display: inline;
+	padding-left: 20px;
 }
 
 .blueBg {
@@ -142,6 +148,8 @@ input, select, options, textarea{
 	padding: 5px;
 	border-radius: 5px;
 	margin-bottom: 2px;
+	box-sizing: content-box;
+	min-width: 30%;
 }
 input:hover, select:hover, textarea:hover{
 	background-color: #A8CF38;
@@ -162,6 +170,8 @@ input[type="submit"]{
 	margin-left: 5px;
 	padding: 5px 15px;
 	display: block;
+	box-sizing: border-box;
+	min-width: 0px;
 }
 
 /* Select-fields */
@@ -247,18 +257,19 @@ input[type="submit"]{
 }
 
 /* Loan application counter */
-#loanCounterFrame{
+#loanCounterFrame, #paymentPlanFrame{
 	clear: both;
 	width: 90%;
 	display: block;
 	background: #ccc;
 	margin: 50px 0 20px 0;
 }
-#loanCounter{
+#loanCounter, #paymentPlan{
 	padding: 10px;
 }
-#loanCounter td{
+#loanCounter td, #paymentPlan td{
 	text-align: right;
+	width: 20%;
 }
 
 /* Loan term (day,week,month) */
@@ -278,6 +289,22 @@ input[type="submit"]{
 }
 #loanTermDiv p{
 	display: inline;
+}
+
+/* Loan term select */
+.loanTermSelect div{
+	display: inline;
+}
+.loanTermSelect #loanTerm{
+	display: inline-block;
+	width: 13%;
+}
+.loanTermSelect select{
+	min-width: 0;
+	width: 15%;
+}
+.loanTermSelect .loanTermUnit label{
+	display: none;
 }
 
 /* TEXT DEFINITIONS */
