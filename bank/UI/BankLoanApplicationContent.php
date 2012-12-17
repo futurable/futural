@@ -587,14 +587,7 @@ class BankLoanApplicationContent extends Content {
 							<th>".gettext("Repayment")."</th>
 							<th>".gettext("Principal")."</th>
 						</tr>
-						<tr>
-							<td id='repaymentNumberTd'>0</td>
-							<td id='instalmentTd'>0</td>
-							<td id='interestTd'>0</td>
-							<td id='repaymentTd'>0</td>
-							<td id='principalTD'>0</td>
-						</tr>
-				</table>	
+				</table>
 			</div><!-- / loanCounter-->
 		</div><!-- / paymentPlanFrame-->";
 	

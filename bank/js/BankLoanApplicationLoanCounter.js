@@ -35,7 +35,7 @@ $(document).ready(function(){
 			denominator = Math.log( 1 + interestPart );
 			term = nominator / denominator;
 		}
-		else if( loanType = "fixedInstalment"){
+		else if( loanType == "fixedInstalment"){
 			// TODO: count it with the actual formula
 			instalment = $("#instalment").val();
 			repayment = instalment;
@@ -59,6 +59,8 @@ $(document).ready(function(){
 		
 		realAmount = repayment * term;
 		fillLoanCounterFrame( loanAmount, realAmount, repayment, term );
+		
+		fillPaymentPlanFrame( loanAmount, repayment, term, repaymentInterval, interestPart );
 		
 	};
 	
@@ -85,6 +87,56 @@ $(document).ready(function(){
 			$("#termTd").text( "--" );
 		}
 	};
+	
+	fillPaymentPlanFrame = function( loanAmount, repayment, term, repaymentInterval, interest ){
+		if( $.isNumeric(loanAmount) && $.isNumeric(repayment) && $.isNumeric(term) && $.isNumeric(repaymentInterval) && $.isNumeric(interest) ){
+	
+			var repaymentNumber = 0;
+			var instalmentAmount;			
+			var interestAmount;
+			var repaymentAmount;
+
+			var loanType = $("#loanType").val();
+			var loanCounterContent;
+			
+			while(loanAmount > 0){
+				repaymentNumber++;
+				
+				repaymentAmount = repayment;
+				interestAmount = loanAmount * interest;
+				instalmentAmount = repaymentAmount - interestAmount;
+				
+				
+				if(repayment > loanAmount){ repayment = loanAmount};
+				loanAmount -= repayment;
+				
+				loanCounterContent +=
+				'<tr class=\'paymentPlanTr\'>'
+					+ '<td>' + repaymentNumber + '.</td>'
+					+ '<td>' + instalmentAmount + ' &euro;</td>'
+					+ '<td>' + interestAmount + ' &euro;</td>'
+					+ '<td>' + repaymentAmount + ' &euro;</td>'
+					+ '<td>' + loanAmount + ' &euro;</td>'
+				+ '</tr>';
+				
+				//$("#paymentPlanRepaymentNumberTd").text( repaymentNumber );
+				//$("#paymentPlanInstalmentTd").text( "1" );
+				//$("#paymentPlanInterestTd").text( "1" );
+				//$("#paymentPlanRepaymentTd").text( repayment );
+				//$("#paymentPlanPrincipalTD").text( "1" );
+			}
+			
+			// TODO: don't wipe the headers
+			$('#paymentPlanTable').html( loanCounterContent );
+		}
+		else{
+			$("#paymentPlanRepaymentNumberTd").text( "--" );
+			$("#paymentPlanInstalmentTd").text( "--" );
+			$("#paymentPlanInterestTd").text( "--" );
+			$("#paymentPlanRepaymentTd").text( "--" );
+			$("#paymentPlanPrincipalTD").text( "--" );
+		}
+	}
 	
 	formatTermToHumanReadable = function( term ){
 		var interval = $("#repaymentInterval").val();
@@ -186,6 +238,7 @@ $(document).ready(function(){
 	
 	$("#loanApplicationForm input").keyup(function(){
 			loanCounter();
+			
 	});
 	$("#loanApplicationForm select").change(function(){
 			loanCounter();
