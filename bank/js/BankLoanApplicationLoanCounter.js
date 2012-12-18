@@ -94,54 +94,44 @@ $(document).ready(function(){
 			var repaymentNumber = 0;
 			var instalmentAmount;			
 			var interestAmount;
-			var repaymentAmount;
+			var repaymentAmount = repayment;
 
 			var loanType = $("#loanType").val();
-			var loanCounterContent;
+			var loanCounterContent = "<tr class='paymentPlanTr'>" + $('#paymentPlanTable tr:first').html() + "</tr>";
 			
 			while(loanAmount > 0){
 				repaymentNumber++;
 				
-				repaymentAmount = repayment;
 				interestAmount = loanAmount * interest;
+				if(repaymentAmount > (loanAmount+interestAmount)){ repaymentAmount = loanAmount+interestAmount};
 				instalmentAmount = repaymentAmount - interestAmount;
 				
-				
-				if(repayment > loanAmount){ repayment = loanAmount};
-				loanAmount -= repayment;
+				//loanAmount += interestAmount;
+				loanAmount -= instalmentAmount;
+				loanAmount = Math.round(loanAmount*1000) / 1000;
 				
 				loanCounterContent +=
 				'<tr class=\'paymentPlanTr\'>'
 					+ '<td>' + repaymentNumber + '.</td>'
-					+ '<td>' + instalmentAmount + ' &euro;</td>'
-					+ '<td>' + interestAmount + ' &euro;</td>'
-					+ '<td>' + repaymentAmount + ' &euro;</td>'
-					+ '<td>' + loanAmount + ' &euro;</td>'
+					+ '<td>' + (Math.round(instalmentAmount*100) / 100) + ' &euro;</td>'
+					+ '<td>' + (Math.round(interestAmount*100) / 100) + ' &euro;</td>'
+					+ '<td>' + (Math.round(repaymentAmount*100) / 100) + ' &euro;</td>'
+					+ '<td>' + (Math.round(loanAmount*100) / 100) + ' &euro;</td>'
 				+ '</tr>';
-				
-				//$("#paymentPlanRepaymentNumberTd").text( repaymentNumber );
-				//$("#paymentPlanInstalmentTd").text( "1" );
-				//$("#paymentPlanInterestTd").text( "1" );
-				//$("#paymentPlanRepaymentTd").text( repayment );
-				//$("#paymentPlanPrincipalTD").text( "1" );
 			}
 			
-			// TODO: don't wipe the headers
 			$('#paymentPlanTable').html( loanCounterContent );
 		}
 		else{
-			$("#paymentPlanRepaymentNumberTd").text( "--" );
-			$("#paymentPlanInstalmentTd").text( "--" );
-			$("#paymentPlanInterestTd").text( "--" );
-			$("#paymentPlanRepaymentTd").text( "--" );
-			$("#paymentPlanPrincipalTD").text( "--" );
+			var loanCounterContent = "<tr class='paymentPlanTr'>" + $('#paymentPlanTable tr:first').html() + "</tr>";
+			$('#paymentPlanTable').html( loanCounterContent );
 		}
 	}
 	
 	formatTermToHumanReadable = function( term ){
 		var interval = $("#repaymentInterval").val();
 		var repaymentInterval = getRepaymentInterval();
-		term = Math.round( term * repaymentInterval);
+		term = Math.ceil( term * repaymentInterval);
 		
 		var years = 0;
 		var months = 0;
@@ -192,13 +182,13 @@ $(document).ready(function(){
 		var loanTerm = 0;
 		var loanTermUnit = null;
 		
-		if(term <= 900){ // 30 months = 900 days
+		if(term <= 30){ // Use days if applicable
+			loanTermUnit = 'day';
+			loanTerm = Math.ceil(term);
+		}
+		else if(term <= 900){ // 30 months = 900 days
 			loanTermUnit = 'month';
 			loanTerm = Math.ceil(term/30);
-		}
-		else if(term <= 30){ // Use days if applicable
-			loanTermUnit = 'day';
-			loanTerm = term;
 		}
 		else{ // Use years for long loans
 			loanTermUnit = 'year';

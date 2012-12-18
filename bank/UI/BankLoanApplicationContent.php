@@ -580,7 +580,7 @@ class BankLoanApplicationContent extends Content {
 			<div id='paymentPlan'>
 				<h3>".gettext("Payment plan")."</h3>
 				<table id='paymentPlanTable'>
-						<tr>
+						<tr id='paymentPlanHeaderRow'>
 							<th>#</th>
 							<th>".gettext("Instalment")."</th>
 							<th>".gettext("Interest")."</th>
