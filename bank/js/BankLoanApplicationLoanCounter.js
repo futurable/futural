@@ -60,7 +60,7 @@ $(document).ready(function(){
 		realAmount = repayment * term;
 		fillLoanCounterFrame( loanAmount, realAmount, repayment, term );
 		
-		fillPaymentPlanFrame( loanAmount, repayment, term, repaymentInterval, interestPart );
+		fillPaymentPlanFrame( loanAmount, repaymentInterval, interestPart );
 		
 	};
 	
@@ -73,60 +73,24 @@ $(document).ready(function(){
 			setAnnuityVars(term);
 			$("#repayment").val( roundedRepayment );
 			
-			$("#loanAmountTd").text( loanAmount + " €" );
-			$("#interestAmountTd").text( Math.round((realAmount-loanAmount)*100) / 100 + " €" );
-			$("#realAmountTd").text( Math.round(realAmount*100) / 100 + " €" );
-			$("#repaymentTd").text( roundedRepayment + " €" );
-			$("#termTd").text( prettyTerm );
+			$("#loanAmountTd").text( (parseFloat(loanAmount).toFixed(2)) + " €" );
+			$("#interestAmountTd").text( (parseFloat(realAmount-loanAmount).toFixed(2)) + " €" );
+			$("#realAmountTd").text( (parseFloat(realAmount).toFixed(2)) + " €" );
+			$("#repaymentTd").text( (parseFloat(roundedRepayment).toFixed(2)) + " €" );
+			$("#termTd").html( prettyTerm );
+			
+			return true;
 		}
-		else{			
+		else{
 			$("#loanAmountTd").text( "--" );
 			$("#interestAmountTd").text( "--" );
 			$("#realAmountTd").text( "--" );
 			$("#repaymentTd").text( "--" );
 			$("#termTd").text( "--" );
+			
+			return false;
 		}
 	};
-	
-	fillPaymentPlanFrame = function( loanAmount, repayment, term, repaymentInterval, interest ){
-		if( $.isNumeric(loanAmount) && $.isNumeric(repayment) && $.isNumeric(term) && $.isNumeric(repaymentInterval) && $.isNumeric(interest) ){
-	
-			var repaymentNumber = 0;
-			var instalmentAmount;			
-			var interestAmount;
-			var repaymentAmount = repayment;
-
-			var loanType = $("#loanType").val();
-			var loanCounterContent = "<tr class='paymentPlanTr'>" + $('#paymentPlanTable tr:first').html() + "</tr>";
-			
-			while(loanAmount > 0){
-				repaymentNumber++;
-				
-				interestAmount = loanAmount * interest;
-				if(repaymentAmount > (loanAmount+interestAmount)){ repaymentAmount = loanAmount+interestAmount};
-				instalmentAmount = repaymentAmount - interestAmount;
-				
-				//loanAmount += interestAmount;
-				loanAmount -= instalmentAmount;
-				loanAmount = Math.round(loanAmount*1000) / 1000;
-				
-				loanCounterContent +=
-				'<tr class=\'paymentPlanTr\'>'
-					+ '<td>' + repaymentNumber + '.</td>'
-					+ '<td>' + (Math.round(instalmentAmount*100) / 100) + ' &euro;</td>'
-					+ '<td>' + (Math.round(interestAmount*100) / 100) + ' &euro;</td>'
-					+ '<td>' + (Math.round(repaymentAmount*100) / 100) + ' &euro;</td>'
-					+ '<td>' + (Math.round(loanAmount*100) / 100) + ' &euro;</td>'
-				+ '</tr>';
-			}
-			
-			$('#paymentPlanTable').html( loanCounterContent );
-		}
-		else{
-			var loanCounterContent = "<tr class='paymentPlanTr'>" + $('#paymentPlanTable tr:first').html() + "</tr>";
-			$('#paymentPlanTable').html( loanCounterContent );
-		}
-	}
 	
 	formatTermToHumanReadable = function( term ){
 		var interval = $("#repaymentInterval").val();
@@ -152,6 +116,11 @@ $(document).ready(function(){
 		}
 		else{
 			months = Math.ceil(term / 30);
+			if(months >= 12){ // Months are 12 after rounding
+				years++;
+				months -= 12;
+				term -= 360;
+			}
 		}
 
 		term -= months * 30;
@@ -163,13 +132,13 @@ $(document).ready(function(){
 		// Formatting
 		prettyTerm = "";
 		if( years > 0){
-			prettyTerm += years + " " + repaymentIntervalTexts["year"] + " ";
+			prettyTerm += years + " " + repaymentIntervalTexts["year"] + "<br/>";
 		}
 		if( months > 0){
-			prettyTerm += months + " " + repaymentIntervalTexts["month"] + " ";
+			prettyTerm += months + " " + repaymentIntervalTexts["month"] + "<br/>";
 		}
 		if( days > 0){
-			prettyTerm += days + " " + repaymentIntervalTexts["day"] + " ";
+			prettyTerm += days + " " + repaymentIntervalTexts["day"] + "<br/>";
 		}
 		
 		return prettyTerm;

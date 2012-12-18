@@ -139,6 +139,7 @@ class BankLoanApplicationContent extends Content {
 			}
 			
 			$content = '<script type="text/javascript" src="js/BankLoanApplicationLoanCounter.js"></script>';
+			$content .= '<script type="text/javascript" src="js/fillPaymentPlanFrame.js"></script>';
 			$content .= $form;
 			$content .= $loanCounter.$paymentPlan;
 		}
@@ -585,7 +586,7 @@ class BankLoanApplicationContent extends Content {
 							<th>".gettext("Instalment")."</th>
 							<th>".gettext("Interest")."</th>
 							<th>".gettext("Repayment")."</th>
-							<th>".gettext("Principal")."</th>
+							<th>".gettext("Loan principal")."</th>
 						</tr>
 				</table>
 			</div><!-- / loanCounter-->
