@@ -121,8 +121,8 @@ class BankLoanApplicationContent extends Content {
 			// Form for loan application
 			$loanApplication = new BankLoanInfo();
 			$form = $this->displayLoanApplicationFormUsingObject($user, $loanApplication);
-			$loanCounter = $this->displayLoanCounterFrame();
-			$paymentPlan = $this->displayPaymentPlanFrame();
+			$loanCounter = null;
+			$paymentPlan = null;
 		
 			/** 3.0 New loan application overview **/
 			if (isset($_POST[ 'checkLoanApplication' ]) and $_POST[ 'checkLoanApplication' ]) {
@@ -136,6 +136,17 @@ class BankLoanApplicationContent extends Content {
 				else{
 					$form = $this->displayLoanApplicationFormUsingObject($user, $loanApplication, $validated);
 				}
+			}
+			else{
+				// Loan counters
+				$loanCounter = $this->displayLoanCounterFrame();
+				$paymentPlan = $this->displayPaymentPlanFrame();
+			}
+			
+			/** 4.0 Save loan application **/
+			if (isset($_POST[ 'saveLoanApplication' ]) and $_POST[ 'saveLoanApplication' ]) {
+				Debug::debug(get_class(), "doDisplayBusinessCustomerContentInHtml", "saveLoanApplication button is pressed", 2);
+				$content = $this->displaySaveLoanApplication();
 			}
 			
 			$content = '<script type="text/javascript" src="js/BankLoanApplicationLoanCounter.js"></script>';
