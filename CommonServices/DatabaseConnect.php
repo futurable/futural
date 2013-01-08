@@ -25,6 +25,8 @@
  *
  */
 
+require_once '../Conf/DatabaseConfiguration.php';
+
 /**
  * DatabaseConnect for database connections
  * 
@@ -69,17 +71,13 @@ class DatabaseConnect {
 		Debug::debug(get_class(), "__construct", "Start");
 		$success = FALSE;
 		
-		// open conf-db.xml to string format
-		$handle = file_get_contents("Conf/conf-db.xml", true);
-		
-		// using file
-		$xml = new SimpleXMLElement($handle);
+		$DBConfig = new DatabaseConfiguration( $this );
 		
 		// initialize attributes
-		$this->dbhost = (string)$xml->dbhost;
-		$this->dbuser = (string)$xml->dbuser;
-		$this->dbpass = (string)$xml->dbpass;
-		$this->dbname = (string)$xml->dbname;
+		$this->dbhost = $DBConfig->getDbHost();
+		$this->dbuser = $DBConfig->getDbUser();
+		$this->dbpass = $DBConfig->getDbPass();
+		$this->dbname = $DBConfig->getDbName();
 		
 		$this->link = mysql_connect($this->dbhost, $this->dbuser, $this->dbpass);
 

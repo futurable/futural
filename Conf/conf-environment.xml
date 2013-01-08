@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!-- Environment configuration -->
-
-<EnvironmentConfiguration>
-	<includePath>/var/www/</includePath>
-	<cryptKey>128BitsOr32BytesLongCryptkey1234</cryptKey>
-</EnvironmentConfiguration>
