@@ -25,17 +25,18 @@
  *
  */
 
+require_once 'Debug.php';
+require_once 'Conf/EnvironmentConfiguration.php';
+
 /**
  * Crypt functions
  * 
  * @package   CommonServices
  * @author    Jarmo Kortetjärvi
- * @copyright 2012 <jarmo.kortetjarvi@futurable.fi>
+ * @copyright 2013 <jarmo.kortetjarvi@futurable.fi>
  * @license   GPLv3 or any later version
- * @version   2012-09-07
+ * @version   2013-01-08
  */
-
-require_once 'Debug.php';
 
 class Crypt {
 	
@@ -132,13 +133,12 @@ class Crypt {
 		// Make 256bit encryption key using given key and predefined key
 		
 		// Get cryptKey from external file
-		$handle = file_get_contents("Conf/conf-environment.xml", true);
-		$xml = new SimpleXMLElement($handle);
-		$predefinedKey = $xml->cryptKey;
+		$EnvConf = new EnvironmentConfiguration();
+		$predefinedKey = $EnvConf->getCryptKey();
 
 		// Check that cryptKey is set
 		if(strlen($predefinedKey)<16 || strlen($predefinedKey)>32){
-			Debug::debug(get_class(), "makeCryptKey", "Invalid crypt key in cryptKey.xml", 2);
+			Debug::debug(get_class(), "makeCryptKey", "Invalid crypt key in EnvironmentConfiguration.php", 2);
 			return false;
 		}
 		

@@ -4,7 +4,7 @@
  *
  *  Copyright information
  *
- *      Copyright (C) 2012 Annika Granlund <annika.granlund@futurable.fi>
+ *      Copyright (C) 2013 Annika Granlund <annika.granlund@futurable.fi>
  *      				   Jarmo Kortetjärvi <jarmo.kortetjarvi@futurable.fi>
  *
  *  License
@@ -26,6 +26,8 @@
  *
  */
 
+require_once '../Conf/EnvironmentConfiguration.php';
+
 /**
  * Index.php
  * 
@@ -33,15 +35,14 @@
  * @author    Annika Granlund, Jarmo Kortetjärvi
  * @copyright 2012 <annika.granlund@futurable.fi>, <jarmo.kortetjarvi@futurable.fi>
  * @license   GPLv3 or any later version
- * @version   2011-08-17
+ * @version   2013-01-08
  */
 
 header('Content-type: text/html; charset=utf-8');
  
 // Get include path from config file
-$handle = file_get_contents("../Conf/conf-environment.xml", true);
-$xml = new SimpleXMLElement($handle);
-$includePath = $xml->includePath;
+$EnvConf = new EnvironmentConfiguration();
+$includePath = $EnvConf->getIncludePath();
 
 // Check that include path is valid
 if(is_dir($includePath)){
