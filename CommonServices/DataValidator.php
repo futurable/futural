@@ -306,7 +306,7 @@ class DataValidator{
 	public static function isArchiveNumberValid( $value ) {
 		$isValid = false;
 		
-		$pattern = "/^[O][I][V][A][B][a-zA-Z0-9]{13}$/";
+		$pattern = "/^[a-zA-Z0-9]{18}$/";
 		
 		if( preg_match( $pattern , $value) ) $isValid = true;
 		
