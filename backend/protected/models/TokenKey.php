@@ -68,7 +68,7 @@ class TokenKey extends CActiveRecord
 			'TokenKey' => 'Token Key',
 			'CreateDate' => 'Create Date',
 			'ReclaimDate' => 'Reclaim Date',
-			'Lifetime' => 'Lifetime',
+			'Lifetime' => 'Lifetime (months)',
 			'ExpirationDate' => 'Expiration Date',
 			'Token_Customer_ID' => 'Token Customer',
 			'Token_Settings_ID' => 'Token Settings',
