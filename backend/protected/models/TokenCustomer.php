@@ -35,9 +35,12 @@ class TokenCustomer extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('Tag, Name', 'required'),
-			array('Tag', 'length', 'max'=>16),
+			array('Tag', 'length', 'max'=>16, 'min'=>2),
+			array('Tag', 'unique', 'caseSensitive'=>false),
 			array('Name, Street, City', 'length', 'max'=>256),
 			array('Phone, Email', 'length', 'max'=>128),
+			array('Email', 'email'),
+			array('Tag', 'match', 'pattern'=>'(^[a-z]+$)', 'message'=>'You can only use lowercase alphabetic characters'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('ID, Tag, Name, Street, City, Phone, Email', 'safe', 'on'=>'search'),
@@ -91,7 +94,6 @@ class TokenCustomer extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('ID',$this->ID);
 		$criteria->compare('Tag',$this->Tag,true);
 		$criteria->compare('Name',$this->Name,true);
 		$criteria->compare('Street',$this->Street,true);

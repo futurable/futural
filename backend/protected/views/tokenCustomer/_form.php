@@ -9,6 +9,12 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'token-customer-form',
 	'enableAjaxValidation'=>false,
+	'enableClientValidation'=>true,
+	'clientOptions' => array(
+			'validateOnType'=>true,
+			'validateOnChange'=>true,
+			'validateOnSubmit'=>true,
+	),
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
