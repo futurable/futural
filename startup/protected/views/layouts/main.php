@@ -37,9 +37,9 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+		Futural Virtual Learning Environment<br/>
+		Copyright &copy; <?php echo date('Y'); ?> Futurable Oy.<br/>
 		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
 
 </div><!-- page -->
