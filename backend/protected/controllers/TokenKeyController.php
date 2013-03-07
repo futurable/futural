@@ -14,7 +14,7 @@ class TokenKeyController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
+			//'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
@@ -170,4 +170,17 @@ class TokenKeyController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        public function actionDynamicSettings()
+        {
+            $data=Location::model()->findAll('parent_id=:parent_id', 
+                          array(':parent_id'=>(int) $_POST['Token_Customer_ID']));
+
+            $data=CHtml::listData($data,'ID','Name');
+            foreach($data as $value=>$name)
+            {
+                echo CHtml::tag('option',
+                           array('value'=>$value),CHtml::encode($name),true);
+            }
+        }
 }

@@ -23,24 +23,24 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'Token_Customer_ID'); ?>
-                <?php echo $form->dropDownList($model, 'Token_Customer_ID', CHtml::listData(TokenCustomer::model()->findAll(array('order'=>'Name')),'ID','Name'));?>
+                <?php //echo $form->dropDownList($model, 'Token_Customer_ID', CHtml::listData(TokenCustomer::model()->findAll(array('order'=>'Name')),'ID','Name'));?>
  
-                <?php /*echo $form->dropDownList($model, 'Token_Customer_ID', CHtml::listData(TokenCustomer::model()->findAll(array('order'=>'Name')),'ID','Name'),
+                <?php echo $form->dropDownList($model, 'Token_Customer_ID', CHtml::listData(TokenCustomer::model()->findAll(array('order'=>'Name')),'ID','Name'),
                         array(
                             'prompt'=>'- Select customer -',
                             'ajax'=>array(
                                     'type'=>'POST', //request type
-                                    'url'=>CController::createUrl('tokenKey/dynamicSettings'), //url to call.
+                                    'url'=>CController::createUrl('dynamicSettings'), //url to call.
                                     'update'=>'#Token_Settings_ID',
                                 )
-                            ));*/?>
+                            ));?>
 		<?php echo $form->error($model,'Token_Customer_ID'); ?>
 	</div>
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'Token_Settings_ID'); ?>
-                <?php //echo CHtml::dropDownList('Token_Settings_ID','', array()); ?>
-		<?php echo $form->dropDownList($model, 'Token_Settings_ID', CHtml::listData(TokenSettings::model()->findAll(array('order'=>'ID')),'ID','Description'));?>
+                <?php echo CHtml::dropDownList('Token_Settings_ID','', array()); ?>
+		<?php //echo $form->dropDownList($model, 'Token_Settings_ID', CHtml::listData(TokenSettings::model()->findAll(array('order'=>'ID')),'ID','Description'));?>
 		<?php echo $form->error($model,'Token_Settings_ID'); ?>
 	</div>
         
