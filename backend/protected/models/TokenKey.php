@@ -37,7 +37,7 @@ class TokenKey extends CActiveRecord
 		return array(
 			array('TokenKey, Lifetime, Token_Customer_ID, Token_Settings_ID', 'required'),
 			array('Lifetime, Token_Customer_ID, Token_Settings_ID', 'numerical', 'integerOnly'=>true),
-			array('TokenKey', 'length', 'max'=>16),
+			array('TokenKey', 'length', 'max'=>32),
 			array('CreateDate, ReclaimDate, ExpirationDate', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
