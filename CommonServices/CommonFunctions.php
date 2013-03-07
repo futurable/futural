@@ -173,6 +173,20 @@ Class CommonFunctions{
 		
 		return $content;
 	}
+        
+        /**
+         * Get footer with link to account creation
+         * 
+         * @access public (static)
+         * @return string $content  account creation div in html
+         */
+        public static function getStartupDiv() {
+            $content = "<div class='disclaimer startup'>\n
+                            <p>Need a company? Go to the <a href='startup/'>startup page</a> to create one.</p>\n
+                        </div>\n";
+            
+            return $content;
+        }
 	
 	/**
 	 * 
