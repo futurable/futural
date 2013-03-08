@@ -182,7 +182,7 @@ Class CommonFunctions{
          */
         public static function getStartupDiv() {
             $content = "<div class='disclaimer startup'>\n
-                            <p>Need a company? Go to the <a href='startup/'>startup page</a> to create one.</p>\n
+                            <p>Need a company? Go to the <a href='startup/index.php/company'>startup page</a> to create one.</p>\n
                         </div>\n";
             
             return $content;
