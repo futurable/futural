@@ -2,10 +2,6 @@
 /* @var $this CompanyController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Companies',
-);
-
 $this->menu=array(
 	array('label'=>'Create Company', 'url'=>array('create')),
 	array('label'=>'Manage Company', 'url'=>array('admin')),
@@ -13,6 +9,10 @@ $this->menu=array(
 ?>
 
 <h1>Companies</h1>
+
+<?php // Redirect to company creation
+$this->redirect(array('/company/create')); 
+?>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
