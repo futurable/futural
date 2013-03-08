@@ -63,6 +63,7 @@ class CompanyController extends Controller
 	public function actionCreate()
 	{
 		$model=new Company;
+                $tokenKey=new TokenKey;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
