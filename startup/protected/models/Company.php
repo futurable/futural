@@ -1,18 +1,16 @@
 <?php
 
 /**
- * This is the model class for table "Company".
+ * This is the model class for table "company".
  *
- * The followings are the available columns in table 'Company':
- * @property integer $ID
- * @property string $CompanyName
- * @property integer $Industry_ID
- * @property integer $Token_Key_ID
+ * The followings are the available columns in table 'company':
+ * @property integer $id
+ * @property string $company_name
  *
  * The followings are the available model relations:
- * @property Industry $industry
- * @property TokenKeyTmp $tokenKey
- * @property CostBenefitCalculation[] $costBenefitCalculations
+ * @property CostbenefitCalculation[] $costbenefitCalculations
+ * @property Industry[] $industries
+ * @property TokenKey[] $tokenKeys
  */
 class Company extends CActiveRecord
 {
@@ -21,7 +19,7 @@ class Company extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'Company';
+		return 'company';
 	}
 
 	/**
@@ -32,12 +30,11 @@ class Company extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('CompanyName, Industry_ID, Token_Key_ID', 'required'),
-			array('Industry_ID, Token_Key_ID', 'numerical', 'integerOnly'=>true),
-			array('CompanyName', 'length', 'max'=>256),
+			array('company_name', 'required'),
+			array('company_name', 'length', 'max'=>256),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID, CompanyName, Industry_ID, Token_Key_ID', 'safe', 'on'=>'search'),
+			array('id, company_name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,9 +46,9 @@ class Company extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'industry' => array(self::BELONGS_TO, 'Industry', 'Industry_ID'),
-			'tokenKey' => array(self::BELONGS_TO, 'TokenKeyTmp', 'Token_Key_ID'),
-			'costBenefitCalculations' => array(self::HAS_MANY, 'CostBenefitCalculation', 'Company_ID'),
+			'costbenefitCalculations' => array(self::HAS_MANY, 'CostbenefitCalculation', 'company_id'),
+			'industries' => array(self::HAS_MANY, 'Industry', 'company_id'),
+			'tokenKeys' => array(self::HAS_MANY, 'TokenKey', 'company_id'),
 		);
 	}
 
@@ -61,10 +58,8 @@ class Company extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ID' => 'ID',
-			'CompanyName' => 'Company Name',
-			'Industry_ID' => 'Industry',
-			'Token_Key_ID' => 'Token Key',
+			'id' => 'ID',
+			'company_name' => 'Company Name',
 		);
 	}
 
@@ -86,10 +81,8 @@ class Company extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('ID',$this->ID);
-		$criteria->compare('CompanyName',$this->CompanyName,true);
-		$criteria->compare('Industry_ID',$this->Industry_ID);
-		$criteria->compare('Token_Key_ID',$this->Token_Key_ID);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('company_name',$this->company_name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
