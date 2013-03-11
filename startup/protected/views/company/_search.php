@@ -12,23 +12,13 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'ID'); ?>
-		<?php echo $form->textField($model,'ID'); ?>
+		<?php echo $form->label($model,'id'); ?>
+		<?php echo $form->textField($model,'id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'CompanyName'); ?>
-		<?php echo $form->textField($model,'CompanyName',array('size'=>60,'maxlength'=>256)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'Industry_ID'); ?>
-		<?php echo $form->textField($model,'Industry_ID'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'Token_Key_ID'); ?>
-		<?php echo $form->textField($model,'Token_Key_ID'); ?>
+		<?php echo $form->label($model,'company_name'); ?>
+		<?php echo $form->textField($model,'company_name',array('size'=>60,'maxlength'=>256)); ?>
 	</div>
 
 	<div class="row buttons">
