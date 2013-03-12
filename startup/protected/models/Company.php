@@ -17,6 +17,9 @@
  */
 class Company extends CActiveRecord
 {
+        public $token_key;
+        public $form_step = 1;
+        
 	/**
 	 * @return string the associated database table name
 	 */
