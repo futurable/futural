@@ -26,6 +26,16 @@
 		<?php echo $form->textField($model,'token_key_id'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'industry_id'); ?>
+		<?php echo $form->textField($model,'industry_id'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'costbenefit_calculation_id'); ?>
+		<?php echo $form->textField($model,'costbenefit_calculation_id'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

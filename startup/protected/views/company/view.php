@@ -24,5 +24,7 @@ $this->menu=array(
 		'id',
 		'company_name',
 		'token_key_id',
+		'industry_id',
+		'costbenefit_calculation_id',
 	),
 )); ?>

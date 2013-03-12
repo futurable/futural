@@ -27,6 +27,18 @@
 		<?php echo $form->error($model,'token_key_id'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'industry_id'); ?>
+		<?php echo $form->textField($model,'industry_id'); ?>
+		<?php echo $form->error($model,'industry_id'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'costbenefit_calculation_id'); ?>
+		<?php echo $form->textField($model,'costbenefit_calculation_id'); ?>
+		<?php echo $form->error($model,'costbenefit_calculation_id'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
