@@ -1,18 +1,13 @@
 <?php
 /* @var $this CompanyController */
 /* @var $model Company */
-
-$this->breadcrumbs=array(
-	'Companies'=>array('index'),
-	'Create',
-);
-
-$this->menu=array(
-	array('label'=>'List Company', 'url'=>array('index')),
-	array('label'=>'Manage Company', 'url'=>array('admin')),
-);
 ?>
 
 <h1>Create Company</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php 
+
+if($model->form_step == 1) echo $this->renderPartial('_verifyForm', array('model'=>$model));
+elseif($model->form_step == 2) echo $this->renderPartial('_form', array('model'=>$model));
+
+?>
