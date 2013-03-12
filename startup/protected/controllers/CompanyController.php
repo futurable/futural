@@ -14,7 +14,7 @@ class CompanyController extends Controller
 	public function filters()
 	{
 		return array(
-			//'accessControl', // perform access control for CRUD operations
+			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
@@ -32,7 +32,7 @@ class CompanyController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'verify'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -63,16 +63,36 @@ class CompanyController extends Controller
 	public function actionCreate()
 	{
 		$model=new Company;
-                $tokenKey=new TokenKey;
-
+                $token=new TokenKey;
+                
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+                
+                if(isset($_GET['token_key'])){
+                    $model->form_step = 2;
+                }
+                
 		if(isset($_POST['Company']))
 		{
-			$model->attributes=$_POST['Company'];
+                    $model->attributes=$_POST['Company'];
+                    $token->attributes=$_POST['Company'];
+                        
+                        $record=TokenKey::model()->find(array(
+                            'select'=>'token_key',
+                            'condition'=>'token_key=:token_key AND reclaim_date IS NULL',
+                            'params'=>array(':token_key'=>$token->token_key),
+                        ));
+                        
+                        if($record===null){
+                            echo "Invalid token key";
+                            //TODO: add error
+                        }
+                        else{
+                            $this->redirect(array('create','token_key'=>$record->token_key));
+                        }
+                        
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -96,7 +116,7 @@ class CompanyController extends Controller
 		{
 			$model->attributes=$_POST['Company'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
