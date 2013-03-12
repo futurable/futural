@@ -28,6 +28,6 @@ $this->menu=array(
 		'reclaim_date',
 		'expiration_date',
 		'token_customer_id',
-		'company_id',
+		'token_setup_id',
 	),
 )); ?>

@@ -34,8 +34,8 @@
 	<br />
 
 	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('company_id')); ?>:</b>
-	<?php echo CHtml::encode($data->company_id); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('token_setup_id')); ?>:</b>
+	<?php echo CHtml::encode($data->token_setup_id); ?>
 	<br />
 
 	*/ ?>

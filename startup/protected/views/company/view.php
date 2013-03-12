@@ -23,5 +23,6 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'company_name',
+		'token_key_id',
 	),
 )); ?>

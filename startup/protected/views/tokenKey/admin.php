@@ -53,7 +53,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'expiration_date',
 		/*
 		'token_customer_id',
-		'company_id',
+		'token_setup_id',
 		*/
 		array(
 			'class'=>'CButtonColumn',

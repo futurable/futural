@@ -52,9 +52,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'company_id'); ?>
-		<?php echo $form->textField($model,'company_id'); ?>
-		<?php echo $form->error($model,'company_id'); ?>
+		<?php echo $form->labelEx($model,'token_setup_id'); ?>
+		<?php echo $form->textField($model,'token_setup_id'); ?>
+		<?php echo $form->error($model,'token_setup_id'); ?>
 	</div>
 
 	<div class="row buttons">

@@ -47,8 +47,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'company_id'); ?>
-		<?php echo $form->textField($model,'company_id'); ?>
+		<?php echo $form->label($model,'token_setup_id'); ?>
+		<?php echo $form->textField($model,'token_setup_id'); ?>
 	</div>
 
 	<div class="row buttons">

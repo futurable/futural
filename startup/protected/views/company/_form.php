@@ -21,6 +21,12 @@
 		<?php echo $form->error($model,'company_name'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'token_key_id'); ?>
+		<?php echo $form->textField($model,'token_key_id'); ?>
+		<?php echo $form->error($model,'token_key_id'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

@@ -13,5 +13,9 @@
 	<?php echo CHtml::encode($data->company_name); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('token_key_id')); ?>:</b>
+	<?php echo CHtml::encode($data->token_key_id); ?>
+	<br />
+
 
 </div>
