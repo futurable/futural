@@ -11,12 +11,12 @@
  * @property string $reclaim_date
  * @property string $expiration_date
  * @property integer $token_customer_id
- * @property integer $company_id
+ * @property integer $token_setup_id
  *
  * The followings are the available model relations:
+ * @property Company[] $companies
  * @property TokenCustomer $tokenCustomer
- * @property Company $company
- * @property TokenSetup[] $tokenSetups
+ * @property TokenSetup $tokenSetup
  */
 class TokenKey extends CActiveRecord
 {
@@ -36,13 +36,13 @@ class TokenKey extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('token_key, lifetime, token_customer_id, company_id', 'required'),
-			array('lifetime, token_customer_id, company_id', 'numerical', 'integerOnly'=>true),
+			array('token_key, lifetime, token_customer_id, token_setup_id', 'required'),
+			array('lifetime, token_customer_id, token_setup_id', 'numerical', 'integerOnly'=>true),
 			array('token_key', 'length', 'max'=>16),
 			array('create_date, reclaim_date, expiration_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, token_key, lifetime, create_date, reclaim_date, expiration_date, token_customer_id, company_id', 'safe', 'on'=>'search'),
+			array('id, token_key, lifetime, create_date, reclaim_date, expiration_date, token_customer_id, token_setup_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,9 +54,9 @@ class TokenKey extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'companies' => array(self::HAS_MANY, 'Company', 'token_key_id'),
 			'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'token_customer_id'),
-			'company' => array(self::BELONGS_TO, 'Company', 'company_id'),
-			'tokenSetups' => array(self::HAS_MANY, 'TokenSetup', 'token_key_id'),
+			'tokenSetup' => array(self::BELONGS_TO, 'TokenSetup', 'token_setup_id'),
 		);
 	}
 
@@ -73,7 +73,7 @@ class TokenKey extends CActiveRecord
 			'reclaim_date' => 'Reclaim Date',
 			'expiration_date' => 'Expiration Date',
 			'token_customer_id' => 'Token Customer',
-			'company_id' => 'Company',
+			'token_setup_id' => 'Token Setup',
 		);
 	}
 
@@ -102,7 +102,7 @@ class TokenKey extends CActiveRecord
 		$criteria->compare('reclaim_date',$this->reclaim_date,true);
 		$criteria->compare('expiration_date',$this->expiration_date,true);
 		$criteria->compare('token_customer_id',$this->token_customer_id);
-		$criteria->compare('company_id',$this->company_id);
+		$criteria->compare('token_setup_id',$this->token_setup_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
