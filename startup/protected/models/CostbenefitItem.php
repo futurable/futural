@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'costbenefit_item':
  * @property integer $id
- * @property string $item_value
+ * @property string $value
  * @property integer $costbenefit_calculation_id
  * @property integer $costbenefit_item_type_id
  *
@@ -31,12 +31,12 @@ class CostbenefitItem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('item_value, costbenefit_calculation_id, costbenefit_item_type_id', 'required'),
+			array('value, costbenefit_calculation_id, costbenefit_item_type_id', 'required'),
 			array('costbenefit_calculation_id, costbenefit_item_type_id', 'numerical', 'integerOnly'=>true),
-			array('item_value', 'length', 'max'=>10),
+			array('value', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, item_value, costbenefit_calculation_id, costbenefit_item_type_id', 'safe', 'on'=>'search'),
+			array('id, value, costbenefit_calculation_id, costbenefit_item_type_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +60,7 @@ class CostbenefitItem extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'item_value' => 'Item Value',
+			'value' => 'Value',
 			'costbenefit_calculation_id' => 'Costbenefit Calculation',
 			'costbenefit_item_type_id' => 'Costbenefit Item Type',
 		);
@@ -85,7 +85,7 @@ class CostbenefitItem extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('item_value',$this->item_value,true);
+		$criteria->compare('value',$this->value,true);
 		$criteria->compare('costbenefit_calculation_id',$this->costbenefit_calculation_id);
 		$criteria->compare('costbenefit_item_type_id',$this->costbenefit_item_type_id);
 
