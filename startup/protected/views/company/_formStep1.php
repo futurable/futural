@@ -1,30 +1,24 @@
-<?php
-/* @var $this CompanyController */
-/* @var $model LoginForm */
-/* @var $form CActiveForm */
-?>
-
 <div class="form">
-
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'startup-form',
-	'enableAjaxValidation'=>false,
+	'id'=>'tokenKey',
+	'enableClientValidation'=>true,
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
 )); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
+    
+    <p>Please give a token key:</p>
+    <p class="note">Each token key can be used only once.</p>
 
 	<div class="row">
-		<?php echo $form->labelEx(TokenKey::model(),'TokenKey'); ?>
-		<?php echo $form->textField(TokenKey::model(),'TokenKey',array('size'=>32,'maxlength'=>32)); ?>
-		<?php echo $form->error(TokenKey::model(),'TokenKey'); ?>
+		<?php echo $form->labelEx($token,'token_key'); ?>
+		<?php echo $form->textField($token,'token_key'); ?>
+		<?php echo $form->error($token,'token_key'); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton('Verify'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
 </div><!-- form -->
