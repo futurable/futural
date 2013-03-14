@@ -7,11 +7,11 @@ class CreateAction extends CAction
 {
     public function run()
     {
+            $controller=$this->getController();
+        
             $company=new Company;
             $industry=new Industry;
-            $token=new TokenKey;
-            
-            $controller=$this->getController();
+            $token=new TokenKey;    
 
             // Uncomment the following line if AJAX validation is needed
             // $this->performAjaxValidation($model);
@@ -24,21 +24,7 @@ class CreateAction extends CAction
 
             // Form validation (step 1)
             if(isset($_POST['TokenKey'])){
-                $token->attributes=$_POST['TokenKey'];
-
-                $record=TokenKey::model()->find(array(
-                    'select'=>'token_key',
-                    'condition'=>'token_key=:token_key AND reclaim_date IS NULL',
-                    'params'=>array(':token_key'=>$token->token_key),
-                ));
-
-                if($record===null){
-                    echo "Invalid token key";
-                    //TODO: add error
-                }
-                else{
-                    $controller->redirect(array('create','token_key'=>$record->token_key));
-                }
+                $this->validateTokenKey($controller, $token);
             }
 
             // Company validation (step 2)
@@ -55,6 +41,23 @@ class CreateAction extends CAction
                     'industry'=>$industry,
                     'token'=>$token,
             ));
+    }
+    
+    private function validateTokenKey($controller, $token){
+        $token->attributes=$_POST['TokenKey'];
+
+        $record=TokenKey::model()->find(array(
+            'select'=>'token_key',
+            'condition'=>'token_key=:token_key AND reclaim_date IS NULL',
+            'params'=>array(':token_key'=>$token->token_key),
+        ));
+                  
+        if($record===null){
+            echo "Invalid token key"; //TODO: add error
+        }
+        else{
+            $controller->redirect(array('create','token_key'=>$record->token_key));
+        }
     }
 }
 ?>
