@@ -34,7 +34,7 @@
             <p>Cost-benefit calculation</p>
             <table>
                 <tr>
-                    <th>Expense</th>
+                    <th></th>
                     <th>Monthly</th>
                     <th>Yearly</th>
                     <th/>
@@ -50,6 +50,12 @@
                     <td><?php echo $form->textField($costBenefitItem_salaries,'value'); ?></td>
                     <td><?php echo CHtml::textField('salaries', ''); ?></td>
                     <td><?php echo $form->error($costBenefitItem_salaries,'value'); ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $form->labelEx($costBenefitItem_expenses,'Expenses'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_expenses,'value'); ?></td>
+                    <td><?php echo CHtml::textField('expenses', ''); ?></td>
+                    <td><?php echo $form->error($costBenefitItem_expenses,'value'); ?></td>
                 </tr>
             </table>
         </div>
