@@ -76,6 +76,12 @@
                     <td><?php echo CHtml::textField('communication', ''); ?></td>
                     <td><?php echo $form->error($costBenefitItem_communication,'value'); ?></td>
                 </tr>
+                <tr>
+                    <td><?php echo $form->labelEx($costBenefitItem_health,'Health'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_health,'value'); ?></td>
+                    <td><?php echo CHtml::textField('health', ''); ?></td>
+                    <td><?php echo $form->error($costBenefitItem_health,'value'); ?></td>
+                </tr>
             </table>
         </div>
 
