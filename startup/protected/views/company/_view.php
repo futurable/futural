@@ -21,9 +21,5 @@
 	<?php echo CHtml::encode($data->industry_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('costbenefit_calculation_id')); ?>:</b>
-	<?php echo CHtml::encode($data->costbenefit_calculation_id); ?>
-	<br />
-
 
 </div>
