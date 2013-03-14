@@ -7,6 +7,13 @@ class CompanyController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+        
+        public function actions()
+        {
+            return array(
+                'create'=>'application.controllers.company.CreateAction',
+            );
+        }
 
 	/**
 	 * @return array action filters
@@ -53,58 +60,6 @@ class CompanyController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
-		));
-	}
-
-	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionCreate()
-	{
-		$company=new Company;
-                $industry=new Industry;
-                $token=new TokenKey;
-                
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-                
-                if(isset($_GET['token_key'])){
-                    $company->form_step = 2;
-                }
-
-                // Form validation (step 1)
-                if(isset($_POST['TokenKey'])){
-                    $token->attributes=$_POST['TokenKey'];
-                     
-                    $record=TokenKey::model()->find(array(
-                        'select'=>'token_key',
-                        'condition'=>'token_key=:token_key AND reclaim_date IS NULL',
-                        'params'=>array(':token_key'=>$token->token_key),
-                    ));
-                        
-                    if($record===null){
-                        echo "Invalid token key";
-                        //TODO: add error
-                    }
-                    else{
-                        $this->redirect(array('create','token_key'=>$record->token_key));
-                    }
-                }
-                
-                // Company validation (step 2)
-		if(isset($_POST['Company']))
-		{
-                    $company->attributes=$_POST['Company'];
-                        
-			if($company->save())
-				$this->redirect(array('view','id'=>$company->id));
-		}
-
-		$this->render('create',array(
-			'company'=>$company,
-                        'industry'=>$industry,
-                        'token'=>$token,
 		));
 	}
 
