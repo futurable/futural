@@ -17,8 +17,9 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($company); ?>
-
+        
 	<div class="row">
+                <?php echo $form->hiddenField($token, 'token_key', array('value'=>$token->token_key)); ?>
 		<?php echo $form->labelEx($company,'company_name'); ?>
 		<?php echo $form->textField($company,'company_name',array('size'=>30,'maxlength'=>256)); ?>
 		<?php echo $form->error($company,'company_name'); ?>
@@ -56,6 +57,18 @@
                     <td><?php echo $form->textField($costBenefitItem_expenses,'value'); ?></td>
                     <td><?php echo CHtml::textField('expenses', ''); ?></td>
                     <td><?php echo $form->error($costBenefitItem_expenses,'value'); ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $form->labelEx($costBenefitItem_loans,'Loans'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_loans,'value'); ?></td>
+                    <td><?php echo CHtml::textField('loans', ''); ?></td>
+                    <td><?php echo $form->error($costBenefitItem_loans,'value'); ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $form->labelEx($costBenefitItem_rents,'Rents'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_rents,'value'); ?></td>
+                    <td><?php echo CHtml::textField('rents', ''); ?></td>
+                    <td><?php echo $form->error($costBenefitItem_rents,'value'); ?></td>
                 </tr>
             </table>
         </div>
