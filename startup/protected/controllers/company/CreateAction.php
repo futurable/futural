@@ -10,10 +10,13 @@ class CreateAction extends CAction
             $company=new Company;
             $industry=new Industry;
             $token=new TokenKey;
+            
+            $controller=$this->getController();
 
             // Uncomment the following line if AJAX validation is needed
             // $this->performAjaxValidation($model);
 
+            // Decide the form step
             if(isset($_GET['token_key'])){
                 $company->form_step = 2;
             }
@@ -34,7 +37,7 @@ class CreateAction extends CAction
                     //TODO: add error
                 }
                 else{
-                    $this->redirect(array('create','token_key'=>$record->token_key));
+                    $controller->redirect(array('create','token_key'=>$record->token_key));
                 }
             }
 
@@ -44,10 +47,9 @@ class CreateAction extends CAction
                 $company->attributes=$_POST['Company'];
 
                     if($company->save())
-                            $this->redirect(array('view','id'=>$company->id));
+                            $controller->redirect(array('view','id'=>$company->id));
             }
 
-            $controller=$this->getController();
             $controller->render('create',array(
                     'company'=>$company,
                     'industry'=>$industry,
