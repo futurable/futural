@@ -27,10 +27,7 @@ class CreateAction extends CAction
             // $this->performAjaxValidation($model);
 
             // Decide the form step
-            if(isset($_GET['token_key'])){
-                $company->form_step = 2;
-            }
-            else $company->form_step = 1;
+            $company->form_step = $this->getFormStep();
 
             // Form validation (step 1)
             if(isset($_POST['TokenKey'])){
@@ -53,6 +50,12 @@ class CreateAction extends CAction
             ));
     }
     
+    /**
+     * Validates token key from database
+     * 
+     * @param type $controller
+     * @param type $token
+     */
     private function validateTokenKey($controller, $token){
         $token->attributes=$_POST['TokenKey'];
 
@@ -68,6 +71,17 @@ class CreateAction extends CAction
         else{
             $controller->redirect(array('create','token_key'=>$record->token_key));
         }
+    }
+    
+    /**
+     * Gets current form step
+     */
+    private function getFormStep(){
+        $form_step = 1;
+        
+        if(isset($_GET['token_key'])) $form_step=2;
+            
+        return $form_step;
     }
 }
 ?>
