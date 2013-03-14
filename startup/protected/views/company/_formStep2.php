@@ -37,9 +37,19 @@
                     <th>Expense</th>
                     <th>Monthly</th>
                     <th>Yearly</th>
+                    <th/>
                 </tr>
                 <tr>
-                    <td><?php echo $form->labelEx($company,'industry_id'); ?><td>
+                    <td><?php echo $form->labelEx($costBenefitItem_turnover,'Turnover'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_turnover,'value'); ?></td>
+                    <td><?php echo CHtml::textField('turnover', ''); ?></td>
+                    <td><?php echo $form->error($costBenefitItem_turnover,'value'); ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $form->labelEx($costBenefitItem_salaries,'Salaries'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_salaries,'value'); ?></td>
+                    <td><?php echo CHtml::textField('salaries', ''); ?></td>
+                    <td><?php echo $form->error($costBenefitItem_salaries,'value'); ?></td>
                 </tr>
             </table>
         </div>
