@@ -70,6 +70,12 @@
                     <td><?php echo CHtml::textField('rents', ''); ?></td>
                     <td><?php echo $form->error($costBenefitItem_rents,'value'); ?></td>
                 </tr>
+                <tr>
+                    <td><?php echo $form->labelEx($costBenefitItem_communication,'Communication'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_communication,'value'); ?></td>
+                    <td><?php echo CHtml::textField('communication', ''); ?></td>
+                    <td><?php echo $form->error($costBenefitItem_communication,'value'); ?></td>
+                </tr>
             </table>
         </div>
 
