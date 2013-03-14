@@ -11,7 +11,17 @@ class CreateAction extends CAction
         
             $company=new Company;
             $industry=new Industry;
-            $token=new TokenKey;    
+            $token=new TokenKey;
+            
+            // Cost-benefit calculation
+            $costBenefitCalculation = new CostbenefitCalculation;
+            $costBenefitItem_turnover = new CostbenefitItem;
+            $costBenefitItem_salaries = new CostbenefitItem;
+            $costBenefitItem_expenses = new CostbenefitItem;
+            $costBenefitItem_loans = new CostbenefitItem;
+            $costBenefitItem_rents = new CostbenefitItem;
+            $costBenefitItem_communication = new CostbenefitItem;
+            $costBenefitItem_health = new CostbenefitItem;    
 
             // Uncomment the following line if AJAX validation is needed
             // $this->performAjaxValidation($model);
