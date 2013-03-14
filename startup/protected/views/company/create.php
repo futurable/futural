@@ -7,7 +7,7 @@
 
 <?php 
 
-if($model->form_step == 1) echo $this->renderPartial('_verifyForm', array('model'=>$model));
-elseif($model->form_step == 2) echo $this->renderPartial('_form', array('model'=>$model));
+if($company->form_step == 1) echo $this->renderPartial('_formStep1', array('token'=>$token));
+elseif($company->form_step == 2) echo $this->renderPartial('_formStep2', array('company'=>$company, 'industry'=>$industry));
 
 ?>
