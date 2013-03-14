@@ -47,6 +47,14 @@ class CreateAction extends CAction
                     'company'=>$company,
                     'industry'=>$industry,
                     'token'=>$token,
+                    'costBenefitCalculation'=>$costBenefitCalculation,
+                    'costBenefitItem_turnover'=>$costBenefitItem_turnover,
+                    'costBenefitItem_salaries'=>$costBenefitItem_salaries,
+                    'costBenefitItem_expenses'=>$costBenefitItem_expenses,
+                    'costBenefitItem_loans'=>$costBenefitItem_loans,
+                    'costBenefitItem_rents'=>$costBenefitItem_rents,
+                    'costBenefitItem_communication'=>$costBenefitItem_communication,
+                    'costBenefitItem_health'=>$costBenefitItem_health,
             ));
     }
     
