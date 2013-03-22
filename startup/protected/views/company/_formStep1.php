@@ -7,6 +7,8 @@
 	),
 )); ?>
     
+    <?php echo $form->errorSummary($token); ?>
+    
     <p>Please give a token key:</p>
     <p class="note">Each token key can be used only once.</p>
 
