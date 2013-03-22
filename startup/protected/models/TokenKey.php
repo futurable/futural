@@ -36,13 +36,16 @@ class TokenKey extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('token_key, lifetime, token_customer_id, token_setup_id', 'required'),
+                        array('token_key', 'ext.MyValidators.validTokenKey', 'on' => 'validTokenKey'),
+			array('token_key, lifetime, token_customer_id, token_setup_id', 'required', 'on' => '-validTokenKey'),
 			array('lifetime, token_customer_id, token_setup_id', 'numerical', 'integerOnly'=>true),
 			array('token_key', 'length', 'max'=>16),
+			array('token_key', 'length', 'min'=>6),
 			array('create_date, reclaim_date, expiration_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, token_key, lifetime, create_date, reclaim_date, expiration_date, token_customer_id, token_setup_id', 'safe', 'on'=>'search'),
+			array('token_key, lifetime, create_date, reclaim_date, expiration_date, token_customer_id, token_setup_id', 'safe', 'on'=>'search'),
+                        array('token_key', 'safe'),
 		);
 	}
 
