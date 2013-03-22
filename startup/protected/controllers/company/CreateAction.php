@@ -31,7 +31,12 @@ class CreateAction extends CAction
 
             // Form validation (step 1)
             if(isset($_POST['TokenKey'])){
-                $this->validateTokenKey($controller, $token);
+                $token->attributes=$_POST['TokenKey'];
+                $token->scenario = 'validTokenKey';
+                
+                if($token->validate()){
+                    $controller->redirect(array('create','token_key'=>$token->token_key));
+                }
             }
 
             // Company validation (step 2)
@@ -56,29 +61,6 @@ class CreateAction extends CAction
                     'costBenefitItem_communication'=>$costBenefitItem_communication,
                     'costBenefitItem_health'=>$costBenefitItem_health,
             ));
-    }
-    
-    /**
-     * Validates token key from database
-     * 
-     * @param type $controller
-     * @param type $token
-     */
-    private function validateTokenKey($controller, $token){
-        $token->attributes=$_POST['TokenKey'];
-
-        $record=TokenKey::model()->find(array(
-            'select'=>'token_key',
-            'condition'=>'token_key=:token_key AND reclaim_date IS NULL',
-            'params'=>array(':token_key'=>$token->token_key),
-        ));
-                  
-        if($record===null){
-            echo "Invalid token key"; //TODO: add error
-        }
-        else{
-            $controller->redirect(array('create','token_key'=>$record->token_key));
-        }
     }
     
     /**
