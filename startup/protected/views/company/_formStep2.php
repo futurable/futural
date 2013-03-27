@@ -5,6 +5,10 @@
 ?>
 
 <div class="form">
+    
+<?php
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBenefitCalculation.js');
+?>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'tokenKey',
@@ -20,9 +24,9 @@
         
 	<div class="row">
                 <?php echo $form->hiddenField($token, 'token_key', array('value'=>$token->token_key)); ?>
-		<?php echo $form->labelEx($company,'company_name'); ?>
-		<?php echo $form->textField($company,'company_name',array('size'=>30,'maxlength'=>256)); ?>
-		<?php echo $form->error($company,'company_name'); ?>
+		<?php echo $form->labelEx($company,'name'); ?>
+		<?php echo $form->textField($company,'name',array('size'=>30,'maxlength'=>256)); ?>
+		<?php echo $form->error($company,'name'); ?>
 	</div>
 
 	<div class="row">
@@ -42,44 +46,44 @@
                 </tr>
                 <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_turnover,'Turnover'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_turnover,'value'); ?></td>
-                    <td><?php echo CHtml::textField('turnover', ''); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_turnover,'value'); ?> &euro;</td>
+                    <td><?php echo CHtml::textField('turnover', ''); ?> &euro;</td>
                     <td><?php echo $form->error($costBenefitItem_turnover,'value'); ?></td>
                 </tr>
                 <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_salaries,'Salaries'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_salaries,'value'); ?></td>
-                    <td><?php echo CHtml::textField('salaries', ''); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_salaries,'value'); ?> &euro;</td>
+                    <td><?php echo CHtml::textField('salaries', ''); ?> &euro;</td>
                     <td><?php echo $form->error($costBenefitItem_salaries,'value'); ?></td>
                 </tr>
                 <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_expenses,'Expenses'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_expenses,'value'); ?></td>
-                    <td><?php echo CHtml::textField('expenses', ''); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_expenses,'value'); ?> &euro;</td>
+                    <td><?php echo CHtml::textField('expenses', ''); ?> &euro;</td>
                     <td><?php echo $form->error($costBenefitItem_expenses,'value'); ?></td>
                 </tr>
                 <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_loans,'Loans'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_loans,'value'); ?></td>
-                    <td><?php echo CHtml::textField('loans', ''); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_loans,'value'); ?> &euro;</td>
+                    <td><?php echo CHtml::textField('loans', ''); ?> &euro;</td>
                     <td><?php echo $form->error($costBenefitItem_loans,'value'); ?></td>
                 </tr>
                 <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_rents,'Rents'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_rents,'value'); ?></td>
-                    <td><?php echo CHtml::textField('rents', ''); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_rents,'value'); ?> &euro;</td>
+                    <td><?php echo CHtml::textField('rents', ''); ?> &euro;</td>
                     <td><?php echo $form->error($costBenefitItem_rents,'value'); ?></td>
                 </tr>
                 <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_communication,'Communication'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_communication,'value'); ?></td>
-                    <td><?php echo CHtml::textField('communication', ''); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_communication,'value'); ?> &euro;</td>
+                    <td><?php echo CHtml::textField('communication', ''); ?> &euro;</td>
                     <td><?php echo $form->error($costBenefitItem_communication,'value'); ?></td>
                 </tr>
                 <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_health,'Health'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_health,'value'); ?></td>
-                    <td><?php echo CHtml::textField('health', ''); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_health,'value'); ?> &euro;</td>
+                    <td><?php echo CHtml::textField('health', ''); ?> &euro;</td>
                     <td><?php echo $form->error($costBenefitItem_health,'value'); ?></td>
                 </tr>
             </table>
