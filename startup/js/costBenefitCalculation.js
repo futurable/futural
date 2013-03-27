@@ -14,7 +14,7 @@ $(document).ready(function(){
         var currentId = field.attr('id');
         
         // Check if variable isn't an object
-        if(currentId.substring(0,1) == "_"){
+        if(currentId.substring(0,1) === "_"){
             updateMonthlyField(field);
         }
         else{
