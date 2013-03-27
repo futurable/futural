@@ -1,18 +1,17 @@
 $(document).ready(function(){
     
     $("#costBenefitCalculationTable input").keyup(function(){
-        var currentId = $(this).attr('id');
-        updateCalculationFields(currentId); 
+        updateCalculationFields($(this)); 
     });
     
     /**
      * Update cost-benefit calculation fields
      * from monthly to yearly and vice versa
      * 
-     * @param {string} field
+     * @param {object} field
      */
     updateCalculationFields = function( field ){
-        
+        var currentValue = field.attr('value');
     };
     
     updateMonthlyField = function( yearly ){
