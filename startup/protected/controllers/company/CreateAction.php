@@ -69,7 +69,22 @@ class CreateAction extends CAction
     private function getFormStep(){
         $form_step = 1;
         
-        if(isset($_GET['token_key'])) $form_step=2;
+        if(isset($_GET['token_key'])){
+            $token = @mysql_real_escape_string($_GET['token_key']);
+            
+            $record=TokenKey::model()->find(array(
+            'select'=>'token_key, reclaim_date',
+            'condition'=>'token_key=:token_key AND reclaim_date IS NULL',
+            'params'=>array(':token_key'=>$token),
+            ));
+
+            if($record !== null){
+                $form_step=2;
+            }
+            else {
+                $form_step=1;
+            }
+        }
             
         return $form_step;
     }
