@@ -76,7 +76,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 </tr>
                 <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_communication,'Communication'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_communication,'value'); ?> &euro;</td>
+                    <td><?php echo $form->textField($costBenefitItem_communication,'[communication]value'); ?> &euro;</td>
                     <td><?php echo CHtml::textField('communication', ''); ?> &euro;</td>
                     <td><?php echo $form->error($costBenefitItem_communication,'value'); ?></td>
                 </tr>
