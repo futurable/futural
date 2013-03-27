@@ -43,5 +43,20 @@ $(document).ready(function(){
        
        $("#CostbenefitItem_expenses_value").val(monthly);
     });
+    
+    // Loans
+    $("#CostbenefitItem_loans_value").keyup(function(){
+        var monthly = $("#CostbenefitItem_loans_value").val();
+        var yearly = monthly * 12;
+       
+        $("#loans").val(yearly);
+    });
+    $("#loans").keyup(function(){
+       var yearly = $("#loans").val();
+       var monthly = yearly / 12;
+       monthly = Math.round(monthly*100) / 100;
+       
+       $("#CostbenefitItem_loans_value").val(monthly);
+    });
 
 });
