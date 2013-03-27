@@ -88,5 +88,20 @@ $(document).ready(function(){
        
        $("#CostbenefitItem_communication_value").val(monthly);
     });
+    
+    // Health
+    $("#CostbenefitItem_health_value").keyup(function(){
+        var monthly = $("#CostbenefitItem_health_value").val();
+        var yearly = monthly * 12;
+       
+        $("#health").val(yearly);
+    });
+    $("#health").keyup(function(){
+       var yearly = $("#health").val();
+       var monthly = yearly / 12;
+       monthly = Math.round(monthly*100) / 100;
+       
+       $("#CostbenefitItem_health_value").val(monthly);
+    });
 
 });
