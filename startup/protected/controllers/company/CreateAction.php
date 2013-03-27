@@ -38,6 +38,9 @@ class CreateAction extends CAction
                     $controller->redirect(array('create','token_key'=>$token->token_key));
                 }
             }
+            elseif(isset($_GET['token_key'])){
+                $token->token_key=$_GET['token_key'];
+            }
 
             // Company validation (step 2)
             if(isset($_POST['Company']))
