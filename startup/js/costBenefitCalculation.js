@@ -29,7 +29,12 @@ $(document).ready(function(){
      * @param {object} field
      */
     updateMonthlyField = function( field ){
-
+        var currentValue = field.attr('value');
+        var currentId = field.attr('id');
+        var monthlyValue = Math.round(currentValue/12*100) / 100;
+        
+        var monthlyId = "#CostbenefitItem"+currentId.replace("yearly","")+"_value";
+        $(monthlyId).val(monthlyValue);
     };
     
      /**
