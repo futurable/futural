@@ -13,5 +13,20 @@ $(document).ready(function(){
        
        $("#CostbenefitItem_turnover_value").val(monthly);
     });
+    
+    // Salaries
+    $("#CostbenefitItem_salaries_value").keyup(function(){
+        var monthly = $("#CostbenefitItem_salaries_value").val();
+        var yearly = monthly * 12;
+       
+        $("#salaries").val(yearly);
+    });
+    $("#salaries").keyup(function(){
+       var yearly = $("#salaries").val();
+       var monthly = yearly / 12;
+       monthly = Math.round(monthly*100) / 100;
+       
+       $("#CostbenefitItem_salaries_value").val(monthly);
+    });
 
 });
