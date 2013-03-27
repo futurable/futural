@@ -1,4 +1,28 @@
 $(document).ready(function(){
+    
+    $("#costBenefitCalculationTable input").keyup(function(){
+        var currentId = $(this).attr('id');
+        updateCalculationFields(currentId); 
+    });
+    
+    /**
+     * Update cost-benefit calculation fields
+     * from monthly to yearly and vice versa
+     * 
+     * @param {string} field
+     */
+    updateCalculationFields = function( field ){
+        
+    };
+    
+    updateMonthlyField = function( yearly ){
+        
+    };
+    
+    updateYearlyField = function( monthly ){
+        
+    };
+    
     // Turnover
     $("#CostbenefitItem_turnover_value").keyup(function(){
         var monthly = $("#CostbenefitItem_turnover_value").val();
