@@ -73,5 +73,20 @@ $(document).ready(function(){
        
        $("#CostbenefitItem_rents_value").val(monthly);
     });
+    
+    // Communication
+    $("#CostbenefitItem_communication_value").keyup(function(){
+        var monthly = $("#CostbenefitItem_communication_value").val();
+        var yearly = monthly * 12;
+       
+        $("#communication").val(yearly);
+    });
+    $("#communication").keyup(function(){
+       var yearly = $("#communication").val();
+       var monthly = yearly / 12;
+       monthly = Math.round(monthly*100) / 100;
+       
+       $("#CostbenefitItem_communication_value").val(monthly);
+    });
 
 });
