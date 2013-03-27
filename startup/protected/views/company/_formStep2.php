@@ -37,7 +37,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
         
         <div class="row">
             <p>Cost-benefit calculation</p>
-            <table>
+            <table id='costBenefitCalculationTable'>
                 <tr>
                     <th></th>
                     <th>Monthly</th>
