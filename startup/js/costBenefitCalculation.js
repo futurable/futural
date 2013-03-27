@@ -11,15 +11,40 @@ $(document).ready(function(){
      * @param {object} field
      */
     updateCalculationFields = function( field ){
+        var currentId = field.attr('id');
+        
+        // Check if variable isn't an object
+        if(currentId.substring(0,1) == "_"){
+            updateMonthlyField(field);
+        }
+        else{
+            updateYearlyField(field);
+        }
+    };
+    
+    /**
+     * Update cost-benefit calculation monthly field
+     * using yearly value
+     * 
+     * @param {object} field
+     */
+    updateMonthlyField = function( field ){
+
+    };
+    
+     /**
+     * Update cost-benefit calculation yearly field
+     * using monthly value
+     * 
+     * @param {object} field
+     */
+    updateYearlyField = function( field ){
         var currentValue = field.attr('value');
-    };
-    
-    updateMonthlyField = function( yearly ){
+        var currentId = field.attr('id');
+        var yearlyValue = currentValue * 12;
         
-    };
-    
-    updateYearlyField = function( monthly ){
-        
+        var yearlyId = "#_"+currentId.split('_')[1]+"yearly";
+        $(yearlyId).val(yearlyValue);
     };
     
     // Turnover
