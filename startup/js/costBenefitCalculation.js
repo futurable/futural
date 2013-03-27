@@ -28,5 +28,20 @@ $(document).ready(function(){
        
        $("#CostbenefitItem_salaries_value").val(monthly);
     });
+    
+    // Expenses
+    $("#CostbenefitItem_expenses_value").keyup(function(){
+        var monthly = $("#CostbenefitItem_expenses_value").val();
+        var yearly = monthly * 12;
+       
+        $("#expenses").val(yearly);
+    });
+    $("#expenses").keyup(function(){
+       var yearly = $("#expenses").val();
+       var monthly = yearly / 12;
+       monthly = Math.round(monthly*100) / 100;
+       
+       $("#CostbenefitItem_expenses_value").val(monthly);
+    });
 
 });
