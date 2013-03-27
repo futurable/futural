@@ -45,10 +45,10 @@ return array(
 		),
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=futural_core',
+			'connectionString' => 'mysql:host=futurality.fi;dbname=futural_core',
 			'emulatePrepare' => true,
 			'username' => 'futural',
-			'password' => 'futural',
+			'password' => 'PR3FacH-g+9_',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
@@ -63,11 +63,8 @@ return array(
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
-				/*
-				array(
-					'class'=>'CWebLogRoute',
-				),
-				*/
+				//array('class'=>'CWebLogRoute',),
+				
 			),
 		),
 	),
