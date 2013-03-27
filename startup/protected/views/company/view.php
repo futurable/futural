@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Companies'=>array('index'),
-	$model->id,
+	$model->name,
 );
 
 $this->menu=array(
@@ -22,7 +22,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'company_name',
+		'name',
 		'token_key_id',
 		'industry_id',
 	),
