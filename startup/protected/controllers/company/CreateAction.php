@@ -46,9 +46,18 @@ class CreateAction extends CAction
             if(isset($_POST['Company']))
             {
                 $company->attributes=$_POST['Company'];
+                // Cost-benefit calculation
+                //$costBenefitCalculation->attributes = new CostbenefitCalculation;
+                $costBenefitItem_turnover->attributes = $_POST['CostbenefitItem[turnover]'];
+                $costBenefitItem_salaries->attributes = $_POST['CostbenefitItem[salaries]'];
+                $costBenefitItem_expenses->attributes = $_POST['CostbenefitItem[expenses]'];
+                $costBenefitItem_loans->attributes = $_POST['CostbenefitItem[loans]'];
+                $costBenefitItem_rents->attributes = $_POST['CostbenefitItem[rents]'];
+                $costBenefitItem_communication->attributes = $_POST['CostbenefitItem[communication]'];
+                $costBenefitItem_health->attributes = $_POST['CostbenefitItem[health]']; 
 
-                    if($company->save())
-                            $controller->redirect(array('view','id'=>$company->id));
+                //if($company->save())
+                //$controller->redirect(array('view','id'=>$company->id));
             }
 
             $controller->render('create',array(
