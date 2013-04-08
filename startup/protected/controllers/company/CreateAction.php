@@ -30,11 +30,11 @@ class CreateAction extends CAction
             $company->form_step = $this->getFormStep();
 
             // Form validation (step 1)
-            if(isset($_POST['TokenKey']) AND $company->form_step==1){
+            if(isset($_POST['TokenKey'])){
                 $token->attributes=$_POST['TokenKey'];
                 $token->scenario = 'validTokenKey';
                 
-                if($token->validate()){
+                if($token->validate() AND $company->form_step==1){
                     $controller->redirect(array('create','token_key'=>$token->token_key));
                 }
             }
@@ -44,8 +44,9 @@ class CreateAction extends CAction
 
             // Company validation (step 2)
             if(isset($_POST['Company']) AND isset($_POST['CostbenefitItem']))
-            {
+            {              
                 $company->attributes=$_POST['Company'];
+                
                 // Cost-benefit calculation
                 //$costBenefitCalculation->attributes = new CostbenefitCalculation;
                 $costBenefitItem_turnover->attributes = $_POST['CostbenefitItem']['turnover'];
@@ -55,9 +56,23 @@ class CreateAction extends CAction
                 $costBenefitItem_rents->attributes = $_POST['CostbenefitItem']['rents'];
                 $costBenefitItem_communication->attributes = $_POST['CostbenefitItem']['communication'];
                 $costBenefitItem_health->attributes = $_POST['CostbenefitItem']['health'];
-
-                //if($company->save())
-                //$controller->redirect(array('view','id'=>$company->id));
+                
+                // Validate all models
+                $modelsValid = $company->validate()
+                    AND $costBenefitItem_turnover->validate()
+                    AND $costBenefitItem_salaries->validate()
+                    AND $costBenefitItem_expenses->validate()
+                    AND $costBenefitItem_loans->validate()
+                    AND $costBenefitItem_rents->validate()
+                    AND $costBenefitItem_communication->validate()
+                    AND $costBenefitItem_health->validate();
+                
+                if($modelsValid)
+                {
+                    //if($company->save())
+                    //$controller->redirect(array('view','id'=>$company->id));
+                }
+                
             }
 
             $controller->render('create',array(
