@@ -78,11 +78,24 @@ class CreateAction extends CAction
                     $transaction = Yii::app()->db->beginTransaction();
                     
                     // Save company
-                    //$company->save()
+                    $companySuccess = $company->save();
                     
                     // Save cost-benefit calculation
+                    $costBenefitCalculation->company_id = $company->id;
+                    $CBSuccess = $costBenefitCalculation->save();
 
                     // Save cost-benefit items
+                    
+                    // Mark token key as used
+                    
+                    // Commit or rollback
+                    $allSuccessful = $companySuccess AND $CBSuccess;
+                    if($allSuccessful){
+                        $transaction->commit();
+                    }
+                    else{
+                        $transaction->rollBack();
+                    }
                     
                     // Redirect
                     //$controller->redirect(array('view','id'=>$company->id));
