@@ -14,12 +14,9 @@ class ViewAction extends CAction
             
             $company = Company::model()->findByPk($id);
             $industry = Industry::model()->findByPk($company->industry_id);
-            $industrySetups = IndustrySetup::model()->findByAttributes(array('setup_id'=>$industry->industrySetups));
+            $industrySetups = $industry->industrySetups;
             $CBC = CostbenefitCalculation::model()->findByAttributes(array('company_id'=>$id));
-            $CBC_items = CostbenefitItem::model()->findAll( array(
-                    'condition'=>'costbenefit_calculation_id=:CBCId',
-                    'params'=>array(':CBCId'=>$CBC->id),
-                    ));
+            $CBC_items = $CBC->costbenefitItems;
             
             $controller->render('view',array(
                 'company'=>$company,
