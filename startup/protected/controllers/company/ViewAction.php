@@ -14,10 +14,13 @@ class ViewAction extends CAction
             
             $company = Company::model()->findByPk($id);
             $industry = Industry::model()->findByPk($company->industry_id);
+            $CBC = CostbenefitCalculation::model()->findByAttributes(array('company_id'=>$id));
+
             
             $controller->render('view',array(
                 'company'=>$company,
                 'industry'=>$industry,
+                'CBC'=>$CBC,
             ));
     }
 }
