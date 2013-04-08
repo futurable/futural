@@ -24,6 +24,7 @@ class ViewAction extends CAction
                 'company'=>$company,
                 'industry'=>$industry,
                 'CBC'=>$CBC,
+                'CBC_items'=>$CBC_items,
             ));
     }
 }
