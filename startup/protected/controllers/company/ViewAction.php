@@ -8,10 +8,16 @@ class ViewAction extends CAction
      */
     public function run($id)
     {
+        if(!is_int((int)$id)) exit;
+        
             $controller=$this->getController();
-
+            
+            $company = Company::model()->findByPk($id);
+            $industry = Industry::model()->findByPk($company->industry_id);
+            
             $controller->render('view',array(
-                'model'=>$controller->loadModel($id),
+                'company'=>$company,
+                'industry'=>$industry,
             ));
     }
 }
