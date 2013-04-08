@@ -123,13 +123,12 @@ class CreateAction extends CAction
                     $allSuccessful = $companySuccess AND $CBCSuccess;
                     if($allSuccessful){
                         $transaction->commit();
+                        $controller->redirect(array('view','id'=>$company->id));
                     }
                     else{
                         $transaction->rollBack();
                     }
                     
-                    // Redirect
-                    //$controller->redirect(array('view','id'=>$company->id));
                 }
                 
             }
