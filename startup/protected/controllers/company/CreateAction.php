@@ -82,14 +82,45 @@ class CreateAction extends CAction
                     
                     // Save cost-benefit calculation
                     $costBenefitCalculation->company_id = $company->id;
-                    $CBSuccess = $costBenefitCalculation->save();
+                    $CBCSuccess = $costBenefitCalculation->save();
 
                     // Save cost-benefit items
+                    // TODO: get type id:s from somewhere
+                    $costBenefitItem_turnover->costbenefit_calculation_id = $costBenefitCalculation->id;
+                    $costBenefitItem_turnover->costbenefit_item_type_id = 1;
+                    $CBCSuccess = $costBenefitItem_turnover->save() AND $CBCSuccess;
+                    
+                    $costBenefitItem_salaries->costbenefit_calculation_id = $costBenefitCalculation->id;
+                    $costBenefitItem_salaries->costbenefit_item_type_id = 2;
+                    $CBCSuccess = $costBenefitItem_salaries->save() AND $CBCSuccess;
+                    
+                    $costBenefitItem_expenses->costbenefit_calculation_id = $costBenefitCalculation->id;
+                    $costBenefitItem_expenses->costbenefit_item_type_id = 3;
+                    $CBCSuccess = $costBenefitItem_expenses->save() AND $CBCSuccess;
+                    
+                    $costBenefitItem_loans->costbenefit_calculation_id = $costBenefitCalculation->id;
+                    $costBenefitItem_loans->costbenefit_item_type_id = 4;
+                    $CBCSuccess = $costBenefitItem_loans->save() AND $CBCSuccess;
+                    
+                    $costBenefitItem_rents->costbenefit_calculation_id = $costBenefitCalculation->id;
+                    $costBenefitItem_rents->costbenefit_item_type_id = 5;
+                    $CBCSuccess = $costBenefitItem_rents->save() AND $CBCSuccess;
+                    
+                    $costBenefitItem_communication->costbenefit_calculation_id = $costBenefitCalculation->id;
+                    $costBenefitItem_communication->costbenefit_item_type_id = 6;
+                    $CBCSuccess = $costBenefitItem_communication->save() AND $CBCSuccess;
+                    
+                    $costBenefitItem_health->costbenefit_calculation_id = $costBenefitCalculation->id;
+                    $costBenefitItem_health->costbenefit_item_type_id = 7;
+                    $CBCSuccess = $costBenefitItem_health->save() AND $CBCSuccess;
                     
                     // Mark token key as used
+                    $token=TokenKey::model()->findByPk($company->token_key_id);
+                    $token->reclaim_date='NOW()';
+                    $token->save();
                     
                     // Commit or rollback
-                    $allSuccessful = $companySuccess AND $CBSuccess;
+                    $allSuccessful = $companySuccess AND $CBCSuccess;
                     if($allSuccessful){
                         $transaction->commit();
                     }
