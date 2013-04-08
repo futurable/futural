@@ -1,5 +1,5 @@
 <?php
-class CreateAction extends CAction
+class ViewAction extends CAction
 {
     
     /**
@@ -11,7 +11,7 @@ class CreateAction extends CAction
             $controller=$this->getController();
 
             $controller->render('view',array(
-                'model'=>$this->loadModel($id),
+                'model'=>$controller->loadModel($id),
             ));
     }
 }
