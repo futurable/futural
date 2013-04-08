@@ -39,13 +39,18 @@ class CreateAction extends CAction
                 }
             }
             elseif(isset($_GET['token_key'])){
-                $token->token_key=$_GET['token_key'];
+                $token->token_key=@mysql_real_escape_string($_GET['token_key']);
             }
 
             // Company validation (step 2)
             if(isset($_POST['Company']) AND isset($_POST['CostbenefitItem']))
-            {              
+            {
                 $company->attributes=$_POST['Company'];
+                $company->token_key_id = TokenKey::model()->find(
+                    array('select'=>'id'
+                    , 'condition'=>'token_key=:token_key'
+                    ,'params'=>array(':token_key'=>$token->token_key),
+                ))->id;
                 
                 // Cost-benefit calculation
                 //$costBenefitCalculation->attributes = new CostbenefitCalculation;
