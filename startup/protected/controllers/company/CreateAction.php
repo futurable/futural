@@ -8,7 +8,7 @@ class CreateAction extends CAction
     public function run()
     {
             $controller=$this->getController();
-        
+            
             $company=new Company;
             $industry=new Industry;
             $token=new TokenKey;
@@ -30,7 +30,7 @@ class CreateAction extends CAction
             $company->form_step = $this->getFormStep();
 
             // Form validation (step 1)
-            if(isset($_POST['TokenKey'])){
+            if(isset($_POST['TokenKey']) AND $company->form_step==1){
                 $token->attributes=$_POST['TokenKey'];
                 $token->scenario = 'validTokenKey';
                 
@@ -43,18 +43,18 @@ class CreateAction extends CAction
             }
 
             // Company validation (step 2)
-            if(isset($_POST['Company']))
+            if(isset($_POST['Company']) AND isset($_POST['CostbenefitItem']))
             {
                 $company->attributes=$_POST['Company'];
                 // Cost-benefit calculation
                 //$costBenefitCalculation->attributes = new CostbenefitCalculation;
-                $costBenefitItem_turnover->attributes = $_POST['CostbenefitItem[turnover]'];
-                $costBenefitItem_salaries->attributes = $_POST['CostbenefitItem[salaries]'];
-                $costBenefitItem_expenses->attributes = $_POST['CostbenefitItem[expenses]'];
-                $costBenefitItem_loans->attributes = $_POST['CostbenefitItem[loans]'];
-                $costBenefitItem_rents->attributes = $_POST['CostbenefitItem[rents]'];
-                $costBenefitItem_communication->attributes = $_POST['CostbenefitItem[communication]'];
-                $costBenefitItem_health->attributes = $_POST['CostbenefitItem[health]']; 
+                $costBenefitItem_turnover->attributes = $_POST['CostbenefitItem']['turnover'];
+                $costBenefitItem_salaries->attributes = $_POST['CostbenefitItem']['salaries'];
+                $costBenefitItem_expenses->attributes = $_POST['CostbenefitItem']['expenses'];
+                $costBenefitItem_loans->attributes = $_POST['CostbenefitItem']['loans'];
+                $costBenefitItem_rents->attributes = $_POST['CostbenefitItem']['rents'];
+                $costBenefitItem_communication->attributes = $_POST['CostbenefitItem']['communication'];
+                $costBenefitItem_health->attributes = $_POST['CostbenefitItem']['health'];
 
                 //if($company->save())
                 //$controller->redirect(array('view','id'=>$company->id));
