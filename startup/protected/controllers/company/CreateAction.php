@@ -74,7 +74,17 @@ class CreateAction extends CAction
                 
                 if($modelsValid)
                 {
-                    //if($company->save())
+                    // Start transaction
+                    $transaction = Yii::app()->db->beginTransaction();
+                    
+                    // Save company
+                    //$company->save()
+                    
+                    // Save cost-benefit calculation
+
+                    // Save cost-benefit items
+                    
+                    // Redirect
                     //$controller->redirect(array('view','id'=>$company->id));
                 }
                 
