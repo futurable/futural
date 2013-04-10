@@ -46,11 +46,16 @@ class CreateAction extends CAction
             if(isset($_POST['Company']) AND isset($_POST['CostbenefitItem']))
             {
                 $company->attributes=$_POST['Company'];
+                // Get token key id
                 $company->token_key_id = TokenKey::model()->find(
                     array('select'=>'id'
                     , 'condition'=>'token_key=:token_key'
                     ,'params'=>array(':token_key'=>$token->token_key),
                 ))->id;
+                
+                // Create company tag
+                $tag = preg_replace("/[^A-Za-z0-9 ]/", '', $company->name);
+                $company->tag = $tag;
                 
                 // Cost-benefit calculation
                 //$costBenefitCalculation->attributes = new CostbenefitCalculation;
