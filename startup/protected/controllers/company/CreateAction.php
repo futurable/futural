@@ -114,11 +114,6 @@ class CreateAction extends CAction
                     $costBenefitItem_health->costbenefit_item_type_id = 7;
                     $CBCSuccess = $costBenefitItem_health->save() AND $CBCSuccess;
                     
-                    // Mark token key as used
-                    $token=TokenKey::model()->findByPk($company->token_key_id);
-                    $token->reclaim_date='NOW()';
-                    $token->save();
-                    
                     // Commit or rollback
                     $allSuccessful = $companySuccess AND $CBCSuccess;
                     if($allSuccessful){
