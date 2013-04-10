@@ -36,7 +36,7 @@ class TokenKey extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-                        array('token_key', 'ext.MyValidators.validTokenKey', 'on' => 'validTokenKey'),
+                        array('token_key', 'ext.validators.validTokenKey', 'on' => 'validTokenKey'),
 			array('token_key, lifetime, token_customer_id, token_setup_id', 'required', 'on' => '-validTokenKey'),
 			array('lifetime, token_customer_id, token_setup_id', 'numerical', 'integerOnly'=>true),
 			array('token_key', 'length', 'max'=>16),
