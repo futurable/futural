@@ -12,18 +12,31 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
 
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/futural.css" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
 
+<div class='disclaimer'>
+    <p>
+            Welcome to <a href='http://futurable.fi/index.php/en/tuotteet-ja-palvelut/oppimisymparistot'>Futural</a> - a virtual learning environment 
+            by <a href='http://futurable.fi'>Futurable</a>.
+            <a href='#'>Give feedback</a>.
+    </p>
+</div>
+    
 <div class="container" id="page">
-
+    
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo">
+                    <?php echo CHtml::image(Yii::app()->request->baseUrl.'/css/img/futural-logo-startup_h128.png'); ?>
+                    <?php //echo CHtml::encode(Yii::app()->name); ?>
+                </div>
 	</div><!-- header -->
         
 	<div id="mainmenu">
