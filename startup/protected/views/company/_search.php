@@ -22,6 +22,11 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'tag'); ?>
+		<?php echo $form->textField($model,'tag',array('size'=>32,'maxlength'=>32)); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'token_key_id'); ?>
 		<?php echo $form->textField($model,'token_key_id'); ?>
 	</div>

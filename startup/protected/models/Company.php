@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'company':
  * @property integer $id
  * @property string $name
+ * @property string $tag
  * @property integer $token_key_id
  * @property integer $industry_id
  *
@@ -33,12 +34,13 @@ class Company extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, token_key_id, industry_id', 'required'),
+			array('name, tag, token_key_id, industry_id', 'required'),
 			array('token_key_id, industry_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>256),
+			array('tag', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, token_key_id, industry_id', 'safe', 'on'=>'search'),
+			array('id, name, tag, token_key_id, industry_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +66,7 @@ class Company extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'tag' => 'Tag',
 			'token_key_id' => 'Token Key',
 			'industry_id' => 'Industry',
 		);
@@ -89,6 +92,7 @@ class Company extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('tag',$this->tag,true);
 		$criteria->compare('token_key_id',$this->token_key_id);
 		$criteria->compare('industry_id',$this->industry_id);
 

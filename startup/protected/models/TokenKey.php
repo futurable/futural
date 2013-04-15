@@ -36,7 +36,7 @@ class TokenKey extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-                        array('token_key', 'ext.MyValidators.validTokenKey', 'on' => 'validTokenKey'),
+                        array('token_key', 'ext.validators.validTokenKey', 'on' => 'validTokenKey'),
 			array('token_key, lifetime, token_customer_id, token_setup_id', 'required', 'on' => '-validTokenKey'),
 			array('lifetime, token_customer_id, token_setup_id', 'numerical', 'integerOnly'=>true),
 			array('token_key', 'length', 'max'=>16),
@@ -46,6 +46,8 @@ class TokenKey extends CActiveRecord
 			// @todo Please remove those attributes that should not be searched.
 			array('token_key, lifetime, create_date, reclaim_date, expiration_date, token_customer_id, token_setup_id', 'safe', 'on'=>'search'),
                         array('token_key', 'safe'),
+                        array('reclaim_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'update'),
+                        array('expiration_date','default', 'value'=>new CDbExpression('DATE_ADD(reclaim_date, INTERVAL lifetime MONTH)'), 'setOnEmpty'=>false,'on'=>'update'),
 		);
 	}
 

@@ -13,6 +13,10 @@
 	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('tag')); ?>:</b>
+	<?php echo CHtml::encode($data->tag); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('token_key_id')); ?>:</b>
 	<?php echo CHtml::encode($data->token_key_id); ?>
 	<br />

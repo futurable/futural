@@ -1,29 +1,48 @@
 <?php
 /* @var $this CompanyController */
-/* @var $model Company */
-
-$this->breadcrumbs=array(
-	'Companies'=>array('index'),
-	$model->name,
-);
-
-$this->menu=array(
-	array('label'=>'List Company', 'url'=>array('index')),
-	array('label'=>'Create Company', 'url'=>array('create')),
-	array('label'=>'Update Company', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Company', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Company', 'url'=>array('admin')),
-);
+/* @var $company    Company */
+/* @var $industry   Industry */
+/* @var $CBC        Cost-benefit calculation */
+/* @var $CBC_items  Cost-benefit calculation items */
 ?>
 
-<h1>View Company #<?php echo $model->id; ?></h1>
+<h1><?php echo $company->name; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'name',
-		'token_key_id',
-		'industry_id',
-	),
-)); ?>
+<table>
+    <tr>
+        <th>Industry</th>
+        <th>Description</th>
+        <th>Medium turnover</th>
+        <th>Minimum wage rate</th>
+    </tr>
+    <tr>
+        <td><?php echo ucfirst($industry->name); ?></td>
+        <td><?php echo $industry->description; ?></td>
+        <td><?php echo $industrySetups[0]->turnover." &euro;";?></td>
+        <td><?php echo $industrySetups[0]->minimum_wage_rate." &euro;";?></td>
+    </tr>
+</table>
+
+<h2>Cost-benefit calculation</h2>
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Monthly cost</th>
+        <th>Description</th>
+    </tr>
+<?php
+    foreach($CBC_items as $item){
+        $type = $item->costbenefitItemType;
+        $typeName = ucfirst($type->name);
+        
+        $tableRow = "
+            <tr>
+                <td>$typeName</td>
+                <td>$item->value &euro;</td>
+                <td>$type->description</td>
+            </tr>";
+        
+        echo $tableRow;
+    }
+?>
+</table>
