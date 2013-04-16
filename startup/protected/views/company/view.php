@@ -6,7 +6,7 @@
 /* @var $CBC_items  Cost-benefit calculation items */
 ?>
 
-<h1><?php echo $company->name; ?></h1>
+<h1><?php echo "$company->name ($company->tag)"; ?></h1>
 
 <table>
     <tr>
