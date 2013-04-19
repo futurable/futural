@@ -133,6 +133,10 @@ class CreateAction extends CAction
                     if($allSuccessful){
                         $transaction->commit();
                         $controller->redirect(array('view','id'=>$company->id));
+                        
+                        // Create OpenERP database
+                        
+                        // Send login information to user
                     }
                     else{
                         $transaction->rollBack();
