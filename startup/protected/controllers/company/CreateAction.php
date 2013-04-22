@@ -134,9 +134,17 @@ class CreateAction extends CAction
                         $transaction->commit();
                         $controller->redirect(array('view','id'=>$company->id));
                         
+                        // Generate password
+                        
                         // Create OpenERP database
+                        $password = 'futural'; // TODO: generate password
+                        $cmd = " '$company->tag' '$company-name' '$password'";
+                        $shellCmd = escapeshellcmd($cmd);
+                        $scriptFile = Yii::app()->basePath."/commands/shell/createOpenERPCompany.sh";
+                        $output = exec("sh ".$scriptFile.$shellCmd);
                         
                         // Send login information to user
+                        
                     }
                     else{
                         $transaction->rollBack();
