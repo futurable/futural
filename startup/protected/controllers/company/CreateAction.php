@@ -93,6 +93,7 @@ class CreateAction extends CAction
                     
                     // Save company
                     $companySuccess = $company->save();
+                    $tokenKeySuccess = $tokenKey->save();
                     
                     // Save cost-benefit calculation
                     $costBenefitCalculation->company_id = $company->id;
