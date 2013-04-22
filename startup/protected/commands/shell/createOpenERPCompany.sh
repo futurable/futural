@@ -23,5 +23,5 @@ sed -i "s/companyWebsite/http\:\/\/${TAG}.com/g" $INPUTFILE
 sed -i "s/companyEmail/info\@${TAG}.com/g" $INPUTFILE
 sed -i "s/companyPassword/${PW}/g" $INPUTFILE
 
-psql -h erp.futurality.fi -U openerp -d postgres -c "CREATE DATABASE ${DB}" >> /tmp/erplog
-psql -h erp.futurality.fi -U openerp -d $DB < $INPUTFILE >> /tmp/erplog
+psql -h erp.futurality.fi -U openerp -d postgres -c "CREATE DATABASE ${DB}"
+psql -h erp.futurality.fi -U openerp -d $DB < $INPUTFILE
