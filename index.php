@@ -76,6 +76,8 @@ echo "
 	</div>
 </div><!-- /container -->";
 
+echo CommonFunctions::getStartupDiv();
+
 echo "</body>
 </html>";
 ?>

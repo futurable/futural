@@ -1,3 +1,6 @@
 [submodule "jquery-ui"]
 	path = jquery-ui
 	url = https://github.com/jquery/jquery-ui.git
+[submodule "yii"]
+	path = yii
+	url = https://github.com/yiisoft/yii.git
