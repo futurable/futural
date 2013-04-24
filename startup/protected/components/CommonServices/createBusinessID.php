@@ -13,6 +13,7 @@ class createBusinessID extends CommonServices{
         if($country == 'FI'){
             $businessID = $this->createFinnishBusinessID($prefix);
         }
+        else $businessID = false;
         
         return $businessID;
     }
