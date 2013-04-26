@@ -4,6 +4,12 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Welcome to <?php echo CHtml::encode(Yii::app()->name) ;?>!</h1>
+<?php if(!Yii::app()->user->isGuest){ ?>
 
-<p>Please login to see the admin panel.</p>
+    <h1>Welcome to <?php echo CHtml::encode(Yii::app()->name) ;?>!</h1>
+
+    <p>You are logged in as <?php echo Yii::app()->user->name; ?></p>
+<?php
+}
+else $this->redirect(array('/site/login'));
+?>
