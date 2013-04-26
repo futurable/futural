@@ -39,7 +39,8 @@
 
 #mainmenu
 {
-	background:white;
+	background-color: transparent;
+        padding-top: 20px;
 }
 
 #mainmenu ul
@@ -55,18 +56,23 @@
 
 #mainmenu ul li a
 {
-	color:#ffffff;
-	background-color:transparent;
+	color:#000;
+	background-color:#C8DA30;
 	font-size:12px;
 	font-weight:bold;
 	text-decoration:none;
-	padding:5px 8px;
+	padding: 6px 8px;
+        border-radius: 15px;
+        margin-right: 2px;
+        display: inline-block;
+        width: 100px;
+        text-align: center;
 }
 
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
-	color: #6399cd;
-	background-color:#EFF4FA;
+	color: #fff;
+	background-color:#transparent;
 	text-decoration:none;
 }
 
