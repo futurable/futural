@@ -41,13 +41,14 @@
 	</div><!-- header -->
         
 	<div id="mainmenu">
-		<?php /*
+		<?php 
 			$this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'Company', 'url'=>array('/company/index')),
+				array('label'=>'Home', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Contact', 'url'=>array('/site/contact'), 'visible'=>!Yii::app()->user->isGuest),
+                                array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                             ),
-		)); */ ?>
+		)); ?>
 	</div><!-- mainmenu -->
         
 	<?php echo $content; ?>
