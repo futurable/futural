@@ -3,4 +3,4 @@
 	url = https://github.com/jquery/jquery-ui.git
 [submodule "yii"]
 	path = yii
-	url = https://github.com/yiisoft/yii.git
+	url = git://github.com/yiisoft/yii.git
