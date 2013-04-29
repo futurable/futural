@@ -12,38 +12,38 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->label($model,'ID'); ?>
+		<?php echo $form->textField($model,'ID'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'tag'); ?>
-		<?php echo $form->textField($model,'tag',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->label($model,'Tag'); ?>
+		<?php echo $form->textField($model,'Tag',array('size'=>16,'maxlength'=>16)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->label($model,'Name'); ?>
+		<?php echo $form->textField($model,'Name',array('size'=>60,'maxlength'=>256)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'street'); ?>
-		<?php echo $form->textField($model,'street',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->label($model,'Street'); ?>
+		<?php echo $form->textField($model,'Street',array('size'=>60,'maxlength'=>256)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'city'); ?>
-		<?php echo $form->textField($model,'city',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->label($model,'City'); ?>
+		<?php echo $form->textField($model,'City',array('size'=>60,'maxlength'=>256)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'phone'); ?>
-		<?php echo $form->textField($model,'phone',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->label($model,'Phone'); ?>
+		<?php echo $form->textField($model,'Phone',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>256)); ?>
+		<?php echo $form->label($model,'Email'); ?>
+		<?php echo $form->textField($model,'Email',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row buttons">
