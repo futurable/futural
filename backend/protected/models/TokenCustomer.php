@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "Token_Customer".
+ * This is the model class for table "token_customer".
  *
- * The followings are the available columns in table 'Token_Customer':
- * @property integer $ID
- * @property string $Tag
- * @property string $Name
- * @property string $Street
- * @property string $City
- * @property string $Phone
- * @property string $Email
+ * The followings are the available columns in table 'token_customer':
+ * @property integer $id
+ * @property string $tag
+ * @property string $name
+ * @property string $street
+ * @property string $city
+ * @property string $phone
+ * @property string $email
  *
  * The followings are the available model relations:
  * @property TokenKey[] $tokenKeys
- * @property TokenSettings[] $tokenSettings
+ * @property TokenSetup[] $tokenSetups
  */
 class TokenCustomer extends CActiveRecord
 {
@@ -23,7 +23,7 @@ class TokenCustomer extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'Token_Customer';
+		return 'token_customer';
 	}
 
 	/**
@@ -34,16 +34,13 @@ class TokenCustomer extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('Tag, Name', 'required'),
-			array('Tag', 'length', 'max'=>16, 'min'=>2),
-			array('Tag', 'unique', 'caseSensitive'=>false),
-			array('Name, Street, City', 'length', 'max'=>256),
-			array('Phone, Email', 'length', 'max'=>128),
-			array('Email', 'email'),
-			array('Tag', 'match', 'pattern'=>'(^[a-z]+$)', 'message'=>'You can only use lowercase alphabetic characters'),
+			array('tag, name', 'required'),
+			array('tag', 'length', 'max'=>32),
+			array('name, street, city, email', 'length', 'max'=>256),
+			array('phone', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID, Tag, Name, Street, City, Phone, Email', 'safe', 'on'=>'search'),
+			array('id, tag, name, street, city, phone, email', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,8 +52,8 @@ class TokenCustomer extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tokenKeys' => array(self::HAS_MANY, 'TokenKey', 'Token_Customer_ID'),
-			'tokenSettings' => array(self::HAS_MANY, 'TokenSettings', 'Token_Customer_ID'),
+			'tokenKeys' => array(self::HAS_MANY, 'TokenKey', 'token_customer_id'),
+			'tokenSetups' => array(self::HAS_MANY, 'TokenSetup', 'token_customer_id'),
 		);
 	}
 
@@ -66,13 +63,13 @@ class TokenCustomer extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ID' => 'ID',
-			'Tag' => 'Tag',
-			'Name' => 'Name',
-			'Street' => 'Street',
-			'City' => 'City',
-			'Phone' => 'Phone',
-			'Email' => 'Email',
+			'id' => 'ID',
+			'tag' => 'Tag',
+			'name' => 'Name',
+			'street' => 'Street',
+			'city' => 'City',
+			'phone' => 'Phone',
+			'email' => 'Email',
 		);
 	}
 
@@ -94,12 +91,13 @@ class TokenCustomer extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('Tag',$this->Tag,true);
-		$criteria->compare('Name',$this->Name,true);
-		$criteria->compare('Street',$this->Street,true);
-		$criteria->compare('City',$this->City,true);
-		$criteria->compare('Phone',$this->Phone,true);
-		$criteria->compare('Email',$this->Email,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('tag',$this->tag,true);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('street',$this->street,true);
+		$criteria->compare('city',$this->city,true);
+		$criteria->compare('phone',$this->phone,true);
+		$criteria->compare('email',$this->email,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
