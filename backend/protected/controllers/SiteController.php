@@ -27,6 +27,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+                $this->allowUser(STUDENT);
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('index');
@@ -51,6 +52,7 @@ class SiteController extends Controller
 	 */
 	public function actionContact()
 	{
+                $this->allowUser(STUDENT);
 		$model=new ContactForm;
 		if(isset($_POST['ContactForm']))
 		{

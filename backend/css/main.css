@@ -1,25 +1,15 @@
-body
-{
-	margin: 0;
-	padding: 0;
-	color: #555;
-	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: #EFEFEF;
-}
-
 #page
 {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	background: white;
-	border: 1px solid #C9E0ED;
+        border-radius: 15px;
 }
 
 #header
 {
 	margin: 0;
 	padding: 0;
-	border-top: 3px solid #C9E0ED;
 }
 
 #content
@@ -38,7 +28,7 @@ body
 	margin: 10px 20px;
 	font-size: 0.8em;
 	text-align: center;
-	border-top: 1px solid #C9E0ED;
+	border-top: 1px solid #999;
 }
 
 #logo
@@ -49,7 +39,8 @@ body
 
 #mainmenu
 {
-	background:white url(bg.gif) repeat-x left top;
+	background-color: transparent;
+        padding-top: 20px;
 }
 
 #mainmenu ul
@@ -65,18 +56,23 @@ body
 
 #mainmenu ul li a
 {
-	color:#ffffff;
-	background-color:transparent;
+	color:#000;
+	background-color:#C8DA30;
 	font-size:12px;
 	font-weight:bold;
 	text-decoration:none;
-	padding:5px 8px;
+	padding: 6px 8px;
+        border-radius: 15px;
+        margin-right: 2px;
+        display: inline-block;
+        width: 100px;
+        text-align: center;
 }
 
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
-	color: #6399cd;
-	background-color:#EFF4FA;
+	color: #fff;
+	background-color:#transparent;
 	text-decoration:none;
 }
 
