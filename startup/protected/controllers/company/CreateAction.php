@@ -39,7 +39,7 @@ class CreateAction extends CAction
                 }
             }
             elseif(isset($_GET['token_key'])){
-                $token->token_key=@mysql_real_escape_string($_GET['token_key']);
+                $token->token_key=addslashes($_GET['token_key']);
             }
 
             // Company validation (step 2)
