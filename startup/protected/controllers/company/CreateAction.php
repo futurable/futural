@@ -53,7 +53,7 @@ class CreateAction extends CAction
                     , 'condition'=>'token_key=:token_key'
                     , 'params'=>array(':token_key'=>$token->token_key),
                 ));
-                  $company->token_key_id = $tokenKey->id;
+                $company->token_key_id = $tokenKey->id;
                 
                 // Create company tag
                 $tokenCustomer = TokenCustomer::model()->find(
@@ -197,7 +197,8 @@ class CreateAction extends CAction
         $form_step = 1;
         
         if(isset($_GET['token_key'])){
-            $token = @mysql_real_escape_string($_GET['token_key']);
+            # The token input will be sanitized later, this is just to be on the safe side
+            $token = addslashes($_GET['token_key']);
             
             $record=TokenKey::model()->find(array(
             'select'=>'token_key, reclaim_date',
