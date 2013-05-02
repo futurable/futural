@@ -53,7 +53,7 @@ class CreateAction extends CAction
                     , 'condition'=>'token_key=:token_key'
                     , 'params'=>array(':token_key'=>$token->token_key),
                 ));
-                  $company->token_key_id = $tokenKey->id;
+                $company->token_key_id = $tokenKey->id;
                 
                 // Create company tag
                 $tokenCustomer = TokenCustomer::model()->find(
