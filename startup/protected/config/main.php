@@ -1,5 +1,5 @@
 <?php
-
+require_once( dirname(__FILE__) . '/../components/CommonServices.php');
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -48,7 +48,7 @@ return array(
 			'connectionString' => 'mysql:host=futurality.fi;dbname=futural_core',
 			'emulatePrepare' => true,
 			'username' => 'futural',
-			'password' => 'PR3FacH-g+9_',
+			'password' => 'futural',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
