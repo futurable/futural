@@ -27,16 +27,16 @@ class TokenCustomerController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform no actions
-				'actions'=>array(''),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update'),
 				'users'=>array('@'),
 			),
-			array('allow', // allow admin user to perform all actions
-				'actions'=>array('admin','delete', 'create','update'),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -51,6 +51,7 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionView($id)
 	{
+                $this->allowUser(MANAGER);
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +63,7 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionCreate()
 	{
+                $this->allowUser(MANAGER);
 		$model=new TokenCustomer;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -71,7 +73,7 @@ class TokenCustomerController extends Controller
 		{
 			$model->attributes=$_POST['TokenCustomer'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -86,6 +88,7 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+                $this->allowUser(MANAGER);
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -95,7 +98,7 @@ class TokenCustomerController extends Controller
 		{
 			$model->attributes=$_POST['TokenCustomer'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -110,6 +113,7 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+                $this->allowUser(MANAGER);
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -122,6 +126,7 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionIndex()
 	{
+                $this->allowUser(MANAGER);
 		$dataProvider=new CActiveDataProvider('TokenCustomer');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -133,6 +138,7 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionAdmin()
 	{
+                $this->allowUser(ADMIN);
 		$model=new TokenCustomer('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['TokenCustomer']))
