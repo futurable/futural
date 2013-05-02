@@ -48,7 +48,7 @@ return array(
 			'connectionString' => 'mysql:host=futurality.fi;dbname=futural_core',
 			'emulatePrepare' => true,
 			'username' => 'futural',
-			'password' => 'PR3FacH-g+9_',
+			'password' => 'futural',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
