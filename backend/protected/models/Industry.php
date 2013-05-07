@@ -1,16 +1,16 @@
 <?php
 
 /**
- * This is the model class for table "Industry".
+ * This is the model class for table "industry".
  *
- * The followings are the available columns in table 'Industry':
- * @property integer $ID
- * @property string $IndustryName
- * @property string $IndustryDescription
+ * The followings are the available columns in table 'industry':
+ * @property integer $id
+ * @property string $name
+ * @property string $description
  *
  * The followings are the available model relations:
  * @property Company[] $companies
- * @property IndustrySettings[] $industrySettings
+ * @property IndustrySetup[] $industrySetups
  */
 class Industry extends CActiveRecord
 {
@@ -19,7 +19,7 @@ class Industry extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'Industry';
+		return 'industry';
 	}
 
 	/**
@@ -30,12 +30,12 @@ class Industry extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('IndustryName', 'required'),
-			array('IndustryName', 'length', 'max'=>256),
-			array('IndustryDescription', 'length', 'max'=>1024),
+			array('name', 'required'),
+			array('name', 'length', 'max'=>256),
+			array('description', 'length', 'max'=>1024),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID, IndustryName, IndustryDescription', 'safe', 'on'=>'search'),
+			array('id, name, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,8 +47,8 @@ class Industry extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'companies' => array(self::HAS_MANY, 'Company', 'Industry_ID'),
-			'industrySettings' => array(self::HAS_MANY, 'IndustrySettings', 'Industry_ID'),
+			'companies' => array(self::HAS_MANY, 'Company', 'industry_id'),
+			'industrySetups' => array(self::HAS_MANY, 'IndustrySetup', 'industry_id'),
 		);
 	}
 
@@ -58,9 +58,9 @@ class Industry extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ID' => 'ID',
-			'IndustryName' => 'Industry Name',
-			'IndustryDescription' => 'Industry Description',
+			'id' => 'ID',
+			'name' => 'Name',
+			'description' => 'Description',
 		);
 	}
 
@@ -82,9 +82,9 @@ class Industry extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('ID',$this->ID);
-		$criteria->compare('IndustryName',$this->IndustryName,true);
-		$criteria->compare('IndustryDescription',$this->IndustryDescription,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
