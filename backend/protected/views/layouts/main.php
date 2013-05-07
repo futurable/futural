@@ -46,6 +46,7 @@
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Customers', 'url'=>array('/tokenCustomer/index'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Companies', 'url'=>array('/company/index'), 'visible'=>!Yii::app()->user->isGuest),
                                 array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                             ),
 		)); ?>
