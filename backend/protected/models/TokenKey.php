@@ -1,21 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "Token_Key".
+ * This is the model class for table "token_key".
  *
- * The followings are the available columns in table 'Token_Key':
- * @property integer $ID
- * @property string $TokenKey
- * @property string $CreateDate
- * @property string $ReclaimDate
- * @property integer $Lifetime
- * @property string $ExpirationDate
- * @property integer $Token_Customer_ID
- * @property integer $Token_Settings_ID
+ * The followings are the available columns in table 'token_key':
+ * @property integer $id
+ * @property string $token_key
+ * @property integer $lifetime
+ * @property string $create_date
+ * @property string $reclaim_date
+ * @property string $expiration_date
+ * @property integer $token_customer_id
+ * @property integer $token_setup_id
  *
  * The followings are the available model relations:
+ * @property Company[] $companies
  * @property TokenCustomer $tokenCustomer
- * @property TokenSettings $tokenSettings
+ * @property TokenSetup $tokenSetup
  */
 class TokenKey extends CActiveRecord
 {
@@ -24,7 +25,7 @@ class TokenKey extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'Token_Key';
+		return 'token_key';
 	}
 
 	/**
@@ -35,13 +36,13 @@ class TokenKey extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('TokenKey, Lifetime, Token_Customer_ID, Token_Settings_ID', 'required'),
-			array('Lifetime, Token_Customer_ID, Token_Settings_ID', 'numerical', 'integerOnly'=>true),
-			array('TokenKey', 'length', 'max'=>32),
-			array('CreateDate, ReclaimDate, ExpirationDate', 'safe'),
+			array('token_key, lifetime, token_customer_id, token_setup_id', 'required'),
+			array('lifetime, token_customer_id, token_setup_id', 'numerical', 'integerOnly'=>true),
+			array('token_key', 'length', 'max'=>16),
+			array('create_date, reclaim_date, expiration_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID, TokenKey, CreateDate, ReclaimDate, Lifetime, ExpirationDate, Token_Customer_ID, Token_Settings_ID', 'safe', 'on'=>'search'),
+			array('id, token_key, lifetime, create_date, reclaim_date, expiration_date, token_customer_id, token_setup_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,8 +54,9 @@ class TokenKey extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'Token_Customer_ID'),
-			'tokenSettings' => array(self::BELONGS_TO, 'TokenSettings', 'Token_Settings_ID'),
+			'companies' => array(self::HAS_MANY, 'Company', 'token_key_id'),
+			'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'token_customer_id'),
+			'tokenSetup' => array(self::BELONGS_TO, 'TokenSetup', 'token_setup_id'),
 		);
 	}
 
@@ -64,14 +66,14 @@ class TokenKey extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ID' => 'ID',
-			'TokenKey' => 'Token Key',
-			'CreateDate' => 'Create Date',
-			'ReclaimDate' => 'Reclaim Date',
-			'Lifetime' => 'Lifetime (months)',
-			'ExpirationDate' => 'Expiration Date',
-			'Token_Customer_ID' => 'Token Customer',
-			'Token_Settings_ID' => 'Token Settings',
+			'id' => 'ID',
+			'token_key' => 'Token Key',
+			'lifetime' => 'Lifetime',
+			'create_date' => 'Create Date',
+			'reclaim_date' => 'Reclaim Date',
+			'expiration_date' => 'Expiration Date',
+			'token_customer_id' => 'Token Customer',
+			'token_setup_id' => 'Token Setup',
 		);
 	}
 
@@ -93,14 +95,14 @@ class TokenKey extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('ID',$this->ID);
-		$criteria->compare('TokenKey',$this->TokenKey,true);
-		$criteria->compare('CreateDate',$this->CreateDate,true);
-		$criteria->compare('ReclaimDate',$this->ReclaimDate,true);
-		$criteria->compare('Lifetime',$this->Lifetime);
-		$criteria->compare('ExpirationDate',$this->ExpirationDate,true);
-		$criteria->compare('Token_Customer_ID',$this->Token_Customer_ID);
-		$criteria->compare('Token_Settings_ID',$this->Token_Settings_ID);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('token_key',$this->token_key,true);
+		$criteria->compare('lifetime',$this->lifetime);
+		$criteria->compare('create_date',$this->create_date,true);
+		$criteria->compare('reclaim_date',$this->reclaim_date,true);
+		$criteria->compare('expiration_date',$this->expiration_date,true);
+		$criteria->compare('token_customer_id',$this->token_customer_id);
+		$criteria->compare('token_setup_id',$this->token_setup_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
