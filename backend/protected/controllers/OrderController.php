@@ -8,6 +8,13 @@ class OrderController extends Controller
 	 */
 	public $layout='//layouts/column2';
 
+        public function actions()
+        {
+            return array(
+                'index'=>'application.controllers.order.IndexAction',
+            );
+        }
+        
 	/**
 	 * @return array action filters
 	 */
@@ -115,17 +122,6 @@ class OrderController extends Controller
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-	}
-
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Order');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
 	}
 
 	/**
