@@ -15,4 +15,9 @@ $this->menu=array(
 
 <h1>Create Order</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+    'dataProvider'=>$companyData,
+    )); 
+?>
+
+<?php // echo $this->renderPartial('_form', array('model'=>$model)); ?>
