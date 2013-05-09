@@ -80,3 +80,14 @@ a:hover{
 .pager .selected a{
     background-color: #C8DA30 !important;
 }
+
+.grid-view table.items th{
+    background: none !important;
+    background-color: #C8DA30 !important;
+}
+.grid-view table.items th a{
+    color: #000 !important;
+}
+.grid-view table.items td{
+    background-color: #fff !important;
+}
