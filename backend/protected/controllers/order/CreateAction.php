@@ -11,16 +11,20 @@ class CreateAction extends CAction
         // 1. Check if orders are already made for this week
         
         // 2. Get supplier firms
-        $futuralCompanies = Yii::app()->db->createCommand()
+        $supplierCompanies = Yii::app()->db->createCommand()
                 ->select('tag, name')
                 ->from('company')
                 ->queryAll();
         
-        $companyData=new CActiveDataProvider('Company');
-        
+        $supplierData=new CActiveDataProvider('Company');
+
         // 3. Get customer firms
+        $customerCompanies = Yii::app()->dbopenerp->createCommand()
+            ->select('name')
+            ->from('res_company')
+            ->queryAll();
         
-        
+        $customerData=new CActiveDataProvider('ResCompany');
         
         $model=new Order;
         
@@ -36,7 +40,8 @@ class CreateAction extends CAction
 
         $controller->render('create',array(
                 'model'=>$model,
-                'companyData'=>$companyData,
+                'customerData'=>$customerData,
+                'supplierData'=>$supplierData
         ));
     }
 }
