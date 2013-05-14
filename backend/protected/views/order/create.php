@@ -9,11 +9,10 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Order', 'url'=>array('index')),
-	array('label'=>'Manage Order', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Order</h1>
+<h1>Create Orders</h1>
 
 <?php 
     foreach($runLog as $log){
