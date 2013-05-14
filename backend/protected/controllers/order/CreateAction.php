@@ -16,6 +16,19 @@ class CreateAction extends CAction
                 ->from('company')
                 ->queryAll();
         
+        // Get supplier names in array
+        $supplierNames = null;
+        foreach($supplierCompanies as $company){
+            $supplierNames.="$company[tag],";
+        }
+        $supplierNames = substr($supplierNames, 0, -1);
+        
+        $supplierOpenerp = Yii::app()->dbopenerp->createCommand()
+            ->select('datname')
+            ->from('pg_database')
+            ->where('datistemplate = false AND datname = ANY(\'{'.$supplierNames.'}\')')
+            ->queryAll();
+
         $supplierData=new CActiveDataProvider('Company');
 
         // 3. Get customer firms
@@ -23,7 +36,7 @@ class CreateAction extends CAction
             ->select('name')
             ->from('res_company')
             ->queryAll();
-        
+          
         $customerData=new CActiveDataProvider('ResCompany');
         
         $model=new Order;
