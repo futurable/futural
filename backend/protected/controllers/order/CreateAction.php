@@ -2,22 +2,25 @@
 class CreateAction extends CAction
 {
     private $runLog;
+    
     /**
      * Lists all models.
      */
     public function run()
     {
         $controller=$this->getController();
+        
+        $this->log("Creating orders started on ".date('Y-m-d H:i:s'));
     
         // 1. Check if orders are already made for this week
-        $runlog[] = date('h:i:s')."Orders not checked!";
+        $this->log("TODO: check if orders have been made");
         
         // 2. Get supplier firms
         $supplierCompanies = Yii::app()->db->createCommand()
                 ->select('tag, name')
                 ->from('company')
                 ->queryAll();
-        $runlog[] = "Got ".count($supplierCompanies)." suppliers.";
+        $this->log("Got ".count($supplierCompanies)." suppliers.");
         
         // Get supplier names in array
         $supplierNames = null;
@@ -69,10 +72,15 @@ class CreateAction extends CAction
 
         $controller->render('create',array(
                 'model'=>$model,
-                'runLog'=>$runlog,
+                'runLog'=>$this->runLog,
                 'customerData'=>$customerData,
                 'supplierData'=>$supplierData,
         ));
+    }
+    
+    private function log($entry){
+        $timestamp = date('H:i:s');
+        $this->runLog[]= "$timestamp - $entry";
     }
 }
 ?>
