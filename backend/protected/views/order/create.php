@@ -16,14 +16,9 @@ $this->menu=array(
 <h1>Create Order</h1>
 
 <?php 
-    $this->widget('zii.widgets.grid.CGridView', array(
-        'dataProvider'=>$supplierData,
-    ));
-
-    # TODO: something wrong with this
-    /*$this->widget('zii.widgets.grid.CGridView', array(
-        'dataProvider'=>$customerData,
-    ));*/
+    foreach($runLog as $log){
+        echo "<p>$log</p>";
+    }
 ?>
 
 <?php // echo $this->renderPartial('_form', array('model'=>$model)); ?>
