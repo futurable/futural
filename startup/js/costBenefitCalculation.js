@@ -4,6 +4,7 @@ $(document).ready(function(){
         updateIndustryDescription();
         updateSalaries();
         updateTurnover();
+        updateExpenses();
     })
 
     $("#Company_employees").change(function(){
@@ -87,5 +88,14 @@ $(document).ready(function(){
         
         $("#CostbenefitItem_turnover_value").val(turnover);
         $("#_turnoveryearly").val(turnover*12);
+    }
+    
+    updateExpenses = function(){
+        var turnover = $("#CostbenefitItem_turnover_value").val();
+        
+        var expenses = turnover * 0.8;
+        
+        $("#CostbenefitItem_expenses_value").val(expenses);
+        $("#_expensesyearly").val(expenses*12);
     }
 });
