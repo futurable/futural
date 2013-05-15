@@ -8,18 +8,30 @@
     
 <?php
 // Get industry descriptions
-$industries = (Industry::model()->findAll(array('order'=>'Name')));
+$industries = Industry::model()->findAll(array('order'=>'Name'));
 foreach($industries AS $industry){
     $IndustryDescriptionArray[$industry->id] = $industry->description;
 }
 $IndustryDescriptionJSON = CJSON::encode($IndustryDescriptionArray);
 $IndustryDescriptionJS = "var IndustryDescriptionArray = $IndustryDescriptionJSON;\n";
 
-//$IndustrySetupArray = CJSON::encode(IndustrySetup::model()->findAll()); 
-//$IndustrySetupJS = "var IndustrySetupArray = $IndustrySetupArray;\n";
+// Get industry setups
+$industrySetups = IndustrySetup::model()->findAll();
+foreach($industrySetups as $industrySetup){
+    $IndustrySetupArray[$industrySetup->industry_id] = array(
+                                            'turnover' => $industrySetup->turnover,
+                                            'minWage' => $industrySetup->minimum_wage_rate,
+                                            'avgWage' => $industrySetup->average_wage_rate,
+                                            'maxWage' => $industrySetup->maximum_wage_rate,
+                                            'rents' => $industrySetup->rents,
+                                            'communications' => $industrySetup->communications,
+                                        );
+}
+$IndustrySetupJSON = CJSON::encode($IndustrySetupArray);
+$IndustrySetupJS = "var IndustrySetupArray = $IndustrySetupJSON;\n";
 
 Yii::app()->clientScript->registerScript('IndustryDescription', $IndustryDescriptionJS, CClientScript::POS_HEAD);
-
+Yii::app()->clientScript->registerScript('IndustrySetup', $IndustrySetupJS, CClientScript::POS_HEAD);
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBenefitCalculation.js');
 ?>
 
