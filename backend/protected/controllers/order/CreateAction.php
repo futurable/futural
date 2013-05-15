@@ -13,7 +13,7 @@ class CreateAction extends CAction
         $this->log("Creating orders started on ".date('Y-m-d H:i:s'));
     
         // 1. Check if orders are already made for this week
-        $this->log("TODO: check if orders have been made");
+        $this->log("TODO: check if orders have already been made");
         
         // 2. Get supplier firms
         $supplierCompanies = Yii::app()->db->createCommand()
@@ -49,11 +49,13 @@ class CreateAction extends CAction
             ->from('res_company')
             ->queryAll();
         
+        $this->log("Got ".count($customerCompanies)." customers");
+        
         // 4. Run through each supplier
         foreach($supplierCompanies as $supplier){
             if(!array_key_exists($supplier['tag'], $existingSuppliers)) continue;
             
-            //echo "<p>$supplier[name]</p>";
+            $this->log("Using $supplier[name] ($supplier[tag]) .");
         }
         
         $customerData=new CActiveDataProvider('ResCompany');
