@@ -10,6 +10,9 @@
 $IndustryDescriptionArray = CJSON::encode(CHtml::listData(Industry::model()->findAll(array('order'=>'Name')),'id','description'));
 $IndustryDescriptionJS = "var IndustryDescriptionArray = $IndustryDescriptionArray;\n";
 
+$IndustrySetupArray = CJSON::encode(CHtml::listData(IndustrySetup::model()->findAll(),'turnover','minimum_wage_rate','average_wage_rate','maximum_wage_rate', 'rents', 'communications'));
+$IndustrySetupJS = "var IndustrySetupArray = $IndustrySetupArray;\n";
+
 Yii::app()->clientScript->registerScript('IndustryDescription', $IndustryDescriptionJS, CClientScript::POS_HEAD);
 
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBenefitCalculation.js');
@@ -34,9 +37,15 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 		<?php echo $form->error($company,'name'); ?>
 	</div>
         
+	<div class="row">
+		<?php echo $form->labelEx($company,'email'); ?>
+		<?php echo $form->textField($company,'email',array('size'=>30,'maxlength'=>256)); ?>
+		<?php echo $form->error($company,'email'); ?>
+	</div>
+        
         <div class="row">
                 <?php echo CHtml::label("Employees", "employees");?>
-		<?php echo CHtml::dropDownList('', 'employees', array_merge( range(1,9),range(10,100,10)) ); ?>
+		<?php echo CHtml::dropDownList('Company_employees', 'Company_employees', array_merge( range(1,9),range(10,100,10)) ); ?>
 	</div>
 
 	<div class="row">
@@ -62,16 +71,16 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     <td><?php echo $form->error($costBenefitItem_turnover,'[turnover]value'); ?></td>
                 </tr>
                 <tr>
-                    <td><?php echo $form->labelEx($costBenefitItem_salaries,'Salaries'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_salaries,'[salaries]value'); ?> &euro;</td>
-                    <td><?php echo CHtml::textField('[salaries]yearly'); ?> &euro;</td>
-                    <td><?php echo $form->error($costBenefitItem_salaries,'[salaries]value'); ?></td>
-                </tr>
-                <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_expenses,'Expenses'); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_expenses,'[expenses]value'); ?> &euro;</td>
                     <td><?php echo CHtml::textField('[expenses]yearly'); ?> &euro;</td>
                     <td><?php echo $form->error($costBenefitItem_expenses,'[expenses]value'); ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $form->labelEx($costBenefitItem_salaries,'Salaries'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_salaries,'[salaries]value'); ?> &euro;</td>
+                    <td><?php echo CHtml::textField('[salaries]yearly'); ?> &euro;</td>
+                    <td><?php echo $form->error($costBenefitItem_salaries,'[salaries]value'); ?></td>
                 </tr>
                 <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_loans,'Loans'); ?></td>
