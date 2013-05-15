@@ -59,17 +59,17 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 		<?php echo $form->textField($company,'email',array('size'=>30,'maxlength'=>256)); ?>
 		<?php echo $form->error($company,'email'); ?>
 	</div>
-        
-        <div class="row">
-                <?php echo CHtml::label("Employees", "employees");?>
-		<?php echo CHtml::dropDownList('Company_employees', 'Company_employees', array_merge( range(1,9),range(10,100,10)) ); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($company,'industry_id'); ?>
                 <?php echo $form->dropDownList($company, 'industry_id', CHtml::listData(Industry::model()->findAll(array('order'=>'Name')),'id','name'),array('prompt'=>'- Select industry -'));?>
 		<?php echo $form->error($company,'industry_id'); ?>
                 <span id="Company_industry_description"></span>
+	</div>
+        
+        <div class="row">
+                <?php echo CHtml::label("Employees", "employees");?>
+		<?php echo CHtml::dropDownList('Company_employees', 'Company_employees', array_merge( range(1,9),range(10,100,10)) ); ?>
 	</div>
         
         <div class="row">
