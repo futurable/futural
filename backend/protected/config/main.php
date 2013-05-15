@@ -51,6 +51,15 @@ return array(
 			'password' => 'futural',
 			'charset' => 'utf8',
 		),
+		// uncomment the following to use a MySQL database
+		'dbopenerp'=>array(
+			'connectionString' => 'pgsql:host=erp.futurality.fi;dbname=futural_core',
+			'emulatePrepare' => true,
+			'username' => 'openerp',
+			'password' => 'futural',
+			'charset' => 'utf8',
+                        'class' => 'CDbConnection' 
+		),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
