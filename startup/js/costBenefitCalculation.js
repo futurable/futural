@@ -1,8 +1,7 @@
 $(document).ready(function(){
     
     $("#Company_industry_id").change(function(){
-        var descval = $("#Company_industry_id").val();
-        $("#Company_industry_description").text( IndustryDescriptionArray[descval] );
+        updateIndustryDescription();
     })
     
     $("#costBenefitCalculationTable input").keyup(function(){
@@ -56,4 +55,9 @@ $(document).ready(function(){
         var yearlyId = "#_"+currentId.split('_')[1]+"yearly";
         $(yearlyId).val(yearlyValue);
     };
+    
+    updateIndustryDescription = function(){
+        var descval = $("#Company_industry_id").val();
+        $("#Company_industry_description").text( IndustryDescriptionArray[descval] );
+    }
 });
