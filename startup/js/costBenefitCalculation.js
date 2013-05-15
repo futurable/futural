@@ -5,6 +5,7 @@ $(document).ready(function(){
         updateSalaries();
         updateTurnover();
         updateExpenses();
+        updateLoans();
     })
 
     $("#Company_employees").change(function(){
@@ -97,5 +98,9 @@ $(document).ready(function(){
         
         $("#CostbenefitItem_expenses_value").val(expenses);
         $("#_expensesyearly").val(expenses*12);
+    }
+    
+    updateLoans = function(){
+        //TODO
     }
 });
