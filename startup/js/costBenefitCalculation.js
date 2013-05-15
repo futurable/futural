@@ -6,6 +6,7 @@ $(document).ready(function(){
         updateTurnover();
         updateExpenses();
         updateLoans();
+        updateRents();
     })
 
     $("#Company_employees").change(function(){
@@ -102,5 +103,15 @@ $(document).ready(function(){
     
     updateLoans = function(){
         //TODO
+    }
+    
+    updateRents = function(){
+        var industryId = $("#Company_industry_id").val();
+        var industrySetup = IndustrySetupArray[industryId];
+        
+        var rents = industrySetup['rents'];
+        
+        $("#CostbenefitItem_rents_value").val(rents);
+        $("#_rentsyearly").val(rents*12);       
     }
 });
