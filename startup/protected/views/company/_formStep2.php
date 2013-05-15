@@ -7,11 +7,16 @@
 <div class="form">
     
 <?php
-$IndustryDescriptionArray = CJSON::encode(CHtml::listData(Industry::model()->findAll(array('order'=>'Name')),'id','description'));
-$IndustryDescriptionJS = "var IndustryDescriptionArray = $IndustryDescriptionArray;\n";
+// Get industry descriptions
+$industries = (Industry::model()->findAll(array('order'=>'Name')));
+foreach($industries AS $industry){
+    $IndustryDescriptionArray[$industry->id] = $industry->description;
+}
+$IndustryDescriptionJSON = CJSON::encode($IndustryDescriptionArray);
+$IndustryDescriptionJS = "var IndustryDescriptionArray = $IndustryDescriptionJSON;\n";
 
-$IndustrySetupArray = CJSON::encode(CHtml::listData(IndustrySetup::model()->findAll(),'turnover','minimum_wage_rate','average_wage_rate','maximum_wage_rate', 'rents', 'communications'));
-$IndustrySetupJS = "var IndustrySetupArray = $IndustrySetupArray;\n";
+//$IndustrySetupArray = CJSON::encode(IndustrySetup::model()->findAll()); 
+//$IndustrySetupJS = "var IndustrySetupArray = $IndustrySetupArray;\n";
 
 Yii::app()->clientScript->registerScript('IndustryDescription', $IndustryDescriptionJS, CClientScript::POS_HEAD);
 
