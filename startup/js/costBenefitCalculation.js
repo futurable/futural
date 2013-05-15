@@ -5,9 +5,9 @@ $(document).ready(function(){
         updateSalaries();
         updateTurnover();
         updateExpenses();
-        updateLoans();
         updateRents();
         updateCommunication();
+        updateLoans();
     })
 
     $("#Company_employees").change(function(){
@@ -103,7 +103,19 @@ $(document).ready(function(){
     }
     
     updateLoans = function(){
-        //TODO
+        var expenses = parseInt($("#CostbenefitItem_expenses_value").val());
+        var salaries = parseInt($("#CostbenefitItem_salaries_value").val());
+        var rents = parseInt($("#CostbenefitItem_rents_value").val());
+        var communication = parseInt($("#CostbenefitItem_communication_value").val());
+        
+        // Calculate loan sum. 3x all expenses + one months expenses
+        loanSum = (expenses+salaries+rents+communication)*3 + expenses;
+        payment = loanSum * ( 0.0033 / (1 - Math.pow(1.0033, -36)));
+        
+        loans = Math.round(payment);
+        
+        $("#CostbenefitItem_loans_value").val(loans);
+        $("#_loansyearly").val(loans*12);
     }
     
     updateRents = function(){
