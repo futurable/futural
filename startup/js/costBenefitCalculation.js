@@ -7,6 +7,7 @@ $(document).ready(function(){
         updateExpenses();
         updateLoans();
         updateRents();
+        updateCommunication();
     })
 
     $("#Company_employees").change(function(){
@@ -113,5 +114,15 @@ $(document).ready(function(){
         
         $("#CostbenefitItem_rents_value").val(rents);
         $("#_rentsyearly").val(rents*12);       
+    }
+    
+    updateCommunication = function(){
+        var industryId = $("#Company_industry_id").val();
+        var industrySetup = IndustrySetupArray[industryId];
+        
+        var communication = industrySetup['communication'];
+        
+        $("#CostbenefitItem_communication_value").val(communication);
+        $("#_communicationyearly").val(communication*12); 
     }
 });
