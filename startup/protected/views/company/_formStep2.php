@@ -7,6 +7,11 @@
 <div class="form">
     
 <?php
+$IndustryDescriptionArray = CJSON::encode(CHtml::listData(Industry::model()->findAll(array('order'=>'Name')),'id','description'));
+$IndustryDescriptionJS = "var IndustryDescriptionArray = $IndustryDescriptionArray;\n";
+
+Yii::app()->clientScript->registerScript('IndustryDescription', $IndustryDescriptionJS, CClientScript::POS_HEAD);
+
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBenefitCalculation.js');
 ?>
 
@@ -33,6 +38,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 		<?php echo $form->labelEx($company,'industry_id'); ?>
                 <?php echo $form->dropDownList($company, 'industry_id', CHtml::listData(Industry::model()->findAll(array('order'=>'Name')),'id','name'),array('prompt'=>'- Select industry -'));?>
 		<?php echo $form->error($company,'industry_id'); ?>
+                <span id="Company_industry_description"></span>
 	</div>
         
         <div class="row">
