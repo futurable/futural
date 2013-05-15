@@ -2,6 +2,12 @@ $(document).ready(function(){
     
     $("#Company_industry_id").change(function(){
         updateIndustryDescription();
+        updateSalaries();
+        updateTurnover();
+    })
+
+    $("#Company_employees").change(function(){
+        updateSalaries();
     })
     
     $("#costBenefitCalculationTable input").keyup(function(){
@@ -59,5 +65,27 @@ $(document).ready(function(){
     updateIndustryDescription = function(){
         var descval = $("#Company_industry_id").val();
         $("#Company_industry_description").text( IndustryDescriptionArray[descval] );
+    }
+    
+    updateSalaries = function(){
+        var employees = $("#Company_employees option:selected").text();
+        var industryId = $("#Company_industry_id").val();
+        var industrySetup = IndustrySetupArray[industryId];
+
+        var avgWage = industrySetup['avgWage'];
+        
+        var salaries = avgWage*employees;
+        $("#CostbenefitItem_salaries_value").val(salaries);
+        $("#_salariesyearly").val(salaries*12);
+    }
+    
+    updateTurnover = function(){
+        var industryId = $("#Company_industry_id").val();
+        var industrySetup = IndustrySetupArray[industryId];
+        
+        var turnover = industrySetup['turnover'];
+        
+        $("#CostbenefitItem_turnover_value").val(turnover);
+        $("#_turnoveryearly").val(turnover*12);
     }
 });
