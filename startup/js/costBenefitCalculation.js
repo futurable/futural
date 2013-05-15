@@ -1,7 +1,12 @@
 $(document).ready(function(){
     
+    $("#Company_industry_id").change(function(){
+        var descval = $("#Company_industry_id").val();
+        $("#Company_industry_description").text( IndustryDescriptionArray[descval] );
+    })
+    
     $("#costBenefitCalculationTable input").keyup(function(){
-        updateCalculationFields($(this)); 
+        updateCalculationFields($(this));
     });
     
     /**
