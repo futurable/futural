@@ -24,7 +24,7 @@ foreach($industrySetups as $industrySetup){
                                             'avgWage' => $industrySetup->average_wage_rate,
                                             'maxWage' => $industrySetup->maximum_wage_rate,
                                             'rents' => $industrySetup->rents,
-                                            'communications' => $industrySetup->communications,
+                                            'communication' => $industrySetup->communication,
                                         );
 }
 $IndustrySetupJSON = CJSON::encode($IndustrySetupArray);
