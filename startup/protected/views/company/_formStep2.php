@@ -33,6 +33,11 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 		<?php echo $form->textField($company,'name',array('size'=>30,'maxlength'=>256)); ?>
 		<?php echo $form->error($company,'name'); ?>
 	</div>
+        
+        <div class="row">
+                <?php echo CHtml::label("Employees", "employees");?>
+		<?php echo CHtml::dropDownList('', 'employees', array_merge( range(1,9),range(10,100,10)) ); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($company,'industry_id'); ?>
