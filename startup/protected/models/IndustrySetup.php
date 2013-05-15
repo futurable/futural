@@ -5,10 +5,12 @@
  *
  * The followings are the available columns in table 'industry_setup':
  * @property integer $id
- * @property string $turnover
- * @property string $minimum_wage_rate
- * @property string $average_wage_rate
- * @property string $maximum_wage_rate
+ * @property integer $turnover
+ * @property integer $minimum_wage_rate
+ * @property integer $average_wage_rate
+ * @property integer $maximum_wage_rate
+ * @property integer $rents
+ * @property integer $communication
  * @property integer $industry_id
  *
  * The followings are the available model relations:
@@ -32,12 +34,11 @@ class IndustrySetup extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('turnover, minimum_wage_rate, industry_id', 'required'),
-			array('industry_id', 'numerical', 'integerOnly'=>true),
-			array('turnover, minimum_wage_rate, average_wage_rate, maximum_wage_rate', 'length', 'max'=>10),
+			array('turnover, minimum_wage_rate, rents, communication, industry_id', 'required'),
+			array('turnover, minimum_wage_rate, average_wage_rate, maximum_wage_rate, rents, communication, industry_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, turnover, minimum_wage_rate, average_wage_rate, maximum_wage_rate, industry_id', 'safe', 'on'=>'search'),
+			array('id, turnover, minimum_wage_rate, average_wage_rate, maximum_wage_rate, rents, communication, industry_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +65,8 @@ class IndustrySetup extends CActiveRecord
 			'minimum_wage_rate' => 'Minimum Wage Rate',
 			'average_wage_rate' => 'Average Wage Rate',
 			'maximum_wage_rate' => 'Maximum Wage Rate',
+			'rents' => 'Rents',
+			'communication' => 'Communication',
 			'industry_id' => 'Industry',
 		);
 	}
@@ -87,10 +90,12 @@ class IndustrySetup extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('turnover',$this->turnover,true);
-		$criteria->compare('minimum_wage_rate',$this->minimum_wage_rate,true);
-		$criteria->compare('average_wage_rate',$this->average_wage_rate,true);
-		$criteria->compare('maximum_wage_rate',$this->maximum_wage_rate,true);
+		$criteria->compare('turnover',$this->turnover);
+		$criteria->compare('minimum_wage_rate',$this->minimum_wage_rate);
+		$criteria->compare('average_wage_rate',$this->average_wage_rate);
+		$criteria->compare('maximum_wage_rate',$this->maximum_wage_rate);
+		$criteria->compare('rents',$this->rents);
+		$criteria->compare('communication',$this->communication);
 		$criteria->compare('industry_id',$this->industry_id);
 
 		return new CActiveDataProvider($this, array(
