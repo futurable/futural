@@ -1,25 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "industry".
+ * This is the model class for table "order_automation".
  *
- * The followings are the available columns in table 'industry':
+ * The followings are the available columns in table 'order_automation':
  * @property integer $id
- * @property string $name
- * @property string $description
+ * @property string $create_date
+ * @property integer $week
  *
  * The followings are the available model relations:
- * @property Company[] $companies
- * @property IndustrySetup[] $industrySetups
+ * @property Order[] $orders
  */
-class Industry extends CActiveRecord
+class OrderAutomation extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'industry';
+		return 'order_automation';
 	}
 
 	/**
@@ -30,12 +29,12 @@ class Industry extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>256),
-			array('description', 'length', 'max'=>1024),
+			array('id', 'required'),
+			array('id, week', 'numerical', 'integerOnly'=>true),
+			array('create_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, description', 'safe', 'on'=>'search'),
+			array('id, create_date, week', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,8 +46,7 @@ class Industry extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'companies' => array(self::HAS_MANY, 'Company', 'industry_id'),
-			'industrySetups' => array(self::HAS_MANY, 'IndustrySetup', 'industry_id'),
+			'orders' => array(self::HAS_MANY, 'Order', 'order_automation_id'),
 		);
 	}
 
@@ -59,8 +57,8 @@ class Industry extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
+			'create_date' => 'Create Date',
+			'week' => 'Week',
 		);
 	}
 
@@ -83,8 +81,8 @@ class Industry extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('create_date',$this->create_date,true);
+		$criteria->compare('week',$this->week);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -95,7 +93,7 @@ class Industry extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Industry the static model class
+	 * @return OrderAutomation the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

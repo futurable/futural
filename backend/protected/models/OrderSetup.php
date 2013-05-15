@@ -1,25 +1,30 @@
 <?php
 
 /**
- * This is the model class for table "industry".
+ * This is the model class for table "order_setup".
  *
- * The followings are the available columns in table 'industry':
+ * The followings are the available columns in table 'order_setup':
  * @property integer $id
- * @property string $name
- * @property string $description
+ * @property string $type
+ * @property integer $amount
+ * @property integer $rows
+ * @property integer $token_customer_id
+ * @property string $create_date
+ * @property string $alter_date
  *
  * The followings are the available model relations:
- * @property Company[] $companies
- * @property IndustrySetup[] $industrySetups
+ * @property Order[] $orders
+ * @property OrderFactor[] $orderFactors
+ * @property TokenCustomer $tokenCustomer
  */
-class Industry extends CActiveRecord
+class OrderSetup extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'industry';
+		return 'order_setup';
 	}
 
 	/**
@@ -30,12 +35,13 @@ class Industry extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>256),
-			array('description', 'length', 'max'=>1024),
+			array('id, token_customer_id', 'required'),
+			array('id, amount, rows, token_customer_id', 'numerical', 'integerOnly'=>true),
+			array('type', 'length', 'max'=>7),
+			array('create_date, alter_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, description', 'safe', 'on'=>'search'),
+			array('id, type, amount, rows, token_customer_id, create_date, alter_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,8 +53,9 @@ class Industry extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'companies' => array(self::HAS_MANY, 'Company', 'industry_id'),
-			'industrySetups' => array(self::HAS_MANY, 'IndustrySetup', 'industry_id'),
+			'orders' => array(self::HAS_MANY, 'Order', 'order_setup_id'),
+			'orderFactors' => array(self::HAS_MANY, 'OrderFactor', 'order_setup_id'),
+			'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'token_customer_id'),
 		);
 	}
 
@@ -59,8 +66,12 @@ class Industry extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
+			'type' => 'Type',
+			'amount' => 'Amount',
+			'rows' => 'Rows',
+			'token_customer_id' => 'Token Customer',
+			'create_date' => 'Create Date',
+			'alter_date' => 'Alter Date',
 		);
 	}
 
@@ -83,8 +94,12 @@ class Industry extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('type',$this->type,true);
+		$criteria->compare('amount',$this->amount);
+		$criteria->compare('rows',$this->rows);
+		$criteria->compare('token_customer_id',$this->token_customer_id);
+		$criteria->compare('create_date',$this->create_date,true);
+		$criteria->compare('alter_date',$this->alter_date,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -95,7 +110,7 @@ class Industry extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Industry the static model class
+	 * @return OrderSetup the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

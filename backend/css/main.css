@@ -128,7 +128,7 @@ div.view
 {
 	padding: 10px;
 	margin: 10px 0;
-	border: 1px solid #C9E0ED;
+	border: 1px solid #C8DA30;
 }
 
 div.breadcrumbs
@@ -221,6 +221,5 @@ div.search-form
 
 .operations li a:hover
 {
-	
         color: #C8DA30;
 }

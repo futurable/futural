@@ -60,3 +60,34 @@ body {
 #centered a:hover{
 	box-shadow: 10px 10px 15px #000, 0 0 10px 1px #000 inset;
 }
+a{
+    color: #4f5a2e;
+}
+a:hover{
+    color: #C8DA30;
+}
+
+.pager a{
+    border: 0 !important;
+}
+
+.pager a{
+    color: #000 !important;
+}
+.pager a:hover{
+    color: #4f5a2e !important;
+}
+.pager .selected a{
+    background-color: #C8DA30 !important;
+}
+
+.grid-view table.items th{
+    background: none !important;
+    background-color: #C8DA30 !important;
+}
+.grid-view table.items th a{
+    color: #000 !important;
+}
+.grid-view table.items td{
+    background-color: #fff !important;
+}

@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "Industry_Settings".
+ * This is the model class for table "industry_setup".
  *
- * The followings are the available columns in table 'Industry_Settings':
- * @property integer $ID
- * @property string $Turnover
- * @property string $MinimumWageRate
- * @property string $AverageWageRate
- * @property string $MaximumWageRate
- * @property integer $Industry_ID
+ * The followings are the available columns in table 'industry_setup':
+ * @property integer $id
+ * @property string $turnover
+ * @property string $minimum_wage_rate
+ * @property string $average_wage_rate
+ * @property string $maximum_wage_rate
+ * @property integer $industry_id
  *
  * The followings are the available model relations:
  * @property Industry $industry
  */
-class IndustrySettings extends CActiveRecord
+class IndustrySetup extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'Industry_Settings';
+		return 'industry_setup';
 	}
 
 	/**
@@ -32,12 +32,12 @@ class IndustrySettings extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('Turnover, MinimumWageRate, Industry_ID', 'required'),
-			array('Industry_ID', 'numerical', 'integerOnly'=>true),
-			array('Turnover, MinimumWageRate, AverageWageRate, MaximumWageRate', 'length', 'max'=>10),
+			array('turnover, minimum_wage_rate, industry_id', 'required'),
+			array('industry_id', 'numerical', 'integerOnly'=>true),
+			array('turnover, minimum_wage_rate, average_wage_rate, maximum_wage_rate', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID, Turnover, MinimumWageRate, AverageWageRate, MaximumWageRate, Industry_ID', 'safe', 'on'=>'search'),
+			array('id, turnover, minimum_wage_rate, average_wage_rate, maximum_wage_rate, industry_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,7 +49,7 @@ class IndustrySettings extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'industry' => array(self::BELONGS_TO, 'Industry', 'Industry_ID'),
+			'industry' => array(self::BELONGS_TO, 'Industry', 'industry_id'),
 		);
 	}
 
@@ -59,12 +59,12 @@ class IndustrySettings extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ID' => 'ID',
-			'Turnover' => 'Turnover',
-			'MinimumWageRate' => 'Minimum Wage Rate',
-			'AverageWageRate' => 'Average Wage Rate',
-			'MaximumWageRate' => 'Maximum Wage Rate',
-			'Industry_ID' => 'Industry',
+			'id' => 'ID',
+			'turnover' => 'Turnover',
+			'minimum_wage_rate' => 'Minimum Wage Rate',
+			'average_wage_rate' => 'Average Wage Rate',
+			'maximum_wage_rate' => 'Maximum Wage Rate',
+			'industry_id' => 'Industry',
 		);
 	}
 
@@ -86,12 +86,12 @@ class IndustrySettings extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('ID',$this->ID);
-		$criteria->compare('Turnover',$this->Turnover,true);
-		$criteria->compare('MinimumWageRate',$this->MinimumWageRate,true);
-		$criteria->compare('AverageWageRate',$this->AverageWageRate,true);
-		$criteria->compare('MaximumWageRate',$this->MaximumWageRate,true);
-		$criteria->compare('Industry_ID',$this->Industry_ID);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('turnover',$this->turnover,true);
+		$criteria->compare('minimum_wage_rate',$this->minimum_wage_rate,true);
+		$criteria->compare('average_wage_rate',$this->average_wage_rate,true);
+		$criteria->compare('maximum_wage_rate',$this->maximum_wage_rate,true);
+		$criteria->compare('industry_id',$this->industry_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -102,7 +102,7 @@ class IndustrySettings extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return IndustrySettings the static model class
+	 * @return IndustrySetup the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
