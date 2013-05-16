@@ -80,8 +80,8 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 	</div>
         
         <div class="row">
-                <?php echo CHtml::label("Employees", "employees");?>
-		<?php echo CHtml::dropDownList('Company_employees', 'Company_employees', array_merge( range(1,9),range(10,100,10)), 
+                <?php echo $form->labelEx($company, "employees");?>
+		<?php echo $form->dropDownList($company, 'employees', array_merge( range(1,9),range(10,100,10)), 
                                                             array(
                                                                 'rel'=>'tooltip',
                                                                 'title'=>'Employee amount. This is used to give guidelines for the salary calculation.'
