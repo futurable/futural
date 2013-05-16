@@ -133,7 +133,6 @@ class CreateAction extends CAction
                     $allSuccessful = $companySuccess AND $CBCSuccess;
                     if($allSuccessful){
                         $transaction->commit();
-                        
                         // Generate password
                         
                         // Create OpenERP database
@@ -142,27 +141,32 @@ class CreateAction extends CAction
                         $shellCmd = escapeshellcmd($cmd);
                         $scriptFile = Yii::app()->basePath."/commands/shell/createOpenERPCompany.sh";
                         $output = exec("sh ".$scriptFile.$shellCmd);
+                        $email = $company->email;
                         
                         // Create business ID
                         $businessID = "123"; // TODO: do business ID
                         
                         // Send login information to user
-                        $message =
-                        "Welcome to Futurality!
-                            
-                        You have created a company in the Futurality learning environment.
-                        It can be found from https://futurality.fi
+$message ="Welcome to Futurality!
+
+You have created a company in the Futurality learning environment.
+It can be found from https://futurality.fi
+
+Your company name is $company->name, and business id is $businessID. 
+Company id tag is $company->tag - you need it to login into right company.
+
+OpenERP account
+admin $OERPPassword
+Log in from erp.futurality.fi
+
+Bank account
+$company->tag $OERPPassword
+
+Have fun!
+
+This is automatically generated email. Do not reply this address.";
                         
-                        Your company name is $company->name, and business id is $businessID. 
-                        Company id tag is $company->tag - you need it to login into right company.
-                        
-                        You also have received an OpenERP account
-                        admin $OERPPassword
-                        You can log in from erp.futurality.fi
-                        
-                        Have fun!";
-                        
-                        mail('jarmo@futurable.fi', "Futurality account", $message);
+                        mail($email, "Futurality account", $message);
                         
                         // Redirect to view
                         $controller->redirect(array('view','id'=>$company->id));
