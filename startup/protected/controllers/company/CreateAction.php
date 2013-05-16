@@ -147,20 +147,24 @@ class CreateAction extends CAction
                         $businessID = "123"; // TODO: do business ID
                         
                         // Send login information to user
-                        $message =
-                        "Welcome to Futurality!
-                            
-                        You have created a company in the Futurality learning environment.
-                        It can be found from https://futurality.fi
-                        
-                        Your company name is $company->name, and business id is $businessID. 
-                        Company id tag is $company->tag - you need it to login into right company.
-                        
-                        You also have received an OpenERP account
-                        admin $OERPPassword
-                        You can log in from erp.futurality.fi
-                        
-                        Have fun!";
+$message ="Welcome to Futurality!
+
+You have created a company in the Futurality learning environment.
+It can be found from https://futurality.fi
+
+Your company name is $company->name, and business id is $businessID. 
+Company id tag is $company->tag - you need it to login into right company.
+
+OpenERP account
+admin $OERPPassword
+Log in from erp.futurality.fi
+
+Bank account
+$company->tag $OERPPassword
+
+Have fun!
+
+This is automatically generated email. Do not reply this address.";
                         
                         mail($email, "Futurality account", $message);
                         
