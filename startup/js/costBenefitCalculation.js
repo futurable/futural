@@ -1,7 +1,21 @@
 $(document).ready(function(){
     
+    $("#Company_industry_id").change(function(){
+        updateIndustryDescription();
+        updateSalaries();
+        updateTurnover();
+        updateExpenses();
+        updateRents();
+        updateCommunication();
+        updateLoans();
+    })
+
+    $("#Company_employees").change(function(){
+        updateSalaries();
+    })
+    
     $("#costBenefitCalculationTable input").keyup(function(){
-        updateCalculationFields($(this)); 
+        updateCalculationFields($(this));
     });
     
     /**
@@ -51,4 +65,76 @@ $(document).ready(function(){
         var yearlyId = "#_"+currentId.split('_')[1]+"yearly";
         $(yearlyId).val(yearlyValue);
     };
+    
+    updateIndustryDescription = function(){
+        var descval = $("#Company_industry_id").val();
+        $("#Company_industry_description").text( IndustryDescriptionArray[descval] );
+    }
+    
+    updateSalaries = function(){
+        var employees = $("#Company_employees option:selected").text();
+        var industryId = $("#Company_industry_id").val();
+        var industrySetup = IndustrySetupArray[industryId];
+
+        var avgWage = industrySetup['avgWage'];
+        
+        var salaries = avgWage*employees;
+        $("#CostbenefitItem_salaries_value").val(salaries);
+        $("#_salariesyearly").val(salaries*12);
+    }
+    
+    updateTurnover = function(){
+        var industryId = $("#Company_industry_id").val();
+        var industrySetup = IndustrySetupArray[industryId];
+        
+        var turnover = industrySetup['turnover'];
+        
+        $("#CostbenefitItem_turnover_value").val(turnover);
+        $("#_turnoveryearly").val(turnover*12);
+    }
+    
+    updateExpenses = function(){
+        var turnover = $("#CostbenefitItem_turnover_value").val();
+        
+        var expenses = turnover * 0.8;
+        
+        $("#CostbenefitItem_expenses_value").val(expenses);
+        $("#_expensesyearly").val(expenses*12);
+    }
+    
+    updateLoans = function(){
+        var expenses = parseInt($("#CostbenefitItem_expenses_value").val());
+        var salaries = parseInt($("#CostbenefitItem_salaries_value").val());
+        var rents = parseInt($("#CostbenefitItem_rents_value").val());
+        var communication = parseInt($("#CostbenefitItem_communication_value").val());
+        
+        // Calculate loan sum. 3x all expenses + one months expenses
+        loanSum = (expenses+salaries+rents+communication)*3 + expenses;
+        payment = loanSum * ( 0.0033 / (1 - Math.pow(1.0033, -36)));
+        
+        loans = Math.round(payment);
+        
+        $("#CostbenefitItem_loans_value").val(loans);
+        $("#_loansyearly").val(loans*12);
+    }
+    
+    updateRents = function(){
+        var industryId = $("#Company_industry_id").val();
+        var industrySetup = IndustrySetupArray[industryId];
+        
+        var rents = industrySetup['rents'];
+        
+        $("#CostbenefitItem_rents_value").val(rents);
+        $("#_rentsyearly").val(rents*12);       
+    }
+    
+    updateCommunication = function(){
+        var industryId = $("#Company_industry_id").val();
+        var industrySetup = IndustrySetupArray[industryId];
+        
+        var communication = industrySetup['communication'];
+        
+        $("#CostbenefitItem_communication_value").val(communication);
+        $("#_communicationyearly").val(communication*12); 
+    }
 });
