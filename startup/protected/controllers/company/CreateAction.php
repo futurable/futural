@@ -133,7 +133,6 @@ class CreateAction extends CAction
                     $allSuccessful = $companySuccess AND $CBCSuccess;
                     if($allSuccessful){
                         $transaction->commit();
-                        
                         // Generate password
                         
                         // Create OpenERP database
@@ -142,6 +141,7 @@ class CreateAction extends CAction
                         $shellCmd = escapeshellcmd($cmd);
                         $scriptFile = Yii::app()->basePath."/commands/shell/createOpenERPCompany.sh";
                         $output = exec("sh ".$scriptFile.$shellCmd);
+                        $email = $company->email;
                         
                         // Create business ID
                         $businessID = "123"; // TODO: do business ID
@@ -162,7 +162,7 @@ class CreateAction extends CAction
                         
                         Have fun!";
                         
-                        mail('jarmo@futurable.fi', "Futurality account", $message);
+                        mail($email, "Futurality account", $message);
                         
                         // Redirect to view
                         $controller->redirect(array('view','id'=>$company->id));
