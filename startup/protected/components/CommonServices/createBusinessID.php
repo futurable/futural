@@ -1,11 +1,5 @@
 <?php
 class createBusinessID extends CommonServices{
-    
-    private $debug;
-    
-    public function __construct($debug = false) {
-        if($debug == true) $this->debug = true;
-    }
 
     public function run($prefix = false, $country = false) {
         if(!$country) $country = 'FI';
@@ -27,8 +21,10 @@ class createBusinessID extends CommonServices{
         $error = null;
         
         if(!$prefix){
-            // TODO: get next available business ID
-            $businessID = 12345678;
+            $base = 9050200;
+            $extra = Company::model()->count(array('select'=>'id'));
+            $businessID = $base+$extra;
+            
             $prefix = substr($businessID, 0, 7);
         }
         
