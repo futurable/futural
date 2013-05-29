@@ -52,7 +52,7 @@ return array(
 			'password' => 'futural',
 			'charset' => 'utf8',
 		),
-		'bank'=>array(
+		'dbbank'=>array(
 			'connectionString' => 'mysql:host=futurality.fi;dbname=futural_bank',
 			'emulatePrepare' => true,
 			'username' => 'futural_bank',
