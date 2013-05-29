@@ -9,6 +9,7 @@ $(document).ready(function(){
         updateRents();
         updateCommunication();
         updateLoans();
+        updateHealth();
     })
 
     $("#Company_employees").change(function(){
@@ -146,5 +147,10 @@ $(document).ready(function(){
         
         $("#CostbenefitItem_communication_value").val(communication);
         $("#_communicationyearly").val(communication*12); 
+    }
+    
+    updateHealth = function(){
+        $("#CostbenefitItem_health_value").val(0);
+        $("#_healthyearly").val(0);
     }
 });
