@@ -40,6 +40,7 @@ class Company extends CActiveRecord
 			array('name, tag, email, employees, token_key_id, industry_id', 'required'),
 			array('employees, token_key_id, industry_id', 'numerical', 'integerOnly'=>true),
 			array('name, email', 'length', 'max'=>256),
+                        array('email', 'email'),
 			array('tag', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
