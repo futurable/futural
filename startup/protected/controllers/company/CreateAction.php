@@ -63,7 +63,7 @@ class CreateAction extends CAction
                 
                 $CommonServices = new CommonServices();
                 $company->tag = $customer_tag."_".$CommonServices->createTagFromName($company->name);
-                
+                             
                 // Cost-benefit calculation
                 //$costBenefitCalculation->attributes = new CostbenefitCalculation;
                 $costBenefitItem_turnover->attributes = $_POST['CostbenefitItem']['turnover'];
@@ -148,6 +148,13 @@ class CreateAction extends CAction
                         
                         // Create business ID
                         $businessID = CommonServices::createBusinessID();
+                        
+                        // Create bank account
+                        $bankAccount = new BankAccount();
+                        // TODO: get branch number from conf
+                        $branchCode = 970300;
+                        $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($branchCode);
+                        $bankAccount->name = "Checking account";
                         
                         // Send login information to user
 $message ="Welcome to Futurality!
