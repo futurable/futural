@@ -121,6 +121,15 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     <td><?php echo $form->error($costBenefitItem_salaries,'[salaries]value'); ?></td>
                 </tr>
                 <tr>
+                    <td><?php echo $form->labelEx($costBenefitItem_sideExpenses,'Side expenses'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_sideExpenses,'[sideExpenses]value', array(
+                        'rel'=>'tooltip',
+                        'title'=>'Salary side expenses.'
+                     )); ?></td>
+                    <td><?php echo CHtml::textField('[sideExpenses]yearly'); ?></td>
+                    <td><?php echo $form->error($costBenefitItem_salaries,'[sideExpenses]value'); ?></td>
+                </tr>
+                <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_loans,'Loans'); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_loans,'[loans]value', array(
                         'rel'=>'tooltip',
