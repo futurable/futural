@@ -33,4 +33,17 @@ class CommonServices
         
         return $businessID;
     }
+    
+    public function generatePassword($length = 8){
+        $characters = array_merge( range('a','z'), range('A', 'Z'), range(1,9));
+        $count = count($characters);
+        $password = null;
+        
+        for($i=0; $i<$length; $i++){
+            $rand = rand(0,$count-1);
+            $password .= $characters[$rand];
+        }
+        
+        return $password;
+    }
 }
