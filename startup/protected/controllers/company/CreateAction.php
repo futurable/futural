@@ -137,10 +137,9 @@ class CreateAction extends CAction
                     $allSuccessful = $companySuccess AND $CBCSuccess;
                     if($allSuccessful){
                         $transaction->commit();
-                        // Generate password
                         
                         // Create OpenERP database
-                        $OERPPassword = 'futural'; // TODO: generate password
+                        $OERPPassword = CommonServices::generatePassword();
                         $cmd = " '$company->tag' '$company->name' '$OERPPassword'";
                         $shellCmd = escapeshellcmd($cmd);
                         $scriptFile = Yii::app()->basePath."/commands/shell/createOpenERPCompany.sh";
@@ -148,7 +147,7 @@ class CreateAction extends CAction
                         $email = $company->email;
                         
                         // Create business ID
-                        $businessID = "123"; // TODO: do business ID
+                        $businessID = CommonServices::createBusinessID();
                         
                         // Send login information to user
 $message ="Welcome to Futurality!
