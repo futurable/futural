@@ -13,6 +13,7 @@ $(document).ready(function(){
 
     $("#Company_employees").change(function(){
         updateSalaries();
+        updateSideExpenses();
     })
     
     $("#costBenefitCalculationTable input").keyup(function(){
@@ -86,7 +87,7 @@ $(document).ready(function(){
     
     updateSideExpenses = function(){
         var salaries = $("#CostbenefitItem_salaries_value").val();
-        var expenses = salaries * 1.3;
+        var expenses = salaries * 0.3;
         
         $("#CostbenefitItem_sideExpenses_value").val(expenses);
         $("#_sideExpensesyearly").val(expenses*12);
