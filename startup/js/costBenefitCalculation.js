@@ -3,6 +3,7 @@ $(document).ready(function(){
     $("#Company_industry_id").change(function(){
         updateIndustryDescription();
         updateSalaries();
+        updateSideExpenses();
         updateTurnover();
         updateExpenses();
         updateRents();
@@ -81,6 +82,14 @@ $(document).ready(function(){
         var salaries = avgWage*employees;
         $("#CostbenefitItem_salaries_value").val(salaries);
         $("#_salariesyearly").val(salaries*12);
+    }
+    
+    updateSideExpenses = function(){
+        var salaries = $("#CostbenefitItem_salaries_value").val();
+        var expenses = salaries * 1.3;
+        
+        $("#CostbenefitItem_sideExpenses_value").val(expenses);
+        $("#_sideExpensesyearly").val(expenses*12);
     }
     
     updateTurnover = function(){
