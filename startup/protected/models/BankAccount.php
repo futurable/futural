@@ -24,8 +24,13 @@
  * @property BankUser $bankUser
  * @property BankAccountTransaction[] $bankAccountTransactions
  */
-class BankAccount extends CActiveRecord
+class BankAccount extends ActiveRecord
 {
+        public function getDbConnection()
+        {
+            return self::getBankDbConnection();
+        }
+    
 	/**
 	 * @return string the associated database table name
 	 */
