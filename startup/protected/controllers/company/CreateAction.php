@@ -16,15 +16,13 @@ class CreateAction extends CAction
             // Cost-benefit calculation
             $costBenefitCalculation = new CostbenefitCalculation;
             $costBenefitItem_turnover = new CostbenefitItem;
-            $costBenefitItem_salaries = new CostbenefitItem;
             $costBenefitItem_expenses = new CostbenefitItem;
+            $costBenefitItem_salaries = new CostbenefitItem;
+            $costBenefitItem_sideExpenses = new CostbenefitItem;
             $costBenefitItem_loans = new CostbenefitItem;
             $costBenefitItem_rents = new CostbenefitItem;
             $costBenefitItem_communication = new CostbenefitItem;
             $costBenefitItem_health = new CostbenefitItem;    
-
-            // Uncomment the following line if AJAX validation is needed
-            // $this->performAjaxValidation($model);
 
             // Decide the form step
             $company->form_step = $this->getFormStep();
@@ -69,8 +67,9 @@ class CreateAction extends CAction
                 // Cost-benefit calculation
                 //$costBenefitCalculation->attributes = new CostbenefitCalculation;
                 $costBenefitItem_turnover->attributes = $_POST['CostbenefitItem']['turnover'];
-                $costBenefitItem_salaries->attributes = $_POST['CostbenefitItem']['salaries'];
                 $costBenefitItem_expenses->attributes = $_POST['CostbenefitItem']['expenses'];
+                $costBenefitItem_salaries->attributes = $_POST['CostbenefitItem']['salaries'];
+                $costBenefitItem_sideExpenses->attributes = $_POST['CostbenefitItem']['sideExpenses'];
                 $costBenefitItem_loans->attributes = $_POST['CostbenefitItem']['loans'];
                 $costBenefitItem_rents->attributes = $_POST['CostbenefitItem']['rents'];
                 $costBenefitItem_communication->attributes = $_POST['CostbenefitItem']['communication'];
@@ -79,8 +78,9 @@ class CreateAction extends CAction
                 // Validate all models
                 $modelsValid = $company->validate()
                     AND $costBenefitItem_turnover->validate()
-                    AND $costBenefitItem_salaries->validate()
                     AND $costBenefitItem_expenses->validate()
+                    AND $costBenefitItem_salaries->validate()
+                    AND $costBenefitItem_sideExpenses->validate()
                     AND $costBenefitItem_loans->validate()
                     AND $costBenefitItem_rents->validate()
                     AND $costBenefitItem_communication->validate()
@@ -128,6 +128,10 @@ class CreateAction extends CAction
                     $costBenefitItem_health->costbenefit_calculation_id = $costBenefitCalculation->id;
                     $costBenefitItem_health->costbenefit_item_type_id = 7;
                     $CBCSuccess = $costBenefitItem_health->save() AND $CBCSuccess;
+                    
+                    $costBenefitItem_sideExpenses->costbenefit_calculation_id = $costBenefitCalculation->id;
+                    $costBenefitItem_sideExpenses->costbenefit_item_type_id = 8;
+                    $CBCSuccess = $costBenefitItem_sideExpenses->save() AND $CBCSuccess;
                     
                     // Commit or rollback
                     $allSuccessful = $companySuccess AND $CBCSuccess;
@@ -185,8 +189,9 @@ This is automatically generated email. Do not reply this address.";
                     'token'=>$token,
                     'costBenefitCalculation'=>$costBenefitCalculation,
                     'costBenefitItem_turnover'=>$costBenefitItem_turnover,
+                    'costBenefitItem_expenses'=>$costBenefitItem_expenses,    
                     'costBenefitItem_salaries'=>$costBenefitItem_salaries,
-                    'costBenefitItem_expenses'=>$costBenefitItem_expenses,
+                    'costBenefitItem_sideExpenses'=>$costBenefitItem_sideExpenses,
                     'costBenefitItem_loans'=>$costBenefitItem_loans,
                     'costBenefitItem_rents'=>$costBenefitItem_rents,
                     'costBenefitItem_communication'=>$costBenefitItem_communication,
