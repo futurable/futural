@@ -175,11 +175,11 @@ class CreateAction extends CAction
                         // Create bank account
                         $bankAccount = new BankAccount();
                         $branchCode = 970300; // TODO: get branch number from conf
-                        $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($branchCode);
+                        $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($branchCode); 
                         $bankAccount->name = "Checking account";
                         $bankAccount->bank_user_id = $bankUser->id;
                         $bankSuccess = $bankAccount->save() AND $bankSuccess;
-                        
+
                         if($bankSuccess){
                             $bankTransaction->commit();              
                         
@@ -198,7 +198,7 @@ Log in from erp.futurality.fi/?db=$company->tag
 
 Bank account
 $company->tag $bankPassword
-Log in from https://futurality.fi/bank?company=$company->tag
+Log in from http://futural.fi/bank/index.php/user/login/?company=$company->tag
 
 Have fun!
 
