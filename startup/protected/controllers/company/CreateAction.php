@@ -150,7 +150,20 @@ class CreateAction extends CAction
                         $businessID = CommonServices::createBusinessID();
                         
                         // Create bank account
+                        $bankUser = new BankUser();
+                        $bankProfile = new BankProfile();
                         $bankAccount = new BankAccount();
+                        
+                        $bankUser->username = $company->tag;
+                        $bankUser->email = $company->email;
+                        $bankPassword = CommonServices::generatePassword();
+                        $bankUser->password = hash('sha512', $bankPassword);
+                        $bankUser->status = 1;
+                        
+                         // Start transaction
+                        $bankTransaction = Yii::app()->dbbank->beginTransaction();
+                        $bankSuccess = $bankUser->save();
+                        
                         // TODO: get branch number from conf
                         $branchCode = 970300;
                         $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($branchCode);
@@ -167,10 +180,11 @@ Company id tag is $company->tag - you need it to login into right company.
 
 OpenERP account
 admin $OERPPassword
-Log in from erp.futurality.fi
+Log in from erp.futurality.fi/?db=$company->tag
 
 Bank account
-$company->tag $OERPPassword
+$company->tag $bankPassword
+Log in from https://futurality.fi/bank?company=$company->tag
 
 Have fun!
 
