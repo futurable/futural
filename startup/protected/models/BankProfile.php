@@ -9,8 +9,12 @@
  * @property string $firstname
  * @property string $company
  */
-class BankProfile extends CActiveRecord
+class BankProfile extends ActiveRecord
 {
+        public function getDbConnection()
+        {
+            return self::getBankDbConnection();
+        }
 	/**
 	 * @return string the associated database table name
 	 */
