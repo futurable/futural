@@ -52,6 +52,14 @@ return array(
 			'password' => 'futural',
 			'charset' => 'utf8',
 		),
+		'dbbank'=>array(
+			'connectionString' => 'mysql:host=futurality.fi;dbname=futural_bank',
+			'emulatePrepare' => true,
+			'username' => 'futural_bank',
+			'password' => 'futural_bank',
+			'charset' => 'utf8',
+                        'class' => 'CDbConnection'
+		),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',

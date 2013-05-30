@@ -1,32 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "company".
+ * This is the model class for table "bank_profile".
  *
- * The followings are the available columns in table 'company':
- * @property integer $id
- * @property string $name
- * @property string $tag
- * @property string $email
- * @property integer $employees
- * @property integer $token_key_id
- * @property integer $industry_id
- *
- * The followings are the available model relations:
- * @property Industry $industry
- * @property TokenKey $tokenKey
- * @property CostbenefitCalculation[] $costbenefitCalculations
- * @property Order[] $orders
+ * The followings are the available columns in table 'bank_profile':
+ * @property integer $user_id
+ * @property string $lastname
+ * @property string $firstname
+ * @property string $company
  */
-class Company extends CActiveRecord
+class BankProfile extends ActiveRecord
 {
-        public $form_step;
+        public function getDbConnection()
+        {
+            return self::getBankDbConnection();
+        }
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'company';
+		return 'bank_profile';
 	}
 
 	/**
@@ -37,14 +31,13 @@ class Company extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, tag, email, employees, token_key_id, industry_id', 'required'),
-			array('employees, token_key_id, industry_id', 'numerical', 'integerOnly'=>true),
-			array('name, email', 'length', 'max'=>256),
-                        array('email', 'email'),
-			array('tag', 'length', 'max'=>32),
+			array('user_id', 'required'),
+			array('user_id', 'numerical', 'integerOnly'=>true),
+			array('lastname, firstname', 'length', 'max'=>50),
+			array('company', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, tag, email, employees, token_key_id, industry_id', 'safe', 'on'=>'search'),
+			array('user_id, lastname, firstname, company', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,10 +49,6 @@ class Company extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'industry' => array(self::BELONGS_TO, 'Industry', 'industry_id'),
-			'tokenKey' => array(self::BELONGS_TO, 'TokenKey', 'token_key_id'),
-			'costbenefitCalculations' => array(self::HAS_MANY, 'CostbenefitCalculation', 'company_id'),
-			'orders' => array(self::HAS_MANY, 'Order', 'company_id'),
 		);
 	}
 
@@ -69,13 +58,10 @@ class Company extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'tag' => 'Tag',
-			'email' => 'Email',
-			'employees' => 'Employees',
-			'token_key_id' => 'Token Key',
-			'industry_id' => 'Industry',
+			'user_id' => 'User',
+			'lastname' => 'Lastname',
+			'firstname' => 'Firstname',
+			'company' => 'Company',
 		);
 	}
 
@@ -97,13 +83,10 @@ class Company extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('tag',$this->tag,true);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('employees',$this->employees);
-		$criteria->compare('token_key_id',$this->token_key_id);
-		$criteria->compare('industry_id',$this->industry_id);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('lastname',$this->lastname,true);
+		$criteria->compare('firstname',$this->firstname,true);
+		$criteria->compare('company',$this->company,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -114,7 +97,7 @@ class Company extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Company the static model class
+	 * @return BankProfile the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

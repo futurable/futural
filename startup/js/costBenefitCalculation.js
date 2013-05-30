@@ -3,15 +3,18 @@ $(document).ready(function(){
     $("#Company_industry_id").change(function(){
         updateIndustryDescription();
         updateSalaries();
+        updateSideExpenses();
         updateTurnover();
         updateExpenses();
         updateRents();
         updateCommunication();
         updateLoans();
+        updateHealth();
     })
 
     $("#Company_employees").change(function(){
         updateSalaries();
+        updateSideExpenses();
     })
     
     $("#costBenefitCalculationTable input").keyup(function(){
@@ -83,6 +86,14 @@ $(document).ready(function(){
         $("#_salariesyearly").val(salaries*12);
     }
     
+    updateSideExpenses = function(){
+        var salaries = $("#CostbenefitItem_salaries_value").val();
+        var expenses = salaries * 0.3;
+        
+        $("#CostbenefitItem_sideExpenses_value").val(expenses);
+        $("#_sideExpensesyearly").val(expenses*12);
+    }
+    
     updateTurnover = function(){
         var industryId = $("#Company_industry_id").val();
         var industrySetup = IndustrySetupArray[industryId];
@@ -136,5 +147,10 @@ $(document).ready(function(){
         
         $("#CostbenefitItem_communication_value").val(communication);
         $("#_communicationyearly").val(communication*12); 
+    }
+    
+    updateHealth = function(){
+        $("#CostbenefitItem_health_value").val(0);
+        $("#_healthyearly").val(0);
     }
 });

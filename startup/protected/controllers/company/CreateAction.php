@@ -7,6 +7,7 @@ class CreateAction extends CAction
 {
     public function run()
     {
+        // TODO: refactor the code (cut into subclassess / methods)
             $controller=$this->getController();
             
             $company=new Company;
@@ -16,15 +17,13 @@ class CreateAction extends CAction
             // Cost-benefit calculation
             $costBenefitCalculation = new CostbenefitCalculation;
             $costBenefitItem_turnover = new CostbenefitItem;
-            $costBenefitItem_salaries = new CostbenefitItem;
             $costBenefitItem_expenses = new CostbenefitItem;
+            $costBenefitItem_salaries = new CostbenefitItem;
+            $costBenefitItem_sideExpenses = new CostbenefitItem;
             $costBenefitItem_loans = new CostbenefitItem;
             $costBenefitItem_rents = new CostbenefitItem;
             $costBenefitItem_communication = new CostbenefitItem;
             $costBenefitItem_health = new CostbenefitItem;    
-
-            // Uncomment the following line if AJAX validation is needed
-            // $this->performAjaxValidation($model);
 
             // Decide the form step
             $company->form_step = $this->getFormStep();
@@ -65,12 +64,13 @@ class CreateAction extends CAction
                 
                 $CommonServices = new CommonServices();
                 $company->tag = $customer_tag."_".$CommonServices->createTagFromName($company->name);
-                
+                             
                 // Cost-benefit calculation
                 //$costBenefitCalculation->attributes = new CostbenefitCalculation;
                 $costBenefitItem_turnover->attributes = $_POST['CostbenefitItem']['turnover'];
-                $costBenefitItem_salaries->attributes = $_POST['CostbenefitItem']['salaries'];
                 $costBenefitItem_expenses->attributes = $_POST['CostbenefitItem']['expenses'];
+                $costBenefitItem_salaries->attributes = $_POST['CostbenefitItem']['salaries'];
+                $costBenefitItem_sideExpenses->attributes = $_POST['CostbenefitItem']['sideExpenses'];
                 $costBenefitItem_loans->attributes = $_POST['CostbenefitItem']['loans'];
                 $costBenefitItem_rents->attributes = $_POST['CostbenefitItem']['rents'];
                 $costBenefitItem_communication->attributes = $_POST['CostbenefitItem']['communication'];
@@ -79,8 +79,9 @@ class CreateAction extends CAction
                 // Validate all models
                 $modelsValid = $company->validate()
                     AND $costBenefitItem_turnover->validate()
-                    AND $costBenefitItem_salaries->validate()
                     AND $costBenefitItem_expenses->validate()
+                    AND $costBenefitItem_salaries->validate()
+                    AND $costBenefitItem_sideExpenses->validate()
                     AND $costBenefitItem_loans->validate()
                     AND $costBenefitItem_rents->validate()
                     AND $costBenefitItem_communication->validate()
@@ -129,14 +130,17 @@ class CreateAction extends CAction
                     $costBenefitItem_health->costbenefit_item_type_id = 7;
                     $CBCSuccess = $costBenefitItem_health->save() AND $CBCSuccess;
                     
+                    $costBenefitItem_sideExpenses->costbenefit_calculation_id = $costBenefitCalculation->id;
+                    $costBenefitItem_sideExpenses->costbenefit_item_type_id = 8;
+                    $CBCSuccess = $costBenefitItem_sideExpenses->save() AND $CBCSuccess;
+                    
                     // Commit or rollback
                     $allSuccessful = $companySuccess AND $CBCSuccess;
                     if($allSuccessful){
                         $transaction->commit();
-                        // Generate password
                         
                         // Create OpenERP database
-                        $OERPPassword = 'futural'; // TODO: generate password
+                        $OERPPassword = CommonServices::generatePassword();
                         $cmd = " '$company->tag' '$company->name' '$OERPPassword'";
                         $shellCmd = escapeshellcmd($cmd);
                         $scriptFile = Yii::app()->basePath."/commands/shell/createOpenERPCompany.sh";
@@ -144,9 +148,42 @@ class CreateAction extends CAction
                         $email = $company->email;
                         
                         // Create business ID
-                        $businessID = "123"; // TODO: do business ID
+                        $businessID = CommonServices::createBusinessID();
                         
-                        // Send login information to user
+                        /* 
+                         * Create bank user, profile and account
+                         */
+                        
+                        // Create bank user
+                        $bankUser = new BankUser();
+                        $bankUser->username = $company->tag;
+                        $bankUser->email = $company->email;
+                        $bankPassword = CommonServices::generatePassword();
+                        $bankUser->password = hash('sha512', $bankPassword);
+                        $bankUser->status = 1;
+                        
+                         // Start transaction
+                        $bankTransaction = Yii::app()->dbbank->beginTransaction();
+                        $bankSuccess = $bankUser->save();
+                        
+                        // Create bank profile
+                        $bankProfile = new BankProfile();
+                        $bankProfile->user_id = $bankUser->id;
+                        $bankProfile->company = $company->name;
+                        $bankSuccess = $bankProfile->save() AND $bankSuccess;
+                        
+                        // Create bank account
+                        $bankAccount = new BankAccount();
+                        $branchCode = 970300; // TODO: get branch number from conf
+                        $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($branchCode);
+                        $bankAccount->name = "Checking account";
+                        $bankAccount->bank_user_id = $bankUser->id;
+                        $bankSuccess = $bankAccount->save() AND $bankSuccess;
+                        
+                        if($bankSuccess){
+                            $bankTransaction->commit();              
+                        
+                            // Send login information to user
 $message ="Welcome to Futurality!
 
 You have created a company in the Futurality learning environment.
@@ -157,22 +194,27 @@ Company id tag is $company->tag - you need it to login into right company.
 
 OpenERP account
 admin $OERPPassword
-Log in from erp.futurality.fi
+Log in from erp.futurality.fi/?db=$company->tag
 
 Bank account
-$company->tag $OERPPassword
+$company->tag $bankPassword
+Log in from https://futurality.fi/bank?company=$company->tag
 
 Have fun!
 
 This is automatically generated email. Do not reply this address.";
                         
-                        mail($email, "Futurality account", $message);
-                        
-                        // Redirect to view
-                        $controller->redirect(array('view','id'=>$company->id));
+                            mail($email, "Futurality account", $message);
+
+                            // Redirect to view
+                            $controller->redirect(array('view','id'=>$company->id));
+                        }
+                        else{
+                            $bankTransaction->rollback ();
+                        }
                     }
                     else{
-                        $transaction->rollBack();
+                        $transaction->rollback();
                     }
                     
                 }
@@ -185,8 +227,9 @@ This is automatically generated email. Do not reply this address.";
                     'token'=>$token,
                     'costBenefitCalculation'=>$costBenefitCalculation,
                     'costBenefitItem_turnover'=>$costBenefitItem_turnover,
+                    'costBenefitItem_expenses'=>$costBenefitItem_expenses,    
                     'costBenefitItem_salaries'=>$costBenefitItem_salaries,
-                    'costBenefitItem_expenses'=>$costBenefitItem_expenses,
+                    'costBenefitItem_sideExpenses'=>$costBenefitItem_sideExpenses,
                     'costBenefitItem_loans'=>$costBenefitItem_loans,
                     'costBenefitItem_rents'=>$costBenefitItem_rents,
                     'costBenefitItem_communication'=>$costBenefitItem_communication,

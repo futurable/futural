@@ -42,14 +42,10 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 		'validateOnSubmit'=>true,
 	),
 )); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($company); ?>
         
 	<div class="row">
                 <?php echo $form->hiddenField($token, 'token_key', array('value'=>$token->token_key)); ?>
-		<?php echo $form->labelEx($company,'name'); ?>
+		<?php echo $form->label($company,'name'); ?>
 		<?php echo $form->textField($company,'name', array(
                                                                 'size'=>30,
                                                                 'maxlength'=>256, 
@@ -59,7 +55,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 	</div>
         
 	<div class="row">
-		<?php echo $form->labelEx($company,'email'); ?>
+		<?php echo $form->label($company,'email'); ?>
 		<?php echo $form->textField($company,'email',   array(
                                                                 'size'=>30,
                                                                 'maxlength'=>256,
@@ -69,7 +65,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($company,'industry_id'); ?>
+		<?php echo $form->label($company,'industry_id'); ?>
                 <?php echo $form->dropDownList($company, 'industry_id', CHtml::listData(Industry::model()->findAll(array('order'=>'Name')),'id','name'),
                                                             array(
                                                                 'prompt'=>'- Select industry -',
@@ -80,7 +76,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 	</div>
         
         <div class="row">
-                <?php echo $form->labelEx($company, "employees");?>
+                <?php echo $form->label($company, "employees");?>
 		<?php echo $form->dropDownList($company, 'employees', array_merge( range(1,9),range(10,100,10)), 
                                                             array(
                                                                 'rel'=>'tooltip',
@@ -123,6 +119,15 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                      )); ?></td>
                     <td><?php echo CHtml::textField('[salaries]yearly'); ?></td>
                     <td><?php echo $form->error($costBenefitItem_salaries,'[salaries]value'); ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $form->labelEx($costBenefitItem_sideExpenses,'Side expenses'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_sideExpenses,'[sideExpenses]value', array(
+                        'rel'=>'tooltip',
+                        'title'=>'Salary side expenses.'
+                     )); ?></td>
+                    <td><?php echo CHtml::textField('[sideExpenses]yearly'); ?></td>
+                    <td><?php echo $form->error($costBenefitItem_salaries,'[sideExpenses]value'); ?></td>
                 </tr>
                 <tr>
                     <td><?php echo $form->labelEx($costBenefitItem_loans,'Loans'); ?></td>
