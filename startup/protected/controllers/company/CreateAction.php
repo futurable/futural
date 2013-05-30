@@ -190,7 +190,7 @@ You have created a company in the Futurality learning environment.
 It can be found from https://futurality.fi
 
 Your company name is $company->name, and business id is $businessID. 
-Company id tag is $company->tag - you need it to login into right company.
+Company id tag is $company->tag - you need it to login into the right company.
 
 OpenERP account
 admin $OERPPassword
