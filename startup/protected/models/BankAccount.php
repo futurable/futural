@@ -56,7 +56,9 @@ class BankAccount extends ActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, iban, name, status, create_date, modify_date, bank_user_id, bank_bic_id, bank_interest_id, bank_currency_id, bank_account_type_id', 'safe', 'on'=>'search'),
-		);
+                        array('create_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
+                        array('modify_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'update'),
+                );
 	}
 
 	/**
