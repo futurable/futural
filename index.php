@@ -71,7 +71,7 @@ echo CommonFunctions::getDisclaimerDiv();
 echo "
 <div id='container'>
 	<div id='centered'>
-		<a href='bank' class='menuButton'><img src='bank/images/logo.png' alias='bank'/></a>
+		<a href='bank' class='menuButton'><img src='bank/css/img/futural_logo_bank.png' alias='bank'/></a>
 		<a href='tax' class='menuButton'><img src='tax/images/logo.png' alias='tax'/></a>
 	</div>
 </div><!-- /container -->";
