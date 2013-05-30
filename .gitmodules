@@ -4,3 +4,6 @@
 [submodule "yii"]
 	path = yii
 	url = git://github.com/yiisoft/yii.git
+[submodule "bank"]
+	path = bank
+	url = https://github.com/futurable/bank.git
