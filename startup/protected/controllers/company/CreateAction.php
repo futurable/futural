@@ -194,7 +194,7 @@ Company id tag is $company->tag - you need it to login into right company.
 
 OpenERP account
 admin $OERPPassword
-Log in from erp.futurality.fi/?db=$company->tag
+Log in from http://erp.futurality.fi/?db=$company->tag
 
 Bank account
 $company->tag $bankPassword
