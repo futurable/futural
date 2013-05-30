@@ -181,9 +181,9 @@ class CreateAction extends CAction
                         $bankSuccess = $bankAccount->save() AND $bankSuccess;
                         
                         if($bankSuccess){
-                            $transaction->commit();              
+                            $bankTransaction->commit();              
                         
-                        // Send login information to user
+                            // Send login information to user
 $message ="Welcome to Futurality!
 
 You have created a company in the Futurality learning environment.
@@ -210,11 +210,11 @@ This is automatically generated email. Do not reply this address.";
                             $controller->redirect(array('view','id'=>$company->id));
                         }
                         else{
-                            $transaction->rollback ();
+                            $bankTransaction->rollback ();
                         }
                     }
                     else{
-                        $transaction->rollBack();
+                        $transaction->rollback();
                     }
                     
                 }
