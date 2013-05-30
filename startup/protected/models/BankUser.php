@@ -46,6 +46,7 @@ class BankUser extends ActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, username, password, email, activkey, createtime, lastvisit, superuser, status', 'safe', 'on'=>'search'),
+                        array('createtime','default', 'value'=>new CDbExpression('UNIX_TIMESTAMP()'), 'setOnEmpty'=>false,'on'=>'insert'),
 		);
 	}
 
