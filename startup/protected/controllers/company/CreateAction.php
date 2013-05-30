@@ -174,11 +174,14 @@ class CreateAction extends CAction
                         
                         // Create bank account
                         $bankAccount = new BankAccount();
-                        
-                        // TODO: get branch number from conf
-                        $branchCode = 970300;
+                        $branchCode = 970300; // TODO: get branch number from conf
                         $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($branchCode);
                         $bankAccount->name = "Checking account";
+                        $bankAccount->bank_user_id = $bankUser->id;
+                        $bankSuccess = $bankAccount->save() AND $bankSuccess;
+                        
+                        if($bankSuccess){
+                            $transaction->commit();              
                         
                         // Send login information to user
 $message ="Welcome to Futurality!
@@ -201,10 +204,14 @@ Have fun!
 
 This is automatically generated email. Do not reply this address.";
                         
-                        mail($email, "Futurality account", $message);
-                        
-                        // Redirect to view
-                        $controller->redirect(array('view','id'=>$company->id));
+                            mail($email, "Futurality account", $message);
+
+                            // Redirect to view
+                            $controller->redirect(array('view','id'=>$company->id));
+                        }
+                        else{
+                            $transaction->rollback ();
+                        }
                     }
                     else{
                         $transaction->rollBack();
