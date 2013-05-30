@@ -17,8 +17,12 @@
  * The followings are the available model relations:
  * @property BankAccount[] $bankAccounts
  */
-class BankUser extends CActiveRecord
+class BankUser extends ActiveRecord
 {
+        public function getDbConnection()
+        {
+            return self::getBankDbConnection();
+        }
 	/**
 	 * @return string the associated database table name
 	 */
