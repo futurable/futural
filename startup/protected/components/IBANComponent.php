@@ -43,9 +43,12 @@ Class IBANComponent{
 	 * @param	int		$accountNumber
 	 * @return  string 	$IBAN
 	 */
-	public static function generateFinnishIBANaccount($branchCode, $accountNumber){
+	public static function generateFinnishIBANaccount($branchCode, $accountNumber = false){
 		$iban = false;
-
+                if($accountNumber == false){
+                    $accountNumber = BankAccount::model()->count(array('select'=>'id'));
+                }
+                
 		// Branch code is valid
 		if( Datavalidator::isPositiveIntValid($branchCode, 6) and
                     Datavalidator::isPositiveIntValid($accountNumber) and strlen($accountNumber) <= 7){ 
