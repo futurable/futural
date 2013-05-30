@@ -198,7 +198,7 @@ Log in from erp.futurality.fi/?db=$company->tag
 
 Bank account
 $company->tag $bankPassword
-Log in from http://futural.fi/bank/index.php/user/login/?company=$company->tag
+Log in from http://futural.fi/futural/bank/index.php/user/login/?company=$company->tag
 
 Have fun!
 
