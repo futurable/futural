@@ -7,6 +7,7 @@ class CreateAction extends CAction
 {
     public function run()
     {
+        // TODO: refactor the code (cut into subclassess / methods)
             $controller=$this->getController();
             
             $company=new Company;
@@ -149,11 +150,12 @@ class CreateAction extends CAction
                         // Create business ID
                         $businessID = CommonServices::createBusinessID();
                         
-                        // Create bank account
-                        $bankUser = new BankUser();
-                        $bankProfile = new BankProfile();
-                        $bankAccount = new BankAccount();
+                        /* 
+                         * Create bank user, profile and account
+                         */
                         
+                        // Create bank user
+                        $bankUser = new BankUser();
                         $bankUser->username = $company->tag;
                         $bankUser->email = $company->email;
                         $bankPassword = CommonServices::generatePassword();
@@ -163,6 +165,15 @@ class CreateAction extends CAction
                          // Start transaction
                         $bankTransaction = Yii::app()->dbbank->beginTransaction();
                         $bankSuccess = $bankUser->save();
+                        
+                        // Create bank profile
+                        $bankProfile = new BankProfile();
+                        $bankProfile->user_id = $bankUser->id;
+                        $bankProfile->company = $company->name;
+                        $bankSuccess = $bankProfile->save() AND $bankSuccess;
+                        
+                        // Create bank account
+                        $bankAccount = new BankAccount();
                         
                         // TODO: get branch number from conf
                         $branchCode = 970300;
