@@ -165,6 +165,15 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     <td><?php echo CHtml::textField('[health]yearly'); ?></td>
                     <td><?php echo $form->error($costBenefitItem_health,'[health]value'); ?></td>
                 </tr>
+                <tr>
+                    <td><?php echo $form->labelEx($costBenefitItem_other,'Other'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_other,'[other]value', array(
+                        'rel'=>'tooltip',
+                        'title'=>'Other expenses that does not fit in any spesific field.'
+                     )); ?></td>
+                    <td><?php echo CHtml::textField('[other]yearly'); ?></td>
+                    <td><?php echo $form->error($costBenefitItem_other,'[other]value'); ?></td>
+                </tr>
             </table>
         </div>
 
