@@ -10,6 +10,7 @@ $(document).ready(function(){
         updateCommunication();
         updateLoans();
         updateHealth();
+        updateOther();
     })
 
     $("#Company_employees").change(function(){
@@ -152,5 +153,10 @@ $(document).ready(function(){
     updateHealth = function(){
         $("#CostbenefitItem_health_value").val(0);
         $("#_healthyearly").val(0);
+    }
+    
+    updateOther = function(){
+        $("#CostbenefitItem_other_value").val(0);
+        $("#_otheryearly").val(0);
     }
 });
