@@ -175,7 +175,8 @@ class CreateAction extends CAction
                         // Create bank account
                         $bankAccount = new BankAccount();
                         $branchCode = 970300; // TODO: get branch number from conf
-                        $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($branchCode); 
+                        $bban = BBANComponent::generateFinnishBBANaccount($branchCode); 
+                        $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($bban); 
                         $bankAccount->name = "Checking account";
                         $bankAccount->bank_user_id = $bankUser->id;
                         $bankSuccess = $bankAccount->save() AND $bankSuccess;
@@ -183,7 +184,7 @@ class CreateAction extends CAction
                         if($bankSuccess){
                             $bankTransaction->commit();              
                         
-                            // Send login information to user
+// Send login information to user
 $message ="Welcome to Futurality!
 
 You have created a company in the Futurality learning environment.
@@ -193,15 +194,18 @@ Your company name is $company->name, and business id is $businessID.
 Company id tag is $company->tag - you need it to login into the right company.
 
 OpenERP account
-admin $OERPPassword
+UserID: admin 
+Password: $OERPPassword
 Log in from http://erp.futurality.fi/?db=$company->tag
 
 Bank account
-$company->tag $bankPassword
+UserID: $company->tag 
+Password: $bankPassword
 Log in from http://futural.fi/futural/bank/index.php/user/login/?company=$company->tag
 
 Have fun!
 
+--
 This is automatically generated email. Do not reply this address.";
                         
                             mail($email, "Futurality account", $message);
