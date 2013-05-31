@@ -163,19 +163,19 @@ $(document).ready(function(){
     }
     
     updateProfit = function(){
-        var sales =  $("#CostbenefitItem_sales_value").val();
-        var expenses =  $("#CostbenefitItem_expenses_value").val();
-        var salaries =  $("#CostbenefitItem_salaries_value").val();
-        var side =  $("#CostbenefitItem_sideExpenses_value").val();
-        var loans =  $("#CostbenefitItem_loans_value").val();
-        var rents =  $("#CostbenefitItem_rents_value").val();
-        var communication =  $("#CostbenefitItem_communication_value").val();
-        var health =  $("#CostbenefitItem_health_value").val();
-        var other =  $("#CostbenefitItem_other_value").val();
+        var turnover = Number($("#CostbenefitItem_turnover_value").val());
+        var expenses = Number($("#CostbenefitItem_expenses_value").val());
+        var salaries = Number($("#CostbenefitItem_salaries_value").val());
+        var side = Number($("#CostbenefitItem_sideExpenses_value").val());
+        var loans = Number($("#CostbenefitItem_loans_value").val());
+        var rents = Number($("#CostbenefitItem_rents_value").val());
+        var communication = Number($("#CostbenefitItem_communication_value").val());
+        var health = Number($("#CostbenefitItem_health_value").val());
+        var other = Number($("#CostbenefitItem_other_value").val());
         
-        var sum = sales-expenses-salaries-side-loans-rents-communication-health-other;
-        
-        $("#_profitmonthly").val(sum);
-        $("#_profityearly").val(sum*12);
+        var profit = turnover-expenses-salaries-side-loans-rents-communication-health-other;
+           
+        $("#_profitmonthly").val(profit);
+        $("#_profityearly").val(profit*12);
     }
 });
