@@ -4,6 +4,7 @@ $(document).ready(function(){
         updateIndustryDescription();
         updateSalaries();
         updateSideExpenses();
+        updateTurnover();
         updateExpenses();
         updateRents();
         updateCommunication();
@@ -11,7 +12,6 @@ $(document).ready(function(){
         updateHealth();
         updateOther();
         updateProfit();
-        updateTurnover();
     })
 
     $("#Company_employees").change(function(){
@@ -95,6 +95,16 @@ $(document).ready(function(){
         
         $("#CostbenefitItem_sideExpenses_value").val(expenses);
         $("#_sideExpensesyearly").val(expenses*12);
+    }
+    
+    updateTurnover = function(){
+        var industryId = $("#Company_industry_id").val();
+        var industrySetup = IndustrySetupArray[industryId];
+        
+        var turnover = industrySetup['turnover'];
+        
+        $("#CostbenefitItem_turnover_value").val(turnover);
+        $("#_turnoveryearly").val(turnover*12);
     }
     
     updateExpenses = function(){
