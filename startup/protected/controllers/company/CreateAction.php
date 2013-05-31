@@ -25,6 +25,7 @@ class CreateAction extends CAction
             $costBenefitItem_communication = new CostbenefitItem;
             $costBenefitItem_health = new CostbenefitItem;    
             $costBenefitItem_other = new CostbenefitItem;    
+            $costBenefitItem_sales = new CostbenefitItem;    
 
             // Decide the form step
             $company->form_step = $this->getFormStep();
@@ -77,6 +78,7 @@ class CreateAction extends CAction
                 $costBenefitItem_communication->attributes = $_POST['CostbenefitItem']['communication'];
                 $costBenefitItem_health->attributes = $_POST['CostbenefitItem']['health'];
                 $costBenefitItem_other->attributes = $_POST['CostbenefitItem']['other'];
+                $costBenefitItem_sales->attributes = $_POST['CostbenefitItem']['other'];
                 
                 // Validate all models
                 $modelsValid = $company->validate()
@@ -88,7 +90,8 @@ class CreateAction extends CAction
                     AND $costBenefitItem_rents->validate()
                     AND $costBenefitItem_communication->validate()
                     AND $costBenefitItem_health->validate()
-                    AND $costBenefitItem_other->validate();
+                    AND $costBenefitItem_other->validate()
+                    AND $costBenefitItem_sales->validate();
                 
                 if($modelsValid)
                 {
@@ -140,6 +143,10 @@ class CreateAction extends CAction
                     $costBenefitItem_other->costbenefit_calculation_id = $costBenefitCalculation->id;
                     $costBenefitItem_other->costbenefit_item_type_id = 9;
                     $CBCSuccess = $costBenefitItem_other->save() AND $CBCSuccess;
+                    
+                    $costBenefitItem_sales->costbenefit_calculation_id = $costBenefitCalculation->id;
+                    $costBenefitItem_sales->costbenefit_item_type_id = 10;
+                    $CBCSuccess = $costBenefitItem_sales->save() AND $CBCSuccess;
                     
                     // Commit or rollback
                     $allSuccessful = $companySuccess AND $CBCSuccess;
@@ -246,6 +253,7 @@ This is automatically generated email. Do not reply this address.";
                     'costBenefitItem_communication'=>$costBenefitItem_communication,
                     'costBenefitItem_health'=>$costBenefitItem_health,
                     'costBenefitItem_other'=>$costBenefitItem_other,
+                    'costBenefitItem_sales'=>$costBenefitItem_sales,
             ));
     }
     
