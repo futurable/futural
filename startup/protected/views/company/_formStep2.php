@@ -102,15 +102,6 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     <td><?php echo CHtml::textField('[turnover]yearly'); ?></td>
                     <td><?php echo $form->error($costBenefitItem_turnover,'[turnover]value'); ?></td>
                 </tr>
-                <tr class='green'>
-                    <td><?php echo $form->labelEx($costBenefitItem_sales,'Sales'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_sales,'[sales]value', array(
-                        'rel'=>'tooltip',
-                        'title'=>'Total monthly sales.'
-                     )); ?> </td>
-                    <td><?php echo CHtml::textField('[sales]yearly'); ?></td>
-                    <td><?php echo $form->error($costBenefitItem_sales,'[sales]value'); ?></td>
-                </tr>
                 <tr class='red'>
                     <td><?php echo $form->labelEx($costBenefitItem_expenses,'Expenses'); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_expenses,'[expenses]value', array(
