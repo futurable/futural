@@ -17,6 +17,7 @@ $(document).ready(function(){
     $("#Company_employees").change(function(){
         updateSalaries();
         updateSideExpenses();
+        updateProfit();
     })
     
     $("#costBenefitCalculationTable input").keyup(function(){
