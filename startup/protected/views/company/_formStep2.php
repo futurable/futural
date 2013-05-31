@@ -93,7 +93,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     <th>Yearly (&euro;)</th>
                     <th></th>
                 </tr>
-                <tr class='blue'>
+                <tr class='green'>
                     <td><?php echo $form->labelEx($costBenefitItem_turnover,'Turnover'); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_turnover,'[turnover]value', array(
                         'rel'=>'tooltip',
