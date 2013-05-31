@@ -10,6 +10,8 @@ $(document).ready(function(){
         updateCommunication();
         updateLoans();
         updateHealth();
+        updateOther();
+        updateProfit();
     })
 
     $("#Company_employees").change(function(){
@@ -19,6 +21,7 @@ $(document).ready(function(){
     
     $("#costBenefitCalculationTable input").keyup(function(){
         updateCalculationFields($(this));
+        updateProfit(this);
     });
     
     /**
@@ -152,5 +155,27 @@ $(document).ready(function(){
     updateHealth = function(){
         $("#CostbenefitItem_health_value").val(0);
         $("#_healthyearly").val(0);
+    }
+    
+    updateOther = function(){
+        $("#CostbenefitItem_other_value").val(0);
+        $("#_otheryearly").val(0);
+    }
+    
+    updateProfit = function(){
+        var turnover = Number($("#CostbenefitItem_turnover_value").val());
+        var expenses = Number($("#CostbenefitItem_expenses_value").val());
+        var salaries = Number($("#CostbenefitItem_salaries_value").val());
+        var side = Number($("#CostbenefitItem_sideExpenses_value").val());
+        var loans = Number($("#CostbenefitItem_loans_value").val());
+        var rents = Number($("#CostbenefitItem_rents_value").val());
+        var communication = Number($("#CostbenefitItem_communication_value").val());
+        var health = Number($("#CostbenefitItem_health_value").val());
+        var other = Number($("#CostbenefitItem_other_value").val());
+        
+        var profit = turnover-expenses-salaries-side-loans-rents-communication-health-other;
+           
+        $("#_profitmonthly").val(profit);
+        $("#_profityearly").val(profit*12);
     }
 });

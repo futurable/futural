@@ -24,6 +24,7 @@ class CreateAction extends CAction
             $costBenefitItem_rents = new CostbenefitItem;
             $costBenefitItem_communication = new CostbenefitItem;
             $costBenefitItem_health = new CostbenefitItem;    
+            $costBenefitItem_other = new CostbenefitItem;    
 
             // Decide the form step
             $company->form_step = $this->getFormStep();
@@ -75,6 +76,7 @@ class CreateAction extends CAction
                 $costBenefitItem_rents->attributes = $_POST['CostbenefitItem']['rents'];
                 $costBenefitItem_communication->attributes = $_POST['CostbenefitItem']['communication'];
                 $costBenefitItem_health->attributes = $_POST['CostbenefitItem']['health'];
+                $costBenefitItem_other->attributes = $_POST['CostbenefitItem']['other'];
                 
                 // Validate all models
                 $modelsValid = $company->validate()
@@ -85,7 +87,8 @@ class CreateAction extends CAction
                     AND $costBenefitItem_loans->validate()
                     AND $costBenefitItem_rents->validate()
                     AND $costBenefitItem_communication->validate()
-                    AND $costBenefitItem_health->validate();
+                    AND $costBenefitItem_health->validate()
+                    AND $costBenefitItem_other->validate();
                 
                 if($modelsValid)
                 {
@@ -134,6 +137,10 @@ class CreateAction extends CAction
                     $costBenefitItem_sideExpenses->costbenefit_item_type_id = 8;
                     $CBCSuccess = $costBenefitItem_sideExpenses->save() AND $CBCSuccess;
                     
+                    $costBenefitItem_other->costbenefit_calculation_id = $costBenefitCalculation->id;
+                    $costBenefitItem_other->costbenefit_item_type_id = 9;
+                    $CBCSuccess = $costBenefitItem_other->save() AND $CBCSuccess;
+                    
                     // Commit or rollback
                     $allSuccessful = $companySuccess AND $CBCSuccess;
                     if($allSuccessful){
@@ -175,7 +182,8 @@ class CreateAction extends CAction
                         // Create bank account
                         $bankAccount = new BankAccount();
                         $branchCode = 970300; // TODO: get branch number from conf
-                        $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($branchCode); 
+                        $bban = BBANComponent::generateFinnishBBANaccount($branchCode); 
+                        $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($bban); 
                         $bankAccount->name = "Checking account";
                         $bankAccount->bank_user_id = $bankUser->id;
                         $bankSuccess = $bankAccount->save() AND $bankSuccess;
@@ -183,7 +191,7 @@ class CreateAction extends CAction
                         if($bankSuccess){
                             $bankTransaction->commit();              
                         
-                            // Send login information to user
+// Send login information to user
 $message ="Welcome to Futurality!
 
 You have created a company in the Futurality learning environment.
@@ -193,15 +201,18 @@ Your company name is $company->name, and business id is $businessID.
 Company id tag is $company->tag - you need it to login into the right company.
 
 OpenERP account
-admin $OERPPassword
+UserID: admin 
+Password: $OERPPassword
 Log in from http://erp.futurality.fi/?db=$company->tag
 
 Bank account
-$company->tag $bankPassword
+UserID: $company->tag 
+Password: $bankPassword
 Log in from http://futural.fi/futural/bank/index.php/user/login/?company=$company->tag
 
 Have fun!
 
+--
 This is automatically generated email. Do not reply this address.";
                         
                             mail($email, "Futurality account", $message);
@@ -234,6 +245,7 @@ This is automatically generated email. Do not reply this address.";
                     'costBenefitItem_rents'=>$costBenefitItem_rents,
                     'costBenefitItem_communication'=>$costBenefitItem_communication,
                     'costBenefitItem_health'=>$costBenefitItem_health,
+                    'costBenefitItem_other'=>$costBenefitItem_other,
             ));
     }
     

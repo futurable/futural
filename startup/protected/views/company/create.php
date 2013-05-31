@@ -22,6 +22,7 @@ elseif($company->form_step == 2) echo $this->renderPartial('_formStep2',
             'costBenefitItem_rents'=>$costBenefitItem_rents,
             'costBenefitItem_communication'=>$costBenefitItem_communication,
             'costBenefitItem_health'=>$costBenefitItem_health,
+            'costBenefitItem_other'=>$costBenefitItem_other,
         ));
 else echo "Error while deciding form step";
 
