@@ -183,7 +183,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
         </div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($company->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>"Create")); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
