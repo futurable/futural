@@ -147,12 +147,13 @@ class CreateAction extends CAction
                         $transaction->commit();
                         
                         // Create OpenERP database
+                        $email = $company->email;
                         $OERPPassword = CommonServices::generatePassword();
-                        $cmd = " '$company->tag' '$company->name' '$OERPPassword'";
+                        $cmd = " '$company->tag' '$company->name' '$OERPPassword' '$email'";
                         $shellCmd = escapeshellcmd($cmd);
                         $scriptFile = Yii::app()->basePath."/commands/shell/createOpenERPCompany.sh";
                         $output = exec("sh ".$scriptFile.$shellCmd);
-                        $email = $company->email;
+                        
                         
                         // Create business ID
                         $businessID = CommonServices::createBusinessID();
