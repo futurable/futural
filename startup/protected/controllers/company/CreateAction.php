@@ -184,7 +184,7 @@ class CreateAction extends CAction
                         $bankAccount = new BankAccount();
                         $branchCode = 970300; // TODO: get branch number from conf
                         $bban = BBANComponent::generateFinnishBBANaccount($branchCode); 
-                        $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($bban); 
+                        $bankAccount->iban = IBANComponent::generateFinnishIBANaccount($branchCode, $bban); 
                         $bankAccount->name = "Checking account";
                         $bankAccount->bank_user_id = $bankUser->id;
                         $bankSuccess = $bankAccount->save() AND $bankSuccess;
