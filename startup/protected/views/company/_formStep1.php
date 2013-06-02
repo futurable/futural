@@ -19,7 +19,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Verify'); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>"Verify")); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
