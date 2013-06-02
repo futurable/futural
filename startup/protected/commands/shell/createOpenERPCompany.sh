@@ -8,6 +8,7 @@ MAILTO=root
 TAG=$1
 NAME=$2
 PW=$3
+EMAIL=$4
 
 DB=$TAG
 TEMPLATE="protected/commands/sql/futural_template.sql"
@@ -20,7 +21,7 @@ cp $TEMPLATE $INPUTFILE
 sed -i "s/companyName/${NAME}/g" $INPUTFILE
 sed -i "s/companyTagline/The best there is \- ${NAME}/g" $INPUTFILE
 sed -i "s/companyWebsite/http\:\/\/${TAG}.com/g" $INPUTFILE
-sed -i "s/companyEmail/info\@${TAG}.com/g" $INPUTFILE
+sed -i "s/companyEmail/${EMAIL}/g" $INPUTFILE
 sed -i "s/companyPassword/${PW}/g" $INPUTFILE
 
 psql -h erp.futurality.fi -U openerp -d postgres -c "CREATE DATABASE ${DB}"
