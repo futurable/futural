@@ -17,6 +17,7 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'TokenKey_\'{value}\'_AlreadyUsedOn_{formattedDate}' => 'Token key \'{value}\' is already used on {formattedDate}',
   'CreateDate' => 'Create date',
   'ExpirationDate' => 'Expiration date',
   'ID' => 'ID',
