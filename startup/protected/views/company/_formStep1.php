@@ -9,17 +9,16 @@
     
     <?php echo $form->errorSummary($token); ?>
     
-    <p>Please give a token key:</p>
-    <p class="note">Each token key can be used only once.</p>
+    <p><?php echo Yii::t('Company', 'PleaseGiveATokenKey'); ?>:</p>
+    <p class="note"><?php echo Yii::t('Company', 'EachTokenKeyCanBeUsedOnlyOnce'); ?>.</p>
 
 	<div class="row">
 		<?php echo $form->labelEx($token,'token_key'); ?>
 		<?php echo $form->textField($token,'token_key'); ?>
-		<?php echo $form->error($token,'token_key'); ?>
 	</div>
 
 	<div class="row buttons">
-        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>"Verify")); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Yii::t('Company', 'Verify') )); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
