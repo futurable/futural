@@ -70,7 +70,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 
 	<div class="row">
 		<?php echo $form->label($company,'industry_id'); ?>
-        <?php echo $form->dropDownList($company, 'industry_id', CHtml::listData(Industry::model()->findAll(array('order'=>'Name')),'id','name'),
+        <?php echo $form->dropDownList($company, 'industry_id', $this->getIndustryDropDown(),
             array(
                 'prompt'=> "- ".Yii::t('Company', 'SelectIndustry')." -",
                 'rel'=>'tooltip',
