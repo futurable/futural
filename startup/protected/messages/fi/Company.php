@@ -57,4 +57,6 @@ return array (
   'Turnover' => 'Liikevaihto',
   'Verify' => 'Tarkista',
   'Yearly' => 'Vuodessa',
+  'computer-assembly' => 'Tietokoneiden kokoonpano',
+  'computer-retail' => 'Tietokoneiden jälleenmyynti',
 );
