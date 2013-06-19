@@ -17,6 +17,7 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'TokenKey_\'{value}\'_AlreadyUsedOn_{formattedDate}' => 'Perustamisavain \'{value}\' on jo käytetty {formattedDate}',
   'CreateDate' => 'Luontipäivä',
   'ExpirationDate' => 'Erääntymispäivä',
   'ID' => 'ID',
