@@ -172,52 +172,92 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 </tr>
                 
                 <tr class='red'>
+                    <?php $tooltip = Yii::t('Company', 'ToolTipLoans'); ?>
                     <td><?php echo $form->labelEx($costBenefitItem_loans,'Loans'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_loans,'[loans]value', array(
-                        'rel'=>'tooltip',
-                        'title'=>'Loan costs. Includes service costs, interest and instalments.'
-                     )); ?></td>
-                    <td><?php echo CHtml::textField('[loans]yearly'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_loans,'[loans]value', 
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip
+                        )); ?>
+                    </td>
+                    <td><?php echo CHtml::textField('[loans]yearly', false,
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip 
+                        )); ?>
+                    </td>
                     <td><?php echo $form->error($costBenefitItem_loans,'[loans]value'); ?></td>
                 </tr>
                 
                 <tr class='red'>
+                    <?php $tooltip = Yii::t('Company', 'ToolTipRents'); ?>
                     <td><?php echo $form->labelEx($costBenefitItem_rents,'Rents'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_rents,'[rents]value', array(
-                        'rel'=>'tooltip',
-                        'title'=>'Total rents. Includes office rent and possible warehouse rents'
-                     )); ?></td>
-                    <td><?php echo CHtml::textField('[rents]yearly'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_rents,'[rents]value', 
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip
+                        )); ?>
+                    </td>
+                    <td><?php echo CHtml::textField('[rents]yearly', false,
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip 
+                        )); ?>
+                    </td>
                     <td><?php echo $form->error($costBenefitItem_rents,'[rents]value'); ?></td>
                 </tr>
                 
                 <tr class='red'>
+                    <?php $tooltip = Yii::t('Company', 'ToolTipCommunication'); ?>
                     <td><?php echo $form->labelEx($costBenefitItem_communication,'Communication'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_communication,'[communication]value', array(
-                        'rel'=>'tooltip',
-                        'title'=>'Company communications. Ex. phones, data connections. Does not include marketing costs.'
-                     )); ?></td>
-                    <td><?php echo CHtml::textField('[communication]yearly'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_communication,'[communication]value', 
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip
+                        )); ?>
+                    </td>
+                    <td><?php echo CHtml::textField('[communication]yearly', false,
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip 
+                        )); ?>
+                    </td>
                     <td><?php echo $form->error($costBenefitItem_communication,'[communication]value'); ?></td>
                 </tr>
                 
                 <tr class='red'>
+                    <?php $tooltip = Yii::t('Company', 'ToolTipHealth'); ?>
                     <td><?php echo $form->labelEx($costBenefitItem_health,'Health'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_health,'[health]value', array(
-                        'rel'=>'tooltip',
-                        'title'=>'Mandatory or voluntary employee health plan costs.'
-                     )); ?></td>
-                    <td><?php echo CHtml::textField('[health]yearly'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_health,'[health]value', 
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip
+                        )); ?>
+                    </td>
+                    <td><?php echo CHtml::textField('[health]yearly', false,
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip 
+                        )); ?>
+                    </td>
                     <td><?php echo $form->error($costBenefitItem_health,'[health]value'); ?></td>
                 </tr>
                 
                 <tr class='red'>
+                    <?php $tooltip = Yii::t('Company', 'ToolTipOther'); ?>
                     <td><?php echo $form->labelEx($costBenefitItem_other,'Other'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_other,'[other]value', array(
-                        'rel'=>'tooltip',
-                        'title'=>'Other expenses that does not fit in any spesific field.'
-                     )); ?></td>
-                    <td><?php echo CHtml::textField('[other]yearly'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_other,'[other]value', 
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip
+                        )); ?>
+                    </td>
+                    <td><?php echo CHtml::textField('[other]yearly', false,
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip 
+                        )); ?>
+                    </td>
                     <td><?php echo $form->error($costBenefitItem_other,'[other]value'); ?></td>
                 </tr>
                 
