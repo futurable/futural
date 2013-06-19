@@ -71,14 +71,14 @@ class TokenKey extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'token_key' => 'Token Key',
-			'lifetime' => 'Lifetime',
-			'create_date' => 'Create Date',
-			'reclaim_date' => 'Reclaim Date',
-			'expiration_date' => 'Expiration Date',
-			'token_customer_id' => 'Token Customer',
-			'token_setup_id' => 'Token Setup',
+			'id' => Yii::t('TokenKey', 'ID'),
+			'token_key' => Yii::t('TokenKey', 'TokenKey'),
+			'lifetime' => Yii::t('TokenKey', 'Lifetime'),
+			'create_date' => Yii::t('TokenKey', 'CreateDate'),
+			'reclaim_date' => Yii::t('TokenKey', 'ReclaimDate'),
+			'expiration_date' => Yii::t('TokenKey', 'ExpirationDate'),
+			'token_customer_id' => Yii::t('TokenKey', 'TokenCustomer'),
+			'token_setup_id' => Yii::t('TokenKey', 'TokenSetup'),
 		);
 	}
 
