@@ -170,6 +170,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     </td>
                     <td><?php echo $form->error($costBenefitItem_salaries,'[sideExpenses]value'); ?></td>
                 </tr>
+                
                 <tr class='red'>
                     <td><?php echo $form->labelEx($costBenefitItem_loans,'Loans'); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_loans,'[loans]value', array(
@@ -179,6 +180,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     <td><?php echo CHtml::textField('[loans]yearly'); ?></td>
                     <td><?php echo $form->error($costBenefitItem_loans,'[loans]value'); ?></td>
                 </tr>
+                
                 <tr class='red'>
                     <td><?php echo $form->labelEx($costBenefitItem_rents,'Rents'); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_rents,'[rents]value', array(
@@ -188,6 +190,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     <td><?php echo CHtml::textField('[rents]yearly'); ?></td>
                     <td><?php echo $form->error($costBenefitItem_rents,'[rents]value'); ?></td>
                 </tr>
+                
                 <tr class='red'>
                     <td><?php echo $form->labelEx($costBenefitItem_communication,'Communication'); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_communication,'[communication]value', array(
@@ -197,6 +200,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     <td><?php echo CHtml::textField('[communication]yearly'); ?></td>
                     <td><?php echo $form->error($costBenefitItem_communication,'[communication]value'); ?></td>
                 </tr>
+                
                 <tr class='red'>
                     <td><?php echo $form->labelEx($costBenefitItem_health,'Health'); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_health,'[health]value', array(
@@ -206,6 +210,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     <td><?php echo CHtml::textField('[health]yearly'); ?></td>
                     <td><?php echo $form->error($costBenefitItem_health,'[health]value'); ?></td>
                 </tr>
+                
                 <tr class='red'>
                     <td><?php echo $form->labelEx($costBenefitItem_other,'Other'); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_other,'[other]value', array(
@@ -215,6 +220,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     <td><?php echo CHtml::textField('[other]yearly'); ?></td>
                     <td><?php echo $form->error($costBenefitItem_other,'[other]value'); ?></td>
                 </tr>
+                
                 <tr class='profit'>
                     <td>Profit</td>
                     <td><?php echo CHtml::textField('[profit]monthly'); ?></td>
