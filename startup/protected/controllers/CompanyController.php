@@ -144,4 +144,14 @@ class CompanyController extends Controller
 			Yii::app()->end();
 		}
 	}
+    
+    public function getIndustryDropDown(){
+        $record=Industry::model()->findAll();
+
+        $industryDropdown = array();
+        foreach($record as $industry){
+            $industryDropdown[$industry->id] = Yii::t('Company', $industry->name);
+        }
+        return $industryDropdown;
+    }
 }
