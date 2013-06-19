@@ -90,18 +90,17 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 	</div>
         
         <div class="row">
-            <p>Cost-benefit calculation</p>
             <table id='costBenefitCalculationTable'>
                 <tr>
                     <th></th>
-                    <th>Monthly (&euro;)</th>
-                    <th>Yearly (&euro;)</th>
+                    <th><?php echo  Yii::t('Company', 'Monthly') ?> (&euro;)</th>
+                    <th><?php echo  Yii::t('Company', 'Yearly') ?> (&euro;)</th>
                     <th></th>
                 </tr>
 
                 <tr class='green'>
                     <?php $tooltip = Yii::t('Company', 'ToolTipTurnover'); ?>
-                    <td><?php echo $form->labelEx($costBenefitItem_turnover,'Turnover'); ?></td>
+                    <td><?php echo $form->labelEx($costBenefitItem_turnover, Yii::t('Company', 'Turnover')); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_turnover,'[turnover]value', 
                             array(
                                 'rel'=>'tooltip',
@@ -119,7 +118,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 
                 <tr class='red'>
                     <?php $tooltip = Yii::t('Company', 'ToolTipExpenses'); ?>
-                    <td><?php echo $form->labelEx($costBenefitItem_expenses,'Expenses'); ?></td>
+                    <td><?php echo $form->labelEx($costBenefitItem_expenses, Yii::t('Company', 'Expenses')); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_expenses,'[expenses]value', 
                         array(
                             'rel'=>'tooltip',
@@ -137,7 +136,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 
                 <tr class='red'>
                     <?php $tooltip = Yii::t('Company', 'ToolTipSalaries'); ?>
-                    <td><?php echo $form->labelEx($costBenefitItem_salaries,'Salaries'); ?></td>
+                    <td><?php echo $form->labelEx($costBenefitItem_salaries, Yii::t('Company', 'Salaries')); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_salaries,'[salaries]value', 
                         array(
                             'rel'=>'tooltip',
@@ -155,7 +154,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 
                 <tr class='red'>
                     <?php $tooltip = Yii::t('Company', 'ToolTipSideExpenses'); ?>
-                    <td><?php echo $form->labelEx($costBenefitItem_sideExpenses,'Side expenses'); ?></td>
+                    <td><?php echo $form->labelEx($costBenefitItem_sideExpenses, Yii::t('Company', 'SideExpenses')); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_sideExpenses,'[sideExpenses]value', 
                         array(
                             'rel'=>'tooltip',
@@ -173,7 +172,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 
                 <tr class='red'>
                     <?php $tooltip = Yii::t('Company', 'ToolTipLoans'); ?>
-                    <td><?php echo $form->labelEx($costBenefitItem_loans,'Loans'); ?></td>
+                    <td><?php echo $form->labelEx($costBenefitItem_loans, Yii::t('Company', 'Loans')); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_loans,'[loans]value', 
                         array(
                             'rel'=>'tooltip',
@@ -191,7 +190,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 
                 <tr class='red'>
                     <?php $tooltip = Yii::t('Company', 'ToolTipRents'); ?>
-                    <td><?php echo $form->labelEx($costBenefitItem_rents,'Rents'); ?></td>
+                    <td><?php echo $form->labelEx($costBenefitItem_rents, Yii::t('Company', 'Rents')); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_rents,'[rents]value', 
                         array(
                             'rel'=>'tooltip',
@@ -209,7 +208,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 
                 <tr class='red'>
                     <?php $tooltip = Yii::t('Company', 'ToolTipCommunication'); ?>
-                    <td><?php echo $form->labelEx($costBenefitItem_communication,'Communication'); ?></td>
+                    <td><?php echo $form->labelEx($costBenefitItem_communication, Yii::t('Company', 'Communication')); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_communication,'[communication]value', 
                         array(
                             'rel'=>'tooltip',
@@ -227,7 +226,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 
                 <tr class='red'>
                     <?php $tooltip = Yii::t('Company', 'ToolTipHealth'); ?>
-                    <td><?php echo $form->labelEx($costBenefitItem_health,'Health'); ?></td>
+                    <td><?php echo $form->labelEx($costBenefitItem_health, Yii::t('Company', 'Health')); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_health,'[health]value', 
                         array(
                             'rel'=>'tooltip',
@@ -245,7 +244,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 
                 <tr class='red'>
                     <?php $tooltip = Yii::t('Company', 'ToolTipOther'); ?>
-                    <td><?php echo $form->labelEx($costBenefitItem_other,'Other'); ?></td>
+                    <td><?php echo $form->labelEx($costBenefitItem_other, Yii::t('Company', 'Other')); ?></td>
                     <td><?php echo $form->textField($costBenefitItem_other,'[other]value', 
                         array(
                             'rel'=>'tooltip',
@@ -263,7 +262,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 
                 <tr class='profit'>
                     <?php $tooltip = Yii::t('Company', 'ToolTipProfit'); ?>
-                    <td>Profit</td>
+                    <td><?php echo Yii::t('Company', 'Profit') ?></td>
                     <td><?php echo CHtml::textField('[profit]monthly', false,
                         array(
                             'rel'=>'tooltip',
