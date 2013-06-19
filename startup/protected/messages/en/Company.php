@@ -17,6 +17,10 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'SelectIndustry' => 'Select industry',
+  'TooltipEmail' => 'Company email. You will receive the account information here.',
+  'TooltipCompanyName' => 'The company name. Stand out - Be creative!',
+  'TooltipIndustry' => 'The main industry of your company. It will be used to give you guideline values for your cost-benefit calculation.',
   'CreateCompany' => 'Create a company',
   'EachTokenKeyCanBeUsedOnlyOnce' => 'Each token key can be used only once',
   'Email' => 'Email',
