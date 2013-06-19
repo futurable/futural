@@ -10,7 +10,7 @@
 // Get industry descriptions
 $industries = Industry::model()->findAll(array('order'=>'Name'));
 foreach($industries AS $industry){
-    $IndustryDescriptionArray[$industry->id] = $industry->description;
+    $IndustryDescriptionArray[$industry->id] = Yii::t('Industry', $industry->description);
 }
 $IndustryDescriptionJSON = CJSON::encode($IndustryDescriptionArray);
 $IndustryDescriptionJS = "var IndustryDescriptionArray = $IndustryDescriptionJSON;\n";
@@ -77,7 +77,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 'title'=>Yii::t('Company', 'TooltipIndustry')
                 )); ?>
 		<?php echo $form->error($company,'industry_id'); ?>
-                <span id="Company_industry_description"></span>
+        <span id="Company_industry_description"></span>
 	</div>
         
         <div class="row">
