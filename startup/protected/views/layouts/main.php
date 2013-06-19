@@ -37,7 +37,8 @@
 		<div id="logo">
                     <?php echo CHtml::image(Yii::app()->request->baseUrl.'/css/img/futural-logo-startup_h128.png'); ?>
                     <?php //echo CHtml::encode(Yii::app()->name); ?>
-                </div>
+        </div>
+        <?php $this->widget('application.components.LangBox'); ?>
 	</div><!-- header -->
         
 	<div id="mainmenu">
