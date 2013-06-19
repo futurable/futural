@@ -17,10 +17,17 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'SelectIndustry' => 'Valitse toimiala',
-  'TooltipEmail' => 'Yrityksen sähköpostiosoite. Saat tilisi tiedot tähän sähköpostiin.',
-  'TooltipCompanyName' => 'Yrityksen nimi. Erotu joukosta - Ole luova!',
-  'TooltipIndustry' => 'Yrityksen päätoimiala. Tämän perusteella annetaan ohjearvot liiketoimintasuunnitelmaa varten.',
+  'ToolTipCommunication' => 'Yrityksen yhteydet ulkomaailmaan. Sisältää puhelimet, internetin, yms. Ei sisällä markkinointikuluja',
+  'ToolTipExpenses' => 'Hankkimiskustannukset. Tämä sisältää esim. lopputuotteen kokoonpanoa varten ostettavat osat.',
+  'ToolTipHealth' => 'Pakolliset ja vapaaehtoiset sairasvakuutukset ja muut työntekijöiden terveydenhuoltoon suunnatut kulut.',
+  'ToolTipLoans' => '',
+  'ToolTipOther' => '',
+  'ToolTipProfit' => '',
+  'ToolTipRents' => '',
+  'ToolTipSalaries' => '',
+  'ToolTipSideExpenses' => '',
+  'ToolTipTurnover' => 'Myyntituotot, eli yritykselle tuleva raha. Ei sisällä lainoja.',
+  'TooltipEmployees' => 'Yrityksen työntekijöiden määrä.',
   'CreateCompany' => 'Luo yritys',
   'EachTokenKeyCanBeUsedOnlyOnce' => 'Jokaisen  perustamisavaimen voi käyttää vain kerran',
   'Email' => 'Sähköposti',
@@ -30,7 +37,11 @@ return array (
   'Industry' => 'Toimiala',
   'Name' => 'Nimi',
   'PleaseGiveATokenKey' => 'Ole hyvä, ja anna perustamisavain',
+  'SelectIndustry' => 'Valitse toimiala',
   'Tag' => 'Tunnus',
   'TokenKey' => 'Perustamisavain',
+  'TooltipCompanyName' => 'Yrityksen nimi. Erotu joukosta - Ole luova!',
+  'TooltipEmail' => 'Yrityksen sähköpostiosoite. Saat tilisi tiedot tähän sähköpostiin.',
+  'TooltipIndustry' => 'Yrityksen päätoimiala. Tämän perusteella annetaan ohjearvot liiketoimintasuunnitelmaa varten.',
   'Verify' => 'Tarkista',
 );
