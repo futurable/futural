@@ -17,6 +17,10 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'SelectIndustry' => 'Valitse toimiala',
+  'TooltipEmail' => 'Yrityksen sähköpostiosoite. Saat tilisi tiedot tähän sähköpostiin.',
+  'TooltipCompanyName' => 'Yrityksen nimi. Erotu joukosta - Ole luova!',
+  'TooltipIndustry' => 'Yrityksen päätoimiala. Tämän perusteella annetaan ohjearvot liiketoimintasuunnitelmaa varten.',
   'CreateCompany' => 'Luo yritys',
   'EachTokenKeyCanBeUsedOnlyOnce' => 'Jokaisen  perustamisavaimen voi käyttää vain kerran',
   'Email' => 'Sähköposti',
