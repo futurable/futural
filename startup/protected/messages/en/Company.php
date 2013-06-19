@@ -57,4 +57,6 @@ return array (
   'Turnover' => 'Turnover',
   'Verify' => 'Verify',
   'Yearly' => 'Yearly',
+  'computer-assembly' => 'Computer assembly',
+  'computer-retail' => 'Computer retail',
 );
