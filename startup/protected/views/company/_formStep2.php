@@ -136,21 +136,38 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 </tr>
                 
                 <tr class='red'>
+                    <?php $tooltip = Yii::t('Company', 'ToolTipSalaries'); ?>
                     <td><?php echo $form->labelEx($costBenefitItem_salaries,'Salaries'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_salaries,'[salaries]value', array(
-                        'rel'=>'tooltip',
-                        'title'=>'Total employee salaries without side expenses.'
-                     )); ?></td>
-                    <td><?php echo CHtml::textField('[salaries]yearly'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_salaries,'[salaries]value', 
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip
+                        )); ?>
+                    </td>
+                    <td><?php echo CHtml::textField('[salaries]yearly', false,
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip 
+                        )); ?>
+                    </td>
                     <td><?php echo $form->error($costBenefitItem_salaries,'[salaries]value'); ?></td>
                 </tr>
+                
                 <tr class='red'>
+                    <?php $tooltip = Yii::t('Company', 'ToolTipSideExpenses'); ?>
                     <td><?php echo $form->labelEx($costBenefitItem_sideExpenses,'Side expenses'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_sideExpenses,'[sideExpenses]value', array(
-                        'rel'=>'tooltip',
-                        'title'=>'Salary side expenses.'
-                     )); ?></td>
-                    <td><?php echo CHtml::textField('[sideExpenses]yearly'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_sideExpenses,'[sideExpenses]value', 
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip
+                        )); ?>
+                    </td>
+                    <td><?php echo CHtml::textField('[sideExpenses]yearly', false,
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip 
+                        )); ?>
+                    </td>
                     <td><?php echo $form->error($costBenefitItem_salaries,'[sideExpenses]value'); ?></td>
                 </tr>
                 <tr class='red'>
