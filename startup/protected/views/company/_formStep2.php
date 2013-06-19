@@ -280,7 +280,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
         </div>
 
 	<div class="row buttons">
-        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>"Create")); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Yii::t('Company', 'Create'))); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
