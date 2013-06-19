@@ -3,7 +3,7 @@
 /* @var $model Company */
 ?>
 
-<h1>Create Company</h1>
+<h1><?php echo Yii::t('Company', 'CreateCompany'); ?></h1>
 
 <?php 
 
