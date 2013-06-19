@@ -85,7 +85,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 		<?php echo $form->dropDownList($company, 'employees', array_merge( range(1,9),range(10,100,10)), 
             array(
                 'rel'=>'tooltip',
-                'title'=>Yii::t('Company', 'TooltipIndustry')
+                'title'=>Yii::t('Company', 'TooltipEmployees')
             )); ?>
 	</div>
         
@@ -99,20 +99,30 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                     <th></th>
                 </tr>
                 <tr class='green'>
+                    <?php $tooltip = Yii::t('Company', 'ToolTipTurnover'); ?>
                     <td><?php echo $form->labelEx($costBenefitItem_turnover,'Turnover'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_turnover,'[turnover]value', array(
-                        'rel'=>'tooltip',
-                        'title'=>'Total monthly turnover.'
-                     )); ?> </td>
-                    <td><?php echo CHtml::textField('[turnover]yearly'); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_turnover,'[turnover]value', 
+                            array(
+                                'rel'=>'tooltip',
+                                'title'=>$tooltip
+                            )); ?> 
+                    </td>
+                    <td><?php echo CHtml::textField('[turnover]yearly', false,
+                            array(
+                                'rel'=>'tooltip',
+                                'title'=>$tooltip
+                            )); ?>
+                    </td>
                     <td><?php echo $form->error($costBenefitItem_turnover,'[turnover]value'); ?></td>
                 </tr>
                 <tr class='red'>
                     <td><?php echo $form->labelEx($costBenefitItem_expenses,'Expenses'); ?></td>
-                    <td><?php echo $form->textField($costBenefitItem_expenses,'[expenses]value', array(
-                        'rel'=>'tooltip',
-                        'title'=>'Montly expenses. Ex. materials, products etc.'
-                     )); ?></td>
+                    <td><?php echo $form->textField($costBenefitItem_expenses,'[expenses]value', 
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>'Montly expenses. Ex. materials, products etc.'
+                        )); ?>
+                    </td>
                     <td><?php echo CHtml::textField('[expenses]yearly'); ?></td>
                     <td><?php echo $form->error($costBenefitItem_expenses,'[expenses]value'); ?></td>
                 </tr>
