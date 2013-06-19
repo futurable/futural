@@ -262,9 +262,20 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 </tr>
                 
                 <tr class='profit'>
+                    <?php $tooltip = Yii::t('Company', 'ToolTipProfit'); ?>
                     <td>Profit</td>
-                    <td><?php echo CHtml::textField('[profit]monthly'); ?></td>
-                    <td><?php echo CHtml::textField('[profit]yearly'); ?></td>
+                    <td><?php echo CHtml::textField('[profit]monthly', false,
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip 
+                        )); ?>
+                    </td>
+                    <td><?php echo CHtml::textField('[profit]yearly', false,
+                        array(
+                            'rel'=>'tooltip',
+                            'title'=>$tooltip 
+                        )); ?>
+                    </td>
                 </tr>
             </table>
         </div>
