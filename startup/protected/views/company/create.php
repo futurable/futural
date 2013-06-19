@@ -24,6 +24,6 @@ elseif($company->form_step == 2) echo $this->renderPartial('_formStep2',
             'costBenefitItem_health'=>$costBenefitItem_health,
             'costBenefitItem_other'=>$costBenefitItem_other,
         ));
-else echo "Error while deciding form step";
+else echo Yii::t('Company', 'ErrorWhileDecidingFormStep');
 
 ?>
