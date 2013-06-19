@@ -46,31 +46,33 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
 	<div class="row">
                 <?php echo $form->hiddenField($token, 'token_key', array('value'=>$token->token_key)); ?>
 		<?php echo $form->label($company,'name'); ?>
-		<?php echo $form->textField($company,'name', array(
-                                                                'size'=>30,
-                                                                'maxlength'=>256, 
-                                                                'rel'=>'tooltip', 
-                                                                'title'=>'The company name.')); ?>
+		<?php echo $form->textField($company,'name', 
+                array(
+                    'size'=>30,
+                    'maxlength'=>256, 
+                    'rel'=>'tooltip', 
+                    'title'=>'The company name.')); ?>
 		<?php echo $form->error($company,'name'); ?>
 	</div>
         
 	<div class="row">
 		<?php echo $form->label($company,'email'); ?>
-		<?php echo $form->textField($company,'email',   array(
-                                                                'size'=>30,
-                                                                'maxlength'=>256,
-                                                                'rel'=>'tooltip',
-                                                                'title'=>'System admin email. You will receive the account information here.')); ?>
+		<?php echo $form->textField($company,'email',
+                array(
+                    'size'=>30,
+                    'maxlength'=>256,
+                    'rel'=>'tooltip',
+                    'title'=>'System admin email. You will receive the account information here.')); ?>
 		<?php echo $form->error($company,'email'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($company,'industry_id'); ?>
-                <?php echo $form->dropDownList($company, 'industry_id', CHtml::listData(Industry::model()->findAll(array('order'=>'Name')),'id','name'),
-                                                            array(
-                                                                'prompt'=>'- Select industry -',
-                                                                'rel'=>'tooltip',
-                                                                'title'=>'Select the main industry for your company. It will be used to give you guideline values for the cost-benefit calculation.'));?>
+        <?php echo $form->dropDownList($company, 'industry_id', CHtml::listData(Industry::model()->findAll(array('order'=>'Name')),'id','name'),
+            array(
+                'prompt'=>'- Select industry -',
+                'rel'=>'tooltip',
+                'title'=>'Select the main industry for your company. It will be used to give you guideline values for the cost-benefit calculation.'));?>
 		<?php echo $form->error($company,'industry_id'); ?>
                 <span id="Company_industry_description"></span>
 	</div>
@@ -78,10 +80,10 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
         <div class="row">
                 <?php echo $form->label($company, "employees");?>
 		<?php echo $form->dropDownList($company, 'employees', array_merge( range(1,9),range(10,100,10)), 
-                                                            array(
-                                                                'rel'=>'tooltip',
-                                                                'title'=>'Employee amount. This is used to give guidelines for the salary calculation.'
-                                                            )); ?>
+            array(
+                'rel'=>'tooltip',
+                'title'=>'Employee amount. This is used to give guidelines for the salary calculation.'
+            )); ?>
 	</div>
         
         <div class="row">
