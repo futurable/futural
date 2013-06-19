@@ -17,10 +17,17 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'SelectIndustry' => 'Select industry',
-  'TooltipEmail' => 'Company email. You will receive the account information here.',
-  'TooltipCompanyName' => 'The company name. Stand out - Be creative!',
-  'TooltipIndustry' => 'The main industry of your company. It will be used to give you guideline values for your cost-benefit calculation.',
+  'ToolTipCommunication' => 'Company communications. Ex. phones, data connections. Does not include marketing costs.',
+  'ToolTipExpenses' => 'The expenses from buying the stuff you need to get your end product made.',
+  'ToolTipHealth' => 'Mandatory and voluntary employee health plan costs.',
+  'ToolTipLoans' => 'Loan costs. Includes service costs, interest and instalments.',
+  'ToolTipOther' => 'Other expenses that does not fit in any spesific field.',
+  'ToolTipProfit' => 'The profit you will get after all the expenses. This should be positive if you plan to stay in the business.',
+  'ToolTipRents' => 'Total rents. Includes office rent and possible warehouse rents.',
+  'ToolTipSalaries' => 'Employee salaries without side expenses. This is usually one of the most significant expenses in the company.',
+  'ToolTipSideExpenses' => 'Salary side expenses.',
+  'ToolTipTurnover' => 'Your revenue. The incoming money, from ex. sales. Does not include loans.',
+  'TooltipEmployees' => 'How many employees work in your company.',
   'CreateCompany' => 'Create a company',
   'EachTokenKeyCanBeUsedOnlyOnce' => 'Each token key can be used only once',
   'Email' => 'Email',
@@ -30,7 +37,11 @@ return array (
   'Industry' => 'Industry',
   'Name' => 'Name',
   'PleaseGiveATokenKey' => 'Please give a token key',
+  'SelectIndustry' => 'Select industry',
   'Tag' => 'Tag',
   'TokenKey' => 'Token Key',
+  'TooltipCompanyName' => 'The company name. Stand out - Be creative!',
+  'TooltipEmail' => 'Company email. You will receive the account information here.',
+  'TooltipIndustry' => 'The main industry of your company. It will be used to give you guideline values for your cost-benefit calculation.',
   'Verify' => 'Verify',
 );
