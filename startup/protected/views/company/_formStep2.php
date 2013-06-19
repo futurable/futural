@@ -63,7 +63,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 'size'=>30,
                 'maxlength'=>256,
                 'rel'=>'tooltip',
-                'title'=>Yii::t('Company', 'TooltipAdminEmail')
+                'title'=>Yii::t('Company', 'TooltipEmail')
                 )); ?>
 		<?php echo $form->error($company,'email'); ?>
 	</div>
