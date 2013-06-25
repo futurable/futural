@@ -22,7 +22,7 @@ class validTokenKey extends CValidator
         }
         else if($record->reclaim_date !== NULL){
             $formattedDate=Yii::app()->dateFormatter->formatDateTime($record->reclaim_date, 'medium', 'medium');
-            $this->addError($object, $attribute, "Token key '$value' already used on $formattedDate");
+            $this->addError($object, $attribute, Yii::t('TokenKey', "TokenKey_'{value}'_AlreadyUsedOn_{formattedDate}", array('{value}'=>$value, '{formattedDate}'=>$formattedDate)));
         }
     }
 }
