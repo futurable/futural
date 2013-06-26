@@ -1,5 +1,6 @@
 <?php
-require_once '../swiftmailer/lib/swift_required.php';
+$path = dirname(Yii::app()->request->scriptFile).'/../swiftmailer/lib/swift_required.php';
+require_once $path;
 /**
  * Creates a new model.
  * If creation is successful, the browser will be redirected to the 'view' page.
