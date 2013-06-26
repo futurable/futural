@@ -7,3 +7,6 @@
 [submodule "bank"]
 	path = bank
 	url = https://github.com/futurable/bank.git
+[submodule "swiftmailer"]
+	path = swiftmailer
+	url = git://github.com/swiftmailer/swiftmailer.git
