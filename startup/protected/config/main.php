@@ -8,6 +8,8 @@ require_once( dirname(__FILE__) . '/../components/CommonServices.php');
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Futural company startup',
+    'sourceLanguage'=>'00',
+    'language'=>'fi',
 
 	// preloading 'log' component
 	'preload'=>array('log', 'bootstrap'),
