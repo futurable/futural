@@ -28,7 +28,7 @@ return array(
 			'password'=>'futural',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
-                        'generatorPaths' => array('bootstrap.gii'),
+                'generatorPaths' => array('bootstrap.gii'),
 		),
 	),
 
@@ -84,8 +84,14 @@ return array(
             'responsiveCss' => true,
         ),
  		'mail' => array(
- 			'class' => 'ext.yii-mail.YiiMail',
- 			'transportType' => 'php',
+ 			'class' => 'ext.mail.YiiMail',
+ 			'transportType' => 'smtp',
+            'transportOptions' => array(
+                'host'=>'futurality.fi',
+                'username'=>'helpdesk@futurality.fi',
+                'password'=>'password',
+                'port'=>25,
+            ),
  			'viewPath' => 'application.views.mail',
  			'logging' => true,
  			'dryRun' => false
