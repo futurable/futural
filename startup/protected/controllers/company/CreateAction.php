@@ -200,8 +200,8 @@ class CreateAction extends CAction
                             <p>You have created a company in the Futurality learning environment.<br>
                             It can be found from <a href='https://futurality.fi'>futurality.fi</a></p>
 
-                            <p>Your company name is $company->name, and business id is $businessID.<br>
-                            Company id tag is $company->tag - you need it to login into the right company.</p>
+                            <p>Your company name is <strong>$company->name</strong>, and business id is <strong>$businessID</strong>.<br>
+                            Company id tag is <strong>$company->tag</strong> - you need it to login into the right company.</p>
 
                             <ul>
                                 <li>OpenERP account</li>
