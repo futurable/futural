@@ -203,19 +203,19 @@ class CreateAction extends CAction
                             <p>Your company name is $company->name, and business id is $businessID.<br>
                             Company id tag is $company->tag - you need it to login into the right company.</p>
 
-                            <table>
+                            <ul>
                                 <li>OpenERP account</li>
-                                <li>UserID: admin </li>
-                                <li>Password: $OERPPassword</li>
+                                <li>UserID: <strong>admin</strong></li>
+                                <li>Password: <strong>$OERPPassword</strong></li>
                                 <li>Log in from <a href='http://erp.futurality.fi/?db=$company->tag'>erp.futurality.fi</a></li>
                             </ul>
 
                             <ul>
                                 <li>Bank account</li>
-                                <li>UserID: $company->tag</li> 
-                                <li>Password: $bankPassword</li>
+                                <li>UserID: <strong>$company->tag</strong></li> 
+                                <li>Password: <strong>$bankPassword</strong></li>
                                 <li>Log in from <a href='http://futural.fi/futural/bank/index.php/user/login/?company=$company->tag'>futural.fi/bank</a></li>
-                            <ul>
+                            </ul>
 
                             <p><strong>Have fun!</strong></p>
 
