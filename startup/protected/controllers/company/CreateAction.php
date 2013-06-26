@@ -228,7 +228,7 @@ This is automatically generated email. Do not reply this address.";
                                 ->setSubject('Futurality account')
                                 ->setFrom('helpdesk@futurality.fi')
                                 ->setSender('helpdesk@futurality.fi')
-                                ->setTo('jarmo@futurable.fi')
+                                ->setTo($email)
                                 ->setBody($messageContent);
 
                             $result = $mailer->send($message);
