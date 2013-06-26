@@ -2,3 +2,6 @@
 /backend/protected/config/
 /backend/assets/
 /backend/protected/runtime/
+/startup/assets/
+/startup/protected/runtime/
+/startup/protected/config/

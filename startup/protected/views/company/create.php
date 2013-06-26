@@ -3,7 +3,7 @@
 /* @var $model Company */
 ?>
 
-<h1>Create Company</h1>
+<h1><?php echo Yii::t('Company', 'CreateCompany'); ?></h1>
 
 <?php 
 
@@ -16,12 +16,14 @@ elseif($company->form_step == 2) echo $this->renderPartial('_formStep2',
             'costBenefitCalculation'=>$costBenefitCalculation,
             'costBenefitItem_turnover'=>$costBenefitItem_turnover,
             'costBenefitItem_salaries'=>$costBenefitItem_salaries,
+            'costBenefitItem_sideExpenses'=>$costBenefitItem_sideExpenses,
             'costBenefitItem_expenses'=>$costBenefitItem_expenses,
             'costBenefitItem_loans'=>$costBenefitItem_loans,
             'costBenefitItem_rents'=>$costBenefitItem_rents,
             'costBenefitItem_communication'=>$costBenefitItem_communication,
             'costBenefitItem_health'=>$costBenefitItem_health,
+            'costBenefitItem_other'=>$costBenefitItem_other,
         ));
-else echo "Error while deciding form step";
+else echo Yii::t('Company', 'ErrorWhileDecidingFormStep');
 
 ?>

@@ -37,7 +37,8 @@
 		<div id="logo">
                     <?php echo CHtml::image(Yii::app()->request->baseUrl.'/css/img/futural-logo-startup_h128.png'); ?>
                     <?php //echo CHtml::encode(Yii::app()->name); ?>
-                </div>
+        </div>
+        <?php $this->widget('application.components.LangBox'); ?>
 	</div><!-- header -->
         
 	<div id="mainmenu">
@@ -55,9 +56,10 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Futural Virtual Learning Environment<br/>
-		Copyright &copy; <?php echo date('Y'); ?> Futurable Oy.<br/>
-		All Rights Reserved.<br/>
+        <a href='https://github.com/futurable/futural'>Futural Virtual Learning Environment</a><br/>
+        By <a href='http://futurable.fi'>Futurable Oy</a><br/>
+        <?php echo date('Y'); ?>
+	</div><!-- footer -->
 	</div><!-- footer -->
 
 </div><!-- page -->

@@ -12,39 +12,47 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
 
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/futural.css" />
+        <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/css/img/favicon.ico" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
 
+<div class='disclaimer'>
+    <p>
+            Welcome to <a href='http://futurable.fi/index.php/en/tuotteet-ja-palvelut/oppimisymparistot'>Futural</a> - a virtual learning environment 
+            by <a href='http://futurable.fi'>Futurable</a>.
+            <a href='#'>Give feedback</a>.
+    </p>
+</div>
+    
 <div class="container" id="page">
-
+    
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo">
+                    <?php echo CHtml::image(Yii::app()->request->baseUrl.'/css/img/futural-logo-backend_h128.png'); ?>
+                    <?php //echo CHtml::encode(Yii::app()->name); ?>
+                </div>
 	</div><!-- header -->
-
+        
 	<div id="mainmenu">
 		<?php 
 			$this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
+				array('label'=>'Home', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Customers', 'url'=>array('/tokenCustomer/index'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Settings', 'url'=>array('/tokenSettings/index'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Tokens', 'url'=>array('/tokenKey/index'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
+				array('label'=>'Companies', 'url'=>array('/company/index'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Orders', 'url'=>array('/order/index'), 'visible'=>!Yii::app()->user->isGuest),
+                                array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+                            ),
 		)); ?>
 	</div><!-- mainmenu -->
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
-
+        
 	<?php echo $content; ?>
 
 	<div class="clear"></div>

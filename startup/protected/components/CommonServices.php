@@ -1,7 +1,6 @@
 <?php
 class CommonServices
 {
-    
     /**
      * Takes a string and strips all non-alphanumerical characters
      * 
@@ -27,4 +26,24 @@ class CommonServices
         return $tag;
     }
     
+    public function createBusinessID($prefix = false){
+        require_once('CommonServices/createBusinessID.php');
+        $createBusinessID = new createBusinessID(true);
+        $businessID = $createBusinessID->run($prefix);
+        
+        return $businessID;
+    }
+    
+    public function generatePassword($length = 8){
+        $characters = array_merge( range('a','z'), range('A', 'Z'), range(1,9));
+        $count = count($characters);
+        $password = null;
+        
+        for($i=0; $i<$length; $i++){
+            $rand = rand(0,$count-1);
+            $password .= $characters[$rand];
+        }
+        
+        return $password;
+    }
 }

@@ -1,5 +1,5 @@
 <?php
-
+require_once( dirname(__FILE__) . '/../components/CommonServices.php');
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -8,9 +8,11 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Futural company startup',
+    'sourceLanguage'=>'00',
+    'language'=>'fi',
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array('log', 'bootstrap'),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -25,6 +27,7 @@ return array(
 			'password'=>'futural',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
+                        'generatorPaths' => array('bootstrap.gii'),
 		),
 	),
 
@@ -48,8 +51,16 @@ return array(
 			'connectionString' => 'mysql:host=futurality.fi;dbname=futural_core',
 			'emulatePrepare' => true,
 			'username' => 'futural',
-			'password' => 'PR3FacH-g+9_',
+			'password' => 'futural',
 			'charset' => 'utf8',
+		),
+		'dbbank'=>array(
+			'connectionString' => 'mysql:host=futurality.fi;dbname=futural_bank',
+			'emulatePrepare' => true,
+			'username' => 'futural_bank',
+			'password' => 'futural_bank',
+			'charset' => 'utf8',
+                        'class' => 'CDbConnection'
 		),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
@@ -67,6 +78,10 @@ return array(
 				
 			),
 		),
+                'bootstrap' => array(
+                    'class' => 'ext.bootstrap.components.Bootstrap',
+                    'responsiveCss' => true,
+                ),
 	),
 
 	// application-level parameters that can be accessed
