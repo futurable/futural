@@ -1,6 +1,4 @@
 <?php
-$path = dirname(Yii::app()->request->scriptFile).'/../swiftmailer/lib/swift_required.php';
-require_once $path;
 /**
  * Creates a new model.
  * If creation is successful, the browser will be redirected to the 'view' page.
@@ -219,20 +217,14 @@ Have fun!
 --
 This is automatically generated email. Do not reply this address.";
 
-                            $transport = Swift_SmtpTransport::newInstance('futurality.fi', 25)
-                                ->setUserName('helpdesk@futurality.fi')
-                                ->setPassword('password');
-
-                            $mailer = Swift_Mailer::newInstance($transport);
-
-                            $message = Swift_Message::newInstance()
-                                ->setSubject('Futurality account')
-                                ->setFrom('helpdesk@futurality.fi')
-                                ->setSender('helpdesk@futurality.fi')
-                                ->setTo($email)
-                                ->setBody($messageContent);
-
-                            $result = $mailer->send($message);
+                            $message = new YiiMailMessage;
+                            $message->subject = "Futurality account";
+                            $message->setBody($messageContent, 'text/html');
+                            $message->addTo($email);
+                            $message->from = 'helpdesk@futurality.fi';
+                            $message->sender = 'helpdesk@futurality.fi';
+                            
+                            Yii::app()->mail->send($message);
 
                             // Redirect to view
                             $controller->redirect(array('view','id'=>$company->id));
