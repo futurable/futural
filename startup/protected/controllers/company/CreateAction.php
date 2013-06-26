@@ -1,4 +1,5 @@
 <?php
+require_once '../swiftmailer/lib/swift_required.php';
 /**
  * Creates a new model.
  * If creation is successful, the browser will be redirected to the 'view' page.
@@ -194,7 +195,7 @@ class CreateAction extends CAction
                             $output = exec("sh ".$scriptFile.$shellCmd);
                         
 // Send login information to user
-$message ="Welcome to Futurality!
+$messageContent ="Welcome to Futurality!
 
 You have created a company in the Futurality learning environment.
 It can be found from https://futurality.fi
@@ -216,8 +217,21 @@ Have fun!
 
 --
 This is automatically generated email. Do not reply this address.";
-                        
-                            mail($email, "Futurality account", $message);
+
+                            $transport = Swift_SmtpTransport::newInstance('futurality.fi', 25)
+                                ->setUserName('helpdesk@futurality.fi')
+                                ->setPassword('password');
+
+                            $mailer = Swift_Mailer::newInstance($transport);
+
+                            $message = Swift_Message::newInstance()
+                                ->setSubject('Futurality account')
+                                ->setFrom('helpdesk@futurality.fi')
+                                ->setSender('helpdesk@futurality.fi')
+                                ->setTo('jarmo@futurable.fi')
+                                ->setBody($messageContent);
+
+                            $result = $mailer->send($message);
 
                             // Redirect to view
                             $controller->redirect(array('view','id'=>$company->id));
