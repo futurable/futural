@@ -104,11 +104,14 @@ $(document).ready(function(){
         var industryId = $("#Company_industry_id").val();
         var industrySetup = IndustrySetupArray[industryId];
         
+        var rents = $("#CostbenefitItem_rents_value").val() * 5;
+        var communications = $("#CostbenefitItem_communication_value").val() * 5;
+        
         var avgWage = industrySetup['avgWage'];
         var employees = $("#Company_employees option:selected").text();
-        var salaries = avgWage*employees*1.3*13.2; // @TODO: WHY IS THIS 10.2?!
+        var salaries = avgWage*employees*1.3*12; // @TODO: WHY IS THIS 12?!
         
-        var turnover = parseInt(industrySetup['turnover']) + parseInt(salaries);
+        var turnover = parseInt(industrySetup['turnover']) + parseInt(salaries) + parseInt(rents) + parseInt(communications);
         
         $("#CostbenefitItem_turnover_value").val(turnover);
         $("#_turnoveryearly").val(turnover*12);
