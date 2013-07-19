@@ -102,9 +102,9 @@ $(document).ready(function(){
         
         var avgWage = industrySetup['avgWage'];
         var employees = $("#Company_employees option:selected").text();
-        var salaries = avgWage*employees*1.3;
+        var salaries = avgWage*employees*1.3*10.5; // @TODO: WHY IS THIS 10.5?!
         
-        var turnover = ( parseInt(industrySetup['turnover']) + parseInt(salaries) );
+        var turnover = parseInt(industrySetup['turnover']) + parseInt(salaries);
         
         $("#CostbenefitItem_turnover_value").val(turnover);
         $("#_turnoveryearly").val(turnover*12);
