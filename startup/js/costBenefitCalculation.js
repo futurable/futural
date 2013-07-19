@@ -128,7 +128,7 @@ $(document).ready(function(){
         
         // Calculate loan sum. 3x all expenses + one months expenses
         loanSum = (expenses+salaries+rents+communication)*3 + expenses;
-        var interest = 3.3 / 100 / 12; alert(interest);
+        var interest = 3.3 / 100 / 12;
         payment = loanSum * ( interest / (1 - Math.pow((1+interest), -36)));
         
         loans = Math.round(payment);
