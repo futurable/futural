@@ -4,10 +4,10 @@ $(document).ready(function(){
         updateIndustryDescription();
         updateSalaries();
         updateSideExpenses();
-        updateTurnover();
-        updateExpenses();
         updateRents();
         updateCommunication();
+        updateTurnover();
+        updateExpenses();
         updateLoans();
         updateHealth();
         updateOther();
@@ -106,7 +106,7 @@ $(document).ready(function(){
         
         var avgWage = industrySetup['avgWage'];
         var employees = $("#Company_employees option:selected").text();
-        var salaries = avgWage*employees*1.3*10.2; // @TODO: WHY IS THIS 10.2?!
+        var salaries = avgWage*employees*1.3*13.2; // @TODO: WHY IS THIS 10.2?!
         
         var turnover = parseInt(industrySetup['turnover']) + parseInt(salaries);
         
@@ -144,8 +144,9 @@ $(document).ready(function(){
     updateRents = function(){
         var industryId = $("#Company_industry_id").val();
         var industrySetup = IndustrySetupArray[industryId];
+        var employees = $("#Company_employees option:selected").text();
         
-        var rents = industrySetup['rents'];
+        var rents = parseInt(industrySetup['rents'])*parseInt(employees)/2;
         
         $("#CostbenefitItem_rents_value").val(rents);
         $("#_rentsyearly").val(rents*12);       
@@ -154,8 +155,9 @@ $(document).ready(function(){
     updateCommunication = function(){
         var industryId = $("#Company_industry_id").val();
         var industrySetup = IndustrySetupArray[industryId];
+        var employees = $("#Company_employees option:selected").text();
         
-        var communication = industrySetup['communication'];
+        var communication = parseInt(industrySetup['communication'])*parseInt(employees);
         
         $("#CostbenefitItem_communication_value").val(communication);
         $("#_communicationyearly").val(communication*12); 
