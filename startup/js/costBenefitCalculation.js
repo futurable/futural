@@ -17,6 +17,7 @@ $(document).ready(function(){
     $("#Company_employees").change(function(){
         updateSalaries();
         updateSideExpenses();
+        updateTurnover();
         updateProfit();
     })
     
@@ -102,7 +103,12 @@ $(document).ready(function(){
         var industryId = $("#Company_industry_id").val();
         var industrySetup = IndustrySetupArray[industryId];
         
-        var turnover = industrySetup['turnover'];
+        var avgWage = industrySetup['avgWage'];
+        var employees = $("#Company_employees option:selected").text();
+        var salaries = avgWage*employees;
+        var expenses = salaries * 0.3;
+        
+        var turnover = parseInt(industrySetup['turnover']) + parseInt(salaries) + parseInt(expenses);
         
         $("#CostbenefitItem_turnover_value").val(turnover);
         $("#_turnoveryearly").val(turnover*12);
