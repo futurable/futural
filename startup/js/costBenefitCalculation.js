@@ -18,6 +18,10 @@ $(document).ready(function(){
         updateExpenses();
     })
     
+    $("#CostbenefitItem_salaries_value").keyup(function(){
+        updateSideExpenses();
+    })
+    
     $("#costBenefitCalculationTable input").keyup(function(){
         updateCalculationFields($(this));
         updateProfit(this);
