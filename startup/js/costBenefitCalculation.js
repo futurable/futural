@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    $("#Company_industry_id").change(function(){
+    $("#Company_industry_id,#Company_employees").change(function(){
         updateIndustryDescription();
         updateSalaries();
         updateSideExpenses();
@@ -13,12 +13,9 @@ $(document).ready(function(){
         updateOther();
         updateProfit();
     })
-
-    $("#Company_employees").change(function(){
-        updateSalaries();
-        updateSideExpenses();
-        updateTurnover();
-        updateProfit();
+    
+    $("#CostbenefitItem_turnover_value").keyup(function(){
+        updateExpenses();
     })
     
     $("#costBenefitCalculationTable input").keyup(function(){
@@ -117,7 +114,7 @@ $(document).ready(function(){
     updateExpenses = function(){
         var turnover = $("#CostbenefitItem_turnover_value").val();
         
-        var expenses = turnover * 0.8;
+        var expenses = Math.round( (turnover * 0.8) * 100 ) / 100;
         
         $("#CostbenefitItem_expenses_value").val(expenses);
         $("#_expensesyearly").val(expenses*12);
