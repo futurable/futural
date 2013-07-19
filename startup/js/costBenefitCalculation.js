@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    $("#Company_industry_id").change(function(){
+    $("#Company_industry_id,#Company_employees").change(function(){
         updateIndustryDescription();
         updateSalaries();
         updateSideExpenses();
@@ -13,11 +13,9 @@ $(document).ready(function(){
         updateOther();
         updateProfit();
     })
-
-    $("#Company_employees").change(function(){
-        updateSalaries();
-        updateSideExpenses();
-        updateProfit();
+    
+    $("#CostbenefitItem_turnover_value").keyup(function(){
+        updateExpenses();
     })
     
     $("#costBenefitCalculationTable input").keyup(function(){
@@ -102,7 +100,11 @@ $(document).ready(function(){
         var industryId = $("#Company_industry_id").val();
         var industrySetup = IndustrySetupArray[industryId];
         
-        var turnover = industrySetup['turnover'];
+        var avgWage = industrySetup['avgWage'];
+        var employees = $("#Company_employees option:selected").text();
+        var salaries = avgWage*employees*1.3*10.2; // @TODO: WHY IS THIS 10.2?!
+        
+        var turnover = parseInt(industrySetup['turnover']) + parseInt(salaries);
         
         $("#CostbenefitItem_turnover_value").val(turnover);
         $("#_turnoveryearly").val(turnover*12);
@@ -111,7 +113,7 @@ $(document).ready(function(){
     updateExpenses = function(){
         var turnover = $("#CostbenefitItem_turnover_value").val();
         
-        var expenses = turnover * 0.8;
+        var expenses = Math.round( (turnover * 0.8) );
         
         $("#CostbenefitItem_expenses_value").val(expenses);
         $("#_expensesyearly").val(expenses*12);
@@ -120,12 +122,14 @@ $(document).ready(function(){
     updateLoans = function(){
         var expenses = parseInt($("#CostbenefitItem_expenses_value").val());
         var salaries = parseInt($("#CostbenefitItem_salaries_value").val());
+        var sideExpenses = parseInt($("#CostbenefitItem_sideExpenses_value").val());
         var rents = parseInt($("#CostbenefitItem_rents_value").val());
         var communication = parseInt($("#CostbenefitItem_communication_value").val());
         
         // Calculate loan sum. 3x all expenses + one months expenses
-        loanSum = (expenses+salaries+rents+communication)*3 + expenses;
-        payment = loanSum * ( 0.0033 / (1 - Math.pow(1.0033, -36)));
+        loanSum = (expenses+salaries+sideExpenses+rents+communication)*3 + expenses;
+        var interest = 3.3 / 100 / 12;
+        payment = loanSum * ( interest / (1 - Math.pow((1+interest), -36)));
         
         loans = Math.round(payment);
         
