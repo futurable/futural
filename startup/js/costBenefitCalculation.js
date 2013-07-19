@@ -103,9 +103,9 @@ $(document).ready(function(){
         var avgWage = industrySetup['avgWage'];
         var employees = $("#Company_employees option:selected").text();
         var salaries = avgWage*employees;
-        var expenses = salaries * 0.3;
+        var expenses = (salaries * 1.3) * 2;
         
-        var turnover = parseInt(industrySetup['turnover']) + parseInt(salaries) + parseInt(expenses);
+        var turnover = ( parseInt(industrySetup['turnover']) + parseInt(expenses) ) * 1.2; // profit margin;
         
         $("#CostbenefitItem_turnover_value").val(turnover);
         $("#_turnoveryearly").val(turnover*12);
@@ -114,7 +114,7 @@ $(document).ready(function(){
     updateExpenses = function(){
         var turnover = $("#CostbenefitItem_turnover_value").val();
         
-        var expenses = Math.round( (turnover * 0.8) * 100 ) / 100;
+        var expenses = Math.round( (turnover * 0.8) );
         
         $("#CostbenefitItem_expenses_value").val(expenses);
         $("#_expensesyearly").val(expenses*12);
