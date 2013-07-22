@@ -1,23 +1,25 @@
 $(document).ready(function(){
     
-    $("#Company_industry_id").change(function(){
+    $("#Company_industry_id,#Company_employees").change(function(){
         updateIndustryDescription();
         updateSalaries();
         updateSideExpenses();
-        updateTurnover();
-        updateExpenses();
         updateRents();
         updateCommunication();
+        updateTurnover();
+        updateExpenses();
         updateLoans();
         updateHealth();
         updateOther();
         updateProfit();
     })
-
-    $("#Company_employees").change(function(){
-        updateSalaries();
+    
+    $("#CostbenefitItem_turnover_value").keyup(function(){
+        updateExpenses();
+    })
+    
+    $("#CostbenefitItem_salaries_value").keyup(function(){
         updateSideExpenses();
-        updateProfit();
     })
     
     $("#costBenefitCalculationTable input").keyup(function(){
@@ -102,7 +104,14 @@ $(document).ready(function(){
         var industryId = $("#Company_industry_id").val();
         var industrySetup = IndustrySetupArray[industryId];
         
-        var turnover = industrySetup['turnover'];
+        var rents = $("#CostbenefitItem_rents_value").val() * 5;
+        var communications = $("#CostbenefitItem_communication_value").val() * 5;
+        
+        var avgWage = industrySetup['avgWage'];
+        var employees = $("#Company_employees option:selected").text();
+        var salaries = avgWage*employees*1.3*12; // @TODO: WHY IS THIS 12?!
+        
+        var turnover = parseInt(industrySetup['turnover']) + parseInt(salaries) + parseInt(rents) + parseInt(communications);
         
         $("#CostbenefitItem_turnover_value").val(turnover);
         $("#_turnoveryearly").val(turnover*12);
@@ -111,7 +120,7 @@ $(document).ready(function(){
     updateExpenses = function(){
         var turnover = $("#CostbenefitItem_turnover_value").val();
         
-        var expenses = turnover * 0.8;
+        var expenses = Math.round( (turnover * 0.8) );
         
         $("#CostbenefitItem_expenses_value").val(expenses);
         $("#_expensesyearly").val(expenses*12);
@@ -120,12 +129,14 @@ $(document).ready(function(){
     updateLoans = function(){
         var expenses = parseInt($("#CostbenefitItem_expenses_value").val());
         var salaries = parseInt($("#CostbenefitItem_salaries_value").val());
+        var sideExpenses = parseInt($("#CostbenefitItem_sideExpenses_value").val());
         var rents = parseInt($("#CostbenefitItem_rents_value").val());
         var communication = parseInt($("#CostbenefitItem_communication_value").val());
         
         // Calculate loan sum. 3x all expenses + one months expenses
-        loanSum = (expenses+salaries+rents+communication)*3 + expenses;
-        payment = loanSum * ( 0.0033 / (1 - Math.pow(1.0033, -36)));
+        loanSum = (expenses+salaries+sideExpenses+rents+communication)*3 + expenses;
+        var interest = 3.3 / 100 / 12;
+        payment = loanSum * ( interest / (1 - Math.pow((1+interest), -36)));
         
         loans = Math.round(payment);
         
@@ -136,8 +147,9 @@ $(document).ready(function(){
     updateRents = function(){
         var industryId = $("#Company_industry_id").val();
         var industrySetup = IndustrySetupArray[industryId];
+        var employees = $("#Company_employees option:selected").text();
         
-        var rents = industrySetup['rents'];
+        var rents = parseInt(industrySetup['rents'])*parseInt(employees)/2;
         
         $("#CostbenefitItem_rents_value").val(rents);
         $("#_rentsyearly").val(rents*12);       
@@ -146,8 +158,9 @@ $(document).ready(function(){
     updateCommunication = function(){
         var industryId = $("#Company_industry_id").val();
         var industrySetup = IndustrySetupArray[industryId];
+        var employees = $("#Company_employees option:selected").text();
         
-        var communication = industrySetup['communication'];
+        var communication = parseInt(industrySetup['communication'])*parseInt(employees);
         
         $("#CostbenefitItem_communication_value").val(communication);
         $("#_communicationyearly").val(communication*12); 

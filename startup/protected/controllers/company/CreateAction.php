@@ -193,31 +193,43 @@ class CreateAction extends CAction
                             $scriptFile = Yii::app()->basePath."/commands/shell/createOpenERPCompany.sh";
                             $output = exec("sh ".$scriptFile.$shellCmd);
                         
-// Send login information to user
-$message ="Welcome to Futurality!
+                            // Send login information to user
+                            $messageContent ="
+                            <h1>Welcome to Futurality!</h1>
+                             
+                            <p>You have created a company in the Futurality learning environment.<br>
+                            It can be found from <a href='https://futurality.fi'>futurality.fi</a></p>
 
-You have created a company in the Futurality learning environment.
-It can be found from https://futurality.fi
+                            <p>Your company name is <strong>$company->name</strong>, and business id is <strong>$businessID</strong>.<br>
+                            Company id tag is <strong>$company->tag</strong> - you need it to login into the right company.</p>
 
-Your company name is $company->name, and business id is $businessID. 
-Company id tag is $company->tag - you need it to login into the right company.
+                            <ul>
+                                <li>OpenERP account</li>
+                                <li>UserID: <strong>admin</strong></li>
+                                <li>Password: <strong>$OERPPassword</strong></li>
+                                <li>Log in from <a href='http://erp.futurality.fi/?db=$company->tag'>erp.futurality.fi</a></li>
+                            </ul>
 
-OpenERP account
-UserID: admin 
-Password: $OERPPassword
-Log in from http://erp.futurality.fi/?db=$company->tag
+                            <ul>
+                                <li>Bank account</li>
+                                <li>UserID: <strong>$company->tag</strong></li> 
+                                <li>Password: <strong>$bankPassword</strong></li>
+                                <li>Log in from <a href='http://futural.fi/futural/bank/index.php/user/login/?company=$company->tag'>futural.fi/bank</a></li>
+                            </ul>
 
-Bank account
-UserID: $company->tag 
-Password: $bankPassword
-Log in from http://futural.fi/futural/bank/index.php/user/login/?company=$company->tag
+                            <p><strong>Have fun!</strong></p>
 
-Have fun!
+                            <p>--<br/>
+                            This is automatically generated email. Do not reply this address.</p>";
 
---
-This is automatically generated email. Do not reply this address.";
-                        
-                            mail($email, "Futurality account", $message);
+                            $message = new YiiMailMessage;
+                            $message->subject = "Futurality account";
+                            $message->setBody($messageContent, 'text/html');
+                            $message->addTo($email);
+                            $message->from = 'helpdesk@futurality.fi';
+                            $message->sender = 'helpdesk@futurality.fi';
+                            
+                            Yii::app()->mail->send($message);
 
                             // Redirect to view
                             $controller->redirect(array('view','id'=>$company->id));

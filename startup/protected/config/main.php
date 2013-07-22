@@ -18,6 +18,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'ext.mail.YiiMailMessage',
 	),
 
 	'modules'=>array(
@@ -27,7 +28,7 @@ return array(
 			'password'=>'futural',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
-                        'generatorPaths' => array('bootstrap.gii'),
+                'generatorPaths' => array('bootstrap.gii'),
 		),
 	),
 
@@ -78,10 +79,23 @@ return array(
 				
 			),
 		),
-                'bootstrap' => array(
-                    'class' => 'ext.bootstrap.components.Bootstrap',
-                    'responsiveCss' => true,
-                ),
+        'bootstrap' => array(
+            'class' => 'ext.bootstrap.components.Bootstrap',
+            'responsiveCss' => true,
+        ),
+ 		'mail' => array(
+ 			'class' => 'ext.mail.YiiMail',
+ 			'transportType' => 'smtp',
+            'transportOptions' => array(
+                'host'=>'futurality.fi',
+                'username'=>'helpdesk@futurality.fi',
+                'password'=>'password',
+                'port'=>25,
+            ),
+ 			'viewPath' => 'application.views.mail',
+ 			'logging' => true,
+ 			'dryRun' => false
+ 		),
 	),
 
 	// application-level parameters that can be accessed
