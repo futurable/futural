@@ -9,7 +9,7 @@
  * Each array element represents the translation (value) of a message (key).
  * If the value is empty, the message is considered as not translated.
  * Messages that no longer need translation will have their translations
- * enclosed between a pair of '@@' marks.
+ * enclosed between a pair of '' marks.
  *
  * Message string can be used with plural forms format. Check i18n section
  * of the guide for details.
@@ -17,21 +17,30 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Create' => 'Create',
+  'FuturalityAccount' => 'Your Futurality account',
+  'computer-assembly' => 'Computer assembly',
+  'computer-retail' => 'Computer retail',
+  'BankAccount' => 'Bank account',
   'Communication' => 'Communication',
+  'Create' => 'Create',
   'CreateCompany' => 'Create a company',
   'EachTokenKeyCanBeUsedOnlyOnce' => 'Each token key can be used only once',
   'Email' => 'Email',
   'Employees' => 'Employees',
   'ErrorWhileDecidingFormStep' => 'Error while deciding the form step',
   'Expenses' => 'Expenses',
+  'FuturalityLearningEnvironment' => 'Futurality learning environment',
+  'HaveFun' => 'Have fun!',
   'Health' => 'Health',
   'ID' => 'ID',
   'Industry' => 'Industry',
   'Loans' => 'Loans',
+  'LoginFrom' => 'Login from',
   'Monthly' => 'Monthly',
   'Name' => 'Name',
+  'OpenERPAccount' => 'OpenERP account',
   'Other' => 'Other',
+  'Password' => 'Password',
   'PleaseGiveATokenKey' => 'Please give a token key',
   'Profit' => 'Profit',
   'Rents' => 'Rents',
@@ -55,8 +64,12 @@ return array (
   'TooltipEmployees' => 'How many employees work in your company.',
   'TooltipIndustry' => 'The main industry of your company. It will be used to give you guideline values for your cost-benefit calculation.',
   'Turnover' => 'Turnover',
+  'UserId' => 'UserID',
   'Verify' => 'Verify',
+  'WelcomeToFuturality' => 'Welcome to Futurality',
   'Yearly' => 'Yearly',
-  'computer-assembly' => 'Computer assembly',
-  'computer-retail' => 'Computer retail',
+  'YouHaveCreatedACompanyInThe' => 'You have created a company in the',
+  'YourBusinessIdIs' => 'Your business ID is',
+  'YourCompanyNameIs' => 'Your company name is',
+  'YourCompanyTagIs' => 'Your company tag is',
 );
