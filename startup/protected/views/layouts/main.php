@@ -25,7 +25,7 @@
 
 <div class='disclaimer'>
     <p>
-        Welcome to the <a href='http://futurable.fi/index.php/en/tuotteet-ja-palvelut/oppimisymparistot'>Futural</a> - a virtual learning environment 
+        Welcome to <a href='http://futurable.fi/index.php/en/tuotteet-ja-palvelut/oppimisymparistot'>Futural</a> - a virtual learning environment 
         by <a href='http://futurable.fi'>Futurable</a>.
         <a href='mailto:futurality@futurable.fi?subject=Feedback'>Give feedback</a>.
     </p>
