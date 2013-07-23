@@ -60,7 +60,7 @@ class CostbenefitItem extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'value' => 'Value',
+			'value' => Yii::t('CostBenefitItem', 'Value'),
 			'costbenefit_calculation_id' => 'Costbenefit Calculation',
 			'costbenefit_item_type_id' => 'Costbenefit Item Type',
 		);
