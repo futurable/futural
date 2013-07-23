@@ -6,7 +6,8 @@
 /* @var $CBC_items  Cost-benefit calculation items */
 ?>
 
-<h1><?php echo "$company->name <br/> $company->business_id"; ?></h1>
+<h1><?php echo $company->name; ?></h1>
+<h2><?php echo $company->business_id; ?></h2>
 
 <table>
     <tr>
@@ -36,3 +37,10 @@
     }
 ?>
 </table>
+
+<?php
+echo "<h3>".Yii::t('Company', 'WhatIsNext')."</h3>";
+echo "<p>".Yii::t('Company', 'TheLearningEnvironment').": <a href='https://futurality.fi'>futurality.fi</a></p>";
+echo "<p>".Yii::t('Company', 'TheERPSystem').": <a href='http://erp.futurality.fi/?db=$company->tag'>erp.futurality.fi</a></p>";
+echo "<p>".Yii::t('Company', 'TheBank').": <a href='http://futurality.fi/bank/index.php/user/login/?company=$company->tag'>futurality.fi/bank</a></p>";
+?>
