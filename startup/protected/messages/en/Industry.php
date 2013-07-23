@@ -19,4 +19,6 @@
 return array (
   'SellFullComputerPackages' => 'Design full computer packages with necessary peripheral devices.',
   'SellComputerCases' => 'Assemble computer cases from pre-manufactured components',
+  'computer-assembly' => 'Computer assembly',
+  'computer-retail' => 'Computer retail',
 );
