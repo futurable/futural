@@ -149,7 +149,7 @@ class CreateAction extends CAction
                         $email = $company->email;                   
                         
                         // Create business ID
-                        $businessID = CommonServices::createBusinessID();
+                        $company->businessID = CommonServices::createBusinessID();
                         
                         /* 
                          * Create bank user, profile and account
@@ -188,7 +188,7 @@ class CreateAction extends CAction
                             
                             // Create OpenERP database
                             $OERPPassword = CommonServices::generatePassword();
-                            $cmd = " '$company->tag' '$company->name' '$OERPPassword' '$businessID' '$email' '$bankAccount->iban'";
+                            $cmd = " '$company->tag' '$company->name' '$OERPPassword' '$company->businessID' '$email' '$bankAccount->iban'";
                             $shellCmd = escapeshellcmd($cmd);
                             $scriptFile = Yii::app()->basePath."/commands/shell/createOpenERPCompany.sh";
                             $output = exec("sh ".$scriptFile.$shellCmd);
@@ -207,7 +207,7 @@ class CreateAction extends CAction
                                 $messageContent .= Yii::t('Company', 'YourCompanyTagIs');
                                 $messageContent .= " <strong>".$company->tag."</strong>.<br>";
                                 $messageContent .= Yii::t('Company', 'YourBusinessIdIs');
-                                $messageContent .= " <strong>".$businessID."</strong>.<br>";
+                                $messageContent .= " <strong>".$company->businessID."</strong>.<br>";
                             $messageContent .= "</p>";
 
                             $messageContent .= "<h2>".Yii::t('Company', 'OpenERPAccount')."</h2>";
@@ -226,7 +226,7 @@ class CreateAction extends CAction
 
                             $messageContent .= "<p><strong>".Yii::t('Company', "HaveFun")."</strong></p>";
                             
-                            $messageContent .= "<br><p>---</p>";
+                            $messageContent .= "<p>---</p>";
                             $messageContent .= "<p><a href='http://futurable.fi'>Futurable Oy ".date('Y')."</a></p>";
 
                             $message = new YiiMailMessage;

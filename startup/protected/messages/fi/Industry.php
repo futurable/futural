@@ -19,4 +19,6 @@
 return array (
   'SellFullComputerPackages' => 'Tietokonepakettien suunnittelua oheislaitteineen.',
   'SellComputerCases' => 'Tietokoneiden kokoamista valmiista komponenenteista.',
+  'computer-assembly' => 'Tietokoneiden kokoonpano',
+  'computer-retail' => 'Tietokoneiden jälleenmyynti',
 );

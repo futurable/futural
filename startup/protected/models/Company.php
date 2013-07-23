@@ -7,6 +7,7 @@
  * @property integer $id
  * @property string $name
  * @property string $tag
+ * @property string $business_id
  * @property string $email
  * @property integer $employees
  * @property integer $token_key_id
@@ -20,7 +21,7 @@
  */
 class Company extends CActiveRecord
 {
-        public $form_step;
+    public $form_step;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -41,7 +42,7 @@ class Company extends CActiveRecord
             array('name, tag, email', 'unique'),
 			array('employees, token_key_id, industry_id', 'numerical', 'integerOnly'=>true),
 			array('name, email', 'length', 'max'=>256),
-                        array('email', 'email'),
+            array('email', 'email'),
 			array('tag', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -73,6 +74,7 @@ class Company extends CActiveRecord
 			'id' => Yii::t('Company', 'ID'),
 			'name' => Yii::t('Company', 'Name'),
 			'tag' => Yii::t('Company', 'Tag'),
+            'business_id' => Yii::t('Company', 'BusinessId'),
 			'email' => Yii::t('Company', 'Email'),
 			'employees' => Yii::t('Company', 'Employees'),
 			'token_key_id' => Yii::t('Company', 'TokenKey'),

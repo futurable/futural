@@ -6,30 +6,22 @@
 /* @var $CBC_items  Cost-benefit calculation items */
 ?>
 
-<h1><?php echo "$company->name ($company->tag)"; ?></h1>
+<h1><?php echo $company->name; ?></h1>
+<h2><?php echo $company->business_id; ?></h2>
 
 <table>
     <tr>
-        <th>Industry</th>
-        <th>Description</th>
-        <th>Medium turnover</th>
-        <th>Minimum wage rate</th>
+        <th><?php echo Yii::t('Company', 'Industry'); ?></th>
+        <th><?php echo Yii::t('Company', 'Description'); ?></th>
     </tr>
     <tr>
-        <td><?php echo ucfirst($industry->name); ?></td>
-        <td><?php echo $industry->description; ?></td>
-        <td><?php echo $industrySetups[0]->turnover." &euro;";?></td>
-        <td><?php echo $industrySetups[0]->minimum_wage_rate." &euro;";?></td>
+        <td><?php echo Yii::t('Industry', $industry->name); ?></td>
+        <td><?php echo Yii::t('Industry', $industry->description); ?></td>
     </tr>
 </table>
 
-<h2>Cost-benefit calculation</h2>
+<h2><?php Yii::t('Company', 'CostBenefitCalculation'); ?></h2>
 <table>
-    <tr>
-        <th>Type</th>
-        <th>Monthly cost</th>
-        <th>Description</th>
-    </tr>
 <?php
     foreach($CBC_items as $item){
         $type = $item->costbenefitItemType;
@@ -37,12 +29,18 @@
         
         $tableRow = "
             <tr>
-                <td>$typeName</td>
+                <td>".Yii::t('Company', $typeName)."</td>
                 <td>$item->value &euro;</td>
-                <td>$type->description</td>
             </tr>";
         
         echo $tableRow;
     }
 ?>
 </table>
+
+<?php
+echo "<h3>".Yii::t('Company', 'WhatIsNext')."</h3>";
+echo "<p>".Yii::t('Company', 'TheLearningEnvironment').": <a href='https://futurality.fi'>futurality.fi</a></p>";
+echo "<p>".Yii::t('Company', 'TheERPSystem').": <a href='http://erp.futurality.fi/?db=$company->tag'>erp.futurality.fi</a></p>";
+echo "<p>".Yii::t('Company', 'TheBank').": <a href='http://futurality.fi/bank/index.php/user/login/?company=$company->tag'>futurality.fi/bank</a></p>";
+?>

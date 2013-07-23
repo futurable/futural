@@ -163,13 +163,15 @@ Class CommonFunctions{
 	 * @return  string  $content   disclaimer div in html
 	 */
 	public static function getDisclaimerDiv() {
-		$content = "<div class='disclaimer'>\n
-						<p>
-							This is <a href='http://futurable.fi/index.php/en/tuotteet-ja-palvelut/oppimisymparistot' rel='external'>Futural</a> - virtual learning environment 
-							by <a href='http://futurable.fi/index.php/en/' rel='external'>Futurable</a>.
-							<a href='#'>Give feedback</a>.
-						</p>
-					</div>\n";
+        $content = "<div class='disclaimer'>\n
+            <p>
+                Welcome to
+                <a href='http://futurable.fi/index.php/en/tuotteet-ja-palvelut/oppimisymparistot' rel='external'>Futural</a>
+                - a virtual learning environment by
+                <a href='http://futurable.fi'>Futurable</a>.
+                <a href='mailto:futurality@futurable.fi?subject=Feedback'>Give feedback</a>
+            </p>
+        </div>\n";
 		
 		return $content;
 	}

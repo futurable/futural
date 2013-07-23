@@ -58,6 +58,7 @@ $headData =
 	<!-- styles -->
 	<link rel=\"stylesheet\" type=\"text/css\" href=\"CommonServices/css/normalize.css\" />
 	<link rel=\"stylesheet\" type=\"text/css\" href=\"futural.css\" />
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 
 	<!-- favicon -->
 	<link rel=\"shortcut icon\" href=\"images/favicon.ico\" />
