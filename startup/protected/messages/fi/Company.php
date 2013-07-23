@@ -17,10 +17,6 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'TheERPSystem' => 'ERP-järjestelmä',
-  'TheBank' => 'Pankki',
-  'TheLearningEnvironment' => 'Oppimisympäristö',
-  'WhatIsNext' => 'Mitä seuraavaksi?',
   'OtherExpenses' => 'Muut kulut',
   'computer-assembly' => 'Tietokoneiden kokoonpano',
   'computer-retail' => 'Tietokoneiden jälleenmyynti',
@@ -57,6 +53,9 @@ return array (
   'SelectIndustry' => 'Valitse toimiala',
   'SideExpenses' => 'Sivukulut',
   'Tag' => 'Tunnus',
+  'TheBank' => 'Pankki',
+  'TheERPSystem' => 'ERP-järjestelmä',
+  'TheLearningEnvironment' => 'Oppimisympäristö',
   'TokenKey' => 'Perustamisavain',
   'ToolTipCommunication' => 'Yrityksen yhteydet ulkomaailmaan. Sisältää puhelimet, internetin, yms. Ei sisällä markkinointikuluja',
   'ToolTipExpenses' => 'Hankkimiskustannukset. Tämä sisältää esim. lopputuotteen kokoonpanoa varten ostettavat osat.',
@@ -76,6 +75,7 @@ return array (
   'UserId' => 'Käyttäjätunnus',
   'Verify' => 'Tarkista',
   'WelcomeToFuturality' => 'Tervetuloa Futuralityyn!',
+  'WhatIsNext' => 'Mitä seuraavaksi?',
   'Yearly' => 'Vuodessa',
   'YouHaveCreatedACompanyInThe' => 'Olet luonut yrityksen',
   'YourBusinessIdIs' => 'Y-tunnuksesi on',
