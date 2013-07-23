@@ -194,33 +194,37 @@ class CreateAction extends CAction
                             $output = exec("sh ".$scriptFile.$shellCmd);
                         
                             // Send login information to user
-                            $messageContent ="
-                            <h1>Welcome to Futurality!</h1>
-                             
-                            <p>You have created a company in the Futurality learning environment.<br>
-                            It can be found from <a href='https://futurality.fi'>futurality.fi</a></p>
+                            $messageContent = "<h1>".Yii::t('Company', 'WelcomeToFuturality!')."</h1>";
 
-                            <p>Your company name is <strong>$company->name</strong>, and business id is <strong>$businessID</strong>.<br>
-                            Company id tag is <strong>$company->tag</strong> - you need it to login into the right company.</p>
+                            $messageContent .= "<p>";
+                                $messageContent .= Yii::t('Company', 'YouHaveCreatedACompanyInThe')."<br/>";
+                                $messageContent .= "<a href='https://futurality.fi'>".Yii::t('Company', 'FuturalityLearningEnvironment')."</a>";
+                            $messageContent .= "</p>";
 
-                            <ul>
-                                <li>OpenERP account</li>
-                                <li>UserID: <strong>admin</strong></li>
-                                <li>Password: <strong>$OERPPassword</strong></li>
-                                <li>Log in from <a href='http://erp.futurality.fi/?db=$company->tag'>erp.futurality.fi</a></li>
-                            </ul>
+                            $messageContent .= "<p>";
+                                $messageContent .= Yii::t('Company', 'YourCompanyNameIs');
+                                $messageContent .= " <strong>".$company->name."</strong>.<br/>";
+                                $messageContent .= Yii::t('Company', 'YourCompanyTagIs');
+                                $messageContent .= " <strong>".$company->tag."</strong>.<br>";
+                                $messageContent .= Yii::t('Company', 'YourBusinessIdIs');
+                                $messageContent .= " <strong>".$businessID."</strong>.<br>";
+                            $messageContent .= "</p>";
 
-                            <ul>
-                                <li>Bank account</li>
-                                <li>UserID: <strong>$company->tag</strong></li> 
-                                <li>Password: <strong>$bankPassword</strong></li>
-                                <li>Log in from <a href='http://futural.fi/futural/bank/index.php/user/login/?company=$company->tag'>futural.fi/bank</a></li>
-                            </ul>
+                            $messageContent .= "<h2>".Yii::t('Company', 'OpenERPAccount')."</h2>";
+                            $messageContent .= "<ul>";
+                                $messageContent .= "<li>".Yii::t('Company', 'UserId').": <strong>admin</strong></li>";
+                                $messageContent .= "<li>".Yii::t('Company', 'Password').": <strong>$OERPPassword</strong></li>";
+                                $messageContent .= "<li>".Yii::t('Company', 'LoginFrom')." <a href='http://erp.futurality.fi/?db=$company->tag'>erp.futurality.fi</a></li>";
+                            $messageContent .= "</ul>";
 
-                            <p><strong>Have fun!</strong></p>
+                            $messageContent .= "<h2>".Yii::t('Company', 'BankAccount')."</h2>";
+                            $messageContent .= "<ul>";
+                                $messageContent .= "<li>".Yii::t('Company', 'UserId').": <strong>$company->tag</strong></li>";
+                                $messageContent .= "<li>".Yii::t('Company', 'Password').": <strong>$bankPassword</strong></li>";
+                                $messageContent .= "<li>".Yii::t('Company', 'LoginFrom')." <a href='http://futurality.fi/bank/index.php/user/login/?company=$company->tag'>futurality.fi/bank</a></li>";
+                            $messageContent .= "</ul>";
 
-                            <p>--<br/>
-                            This is automatically generated email. Do not reply this address.</p>";
+                            $messageContent .= "<p><strong>".Yii::t('Company', "HaveFun")."</strong></p>";
 
                             $message = new YiiMailMessage;
                             $message->subject = "Futurality account";
