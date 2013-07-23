@@ -17,10 +17,6 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'TheERPSystem' => 'The ERP system',
-  'TheBank' => 'The bank',
-  'TheLearningEnvironment' => 'The Futurality learning environment',
-  'WhatIsNext' => 'What\'s next?',
   'OtherExpenses' => 'Other expenses',
   'computer-assembly' => 'Computer assembly',
   'computer-retail' => 'Computer retail',
@@ -57,6 +53,9 @@ return array (
   'SelectIndustry' => 'Select industry',
   'SideExpenses' => 'Side expenses',
   'Tag' => 'Tag',
+  'TheBank' => 'The bank',
+  'TheERPSystem' => 'The ERP system',
+  'TheLearningEnvironment' => 'The Futurality learning environment',
   'TokenKey' => 'Token Key',
   'ToolTipCommunication' => 'Company communications. Ex. phones, data connections. Does not include marketing costs.',
   'ToolTipExpenses' => 'The expenses from buying the stuff you need to get your end product made.',
@@ -76,6 +75,7 @@ return array (
   'UserId' => 'UserID',
   'Verify' => 'Verify',
   'WelcomeToFuturality' => 'Welcome to Futurality',
+  'WhatIsNext' => 'What\'s next?',
   'Yearly' => 'Yearly',
   'YouHaveCreatedACompanyInThe' => 'You have created a company in the',
   'YourBusinessIdIs' => 'Your business ID is',
