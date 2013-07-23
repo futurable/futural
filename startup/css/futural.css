@@ -15,7 +15,7 @@
 }
 
 .disclaimer a:link, .disclaimer a:visited {
-	color: #eee;
+	color: #0088CC;
 }
 
 .disclaimer a:hover {
@@ -29,14 +29,21 @@
         width: 100%;
 }
 
+#logo{
+    border-bottom: 5px solid #A8CF38;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+}
+
 body {
-	background-color: #555;
-	font-family: normal 10pt 'Ubuntu','Helvetica',sans-serif;
-        margin: 0;
-        padding: 0;
+	background-color: #555 !important;
+	font-family: 'Ubuntu','Helvetica', 'sans-serif' !important;
+    margin: 0;
+    padding: 0;
 }
 
 #container {
+    display: block;
 	width: 1000px;
 	margin: 0 auto;
 }
@@ -74,6 +81,7 @@ body {
 }
 #langdrop{
     float: right;
+    margin-right: 40px;
 }
 .btn{
     float: right;
@@ -81,4 +89,12 @@ body {
 }
 #Company_industry_description{
     padding-left: 10px;
+}
+#footer{
+    margin-top: 20px;
+    background-color: #A8CF38;
+    text-align: center;
+    padding: 30px 0 50px 0;
+    border-radius: 0 0 15px 15px;
+    font-size: 1em;
 }
