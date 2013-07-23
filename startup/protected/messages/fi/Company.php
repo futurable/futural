@@ -9,7 +9,7 @@
  * Each array element represents the translation (value) of a message (key).
  * If the value is empty, the message is considered as not translated.
  * Messages that no longer need translation will have their translations
- * enclosed between a pair of '@@' marks.
+ * enclosed between a pair of '' marks.
  *
  * Message string can be used with plural forms format. Check i18n section
  * of the guide for details.
@@ -17,21 +17,30 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Create' => 'Luo',
+  'FuturalityAccount' => 'Futurality-tilisi',
+  'computer-assembly' => 'Tietokoneiden kokoonpano',
+  'computer-retail' => 'Tietokoneiden jälleenmyynti',
+  'BankAccount' => 'Pankkitunnukset',
   'Communication' => 'Yhteydet',
+  'Create' => 'Luo',
   'CreateCompany' => 'Luo yritys',
   'EachTokenKeyCanBeUsedOnlyOnce' => 'Jokaisen  perustamisavaimen voi käyttää vain kerran',
   'Email' => 'Sähköposti',
   'Employees' => 'Työntekijät',
   'ErrorWhileDecidingFormStep' => 'Virheellinen lomakkeen vaihe',
   'Expenses' => 'Kulut',
+  'FuturalityLearningEnvironment' => 'Futurality-oppimisympäristöön',
+  'HaveFun' => 'Pidä hauskaa!',
   'Health' => 'Terveys',
   'ID' => 'ID',
   'Industry' => 'Toimiala',
   'Loans' => 'Lainat',
+  'LoginFrom' => 'Kirjautuminen',
   'Monthly' => 'Kuukaudessa',
   'Name' => 'Nimi',
+  'OpenERPAccount' => 'OpenERP-tunnukset',
   'Other' => 'Muut',
+  'Password' => 'Salasana',
   'PleaseGiveATokenKey' => 'Ole hyvä, ja anna perustamisavain',
   'Profit' => 'Tuotto',
   'Rents' => 'Vuokrat',
@@ -55,8 +64,12 @@ return array (
   'TooltipEmployees' => 'Yrityksen työntekijöiden määrä.',
   'TooltipIndustry' => 'Yrityksen päätoimiala. Tämän perusteella annetaan ohjearvot liiketoimintasuunnitelmaa varten.',
   'Turnover' => 'Liikevaihto',
+  'UserId' => 'Käyttäjätunnus',
   'Verify' => 'Tarkista',
+  'WelcomeToFuturality' => 'Tervetuloa Futuralityyn!',
   'Yearly' => 'Vuodessa',
-  'computer-assembly' => 'Tietokoneiden kokoonpano',
-  'computer-retail' => 'Tietokoneiden jälleenmyynti',
+  'YouHaveCreatedACompanyInThe' => 'Olet luonut yrityksen',
+  'YourBusinessIdIs' => 'Y-tunnuksesi on',
+  'YourCompanyNameIs' => 'Yrityksesi nimi on',
+  'YourCompanyTagIs' => 'Yrityksesi tunnus on',
 );
