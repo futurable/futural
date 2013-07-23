@@ -17,8 +17,22 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Create' => 'Create',
+  'BankAccount' => 'Bank account',
+  'FuturalityLearningEnvironment' => 'Futurality learning environment',
+  'HaveFun' => 'Have fun!',
+  'LoginFrom' => 'Login from',
+  'OpenERPAccount' => 'OpenERP account',
+  'Password' => 'Password',
+  'UserId' => 'UserID',
+  'WelcomeToFuturality' => 'Welcome to Futurality',
+  'YouHaveCreatedACompanyInThe' => 'You have created a company in the',
+  'YourBusinessIdIs' => 'Your business ID is',
+  'YourCompanyNameIs' => 'Your company name is',
+  'YourCompanyTagIs' => 'Your company tag is',
+  'computer-assembly' => 'Computer assembly',
+  'computer-retail' => 'Computer retail',
   'Communication' => 'Communication',
+  'Create' => 'Create',
   'CreateCompany' => 'Create a company',
   'EachTokenKeyCanBeUsedOnlyOnce' => 'Each token key can be used only once',
   'Email' => 'Email',
@@ -57,6 +71,4 @@ return array (
   'Turnover' => 'Turnover',
   'Verify' => 'Verify',
   'Yearly' => 'Yearly',
-  'computer-assembly' => 'Computer assembly',
-  'computer-retail' => 'Computer retail',
 );
