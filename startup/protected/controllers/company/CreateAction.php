@@ -225,9 +225,12 @@ class CreateAction extends CAction
                             $messageContent .= "</ul>";
 
                             $messageContent .= "<p><strong>".Yii::t('Company', "HaveFun")."</strong></p>";
+                            
+                            $messageContent .= "<br><p>---</p>";
+                            $messageContent .= "<p><a href='http://futurable.fi'>Futurable Oy ".date('Y')."</a></p>";
 
                             $message = new YiiMailMessage;
-                            $message->subject = "Futurality account";
+                            $message->subject = Yii::t('Company', "FuturalityAccount");
                             $message->setBody($messageContent, 'text/html');
                             $message->addTo($email);
                             $message->from = 'helpdesk@futurality.fi';
