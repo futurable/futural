@@ -9,15 +9,12 @@
 	color: #eee;
 	background-color: #000;
 }
-
 .disclaimer p {
 	margin-bottom: 0;
 }
-
 .disclaimer a:link, .disclaimer a:visited {
 	color: #0088CC;
 }
-
 .disclaimer a:hover {
 	color: #C8DA30;
 }
