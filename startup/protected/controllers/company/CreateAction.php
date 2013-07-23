@@ -194,7 +194,7 @@ class CreateAction extends CAction
                             $output = exec("sh ".$scriptFile.$shellCmd);
                         
                             // Send login information to user
-                            $messageContent = "<h1>".Yii::t('Company', 'WelcomeToFuturality!')."</h1>";
+                            $messageContent = "<h1>".Yii::t('Company', 'WelcomeToFuturality')."</h1>";
 
                             $messageContent .= "<p>";
                                 $messageContent .= Yii::t('Company', 'YouHaveCreatedACompanyInThe')."<br/>";
