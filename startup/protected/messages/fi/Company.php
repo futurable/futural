@@ -17,6 +17,9 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'CreatingACompany' => 'Luodaan yritystä...',
+  'PleaseBePatient' => 'Ole hyvä ja odota kärsivällisesti!',
+  'GrabACupOfCoffee' => 'Tässä on hyvä väli hakea kuppi kahvia.',
   'OtherExpenses' => 'Muut kulut',
   'computer-assembly' => 'Tietokoneiden kokoonpano',
   'computer-retail' => 'Tietokoneiden jälleenmyynti',
@@ -44,7 +47,6 @@ return array (
   'Name' => 'Nimi',
   'OpenERPAccount' => 'OpenERP-tunnukset',
   'Other' => 'Muut',
-  'OtherExpenses' => 'Muut kulut',
   'Password' => 'Salasana',
   'PleaseGiveATokenKey' => 'Ole hyvä, ja anna perustamisavain',
   'Profit' => 'Tuotto',
