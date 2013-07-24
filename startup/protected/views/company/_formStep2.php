@@ -33,16 +33,31 @@ $IndustrySetupJS = "var IndustrySetupArray = $IndustrySetupJSON;\n";
 Yii::app()->clientScript->registerScript('IndustryDescription', $IndustryDescriptionJS, CClientScript::POS_HEAD);
 Yii::app()->clientScript->registerScript('IndustrySetup', $IndustrySetupJS, CClientScript::POS_HEAD);
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBenefitCalculation.js');
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/loaderScreen.js');
 ?>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'tokenKey',
+	'id'=>'costBenefitCalculation',
 	'enableClientValidation'=>true,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
 )); ?>
-        
+    
+    <div id='loaderScreen' style='display: none;'>
+        <div class='shader'></div>
+        <div class='loader'>
+            <p>
+                <?php echo Yii::t('Company', 'CreatingACompany'); ?><br/>
+                <?php echo Yii::t('Company', 'GrabACupOfCoffee'); ?>
+            </p>
+            <p><img src='<?php echo Yii::app()->baseUrl."/css/img/loader.gif"; ?>'/></p>
+            <p>
+                <?php echo Yii::t('Company', 'PleaseBePatient'); ?>
+            </p>
+        </div>
+    </div>
+    
 	<div class="row">
         <?php echo $form->hiddenField($token, 'token_key', array('value'=>$token->token_key)); ?>
 		<?php echo $form->label($company,'name'); ?>
