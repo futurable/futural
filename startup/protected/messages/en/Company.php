@@ -17,6 +17,9 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'CreatingACompany' => 'Creating a company...',
+  'PleaseBePatient' => 'Please be patient!',
+  'GrabACupOfCoffee' => 'Go and grab yourself a cup of coffee.',
   'OtherExpenses' => 'Other expenses',
   'computer-assembly' => 'Computer assembly',
   'computer-retail' => 'Computer retail',
@@ -44,7 +47,6 @@ return array (
   'Name' => 'Name',
   'OpenERPAccount' => 'OpenERP account',
   'Other' => 'Other',
-  'OtherExpenses' => 'Other expenses',
   'Password' => 'Password',
   'PleaseGiveATokenKey' => 'Please give a token key',
   'Profit' => 'Profit',
