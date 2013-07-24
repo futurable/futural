@@ -33,6 +33,7 @@ class CostbenefitItem extends CActiveRecord
 		return array(
 			array('value, costbenefit_calculation_id, costbenefit_item_type_id', 'required'),
 			array('costbenefit_calculation_id, costbenefit_item_type_id', 'numerical', 'integerOnly'=>true),
+            array('value', 'numerical'),
 			array('value', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

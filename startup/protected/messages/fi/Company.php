@@ -17,15 +17,14 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'OtherExpenses' => 'Muut kulut',
-  'computer-assembly' => 'Tietokoneiden kokoonpano',
-  'computer-retail' => 'Tietokoneiden jälleenmyynti',
+  'EmailIsInvalid' => 'Sähköpostiosoite on virheellinen',
   'BankAccount' => 'Pankkitunnukset',
   'BusinessId' => 'Y-tunnus',
   'Communication' => 'Yhteydet',
   'CostBenefitCalculation' => 'Liiketoimintasuunnitelma',
   'Create' => 'Luo',
   'CreateCompany' => 'Luo yritys',
+  'CreatingACompany' => 'Luodaan yritystä...',
   'Description' => 'Kuvaus',
   'EachTokenKeyCanBeUsedOnlyOnce' => 'Jokaisen  perustamisavaimen voi käyttää vain kerran',
   'Email' => 'Sähköposti',
@@ -34,6 +33,7 @@ return array (
   'Expenses' => 'Kulut',
   'FuturalityAccount' => 'Futurality-tilisi',
   'FuturalityLearningEnvironment' => 'Futurality-oppimisympäristöön',
+  'GrabACupOfCoffee' => 'Tässä on hyvä väli hakea kuppi kahvia.',
   'HaveFun' => 'Pidä hauskaa!',
   'Health' => 'Terveys',
   'ID' => 'ID',
@@ -46,6 +46,7 @@ return array (
   'Other' => 'Muut',
   'OtherExpenses' => 'Muut kulut',
   'Password' => 'Salasana',
+  'PleaseBePatient' => 'Ole hyvä ja odota kärsivällisesti!',
   'PleaseGiveATokenKey' => 'Ole hyvä, ja anna perustamisavain',
   'Profit' => 'Tuotto',
   'Rents' => 'Vuokrat',
@@ -81,4 +82,6 @@ return array (
   'YourBusinessIdIs' => 'Y-tunnuksesi on',
   'YourCompanyNameIs' => 'Yrityksesi nimi on',
   'YourCompanyTagIs' => 'Yrityksesi tunnus on',
+  'computer-assembly' => 'Tietokoneiden kokoonpano',
+  'computer-retail' => 'Tietokoneiden jälleenmyynti',
 );
