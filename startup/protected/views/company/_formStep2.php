@@ -41,6 +41,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/loaderSc
 	'enableClientValidation'=>true,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
+        'validateOnChange'=>true,
 	),
 )); ?>
     
