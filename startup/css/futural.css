@@ -20,10 +20,10 @@
 }
 
 .startup {
-        position: absolute;
-        bottom: 0;
-        margin: 0;
-        width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
 }
 
 #logo{
@@ -96,4 +96,33 @@ body {
     padding: 30px 0 50px 0;
     border-radius: 0 0 15px 15px;
     font-size: 1em;
+}
+.loader{
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5%;
+    margin: 0 auto;
+    width: 30%;
+    height: 20%;
+    border: 5px solid #A8CF38;
+    text-align: center;
+    background-color: #fff;
+    padding: 80px;
+	border-radius: 15px;
+    z-index: 1000;
+}
+.loader p{
+    padding-bottom: 40px;
+}
+
+.shader{
+    background-color: #000;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
