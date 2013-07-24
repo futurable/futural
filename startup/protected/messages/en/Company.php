@@ -17,15 +17,14 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'OtherExpenses' => 'Other expenses',
-  'computer-assembly' => 'Computer assembly',
-  'computer-retail' => 'Computer retail',
+  'EmailIsInvalid' => 'Email is invalid',
   'BankAccount' => 'Bank account',
   'BusinessId' => 'Business ID',
   'Communication' => 'Communication',
   'CostBenefitCalculation' => 'Cost-benefit calculation',
   'Create' => 'Create',
   'CreateCompany' => 'Create a company',
+  'CreatingACompany' => 'Creating a company...',
   'Description' => 'Kuvaus',
   'EachTokenKeyCanBeUsedOnlyOnce' => 'Each token key can be used only once',
   'Email' => 'Email',
@@ -34,6 +33,7 @@ return array (
   'Expenses' => 'Expenses',
   'FuturalityAccount' => 'Your Futurality account',
   'FuturalityLearningEnvironment' => 'Futurality learning environment',
+  'GrabACupOfCoffee' => 'Go and grab yourself a cup of coffee.',
   'HaveFun' => 'Have fun!',
   'Health' => 'Health',
   'ID' => 'ID',
@@ -46,6 +46,7 @@ return array (
   'Other' => 'Other',
   'OtherExpenses' => 'Other expenses',
   'Password' => 'Password',
+  'PleaseBePatient' => 'Please be patient!',
   'PleaseGiveATokenKey' => 'Please give a token key',
   'Profit' => 'Profit',
   'Rents' => 'Rents',
@@ -81,4 +82,6 @@ return array (
   'YourBusinessIdIs' => 'Your business ID is',
   'YourCompanyNameIs' => 'Your company name is',
   'YourCompanyTagIs' => 'Your company tag is',
+  'computer-assembly' => 'Computer assembly',
+  'computer-retail' => 'Computer retail',
 );
