@@ -104,14 +104,11 @@ $(document).ready(function(){
         var industryId = $("#Company_industry_id").val();
         var industrySetup = IndustrySetupArray[industryId];
         
-        var rents = $("#CostbenefitItem_rents_value").val() * 5;
-        var communications = $("#CostbenefitItem_communication_value").val() * 5;
-        
         var avgWage = industrySetup['avgWage'];
         var employees = $("#Company_employees option:selected").text();
-        var salaries = avgWage*employees*1.3*12; // @TODO: WHY IS THIS 12?!
+        var salaries = avgWage*(employees-1)*13;
         
-        var turnover = parseInt(industrySetup['turnover']) + parseInt(salaries) + parseInt(rents) + parseInt(communications);
+        var turnover = parseInt(industrySetup['turnover']) + parseInt(salaries);
         
         $("#CostbenefitItem_turnover_value").val(turnover);
         $("#_turnoveryearly").val(turnover*12);
@@ -136,7 +133,7 @@ $(document).ready(function(){
         // Calculate loan sum. 3x all expenses + one months expenses
         loanSum = (expenses+salaries+sideExpenses+rents+communication)*3 + expenses;
         var interest = 3.3 / 100 / 12;
-        payment = loanSum * ( interest / (1 - Math.pow((1+interest), -36)));
+        payment = loanSum * ( interest / (1 - Math.pow((1+interest), -60)));
         
         loans = Math.round(payment);
         
