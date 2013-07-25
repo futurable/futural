@@ -30,7 +30,7 @@ return array (
   'Email' => 'Sähköposti',
   'Employees' => 'Työntekijät',
   'ErrorWhileDecidingFormStep' => 'Virheellinen lomakkeen vaihe',
-  'Expenses' => 'Kulut',
+  'Expenses' => 'Materiaalikulut',
   'FuturalityAccount' => 'Futurality-tilisi',
   'FuturalityLearningEnvironment' => 'Futurality-oppimisympäristöön',
   'GrabACupOfCoffee' => 'Tässä on hyvä väli hakea kuppi kahvia.',
