@@ -149,7 +149,7 @@ class CreateAction extends CAction
                         $email = $company->email;                   
                         
                         // Create business ID
-                        $company->businessID = CommonServices::createBusinessID();
+                        $company->business_id = CommonServices::createBusinessID();
                         
                         /* 
                          * Create bank user, profile and account
@@ -188,7 +188,7 @@ class CreateAction extends CAction
                             
                             // Create OpenERP database
                             $OERPPassword = CommonServices::generatePassword();
-                            $cmd = " '$company->tag' '$company->name' '$OERPPassword' '$company->businessID' '$email' '$bankAccount->iban'";
+                            $cmd = " '$company->tag' '$company->name' '$OERPPassword' '$company->business_id' '$email' '$bankAccount->iban'";
                             $shellCmd = escapeshellcmd($cmd);
                             $scriptFile = Yii::app()->basePath."/commands/shell/createOpenERPCompany.sh";
                             $output = exec("sh ".$scriptFile.$shellCmd);
@@ -207,7 +207,7 @@ class CreateAction extends CAction
                                 $messageContent .= Yii::t('Company', 'YourCompanyTagIs');
                                 $messageContent .= " <strong>".$company->tag."</strong>.<br>";
                                 $messageContent .= Yii::t('Company', 'YourBusinessIdIs');
-                                $messageContent .= " <strong>".$company->businessID."</strong>.<br>";
+                                $messageContent .= " <strong>".$company->business_id."</strong>.<br>";
                             $messageContent .= "</p>";
 
                             $messageContent .= "<h2>".Yii::t('Company', 'OpenERPAccount')."</h2>";
