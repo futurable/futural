@@ -157,7 +157,7 @@ $(document).ready(function(){
         var industrySetup = IndustrySetupArray[industryId];
         var employees = $("#Company_employees option:selected").text();
         
-        var communication = parseInt(industrySetup['communication'])*(1+(parseInt(employees)-1)*0.2);
+        var communication = Math.round(parseInt(industrySetup['communication'])*(1+(parseInt(employees)-1)*0.2));
         
         $("#CostbenefitItem_communication_value").val(communication);
         $("#_communicationyearly").val(communication*12); 
