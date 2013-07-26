@@ -324,7 +324,6 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
                 $("#costBenefitCalculation div[class=errorMessage]").each(function() {
                     if($(this).text() != '' && $(this).attr('style') == ''){
                         showLoadScreen = false;
-                        alert(this.id);
                         exit;
                     }
                 });
