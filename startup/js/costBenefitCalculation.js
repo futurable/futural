@@ -146,7 +146,7 @@ $(document).ready(function(){
         var industrySetup = IndustrySetupArray[industryId];
         var employees = $("#Company_employees option:selected").text();
         
-        var rents = parseInt(industrySetup['rents'])*parseInt(employees)/2;
+        var rents = parseInt(industrySetup['rents']) * (1+Math.floor((parseInt(employees)/5)));
         
         $("#CostbenefitItem_rents_value").val(rents);
         $("#_rentsyearly").val(rents*12);       
@@ -157,7 +157,7 @@ $(document).ready(function(){
         var industrySetup = IndustrySetupArray[industryId];
         var employees = $("#Company_employees option:selected").text();
         
-        var communication = parseInt(industrySetup['communication'])*parseInt(employees);
+        var communication = parseInt(industrySetup['communication'])*(1+(parseInt(employees)-1)*0.2);
         
         $("#CostbenefitItem_communication_value").val(communication);
         $("#_communicationyearly").val(communication*12); 
