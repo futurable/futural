@@ -106,7 +106,7 @@ $(document).ready(function(){
         
         var avgWage = industrySetup['avgWage'];
         var employees = $("#Company_employees option:selected").text();
-        var salaries = avgWage*(employees-1)*13;
+        var salaries = avgWage*(employees-1)*11;
         
         var turnover = parseInt(industrySetup['turnover']) + parseInt(salaries);
         
