@@ -33,7 +33,6 @@ $IndustrySetupJS = "var IndustrySetupArray = $IndustrySetupJSON;\n";
 Yii::app()->clientScript->registerScript('IndustryDescription', $IndustryDescriptionJS, CClientScript::POS_HEAD);
 Yii::app()->clientScript->registerScript('IndustrySetup', $IndustrySetupJS, CClientScript::POS_HEAD);
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBenefitCalculation.js');
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/loaderScreen.js');
 ?>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
