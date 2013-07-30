@@ -19,13 +19,13 @@ $IndustryDescriptionJS = "var IndustryDescriptionArray = $IndustryDescriptionJSO
 $industrySetups = IndustrySetup::model()->findAll();
 foreach($industrySetups as $industrySetup){
     $IndustrySetupArray[$industrySetup->industry_id] = array(
-                                            'turnover' => $industrySetup->turnover,
-                                            'minWage' => $industrySetup->minimum_wage_rate,
-                                            'avgWage' => $industrySetup->average_wage_rate,
-                                            'maxWage' => $industrySetup->maximum_wage_rate,
-                                            'rents' => $industrySetup->rents,
-                                            'communication' => $industrySetup->communication,
-                                        );
+        'turnover' => $industrySetup->turnover,
+        'minWage' => $industrySetup->minimum_wage_rate,
+        'avgWage' => $industrySetup->average_wage_rate,
+        'maxWage' => $industrySetup->maximum_wage_rate,
+        'rents' => $industrySetup->rents,
+        'communication' => $industrySetup->communication,
+    );
 }
 $IndustrySetupJSON = CJSON::encode($IndustrySetupArray);
 $IndustrySetupJS = "var IndustrySetupArray = $IndustrySetupJSON;\n";
@@ -33,7 +33,6 @@ $IndustrySetupJS = "var IndustrySetupArray = $IndustrySetupJSON;\n";
 Yii::app()->clientScript->registerScript('IndustryDescription', $IndustryDescriptionJS, CClientScript::POS_HEAD);
 Yii::app()->clientScript->registerScript('IndustrySetup', $IndustrySetupJS, CClientScript::POS_HEAD);
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBenefitCalculation.js');
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/loaderScreen.js');
 ?>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -296,9 +295,46 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/loaderSc
         </div>
 
 	<div class="row buttons">
-        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Yii::t('Company', 'Create'))); ?>
+        <?php 
+            $this->widget('bootstrap.widgets.TbButton', 
+                array(
+                    'buttonType'=>'submit', 
+                    'label'=>Yii::t('Company', 'Create'), 
+                    'htmlOptions'=> array(
+                        'onclick'=>'send();',
+                     ),
+                )
+            );
+        ?>
 	</div>
 
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+    
+<script type="text/javascript">
+    function send(){
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo Yii::app()->createAbsoluteUrl("company/create"); ?>',
+            'complete':function(){
+                var showLoadScreen = true;
+        
+                $("#costBenefitCalculation div[class=errorMessage]").each(function() {
+                    if($(this).text() != '' && $(this).attr('style') == ''){
+                        showLoadScreen = false;
+                        exit;
+                    }
+                });
+        
+                
+                if(showLoadScreen == true){
+                    $('#loaderScreen').fadeIn(500);
+                }
+            },
+        dataType:'html'
+      });
+
+    }
+</script>
