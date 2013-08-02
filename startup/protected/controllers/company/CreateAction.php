@@ -65,6 +65,8 @@ class CreateAction extends CAction
                 
                 $CommonServices = new CommonServices();
                 $company->tag = $customer_tag."_".$CommonServices->createTagFromName($company->name);
+                // Create business ID
+                $company->business_id = CommonServices::createBusinessID();
                              
                 // Cost-benefit calculation
                 //$costBenefitCalculation->attributes = new CostbenefitCalculation;
@@ -147,9 +149,6 @@ class CreateAction extends CAction
                         $transaction->commit();
                         
                         $email = $company->email;                   
-                        
-                        // Create business ID
-                        $company->business_id = CommonServices::createBusinessID();
                         
                         /* 
                          * Create bank user, profile and account
