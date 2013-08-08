@@ -39,7 +39,7 @@ class Company extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, tag, email, employees, token_key_id, industry_id', 'required'),
-            array('name, tag, email', 'unique'),
+            array('name, tag', 'unique'),
             array('name', 'length', 'min'=>'3'),
 			array('employees, token_key_id, industry_id', 'numerical', 'integerOnly'=>true),
 			array('name, email', 'length', 'max'=>256),
