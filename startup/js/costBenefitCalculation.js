@@ -9,8 +9,8 @@ $(document).ready(function(){
             inputs.eq( inputs.index(this)+ 1 ).focus();
         }
     });
-    
-    $("#Company_industry_id,#Company_employees").change(function(){
+            
+    updateAllFields = function(){
         updateIndustryDescription();
         updateSalaries();
         updateSideExpenses();
@@ -22,7 +22,9 @@ $(document).ready(function(){
         updateHealth();
         updateOther();
         updateProfit();
-    })
+    };
+    
+    $("#Company_industry_id,#Company_employees").change(updateAllFields);
     
     $("#CostbenefitItem_turnover_value").keyup(function(){
         updateExpenses();
@@ -46,12 +48,11 @@ $(document).ready(function(){
     updateCalculationFields = function( field ){
         var currentId = field.attr('id');
         
-        // Check if variable isn't an object
-        if(currentId.substring(0,1) === "_"){
-            updateMonthlyField(field);
-        }
-        else{
+        if(currentId.substring(0,15) === "CostbenefitItem"){
             updateYearlyField(field);
+        }
+        else if(currentId.substring(0,1) === "_"){
+            updateMonthlyField(field);
         }
     };
     
@@ -194,9 +195,20 @@ $(document).ready(function(){
         var health = Number($("#CostbenefitItem_health_value").val());
         var other = Number($("#CostbenefitItem_other_value").val());
         
-        var profit = turnover-expenses-salaries-side-loans-rents-communication-health-other;
+        var profit = Math.round(turnover-expenses-salaries-side-loans-rents-communication-health-other);
            
         $("#_profitmonthly").val(profit);
         $("#_profityearly").val(profit*12);
     }
+    
+    fillYearlyFields = function(){
+        $("#costBenefitCalculation input").each(function() {
+            if(this.id.substring(0,15) === "CostbenefitItem"){
+               updateYearlyField($(this));
+            }
+        });
+    }
+    
+    updateProfit();
+    fillYearlyFields();
 });
