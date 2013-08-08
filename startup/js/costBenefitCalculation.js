@@ -195,7 +195,7 @@ $(document).ready(function(){
         var health = Number($("#CostbenefitItem_health_value").val());
         var other = Number($("#CostbenefitItem_other_value").val());
         
-        var profit = turnover-expenses-salaries-side-loans-rents-communication-health-other;
+        var profit = Math.round(turnover-expenses-salaries-side-loans-rents-communication-health-other);
            
         $("#_profitmonthly").val(profit);
         $("#_profityearly").val(profit*12);
