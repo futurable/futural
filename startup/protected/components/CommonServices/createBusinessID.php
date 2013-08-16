@@ -21,10 +21,12 @@ class createBusinessID extends CommonServices{
         $error = null;
         
         if(!$prefix){
-            $base = 9050200;
-            $extra = Company::model()->count(array('select'=>'id'));
-            $businessID = $base+$extra;
+            $businessID = Company::model()->find(array('select'=>'business_id', 'order'=>'id DESC'))->business_id;
             
+            if($businessID == null){
+                // DB is empty, create a random first business id
+                $businessID = $businessID = "9050".(rand(200,300));    
+            };
             $prefix = substr($businessID, 0, 7);
         }
         
@@ -35,7 +37,7 @@ class createBusinessID extends CommonServices{
             $remainder = $this->getBusinessIDsumRemainder($prefix);
 
             // Checksum 1 is illegal, so skip ID:s that have it
-            if($remainder == 1){ return false;
+            if($remainder == 1){
                 $prefix++;
                 $remainder = $this->getBusinessIDsumRemainder($prefix);
             }
