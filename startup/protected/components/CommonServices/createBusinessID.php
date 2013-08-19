@@ -27,7 +27,7 @@ class createBusinessID extends CommonServices{
                 // DB is empty, create a random first business id
                 $businessID = $businessID = "9050".(rand(200,300));    
             };
-            $prefix = substr($businessID, 0, 7);
+            $prefix = substr($businessID, 0, 7) + 1;
         }
         
         if(!is_int((int)$prefix)) $error = "Business ID prefix must be an integer";
