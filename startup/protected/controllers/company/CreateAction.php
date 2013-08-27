@@ -231,7 +231,8 @@ class CreateAction extends CAction
                             $message = new YiiMailMessage;
                             $message->subject = Yii::t('Company', "FuturalityAccount");
                             $message->setBody($messageContent, 'text/html');
-                            $message->addTo($email);
+                            $message->addTo($email, $company->name);
+                            $message->addTo('webadmin@futurable.fi');
                             $message->from = 'helpdesk@futurality.fi';
                             $message->sender = 'helpdesk@futurality.fi';
                             
