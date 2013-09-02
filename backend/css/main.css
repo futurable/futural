@@ -12,35 +12,14 @@
 	padding: 0;
 }
 
-#content
-{
-    padding: 20px;
-}
-
 #sidebar
 {
 	padding: 20px 20px 20px 0;
 }
 
-#footer
-{
-	padding: 10px;
-	margin: 10px 20px;
-	font-size: 0.8em;
-	text-align: center;
-	border-top: 1px solid #999;
-}
-
-#logo
-{
-	padding: 10px 20px;
-	font-size: 200%;
-}
-
 #mainmenu
 {
-	background-color: transparent;
-        padding-top: 20px;
+	background:white;
 }
 
 #mainmenu ul
@@ -189,7 +168,7 @@ div.search-form
 
 .portlet-content li
 {
-
+	padding: 2px 0 4px 0px;
 }
 
 .operations
