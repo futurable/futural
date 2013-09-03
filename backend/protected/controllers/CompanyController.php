@@ -68,6 +68,10 @@ class CompanyController extends Controller
             )
         );
         
+        Yii::app()->dbopenerp->setActive(false);
+        Yii::app()->dbopenerp->connectionString = 'pgsql:host=erp.futurality.fi;dbname=futu_rautapuli';
+        Yii::app()->dbopenerp->setActive(true);
+        
 		$this->render('view',array(
 			'company'=>$company,
             'bankAccounts'=>$bankAccounts,
