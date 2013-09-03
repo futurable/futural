@@ -32,7 +32,7 @@ class Controller extends CController
     {
         // Get all suppliers
         $suppliers = Yii::app()->db->createCommand()
-            ->select('tag, name')
+            ->select('id, tag, name, business_id, email')
             ->from('company')
             ->queryAll();
         
