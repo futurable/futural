@@ -1,20 +1,30 @@
-<?php
-/* @var $this TokenCustomerController */
-/* @var $dataProvider CActiveDataProvider */
-
-$this->breadcrumbs=array(
-	'Token Customers',
-);
-
-$this->menu=array(
-	array('label'=>'Create TokenCustomer', 'url'=>array('create')),
-	array('label'=>'Manage TokenCustomer', 'url'=>array('admin')),
-);
-?>
-
 <h1>Token Customers</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+<?php 
+
+    $gridDataProvider = new CArrayDataProvider($tokenCustomers);
+
+    $gridColumns = array(
+        array('name'=>'tag', 'header'=>'Tag'),
+        array('name'=>'name', 'header'=>'Name'),
+        array('name'=>'street', 'header'=>'Street'),
+        array('name'=>'city', 'header'=>'City'),
+        array('name'=>'phone', 'header'=>'Phone'),
+        array('name'=>'email', 'header'=>'Email'),
+        array(
+            'htmlOptions' => array('nowrap'=>'nowrap'),
+            'class'=>'bootstrap.widgets.TbButtonColumn',
+            'viewButtonUrl'=>null,
+            'updateButtonUrl'=>null,
+            'deleteButtonUrl'=>null,
+        )
+    );
+
+    $this->widget('bootstrap.widgets.TbGridView', array(
+        'type'=>'striped',
+        'dataProvider'=>$gridDataProvider,
+        'template'=>"{items}",
+        'columns'=>$gridColumns,
+    ));
+
+?>
