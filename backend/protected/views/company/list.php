@@ -1,12 +1,12 @@
 <h1>List companies</h1>
 
-<div class="well">
+<div class="">
 <?php
     $gridDataProvider = new CArrayDataProvider($suppliers);
 
     $gridColumns = array(
         array('name'=>'name', 'header'=>'Name'),
-        array('name'=>'businessId', 'header'=>'Business ID'),
+        array('name'=>'business_id', 'header'=>'Business ID'),
         array('name'=>'email', 'header'=>'Email'),
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
