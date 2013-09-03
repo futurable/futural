@@ -58,8 +58,19 @@ class CompanyController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $company = $this->loadModel($id);
+        $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
+        
+        $bankAccounts = BankAccount::model()->findAll(
+            array(
+                'condition'=>'bank_user_id=:bank_user_id', 
+                'params'=>array('bank_user_id'=>$bankUser->id),
+            )
+        );
+        
 		$this->render('view',array(
-			'company'=>$this->loadModel($id),
+			'company'=>$company,
+            'bankAccounts'=>$bankAccounts,
 		));
 	}
 
