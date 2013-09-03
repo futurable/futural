@@ -25,7 +25,7 @@
  * @property BankAccountTransaction[] $bankAccountTransactions
  * @property BankLoan[] $bankLoans
  */
-class BankAccount extends CActiveRecord
+class BankAccount extends ActiveRecord
 {
     public function getDbConnection()
     {
