@@ -126,10 +126,10 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionIndex()
 	{
-                $this->allowUser(MANAGER);
-		$dataProvider=new CActiveDataProvider('TokenCustomer');
+        $this->allowUser(MANAGER);
+		$tokenCustomers= TokenCustomer::model()->findAll();
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+			'tokenCustomers'=>$tokenCustomers,
 		));
 	}
 
