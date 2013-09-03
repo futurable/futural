@@ -20,7 +20,7 @@
     $gridColumns = array(
         array('name'=>'iban', 'header'=>'Name'),
         array('name'=>'name', 'header'=>'Account name'),
-        array('name'=>'create_date', 'header'=>'Create date'),
+        array('name'=>'status', 'header'=>'Status'),
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
