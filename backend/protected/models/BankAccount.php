@@ -27,6 +27,11 @@
  */
 class BankAccount extends CActiveRecord
 {
+    public function getDbConnection()
+    {
+        return self::getBankDbConnection();
+    }
+    
 	/**
 	 * @return string the associated database table name
 	 */
