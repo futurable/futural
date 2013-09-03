@@ -4,10 +4,10 @@ class ListAction extends CAction
     public function run()
     {
         $controller=$this->getController();
-        $model = null;
+        $suppliers = $controller->getSuppliers();
         
         $controller->render('list',array(
-            'model'=>$model,
+            'suppliers'=>$suppliers,
         ));
     }
 }
