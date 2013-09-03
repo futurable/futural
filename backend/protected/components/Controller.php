@@ -11,22 +11,60 @@ define('ADMIN', 3);
 
 class Controller extends CController
 {  
-        public $userData; // Holds an activeRecord with current user. NULL if guest
-    
-        public function init() {
-            // Load the user
-            if (!Yii::app()->user->isGuest)
-                $this->userData = User::model()->findByPk(Yii::app()->user->id);
+    public $userData; // Holds an activeRecord with current user. NULL if guest
+
+    public function init() {
+        // Load the user
+        if (!Yii::app()->user->isGuest)
+            $this->userData = User::model()->findByPk(Yii::app()->user->id);
+    }
+
+    public function allowUser($min_level) { //-1 no login required 0..3: admin level
+        $current_level = 0;
+        if ($this->userData !== null)
+            $current_level = $this->userData->role;
+        if ($min_level > $current_level) {
+            throw new CHttpException(403, 'You have no permission to view this content');
         }
-       
-        public function allowUser($min_level) { //-1 no login required 0..3: admin level
-            $current_level = 0;
-            if ($this->userData !== null)
-                $current_level = $this->userData->role;
-            if ($min_level > $current_level) {
-                throw new CHttpException(403, 'You have no permission to view this content');
+    }
+    
+    public function getSuppliers()
+    {
+        // Get all suppliers
+        $suppliers = Yii::app()->db->createCommand()
+            ->select('tag, name')
+            ->from('company')
+            ->queryAll();
+        
+        // Get supplier names in SQL-compliant array
+        $supplierNames = array();
+        foreach($suppliers as $supplier){
+            $supplierNames[] = "{$supplier['tag']}";
+        }
+        $suppliersString = implode($supplierNames, ",");
+
+        // Get all suppliers that exist in OpenERP
+        $openerpSuppliers = Yii::app()->dbopenerp->createCommand()
+            ->select('datname')
+            ->from('pg_database')
+            ->where('datistemplate = false AND datname = ANY(\'{'.$suppliersString.'}\')')
+            ->queryAll();
+        
+        // Put existing suppliers into an array
+        $existingSuppliers = array();
+        foreach($openerpSuppliers as $OESupplier){
+            $existingSuppliers[$OESupplier['datname']] = $OESupplier['datname'];
+        }
+
+        // Drop non-existant suppliers
+        foreach($suppliers as $key => $supplier){
+            if(!array_key_exists($supplier['tag'], $existingSuppliers)){
+                unset( $suppliers[ $key ] );
             }
         }
+        
+        return $suppliers;
+    }
         
 	/**
 	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
