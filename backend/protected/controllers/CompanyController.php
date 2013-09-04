@@ -71,11 +71,13 @@ class CompanyController extends Controller
         Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
         Yii::app()->dbopenerp->setActive(true);
         $OEHrEmployees = HrEmployee::model()->findAll();
+        $OESaleOrders = SaleOrder::model()->findAll(array('order'=>'create_date DESC'));
 
         $this->render('view',array(
             'company'=>$company,
             'bankAccounts'=>$bankAccounts,
             'OEHrEmployees'=>$OEHrEmployees,
+            'OESaleOrders'=>$OESaleOrders,
         ));
     }
 
