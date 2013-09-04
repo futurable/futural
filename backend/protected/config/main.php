@@ -57,7 +57,15 @@ return array(
                 'connectionString' => 'pgsql:host=erp.futurality.fi;dbname=futu_sopuli',
                 'emulatePrepare' => true,
                 'username' => 'openerp',
-            'password' => 'futural',
+                'password' => 'futural',
+                'charset' => 'utf8',
+                'class' => 'CDbConnection' 
+            ),
+            'dbbank'=>array(
+                'connectionString' => 'pgsql:host=futurality.fi;dbname=futural_bank',
+                'emulatePrepare' => true,
+                'username' => 'futural_bank',
+                'password' => 'futural',
                 'charset' => 'utf8',
                 'class' => 'CDbConnection' 
             ),
