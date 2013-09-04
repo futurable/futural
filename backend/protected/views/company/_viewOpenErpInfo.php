@@ -28,7 +28,7 @@
         'columns'=>$gridColumns,
     ));
     
-    echo "<h3>Latest sale orders</h3>";
+    echo "<h3>Sale orders</h3>";
     
     $gridDataProvider = new CArrayDataProvider($OESaleOrders, array(           
         'pagination'=>array(
@@ -43,7 +43,7 @@
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
-            'viewButtonUrl'=>'Yii::app()->createUrl("/bankAccount/view", array("id" => $data["id"]))',
+            'viewButtonUrl'=>null,
             'updateButtonUrl'=>null,
             'deleteButtonUrl'=>null,
         )
