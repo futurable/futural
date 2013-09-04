@@ -6,4 +6,8 @@
    $this->renderPartial('_viewBankAccounts',array(
 	'bankAccounts'=>$bankAccounts
     ));
+   
+    $this->renderPartial('_viewOpenErpInfo',array(
+        'OEHrEmployees'=>$OEHrEmployees
+    ));
 ?>
