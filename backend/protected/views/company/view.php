@@ -1,13 +1,14 @@
 <?php 
     $this->renderPartial('_viewCompanyInfo',array(
-	'company'=>$company
+	'company'=>$company,
     ));
     
    $this->renderPartial('_viewBankAccounts',array(
-	'bankAccounts'=>$bankAccounts
+	'bankAccounts'=>$bankAccounts,
     ));
    
     $this->renderPartial('_viewOpenErpInfo',array(
-        'OEHrEmployees'=>$OEHrEmployees
+        'OEHrEmployees'=>$OEHrEmployees,
+        'OESaleOrders'=>$OESaleOrders,
     ));
 ?>
