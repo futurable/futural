@@ -8,6 +8,7 @@
         array('name'=>'name', 'header'=>'Name'),
         array('name'=>'business_id', 'header'=>'Business ID'),
         array('name'=>'email', 'header'=>'Email'),
+        array('name'=>'create_time', 'header'=>'Create time'),
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
@@ -20,7 +21,7 @@
     $this->widget('bootstrap.widgets.TbGridView', array(
         'type'=>'striped',
         'dataProvider'=>$gridDataProvider,
-        'template'=>"{items}",
+        'template'=>"{items}{pager}",
         'columns'=>$gridColumns,
     ));
 
