@@ -58,9 +58,9 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Futural Virtual Learning Environment<br/>
-		Copyright &copy; <?php echo date('Y'); ?> Futurable Oy.<br/>
-		All Rights Reserved.<br/>
+            <a href='https://github.com/futurable/futural'>Futural Virtual Learning Environment</a><br/>
+            By <a href='http://futurable.fi'>Futurable Oy</a><br/>
+            <?php echo date('Y'); ?>
 	</div><!-- footer -->
 
 </div><!-- page -->
