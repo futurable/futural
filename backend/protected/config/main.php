@@ -62,7 +62,7 @@ return array(
                 'class' => 'CDbConnection' 
             ),
             'dbbank'=>array(
-                'connectionString' => 'pgsql:host=futurality.fi;dbname=futural_bank',
+                'connectionString' => 'mysql:host=futurality.fi;dbname=futural_bank',
                 'emulatePrepare' => true,
                 'username' => 'futural_bank',
                 'password' => 'futural',
