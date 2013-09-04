@@ -68,12 +68,14 @@ class CompanyController extends Controller
         );
 
         Yii::app()->dbopenerp->setActive(false);
-        Yii::app()->dbopenerp->connectionString = 'pgsql:host=erp.futurality.fi;dbname=futu_rautapuolioy';
+        Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
         Yii::app()->dbopenerp->setActive(true);
+        $OEHrEmployees = HrEmployee::model()->findAll();
 
         $this->render('view',array(
             'company'=>$company,
             'bankAccounts'=>$bankAccounts,
+            'OEHrEmployees'=>$OEHrEmployees,
         ));
     }
 
