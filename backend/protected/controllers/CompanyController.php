@@ -13,10 +13,10 @@ class CompanyController extends Controller
 	 */
 	public function filters()
 	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
-		);
+            return array(
+                'accessControl', // perform access control for CRUD operations
+                'postOnly + delete', // we only allow deletion via POST request
+            );
 	}
 
 	/**
@@ -26,23 +26,23 @@ class CompanyController extends Controller
 	 */
 	public function accessRules()
 	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'list', 'view'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
+            return array(
+                array('allow',  // allow all users to perform 'index' and 'view' actions
+                    'actions'=>array('index'),
+                    'users'=>array('*'),
+                ),
+                array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                    'actions'=>array('create','update', 'list', 'view'),
+                    'users'=>array('@'),
+                ),
+                array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                    'actions'=>array('admin','delete'),
+                    'users'=>array('admin'),
+                ),
+                array('deny',  // deny all users
+                    'users'=>array('*'),
+                ),
+            );
 	}
 
     public function actions()
@@ -56,26 +56,25 @@ class CompanyController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
-	{
-        $company = $this->loadModel($id);
-        $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
-        
-        $bankAccounts = BankAccount::model()->findAll(
-            array(
-                'condition'=>'bank_user_id=:bank_user_id', 
-                'params'=>array('bank_user_id'=>$bankUser->id),
-            )
-        );
-        
-        Yii::app()->dbopenerp->setActive(false);
-        Yii::app()->dbopenerp->connectionString = 'pgsql:host=erp.futurality.fi;dbname=futu_rautapuolioy';
-        Yii::app()->dbopenerp->setActive(true);
-        
-		$this->render('view',array(
-			'company'=>$company,
-            'bankAccounts'=>$bankAccounts,
-		));
+	public function actionView($id){
+            $company = $this->loadModel($id);
+            $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
+
+            $bankAccounts = BankAccount::model()->findAll(
+                array(
+                    'condition'=>'bank_user_id=:bank_user_id', 
+                    'params'=>array('bank_user_id'=>$bankUser->id),
+                )
+            );
+
+            Yii::app()->dbopenerp->setActive(false);
+            Yii::app()->dbopenerp->connectionString = 'pgsql:host=erp.futurality.fi;dbname=futu_rautapuolioy';
+            Yii::app()->dbopenerp->setActive(true);
+
+            $this->render('view',array(
+                'company'=>$company,
+                'bankAccounts'=>$bankAccounts,
+            ));
 	}
 
 	/**
@@ -84,21 +83,21 @@ class CompanyController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Company;
+            $model=new Company;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+            // Uncomment the following line if AJAX validation is needed
+            // $this->performAjaxValidation($model);
 
-		if(isset($_POST['Company']))
-		{
-			$model->attributes=$_POST['Company'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+            if(isset($_POST['Company']))
+            {
+                $model->attributes=$_POST['Company'];
+                if($model->save())
+                        $this->redirect(array('view','id'=>$model->id));
+            }
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+            $this->render('create',array(
+                'model'=>$model,
+            ));
 	}
 
 	/**
@@ -108,21 +107,21 @@ class CompanyController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+            $model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+            // Uncomment the following line if AJAX validation is needed
+            // $this->performAjaxValidation($model);
 
-		if(isset($_POST['Company']))
-		{
-			$model->attributes=$_POST['Company'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+            if(isset($_POST['Company']))
+            {
+                $model->attributes=$_POST['Company'];
+                if($model->save())
+                $this->redirect(array('view','id'=>$model->id));
+            }
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+            $this->render('update',array(
+                'model'=>$model,
+            ));
 	}
 
 	/**
@@ -132,11 +131,11 @@ class CompanyController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+            $this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if(!isset($_GET['ajax']))
+            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 	/**
@@ -144,10 +143,10 @@ class CompanyController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Company');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+            $dataProvider=new CActiveDataProvider('Company');
+            $this->render('index',array(
+                'dataProvider'=>$dataProvider,
+            ));
 	}
 
 	/**
@@ -155,14 +154,14 @@ class CompanyController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Company('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Company']))
-			$model->attributes=$_GET['Company'];
+            $model=new Company('search');
+            $model->unsetAttributes();  // clear any default values
+            if(isset($_GET['Company']))
+                $model->attributes=$_GET['Company'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+            $this->render('admin',array(
+                'model'=>$model,
+            ));
 	}
 
 	/**
@@ -174,10 +173,10 @@ class CompanyController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Company::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
+            $model=Company::model()->findByPk($id);
+            if($model===null)
+                throw new CHttpException(404,'The requested page does not exist.');
+            return $model;
 	}
 
 	/**
@@ -186,10 +185,10 @@ class CompanyController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='company-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+            if(isset($_POST['ajax']) && $_POST['ajax']==='company-form')
+            {
+                echo CActiveForm::validate($model);
+                Yii::app()->end();
+            }
 	}
 }
