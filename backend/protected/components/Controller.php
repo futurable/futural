@@ -31,10 +31,7 @@ class Controller extends CController
     public function getSuppliers()
     {
         // Get all suppliers
-        $suppliers = Yii::app()->db->createCommand()
-            ->select('id, tag, name, business_id, email')
-            ->from('company')
-            ->queryAll();
+        $suppliers = Company::model()->findAll(array('order'=>'name'));
         
         // Get supplier names in SQL-compliant array
         $supplierNames = array();
