@@ -10,5 +10,6 @@
     $this->renderPartial('_viewOpenErpInfo',array(
         'OEHrEmployees'=>$OEHrEmployees,
         'OESaleOrders'=>$OESaleOrders,
+        'OEPurchaseOrders'=>$OEPurchaseOrders,
     ));
 ?>
