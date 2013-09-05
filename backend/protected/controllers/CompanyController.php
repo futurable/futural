@@ -49,36 +49,8 @@ class CompanyController extends Controller
     {
         return array(
             'list'=>'application.controllers.company.ListAction',
+            'view'=>'application.controllers.company.ViewAction'
         );
-    }
-    
-    /**
-     * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
-     */
-    public function actionView($id){
-        $company = $this->loadModel($id);
-        $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
-
-        $bankAccounts = BankAccount::model()->findAll(
-            array(
-                'condition'=>'bank_user_id=:bank_user_id', 
-                'params'=>array('bank_user_id'=>$bankUser->id),
-            )
-        );
-
-        Yii::app()->dbopenerp->setActive(false);
-        Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
-        Yii::app()->dbopenerp->setActive(true);
-        $OEHrEmployees = HrEmployee::model()->findAll();
-        $OESaleOrders = SaleOrder::model()->findAll(array('order'=>'create_date DESC'));
-
-        $this->render('view',array(
-            'company'=>$company,
-            'bankAccounts'=>$bankAccounts,
-            'OEHrEmployees'=>$OEHrEmployees,
-            'OESaleOrders'=>$OESaleOrders,
-        ));
     }
 
     /**
