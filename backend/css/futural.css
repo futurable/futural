@@ -108,3 +108,6 @@ a:hover{
 .pagination a{
     color: #0088CC !important;
 }
+.detail-view .odd{
+    background-color: #eee !important;
+}
