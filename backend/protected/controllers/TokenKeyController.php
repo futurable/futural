@@ -14,7 +14,7 @@ class TokenKeyController extends Controller
 	public function filters()
 	{
 		return array(
-			//'accessControl', // perform access control for CRUD operations
+			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
@@ -27,16 +27,16 @@ class TokenKeyController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform no actions
-				'actions'=>array(''),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update'),
 				'users'=>array('@'),
 			),
-			array('allow', // allow admin user to perform all actions
-				'actions'=>array('admin','delete', 'create','update'),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -71,7 +71,7 @@ class TokenKeyController extends Controller
 		{
 			$model->attributes=$_POST['TokenKey'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -95,7 +95,7 @@ class TokenKeyController extends Controller
 		{
 			$model->attributes=$_POST['TokenKey'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -170,17 +170,4 @@ class TokenKeyController extends Controller
 			Yii::app()->end();
 		}
 	}
-        
-        public function actionDynamicSettings()
-        {
-            $data=Location::model()->findAll('parent_id=:parent_id', 
-                          array(':parent_id'=>(int) $_POST['Token_Customer_ID']));
-
-            $data=CHtml::listData($data,'ID','Name');
-            foreach($data as $value=>$name)
-            {
-                echo CHtml::tag('option',
-                           array('value'=>$value),CHtml::encode($name),true);
-            }
-        }
 }
