@@ -122,9 +122,10 @@ class TokenKeyController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('TokenKey');
+        $this->allowUser(MANAGER);
+		$tokenKeys= TokenKey::model()->findAll(array('order'=>'create_date DESC'));
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+			'tokenKeys'=>$tokenKeys,
 		));
 	}
 
