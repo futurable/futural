@@ -10,7 +10,7 @@
  * @property string $email
  * @property integer $role
  */
-class User extends CActiveRecord
+class User extends ActiveRecord
 {
 	/**
 	 * @return string the associated database table name
