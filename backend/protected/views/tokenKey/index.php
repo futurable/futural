@@ -12,8 +12,8 @@
         array('name'=>'expiration_date', 'header'=>'Expiration date'),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
-            'viewButtonUrl'=>'Yii::app()->createUrl("/tokenCustomer/view", array("id" => $data["id"]))',
-            'updateButtonUrl'=>'Yii::app()->createUrl("/tokenCustomer/update", array("id" => $data["id"]))',
+            'viewButtonUrl'=>'Yii::app()->createUrl("/tokenKey/view", array("id" => $data["id"]))',
+            'updateButtonUrl'=>'Yii::app()->createUrl("/tokenKey/update", array("id" => $data["id"]))',
             'deleteButtonUrl'=>null,
         )
     );
