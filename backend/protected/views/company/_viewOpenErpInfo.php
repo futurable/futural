@@ -55,4 +55,32 @@
         'template'=>"{items}{pager}",
         'columns'=>$gridColumns,
     ));
+    
+    echo "<h3>Purchase orders</h3>";
+    
+    $gridDataProvider = new CArrayDataProvider($OEPurchaseOrders, array(           
+        'pagination'=>array(
+            'pageSize' => 5,
+         ),
+    ));
+
+    $gridColumns = array(
+        array('name'=>'create_date', 'header'=>'Created'),
+        array('name'=>'amount_total', 'header'=>'Order total'),
+        array('name'=>'state', 'header'=>'Order state'),
+        array(
+            'htmlOptions' => array('nowrap'=>'nowrap'),
+            'class'=>'bootstrap.widgets.TbButtonColumn',
+            'viewButtonUrl'=>null,
+            'updateButtonUrl'=>null,
+            'deleteButtonUrl'=>null,
+        )
+    );
+
+    $this->widget('bootstrap.widgets.TbGridView', array(
+        'type'=>'striped',
+        'dataProvider'=>$gridDataProvider,
+        'template'=>"{items}{pager}",
+        'columns'=>$gridColumns,
+    ));
  ?>
