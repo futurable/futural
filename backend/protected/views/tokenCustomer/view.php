@@ -25,6 +25,7 @@ $this->menu=array(
 		'tag',
 		'name',
 		'street',
+		'postal_code',
 		'city',
 		'phone',
 		'email',
