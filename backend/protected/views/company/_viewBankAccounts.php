@@ -12,8 +12,10 @@
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'viewButtonUrl'=>'Yii::app()->createUrl("/bankAccount/view", array("id" => $data["id"]))',
-            'updateButtonUrl'=>null,
-            'deleteButtonUrl'=>null,
+            'buttons'=>array(
+                'update'=>array('visible'=>'false',),
+                'delete'=>array('visible'=>'false',),
+            ),
         )
     );
 
