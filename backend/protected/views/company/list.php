@@ -13,8 +13,10 @@
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'viewButtonUrl'=>'Yii::app()->createUrl("/company/view", array("id" => $data["id"]))',
-            'updateButtonUrl'=>null,
-            'deleteButtonUrl'=>null,
+            'buttons'=>array(
+                'update'=>array('visible'=>'false',),
+                'delete'=>array('visible'=>'false',),
+            ),
         )
     );
 
