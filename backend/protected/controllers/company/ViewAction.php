@@ -1,7 +1,7 @@
 <?php
 class ViewAction extends CAction
 {
-    public function run()
+    public function run($id)
     {
         $controller=$this->getController();
         
@@ -15,10 +15,12 @@ class ViewAction extends CAction
             )
         );
 
+        // Change OpenERP-database
         Yii::app()->dbopenerp->setActive(false);
         Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
         Yii::app()->dbopenerp->setActive(true);
-        $OEHrEmployees = HrEmployee::model()->findAll();
+        
+        $OEHrEmployees = HrEmployee::model()->findAll(array('order'=>'name_related'));
         $OESaleOrders = SaleOrder::model()->findAll(array('order'=>'create_date DESC'));
 
         $controller->render('view',array(
