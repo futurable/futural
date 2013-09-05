@@ -7,7 +7,7 @@ class TokenCustomerController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-
+    
 	/**
 	 * @return array action filters
 	 */
@@ -25,7 +25,9 @@ class TokenCustomerController extends Controller
 	 * @return array access control rules
 	 */
 	public function accessRules()
-	{
+	{ 
+        // Disallow everything from non-admins
+        $this->allowUser(ADMIN);
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
