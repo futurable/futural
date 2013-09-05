@@ -14,8 +14,8 @@
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
-            'viewButtonUrl'=>null,
-            'updateButtonUrl'=>null,
+            'viewButtonUrl'=>'Yii::app()->createUrl("/tokenCustomer/view", array("id" => $data["id"]))',
+            'updateButtonUrl'=>'Yii::app()->createUrl("/tokenCustomer/update", array("id" => $data["id"]))',
             'deleteButtonUrl'=>null,
         )
     );
