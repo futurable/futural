@@ -22,12 +22,14 @@ class ViewAction extends CAction
         
         $OEHrEmployees = HrEmployee::model()->findAll(array('order'=>'name_related'));
         $OESaleOrders = SaleOrder::model()->findAll(array('order'=>'create_date DESC'));
+        $OEPurchaseOrders = PurchaseOrder::model()->findAll(array('order'=>'create_date DESC'));
 
         $controller->render('view',array(
             'company'=>$company,
             'bankAccounts'=>$bankAccounts,
             'OEHrEmployees'=>$OEHrEmployees,
             'OESaleOrders'=>$OESaleOrders,
+            'OEPurchaseOrders'=>$OEPurchaseOrders,
         ));
     }
 }
