@@ -2,16 +2,6 @@
 /* @var $this TokenCustomerController */
 /* @var $model TokenCustomer */
 
-$this->breadcrumbs=array(
-	'Token Customers'=>array('index'),
-	'Manage',
-);
-
-$this->menu=array(
-	array('label'=>'List TokenCustomer', 'url'=>array('index')),
-	array('label'=>'Create TokenCustomer', 'url'=>array('create')),
-);
-
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
 	$('.search-form').toggle();
@@ -49,9 +39,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'tag',
 		'name',
 		'street',
+		'postal_code',
 		'city',
-		'phone',
 		/*
+		'phone',
 		'email',
 		*/
 		array(
