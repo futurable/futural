@@ -1,4 +1,4 @@
-<h1>List companies</h1>
+<h1>Companies</h1>
 
 <div class="">
 <?php
