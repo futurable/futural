@@ -3,8 +3,8 @@ class ViewAction extends CAction
 {
     public function run($id)
     {
-        $this->allowUser(MANAGER);
         $controller=$this->getController();
+        $controller->allowUser(MANAGER);
         
         $company = $controller->loadModel($id);
         $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
