@@ -3,6 +3,7 @@ class ViewAction extends CAction
 {
     public function run($id)
     {
+        $this->allowUser(MANAGER);
         $controller=$this->getController();
         
         $company = $controller->loadModel($id);
