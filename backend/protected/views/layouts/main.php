@@ -12,11 +12,11 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
 
-        <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/futural.css" />
-        <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/css/img/favicon.ico" />
+    <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/css/img/favicon.ico" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -25,9 +25,9 @@
 
 <div class='disclaimer'>
     <p>
-            Welcome to <a href='http://futurable.fi/index.php/en/tuotteet-ja-palvelut/oppimisymparistot'>Futural</a> - a virtual learning environment 
-            by <a href='http://futurable.fi'>Futurable</a>.
-            <a href='#'>Give feedback</a>.
+        Welcome to <a href='http://futurable.fi/index.php/en/tuotteet-ja-palvelut/oppimisymparistot'>Futural</a> - a virtual learning environment 
+        by <a href='http://futurable.fi'>Futurable</a>.
+        <a href='mailto:futurality@futurable.fi?subject=Feedback'>Give feedback</a>.
     </p>
 </div>
     
@@ -35,9 +35,9 @@
     
 	<div id="header">
 		<div id="logo">
-                    <?php echo CHtml::image(Yii::app()->request->baseUrl.'/css/img/futural-logo-backend_h128.png'); ?>
-                    <?php //echo CHtml::encode(Yii::app()->name); ?>
-                </div>
+            <?php echo CHtml::image(Yii::app()->request->baseUrl.'/css/img/futural-logo-backend_h128.png'); ?>
+            <?php //echo CHtml::encode(Yii::app()->name); ?>
+        </div>
 	</div><!-- header -->
         
 	<div id="mainmenu">
@@ -59,9 +59,9 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-            <a href='https://github.com/futurable/futural'>Futural Virtual Learning Environment</a><br/>
-            By <a href='http://futurable.fi'>Futurable Oy</a><br/>
-            <?php echo date('Y'); ?>
+        <a href='https://github.com/futurable/futural'>Futural Virtual Learning Environment</a><br/>
+        By <a href='http://futurable.fi'>Futurable Oy</a><br/>
+        <?php echo date('Y'); ?>
 	</div><!-- footer -->
 
 </div><!-- page -->
