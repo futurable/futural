@@ -21,7 +21,7 @@ class CompanyController extends Controller
     public function actions()
     {
         return array(
-            'list'=>'application.controllers.company.ListAction',
+            'index'=>'application.controllers.company.IndexAction',
             'view'=>'application.controllers.company.ViewAction'
         );
     }
@@ -88,18 +88,6 @@ class CompanyController extends Controller
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if(!isset($_GET['ajax']))
         $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-    }
-
-    /**
-     * Lists all models.
-     */
-    public function actionIndex()
-    {
-        $this->allowUser(MANAGER);
-        $dataProvider=new CActiveDataProvider('Company');
-        $this->render('index',array(
-            'dataProvider'=>$dataProvider,
-        ));
     }
 
     /**
