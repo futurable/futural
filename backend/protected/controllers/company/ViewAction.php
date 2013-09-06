@@ -6,7 +6,7 @@ class ViewAction extends CAction
         $controller=$this->getController();
         $controller->allowUser(MANAGER);
         
-        $action = isset($_POST['action']) ? $_POST['action'] : null;
+        $action = isset($_GET['action']) ? $_GET['action'] : null;
         $company = $controller->loadModel($id);
         $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
 
