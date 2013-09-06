@@ -19,7 +19,9 @@ class UserIdentity extends CUserIdentity
         else
         {
             $this->id=$record->id;
-            $this->setState('role', $record->role);            
+            $this->setState('role', $record->role);
+            $this->setState('email', $record->email);
+            $this->setState('tokenCustomer', $record->tokenCustomer);
             $this->errorCode=self::ERROR_NONE;
         }
         return !$this->errorCode;
