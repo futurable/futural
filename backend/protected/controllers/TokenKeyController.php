@@ -51,6 +51,7 @@ class TokenKeyController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $this->allowUser(MANAGER);
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +63,7 @@ class TokenKeyController extends Controller
 	 */
 	public function actionCreate()
 	{
+        $this->allowUser(ADMIN);
 		$model=new TokenKey;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -86,6 +88,7 @@ class TokenKeyController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+        $this->allowUser(ADMIN);
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -110,6 +113,7 @@ class TokenKeyController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+        $this->allowUser(ADMIN);
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -138,6 +142,7 @@ class TokenKeyController extends Controller
 	 */
 	public function actionAdmin()
 	{
+        $this->allowUser(ADMIN);
 		$model=new TokenKey('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['TokenKey']))
