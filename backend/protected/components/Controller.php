@@ -28,10 +28,23 @@ class Controller extends CController
         }
     }
     
-    public function getSuppliers()
-    {
+    public function getSuppliers(){
+        // Get customer id
+        $customer_id = Yii::app()->user->getTokenCustomer()->id;
+        $role = Yii::app()->user->getRole();
+        
         // Get all suppliers
-        $suppliers = Company::model()->findAll(array('order'=>'name'));
+        if($role<3){
+            $suppliers = Yii::app()->db->createCommand()
+                ->select('c.*')
+                ->from('company c')
+                ->join('token_key t', 'c.token_key_id=t.id')
+                ->where('t.token_customer_id=:id', array(':id'=>$customer_id))
+                ->order('name')
+                ->queryAll();
+        } else {
+            $suppliers = Company::model()->findAll(array('order'=>'name'));
+        }
         
         // Get supplier names in SQL-compliant array
         $supplierNames = array();
