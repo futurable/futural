@@ -33,4 +33,6 @@
             'OEPurchaseOrders'=>$OEPurchaseOrders,
         ));
     }
+    
+    echo CHtml::link('Back',array('company/index'),array('class'=>'btn'));
 ?>
