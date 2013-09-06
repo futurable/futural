@@ -1,4 +1,4 @@
-<h1>Token Customers</h1>
+<h1>Customers</h1>
 
 <?php 
 
