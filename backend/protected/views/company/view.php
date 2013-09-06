@@ -23,13 +23,13 @@
         ));
     }
     elseif($action=='saleOrders'){
-        $this->renderPartial('_viewOpenErpInfo',array(
+        $this->renderPartial('_viewOpenErpSaleOrders',array(
             'OESaleOrders'=>$OESaleOrders,
             'OEPurchaseOrders'=>$OEPurchaseOrders,
         ));
     }
     elseif($action=='purchaseOrders'){
-        $this->renderPartial('_viewOpenErpInfo',array(
+        $this->renderPartial('_viewOpenErpPurchaseOrders',array(
             'OEPurchaseOrders'=>$OEPurchaseOrders,
         ));
     }
