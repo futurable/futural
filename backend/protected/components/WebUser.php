@@ -5,7 +5,7 @@ class WebUser extends CWebUser {
     private $_model;
  
     // Return first name.
-    // access it by Yii::app()->user->first_name
+    // access it by Yii::app()->user->email
     function getEmail(){
         $user = $this->loadUser(Yii::app()->user->email);
         return $user->email;
