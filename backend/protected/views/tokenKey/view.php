@@ -14,7 +14,7 @@
 	),
 )); 
 
-echo CHtml::link('Back',array('tokenKey/index'));
+echo CHtml::link('Back',array('tokenKey/index'),array('class'=>'btn'));
 
 ?>
 
