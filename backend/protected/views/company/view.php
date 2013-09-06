@@ -1,18 +1,4 @@
-<?php 
-    $this->renderPartial('_viewCompanyInfo',array(
-	'company'=>$company,
-    ));
-    
-   $this->renderPartial('_viewBankAccounts',array(
-	'bankAccounts'=>$bankAccounts,
-    ));
-   
-    $this->renderPartial('_viewOpenErpInfo',array(
-        'OEHrEmployees'=>$OEHrEmployees,
-        'OESaleOrders'=>$OESaleOrders,
-        'OEPurchaseOrders'=>$OEPurchaseOrders,
-    ));
-    
+<?php
     $this->menu=array(
         array('label'=>'Company Info', 'url'=>array("/company/view", 'id' => $company->id)),
         array('label'=>'Bank Accounts', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'bankAccounts')),
@@ -21,5 +7,30 @@
         array('label'=>'Purchase orders', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'purchaseOrders')),
     );
 
-
+    if($action==null){
+        $this->renderPartial('_viewCompanyInfo',array(
+        'company'=>$company,
+        ));
+    }
+    elseif($action=='bankAccounts'){
+        $this->renderPartial('_viewBankAccounts',array(
+            'bankAccounts'=>$bankAccounts,
+        ));
+    }
+    elseif($action=='employees'){
+        $this->renderPartial('_viewOpenErpEmployees',array(
+            'OEHrEmployees'=>$OEHrEmployees,
+        ));
+    }
+    elseif($action=='saleOrders'){
+        $this->renderPartial('_viewOpenErpInfo',array(
+            'OESaleOrders'=>$OESaleOrders,
+            'OEPurchaseOrders'=>$OEPurchaseOrders,
+        ));
+    }
+    elseif($action=='purchaseOrders'){
+        $this->renderPartial('_viewOpenErpInfo',array(
+            'OEPurchaseOrders'=>$OEPurchaseOrders,
+        ));
+    }
 ?>
