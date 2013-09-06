@@ -4,11 +4,17 @@ class WebUser extends CWebUser {
     // Store model to not repeat query.
     private $_model;
  
-    // Return first name.
+    // Return email.
     // access it by Yii::app()->user->email
     function getEmail(){
-        $user = $this->loadUser(Yii::app()->user->email);
+        $user = $this->loadUser(Yii::app()->user->id);
         return $user->email;
+    }
+    
+    // Return token customer
+    function getTokenCustomer(){
+        $user = $this->loadUser(Yii::app()->user->id);
+        return $user->token_customer;
     }
  
   // This is a function that checks the field 'role'
