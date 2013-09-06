@@ -3,8 +3,8 @@ class ListAction extends CAction
 {
     public function run()
     {
-        $this->allowUser(MANAGER);
         $controller=$this->getController();
+        $controller->allowUser(MANAGER);
         
         $suppliers = $controller->getSuppliers();
         
