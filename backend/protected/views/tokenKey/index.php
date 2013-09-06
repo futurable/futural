@@ -14,7 +14,10 @@
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'viewButtonUrl'=>'Yii::app()->createUrl("/tokenKey/view", array("id" => $data["id"]))',
             'updateButtonUrl'=>'Yii::app()->createUrl("/tokenKey/update", array("id" => $data["id"]))',
-            'deleteButtonUrl'=>null,
+            'buttons'=>array(
+                'update'=>array('visible'=>'false',),
+                'delete'=>array('visible'=>'false',),
+            ),
         )
     );
 
