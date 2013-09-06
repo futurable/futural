@@ -50,7 +50,7 @@
 			'items'=>array(
                 // For instructors and higher
 				array('label'=>'Home', 'url'=>array('/site/index'), 'visible'=>$role>0),
-				array('label'=>'Companies', 'url'=>array('/company/list'), 'visible'=>$role>0),
+				array('label'=>'Companies', 'url'=>array('/company/index'), 'visible'=>$role>0),
 				array('label'=>'Keys', 'url'=>array('/tokenKey/index'), 'visible'=>$role>0),
                 
                 // For managers and higher
