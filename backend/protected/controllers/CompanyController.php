@@ -59,6 +59,7 @@ class CompanyController extends Controller
      */
     public function actionCreate()
     {
+        $this->allowUser(ADMIN);
         $model=new Company;
 
         // Uncomment the following line if AJAX validation is needed
@@ -83,6 +84,7 @@ class CompanyController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->allowUser(ADMIN);
         $model=$this->loadModel($id);
 
         // Uncomment the following line if AJAX validation is needed
@@ -107,6 +109,7 @@ class CompanyController extends Controller
      */
     public function actionDelete($id)
     {
+        $this->allowUser(ADMIN);
         $this->loadModel($id)->delete();
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -119,6 +122,7 @@ class CompanyController extends Controller
      */
     public function actionIndex()
     {
+        $this->allowUser(MANAGER);
         $dataProvider=new CActiveDataProvider('Company');
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
@@ -130,6 +134,7 @@ class CompanyController extends Controller
      */
     public function actionAdmin()
     {
+        $this->allowUser(ADMIN);
         $model=new Company('search');
         $model->unsetAttributes();  // clear any default values
         if(isset($_GET['Company']))
