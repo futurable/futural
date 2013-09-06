@@ -130,8 +130,16 @@ class TokenKeyController extends Controller
         
         // Get customer id
         $customer_id = Yii::app()->user->getTokenCustomer()->id;
+        
+        // Get role
+        $role = Yii::app()->user->getRole();
 
-		$tokenKeys= TokenKey::model()->findAll(array('condition'=>"token_customer_id={$customer_id}", 'order'=>'create_date DESC'));
+        if($role<3){
+            $condition = "token_customer_id={$customer_id}";
+        }
+        else $condition = null;
+        
+		$tokenKeys= TokenKey::model()->findAll(array('condition'=>$condition, 'order'=>'create_date DESC'));
 		$this->render('index',array(
 			'tokenKeys'=>$tokenKeys,
 		));
