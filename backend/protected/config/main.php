@@ -35,6 +35,7 @@ return array(
 	'components'=>array(
             'user'=>array(
                 // enable cookie-based authentication
+                'class'=>'WebUser',
                 'allowAutoLogin'=>true,
             ),
             // uncomment the following to enable URLs in path-format
@@ -49,7 +50,7 @@ return array(
             'db'=>array(
                 'connectionString' => 'mysql:host=futurality.fi;dbname=futural_core',
                 'emulatePrepare' => true,
-                'username' => 'futural',
+                'username' => 'futural_core',
                 'password' => 'futural',
                 'charset' => 'utf8',
             ),
