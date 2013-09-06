@@ -123,7 +123,11 @@ class TokenKeyController extends Controller
 	public function actionIndex()
 	{
         $this->allowUser(MANAGER);
-		$tokenKeys= TokenKey::model()->findAll(array('order'=>'create_date DESC'));
+        
+        // Get customer id
+        $customer_id = Yii::app()->user->getTokenCustomer()->id;
+
+		$tokenKeys= TokenKey::model()->findAll(array('condition'=>"token_customer_id={$customer_id}", 'order'=>'create_date DESC'));
 		$this->render('index',array(
 			'tokenKeys'=>$tokenKeys,
 		));
