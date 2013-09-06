@@ -22,7 +22,7 @@ class WebUser extends CWebUser {
   // access it by Yii::app()->user->isAdmin()
     function getRole(){
         $user = $this->loadUser(Yii::app()->user->id);
-        return intval($user->role);;
+        return intval($user->role);
     }
  
   // Load user model.
