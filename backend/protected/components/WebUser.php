@@ -14,7 +14,7 @@ class WebUser extends CWebUser {
     // Return token customer
     function getTokenCustomer(){
         $user = $this->loadUser(Yii::app()->user->id);
-        return $user->token_customer;
+        return $user->tokenCustomer;
     }
  
     // Return user role
