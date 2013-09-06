@@ -41,14 +41,24 @@
 	</div><!-- header -->
         
 	<div id="mainmenu">
-		<?php   
+		<?php
+            // Get user role
+            if(!Yii::app()->user->isGuest) $role = Yii::app()->user->getRole();
+            else $role = 0;
+            
             $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Customers', 'url'=>array('/tokenCustomer/index'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Companies', 'url'=>array('/company/list'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Keys', 'url'=>array('/tokenKey/index'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Orders', 'url'=>array('/order/index'), 'visible'=>!Yii::app()->user->isGuest),
+                // For instructors and higher
+				array('label'=>'Home', 'url'=>array('/site/index'), 'visible'=>$role>0),
+				array('label'=>'Companies', 'url'=>array('/company/list'), 'visible'=>$role>0),
+				array('label'=>'Keys', 'url'=>array('/tokenKey/index'), 'visible'=>$role>0),
+                
+                // For managers and higher
+                array('label'=>'Orders', 'url'=>array('/order/index'), 'visible'=>$role>1),
+                
+                // For admins
+                array('label'=>'Customers', 'url'=>array('/tokenCustomer/index'), 'visible'=>$role>2),
+                
                 array('label'=>'Logout', 
                     'url'=>array('/site/logout'), 
                     'visible'=>!Yii::app()->user->isGuest,
