@@ -41,16 +41,23 @@
 	</div><!-- header -->
         
 	<div id="mainmenu">
-		<?php
-			$this->widget('zii.widgets.CMenu',array(
+		<?php   
+            $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Customers', 'url'=>array('/tokenCustomer/index'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Companies', 'url'=>array('/company/list'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Keys', 'url'=>array('/tokenKey/index'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Orders', 'url'=>array('/order/index'), 'visible'=>!Yii::app()->user->isGuest),
-                array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-            ),
+                array('label'=>'Logout', 
+                    'url'=>array('/site/logout'), 
+                    'visible'=>!Yii::app()->user->isGuest,
+                    'linkOptions'=>array(
+                        'submit' => array('site/logout'), 
+                        'confirm' => 'Logout?',
+                    ),
+                ),
+           ),
 		)); ?>
 	</div><!-- mainmenu -->
         
