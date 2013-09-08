@@ -14,34 +14,7 @@ class TokenKeyController extends Controller
 	public function filters()
 	{
 		return array(
-			//'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
-		);
-	}
-
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to perform no actions
-				'actions'=>array(''),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform all actions
-				'actions'=>array('admin','delete', 'create','update'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
 		);
 	}
 
@@ -51,6 +24,7 @@ class TokenKeyController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $this->allowUser(MANAGER);
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -62,6 +36,7 @@ class TokenKeyController extends Controller
 	 */
 	public function actionCreate()
 	{
+        $this->allowUser(ADMIN);
 		$model=new TokenKey;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -71,7 +46,7 @@ class TokenKeyController extends Controller
 		{
 			$model->attributes=$_POST['TokenKey'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -86,6 +61,7 @@ class TokenKeyController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+        $this->allowUser(ADMIN);
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -95,7 +71,7 @@ class TokenKeyController extends Controller
 		{
 			$model->attributes=$_POST['TokenKey'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -110,6 +86,7 @@ class TokenKeyController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+        $this->allowUser(ADMIN);
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -122,9 +99,22 @@ class TokenKeyController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('TokenKey');
+        $this->allowUser(MANAGER);
+        
+        // Get customer id
+        $customer_id = Yii::app()->user->getTokenCustomer()->id;
+        
+        // Get role
+        $role = Yii::app()->user->getRole();
+
+        if($role<3){
+            $condition = "token_customer_id={$customer_id}";
+        }
+        else $condition = null;
+        
+		$tokenKeys= TokenKey::model()->findAll(array('condition'=>$condition, 'order'=>'create_date DESC'));
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+			'tokenKeys'=>$tokenKeys,
 		));
 	}
 
@@ -133,6 +123,7 @@ class TokenKeyController extends Controller
 	 */
 	public function actionAdmin()
 	{
+        $this->allowUser(ADMIN);
 		$model=new TokenKey('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['TokenKey']))
@@ -170,17 +161,4 @@ class TokenKeyController extends Controller
 			Yii::app()->end();
 		}
 	}
-        
-        public function actionDynamicSettings()
-        {
-            $data=Location::model()->findAll('parent_id=:parent_id', 
-                          array(':parent_id'=>(int) $_POST['Token_Customer_ID']));
-
-            $data=CHtml::listData($data,'ID','Name');
-            foreach($data as $value=>$name)
-            {
-                echo CHtml::tag('option',
-                           array('value'=>$value),CHtml::encode($name),true);
-            }
-        }
 }

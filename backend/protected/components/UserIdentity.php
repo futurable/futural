@@ -11,7 +11,7 @@ class UserIdentity extends CUserIdentity
  
     public function authenticate()
     {
-        $record=User::model()->findByAttributes(array('email'=>$this->username));
+        $record=User::model()->findByAttributes(array('username'=>$this->username));
         if($record===null)
             $this->errorCode=self::ERROR_USERNAME_INVALID;
         else if($record->password!==hash('sha512', $this->password))
@@ -19,7 +19,9 @@ class UserIdentity extends CUserIdentity
         else
         {
             $this->id=$record->id;
-            $this->setState('role', $record->role);            
+            $this->setState('role', $record->role);
+            $this->setState('email', $record->email);
+            $this->setState('tokenCustomer', $record->tokenCustomer);
             $this->errorCode=self::ERROR_NONE;
         }
         return !$this->errorCode;

@@ -7,7 +7,7 @@ class TokenCustomerController extends Controller
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
-
+    
 	/**
 	 * @return array action filters
 	 */
@@ -25,18 +25,20 @@ class TokenCustomerController extends Controller
 	 * @return array access control rules
 	 */
 	public function accessRules()
-	{
+	{ 
+        // Disallow everything from non-admins
+        $this->allowUser(ADMIN);
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','admin','delete'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array(''),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -51,7 +53,7 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionView($id)
 	{
-                $this->allowUser(MANAGER);
+        $this->allowUser(MANAGER);
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -63,7 +65,7 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionCreate()
 	{
-                $this->allowUser(MANAGER);
+        $this->allowUser(MANAGER);
 		$model=new TokenCustomer;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -88,7 +90,7 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-                $this->allowUser(MANAGER);
+        $this->allowUser(MANAGER);
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -113,7 +115,7 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-                $this->allowUser(MANAGER);
+        $this->allowUser(ADMIN);
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -126,10 +128,10 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionIndex()
 	{
-                $this->allowUser(MANAGER);
-		$dataProvider=new CActiveDataProvider('TokenCustomer');
+        $this->allowUser(MANAGER);
+		$tokenCustomers= TokenCustomer::model()->findAll();
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+			'tokenCustomers'=>$tokenCustomers,
 		));
 	}
 
@@ -138,7 +140,7 @@ class TokenCustomerController extends Controller
 	 */
 	public function actionAdmin()
 	{
-                $this->allowUser(ADMIN);
+        $this->allowUser(ADMIN);
 		$model=new TokenCustomer('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['TokenCustomer']))

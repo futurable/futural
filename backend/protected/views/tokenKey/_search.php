@@ -12,43 +12,43 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'ID'); ?>
-		<?php echo $form->textField($model,'ID'); ?>
+		<?php echo $form->label($model,'id'); ?>
+		<?php echo $form->textField($model,'id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'TokenKey'); ?>
-		<?php echo $form->textField($model,'TokenKey',array('size'=>16,'maxlength'=>16)); ?>
+		<?php echo $form->label($model,'token_key'); ?>
+		<?php echo $form->textField($model,'token_key',array('size'=>16,'maxlength'=>16)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'CreateDate'); ?>
-		<?php echo $form->textField($model,'CreateDate'); ?>
+		<?php echo $form->label($model,'lifetime'); ?>
+		<?php echo $form->textField($model,'lifetime'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'ReclaimDate'); ?>
-		<?php echo $form->textField($model,'ReclaimDate'); ?>
+		<?php echo $form->label($model,'create_date'); ?>
+		<?php echo $form->textField($model,'create_date'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'Lifetime'); ?>
-		<?php echo $form->textField($model,'Lifetime'); ?>
+		<?php echo $form->label($model,'reclaim_date'); ?>
+		<?php echo $form->textField($model,'reclaim_date'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'ExpirationDate'); ?>
-		<?php echo $form->textField($model,'ExpirationDate'); ?>
+		<?php echo $form->label($model,'expiration_date'); ?>
+		<?php echo $form->textField($model,'expiration_date'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'Token_Customer_ID'); ?>
-		<?php echo $form->textField($model,'Token_Customer_ID'); ?>
+		<?php echo $form->label($model,'token_customer_id'); ?>
+		<?php echo $form->textField($model,'token_customer_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'Token_Settings_ID'); ?>
-		<?php echo $form->textField($model,'Token_Settings_ID'); ?>
+		<?php echo $form->label($model,'token_setup_id'); ?>
+		<?php echo $form->textField($model,'token_setup_id'); ?>
 	</div>
 
 	<div class="row buttons">

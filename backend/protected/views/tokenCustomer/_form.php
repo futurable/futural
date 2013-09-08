@@ -38,6 +38,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'postal_code'); ?>
+		<?php echo $form->textField($model,'postal_code'); ?>
+		<?php echo $form->error($model,'postal_code'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'city'); ?>
 		<?php echo $form->textField($model,'city',array('size'=>60,'maxlength'=>256)); ?>
 		<?php echo $form->error($model,'city'); ?>

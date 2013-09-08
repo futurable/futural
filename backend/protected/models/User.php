@@ -10,7 +10,7 @@
  * @property string $email
  * @property integer $role
  */
-class User extends CActiveRecord
+class User extends ActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -47,6 +47,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'token_customer_id'),
 		);
 	}
 

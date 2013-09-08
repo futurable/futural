@@ -8,13 +8,16 @@
  * @property string $tag
  * @property string $name
  * @property string $street
+ * @property integer $postal_code
  * @property string $city
  * @property string $phone
  * @property string $email
  *
  * The followings are the available model relations:
+ * @property OrderSetup[] $orderSetups
  * @property TokenKey[] $tokenKeys
  * @property TokenSetup[] $tokenSetups
+ * @property User[] $users
  */
 class TokenCustomer extends CActiveRecord
 {
@@ -34,13 +37,14 @@ class TokenCustomer extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tag, name', 'required'),
+			array('tag, name, postal_code', 'required'),
+			array('postal_code', 'numerical', 'integerOnly'=>true),
 			array('tag', 'length', 'max'=>32),
 			array('name, street, city, email', 'length', 'max'=>256),
 			array('phone', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, tag, name, street, city, phone, email', 'safe', 'on'=>'search'),
+			array('id, tag, name, street, postal_code, city, phone, email', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,8 +56,10 @@ class TokenCustomer extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'orderSetups' => array(self::HAS_MANY, 'OrderSetup', 'token_customer_id'),
 			'tokenKeys' => array(self::HAS_MANY, 'TokenKey', 'token_customer_id'),
 			'tokenSetups' => array(self::HAS_MANY, 'TokenSetup', 'token_customer_id'),
+			'users' => array(self::HAS_MANY, 'User', 'token_customer_id'),
 		);
 	}
 
@@ -67,6 +73,7 @@ class TokenCustomer extends CActiveRecord
 			'tag' => 'Tag',
 			'name' => 'Name',
 			'street' => 'Street',
+			'postal_code' => 'Postal Code',
 			'city' => 'City',
 			'phone' => 'Phone',
 			'email' => 'Email',
@@ -95,6 +102,7 @@ class TokenCustomer extends CActiveRecord
 		$criteria->compare('tag',$this->tag,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('street',$this->street,true);
+		$criteria->compare('postal_code',$this->postal_code);
 		$criteria->compare('city',$this->city,true);
 		$criteria->compare('phone',$this->phone,true);
 		$criteria->compare('email',$this->email,true);
