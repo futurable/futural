@@ -1,20 +1,31 @@
-<?php
-/* @var $this TokenKeyController */
-/* @var $dataProvider CActiveDataProvider */
-
-$this->breadcrumbs=array(
-	'Token Keys',
-);
-
-$this->menu=array(
-	array('label'=>'Create TokenKey', 'url'=>array('create')),
-	array('label'=>'Manage TokenKey', 'url'=>array('admin')),
-);
-?>
-
 <h1>Token Keys</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+<?php 
+
+    $gridDataProvider = new CArrayDataProvider($tokenKeys);
+
+    $gridColumns = array(
+        array('name'=>'token_key', 'header'=>'Key'),
+        array('name'=>'lifetime', 'header'=>'Lifetime'),
+        array('name'=>'create_date', 'header'=>'Create date'),
+        array('name'=>'reclaim_date', 'header'=>'Reclaim date'),
+        array('name'=>'expiration_date', 'header'=>'Expiration date'),
+        array(
+            'class'=>'bootstrap.widgets.TbButtonColumn',
+            'viewButtonUrl'=>'Yii::app()->createUrl("/tokenKey/view", array("id" => $data["id"]))',
+            'updateButtonUrl'=>'Yii::app()->createUrl("/tokenKey/update", array("id" => $data["id"]))',
+            'buttons'=>array(
+                'update'=>array('visible'=>'false',),
+                'delete'=>array('visible'=>'false',),
+            ),
+        )
+    );
+
+    $this->widget('bootstrap.widgets.TbGridView', array(
+        'type'=>'striped',
+        'dataProvider'=>$gridDataProvider,
+        'template'=>"{items}{pager}",
+        'columns'=>$gridColumns,
+    ));
+
+?>

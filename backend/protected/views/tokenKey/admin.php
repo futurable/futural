@@ -45,15 +45,15 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'ID',
-		'TokenKey',
-		'CreateDate',
-		'ReclaimDate',
-		'Lifetime',
-		'ExpirationDate',
+		'id',
+		'token_key',
+		'lifetime',
+		'create_date',
+		'reclaim_date',
+		'expiration_date',
 		/*
-		'Token_Customer_ID',
-		'Token_Settings_ID',
+		'token_customer_id',
+		'token_setup_id',
 		*/
 		array(
 			'class'=>'CButtonColumn',

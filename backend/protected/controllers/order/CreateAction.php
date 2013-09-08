@@ -69,7 +69,7 @@ class CreateAction extends CAction
         {
                 $model->attributes=$_POST['Order'];
                 if($model->save())
-                        $this->redirect(array('view','id'=>$model->id));
+                    $this->redirect(array('view','id'=>$model->id));
         }
 
         $controller->render('create',array(

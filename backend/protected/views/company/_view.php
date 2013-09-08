@@ -18,7 +18,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('industry_id')); ?>:</b>
-	<?php echo CHtml::encode($data->industry->name); ?>
+	<?php echo CHtml::encode($data->industry); ?>
 	<br />
 
 
