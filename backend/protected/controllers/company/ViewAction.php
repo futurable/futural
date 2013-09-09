@@ -9,6 +9,11 @@ class ViewAction extends CAction
         $action = isset($_GET['action']) ? $_GET['action'] : null;
         $company = $controller->loadModel($id);
         $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
+        
+        // Change OpenERP-database
+        Yii::app()->dbopenerp->setActive(false);
+        Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
+        Yii::app()->dbopenerp->setActive(true);
 
         $costBenefitCalculation = CostbenefitCalculation::model()->findByAttributes(array('company_id'=>$company->id));
         $costBenefitCalculationItems = array();
@@ -17,17 +22,16 @@ class ViewAction extends CAction
             $costBenefitCalculationItems[ $key ] = $CBCItem;
         };
         
+        // Get the realized sales
+        $OESalesID = AccountAccount::model()->findByAttributes(array('code'=>'300000'))->id;
+        $realizedItems['turnover'] = AccountMoveLine::model()->findByAttributes(array('account_id'=>$OESalesID));
+        
         $bankAccounts = BankAccount::model()->findAll(
             array(
                 'condition'=>'bank_user_id=:bank_user_id', 
                 'params'=>array('bank_user_id'=>$bankUser->id),
             )
         );
-
-        // Change OpenERP-database
-        Yii::app()->dbopenerp->setActive(false);
-        Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
-        Yii::app()->dbopenerp->setActive(true);
         
         $OEHrEmployees = HrEmployee::model()->findAll(array('order'=>'name_related'));
         $OESaleOrders = SaleOrder::model()->findAll(array('order'=>'create_date DESC'));
@@ -37,6 +41,7 @@ class ViewAction extends CAction
             'action'=>$action,
             'company'=>$company,
             'costBenefitCalculationItems'=>$costBenefitCalculationItems,
+            'realizedItems'=>$realizedItems,
             'bankAccounts'=>$bankAccounts,
             'OEHrEmployees'=>$OEHrEmployees,
             'OESaleOrders'=>$OESaleOrders,
