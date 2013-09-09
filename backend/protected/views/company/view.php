@@ -7,7 +7,7 @@
         array('label'=>'Purchase orders', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'purchaseOrders')),
     );
 
-    if($action=='info' OR $action='null'){
+    if($action=='info' OR $action=='null'){
         $this->renderPartial('_viewCompanyInfo',array(
         'company'=>$company,
         ));
