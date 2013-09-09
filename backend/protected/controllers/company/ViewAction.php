@@ -11,6 +11,11 @@ class ViewAction extends CAction
         $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
 
         $costBenefitCalculation = CostbenefitCalculation::model()->findByAttributes(array('company_id'=>$company->id));
+        $costBenefitCalculationItems = array();
+        foreach($costBenefitCalculation->costbenefitItems as $CBCItem){
+            $key = $CBCItem->costbenefitItemType->name;
+            $costBenefitCalculationItems[ $key ] = $CBCItem;
+        };
         
         $bankAccounts = BankAccount::model()->findAll(
             array(
@@ -31,7 +36,7 @@ class ViewAction extends CAction
         $controller->render('view',array(
             'action'=>$action,
             'company'=>$company,
-            'costBenefitCalculation'=>$costBenefitCalculation,
+            'costBenefitCalculationItems'=>$costBenefitCalculationItems,
             'bankAccounts'=>$bankAccounts,
             'OEHrEmployees'=>$OEHrEmployees,
             'OESaleOrders'=>$OESaleOrders,
