@@ -16,6 +16,7 @@
     elseif($action=='costBenefitCalculation'){
         $this->renderPartial('_viewCostBenefitCalculation',array(
             'costBenefitCalculationItems'=>$costBenefitCalculationItems,
+            'realizedItems' => $realizedItems,
         ));
     }
     elseif($action=='bankAccounts'){
