@@ -111,3 +111,7 @@ a:hover{
 .detail-view .odd{
     background-color: #eee !important;
 }
+#sidebar .active a{
+    background-color: #C8DA30;
+    color: #fff;
+}
