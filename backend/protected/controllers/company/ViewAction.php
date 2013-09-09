@@ -10,6 +10,8 @@ class ViewAction extends CAction
         $company = $controller->loadModel($id);
         $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
 
+        $costBenefitCalculation = CostbenefitCalculation::model()->findByAttributes(array('company_id'=>$company->id));
+        
         $bankAccounts = BankAccount::model()->findAll(
             array(
                 'condition'=>'bank_user_id=:bank_user_id', 
@@ -29,6 +31,7 @@ class ViewAction extends CAction
         $controller->render('view',array(
             'action'=>$action,
             'company'=>$company,
+            'costBenefitCalculation'=>$costBenefitCalculation,
             'bankAccounts'=>$bankAccounts,
             'OEHrEmployees'=>$OEHrEmployees,
             'OESaleOrders'=>$OESaleOrders,
