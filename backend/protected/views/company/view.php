@@ -1,6 +1,7 @@
 <?php
     $this->menu=array(
         array('label'=>'Company Info', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'info')),
+        array('label'=>'Cost-benefit calculation', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'costBenefitCalculation')),
         array('label'=>'Bank Accounts', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'bankAccounts')),
         array('label'=>'Employees', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'employees')),
         array('label'=>'Sale orders', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'saleOrders')),
@@ -10,6 +11,11 @@
     if($action=='info' OR $action=='null'){
         $this->renderPartial('_viewCompanyInfo',array(
         'company'=>$company,
+        ));
+    }
+    elseif($action=='costBenefitCalculation'){
+        $this->renderPartial('_viewCostBenefitCalculation',array(
+            'costBenefitCalculation'=>$costBenefitCalculation,
         ));
     }
     elseif($action=='bankAccounts'){
