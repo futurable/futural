@@ -23,8 +23,20 @@ class ViewAction extends CAction
         };
         
         // Get the realized sales
-        $OESalesID = AccountAccount::model()->findByAttributes(array('code'=>'300000'))->id;
-        $realizedItems['turnover'] = AccountMoveLine::model()->findByAttributes(array('account_id'=>$OESalesID));
+        $criteria=new CDbCriteria;
+        $criteria->select='account_id, sum(credit) AS credit, sum(debit) AS debit';
+        $criteria->group='account_id';
+        $criteria->order='account_id';
+        
+        $realizedItems = array();
+        $accountMoveLines = AccountMoveLine::model()->findAll($criteria);
+        foreach($accountMoveLines as $accountMoveLine){
+            $realizedItems[ $accountMoveLine->account->code ] =
+                    array(
+                        'credit'=>$accountMoveLine['credit'],
+                        'debit'=>$accountMoveLine['debit'],
+                    );
+        }
         
         $bankAccounts = BankAccount::model()->findAll(
             array(
