@@ -31,7 +31,7 @@ class ViewAction extends CAction
         $realizedItems = array();
         $accountMoveLines = AccountMoveLine::model()->findAll($criteria);
         foreach($accountMoveLines as $accountMoveLine){
-            $realizedItems[ $accountMoveLine->account->code ] = $accountMoveLine['credit'];
+            $realizedItems[ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
         }
 
         $bankAccounts = BankAccount::model()->findAll(
