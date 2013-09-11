@@ -9,6 +9,7 @@ class CreateAction extends CAction
     public function run()
     {
         $controller=$this->getController();
+        $controller->allowUser(ADMIN);
         
         $this->log("Creating orders started on ".date('Y-m-d H:i:s'));
     

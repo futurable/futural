@@ -24,7 +24,7 @@ class Controller extends CController
         if ($this->userData !== null)
             $current_level = $this->userData->role;
         if ($min_level > $current_level) {
-            throw new CHttpException(403, 'You have no permission to view this content');
+            $this->redirect(array('site/index'));
         }
     }
     
