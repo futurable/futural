@@ -31,13 +31,9 @@ class ViewAction extends CAction
         $realizedItems = array();
         $accountMoveLines = AccountMoveLine::model()->findAll($criteria);
         foreach($accountMoveLines as $accountMoveLine){
-            $realizedItems[ $accountMoveLine->account->code ] =
-                    array(
-                        'credit'=>$accountMoveLine['credit'],
-                        'debit'=>$accountMoveLine['debit'],
-                    );
+            $realizedItems[ $accountMoveLine->account->code ] = $accountMoveLine['credit'];
         }
-        
+
         $bankAccounts = BankAccount::model()->findAll(
             array(
                 'condition'=>'bank_user_id=:bank_user_id', 
