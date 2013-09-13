@@ -7,8 +7,8 @@
     ));
 
     $gridColumns = array(
-        array('name'=>'name_related'),
-        array('name'=>'create_date'),
+        array('name'=>'name_related', 'header' => Yii::t('Company', 'Name')),
+        array('name'=>'create_date', 'header' => Yii::t('Company', 'CreateDate')),
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
