@@ -8,6 +8,8 @@
         array('label'=>'Purchase orders', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'purchaseOrders')),
     );
 
+    echo "<h1>{$company->name}</h1>";
+    
     if($action=='info' OR $action=='null'){
         $this->renderPartial('_viewCompanyInfo',array(
         'company'=>$company,
