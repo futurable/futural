@@ -14,6 +14,7 @@
             'viewButtonUrl'=>'Yii::app()->createUrl("/tokenKey/view", array("id" => $data["id"]))',
             'updateButtonUrl'=>'Yii::app()->createUrl("/tokenKey/update", array("id" => $data["id"]))',
             'buttons'=>array(
+                'view'=>array('visible'=>'false',),
                 'update'=>array('visible'=>'false',),
                 'delete'=>array('visible'=>'false',),
             ),
