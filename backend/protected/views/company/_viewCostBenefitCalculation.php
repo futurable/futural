@@ -1,14 +1,14 @@
 <?php
     // Company info
-    echo "<h2>Cost-benefit calculation</h2>";
+    echo "<h2>".Yii::t('Company', 'CostBenefitCalculation')."</h2>";
     
     $week = date('W');
     
     echo "<table>";
         echo "<tr>";
             echo "<th></th>";
-            echo "<th>Planned</th>";
-            echo "<th>Realized</th>";
+            echo "<th>".Yii::t('Company', 'Planned')."</th>";
+            echo "<th>".Yii::t('Company', 'Realized')."</th>";
         echo "</tr>";
         
         echo getTableRow($costBenefitCalculationItems['turnover'], $realizedItems, array('300000'));
@@ -47,7 +47,7 @@
         
         $row = "
         <tr>
-            <th>{$header}</th>
+            <th>".Yii::t('Company',$header)."</th>
             <td>{$planned} &euro;</td>
             <td>{$realized} &euro;</td>
         </tr>";
