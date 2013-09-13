@@ -57,11 +57,11 @@ class User extends ActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'username' => 'Username',
-			'password' => 'Password',
-			'email' => 'Email',
-			'role' => 'Role',
+			'id' => Yii::t('User', 'ID'),
+			'username' => Yii::t('User', 'Username'),
+			'password' => Yii::t('User', 'Password'),
+			'email' => Yii::t('User', 'Email'),
+			'role' => Yii::t('User', 'Role'),
 		);
 	}
 
