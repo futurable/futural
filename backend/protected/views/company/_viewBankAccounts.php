@@ -13,6 +13,7 @@
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'viewButtonUrl'=>'Yii::app()->createUrl("/bankAccount/view", array("id" => $data["id"]))',
             'buttons'=>array(
+                'view'=>array('visible'=>'false',),
                 'update'=>array('visible'=>'false',),
                 'delete'=>array('visible'=>'false',),
             ),
