@@ -8,8 +8,6 @@
 		'create_date',
 		'reclaim_date',
 		'expiration_date',
-		'token_customer_id',
-		'token_setup_id',
 	),
 )); 
 
