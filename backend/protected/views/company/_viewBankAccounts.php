@@ -5,9 +5,9 @@
     $gridDataProvider = new CArrayDataProvider($bankAccounts);
 
     $gridColumns = array(
-        array('name'=>'iban'),
-        array('name'=>'name'),
-        array('name'=>'status'),
+        array('name'=>'iban', 'header' => Yii::t('BankAccount', 'iban')),
+        array('name'=>'name', 'header' => Yii::t('BankAccount', 'name')),
+        array('name'=>'status', 'header' => Yii::t('BankAccount', 'name')),
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
