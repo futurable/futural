@@ -1,15 +1,14 @@
-<h1>Token Keys</h1>
-
 <?php 
+    echo "<h1>".Yii::t('TokenKey', 'TokenKeys')."</h1>";
 
     $gridDataProvider = new CArrayDataProvider($tokenKeys);
 
     $gridColumns = array(
-        array('name'=>'token_key', 'header'=>'Key'),
-        array('name'=>'lifetime', 'header'=>'Lifetime'),
-        array('name'=>'create_date', 'header'=>'Create date'),
-        array('name'=>'reclaim_date', 'header'=>'Reclaim date'),
-        array('name'=>'expiration_date', 'header'=>'Expiration date'),
+        array('name'=>'token_key', 'header'=>Yii::t('TokenKey', 'Key')),
+        array('name'=>'lifetime', 'header'=>Yii::t('TokenKey', 'Lifetime')),
+        array('name'=>'create_date', 'header'=>Yii::t('TokenKey', 'CreateDate')),
+        array('name'=>'reclaim_date', 'header'=>Yii::t('TokenKey', 'ReclaimDate')),
+        array('name'=>'expiration_date', 'header'=>Yii::t('TokenKey', 'ExpirationDate')),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'viewButtonUrl'=>'Yii::app()->createUrl("/tokenKey/view", array("id" => $data["id"]))',
