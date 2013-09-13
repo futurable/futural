@@ -1,11 +1,11 @@
 <?php
     $this->menu=array(
-        array('label'=>'Company Info', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'info')),
-        array('label'=>'Cost-benefit calculation', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'costBenefitCalculation')),
-        array('label'=>'Bank Accounts', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'bankAccounts')),
-        array('label'=>'Employees', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'employees')),
-        array('label'=>'Sale orders', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'saleOrders')),
-        array('label'=>'Purchase orders', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'purchaseOrders')),
+        array('label'=>Yii::t('Menu', 'CompanyInfo'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'info')),
+        array('label'=>Yii::t('Menu', 'CostBenefitCalculation'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'costBenefitCalculation')),
+        array('label'=>Yii::t('Menu', 'BankAccounts'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'bankAccounts')),
+        array('label'=>Yii::t('Menu', 'Employees'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'employees')),
+        array('label'=>Yii::t('Menu', 'SaleOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'saleOrders')),
+        array('label'=>Yii::t('Menu', 'PurchaseOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'purchaseOrders')),
     );
 
     echo "<h1>{$company->name}</h1>";
