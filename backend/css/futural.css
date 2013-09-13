@@ -119,3 +119,6 @@ a:hover{
     float: right;
     margin-right: 40px;
 }
+#logoutButton{
+    background-color: #FFA54E !important;
+}
