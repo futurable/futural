@@ -6,9 +6,9 @@ $this->pageTitle=Yii::app()->name;
 
 <?php if(!Yii::app()->user->isGuest){ ?>
 
-    <h1>Welcome to <?php echo CHtml::encode(Yii::app()->name) ;?>!</h1>
+    <h1><?php echo CHtml::encode(Yii::app()->name) ;?>!</h1>
 
-    <p><?php echo "You are logged in as  ".Yii::app()->user->tokenCustomer->name; ?></p>
+    <p><?php echo Yii::t('Index', 'YouAreLoggedInAs')." ".Yii::app()->user->tokenCustomer->name; ?></p>
 <?php
 }
 else $this->redirect(array('/site/login'));
