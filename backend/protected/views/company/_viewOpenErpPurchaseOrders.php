@@ -16,6 +16,7 @@
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'viewButtonUrl'=>null,
             'buttons'=>array(
+                'view'=>array('visible'=>'false',),
                 'update'=>array('visible'=>'false',),
                 'delete'=>array('visible'=>'false',),
             ),
