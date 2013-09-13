@@ -1,5 +1,5 @@
 <?php
-    echo "<h2>Employees</h2>";
+    echo "<h2>".Yii::t('Company', 'Employees')."</h2>";
     $gridDataProvider = new CArrayDataProvider($OEHrEmployees, array(           
         'pagination'=>array(
             'pageSize' => 5,
@@ -7,8 +7,8 @@
     ));
 
     $gridColumns = array(
-        array('name'=>'name_related', 'header'=>'Name'),
-        array('name'=>'create_date', 'header'=>'Created'),
+        array('name'=>'name_related'),
+        array('name'=>'create_date'),
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
