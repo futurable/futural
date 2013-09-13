@@ -17,11 +17,19 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'BusinessId' => 'Business Id',
+  'BankAccounts' => 'Bank accounts',
   'Companies' => '',
-  'CreateTime' => 'Create time',
+  'CompanyInfo' => 'Company info',
+  'CreateDate' => 'Create date',
+  'Created' => '',
   'Email' => '',
+  'Employees' => '',
   'Name' => '',
+  'OrderState' => 'Order state',
+  'OrderTotal' => 'Order total',
+  'PurchaseOrders' => 'Purchase orders',
+  'SaleOrders' => 'Sale orders',
+  'TotalAmount' => 'Total amount',
   'Communication' => 'Data communications',
   'Expenses' => 'Expenses',
   'FacilityExpenses' => 'Facility expenses',
@@ -30,7 +38,9 @@ return array (
   'OtherExpenses' => 'Other expensest',
   'SalariesAndSideExpenses' => 'Salaries and side expenses',
   'Turnover' => 'Turnover',
+  'BusinessId' => 'Business Id',
   'CostBenefitCalculation' => 'Cost-benefit calculation',
+  'CreateTime' => 'Create time',
   'Planned' => 'Planned',
   'Realized' => 'Realized',
 );
