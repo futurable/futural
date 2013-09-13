@@ -18,6 +18,7 @@
  */
 return array (
   'Active Record requires a "db" CDbConnection application component.' => '',
+  'Login' => 'Kirjaudu sisään',
   'Your request is invalid.' => '',
   '{attribute} "{value}" is invalid.' => '',
 );
