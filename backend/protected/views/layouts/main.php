@@ -66,6 +66,7 @@
                         'linkOptions'=>array(
                             'submit' => array('site/logout'), 
                             'confirm' => 'Logout?',
+                            'id'=>'logoutButton',
                         ),
                     ),
                 ),
