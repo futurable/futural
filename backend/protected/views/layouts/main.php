@@ -65,7 +65,7 @@
                         'visible'=>!Yii::app()->user->isGuest,
                         'linkOptions'=>array(
                             'submit' => array('site/logout'), 
-                            'confirm' => 'Logout?',
+                            'confirm' => Yii::t('Menu', 'Logout').'?',
                             'id'=>'logoutButton',
                         ),
                     ),
