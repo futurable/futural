@@ -10,7 +10,6 @@
         array('name'=>'name_related', 'header' => Yii::t('Company', 'Name')),
         array('name'=>'create_date', 'header' => Yii::t('Company', 'CreateDate')),
         array(
-            'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'viewButtonUrl'=>'Yii::app()->createUrl("/", array("id" => $data["id"]))',
             'buttons'=>array(
