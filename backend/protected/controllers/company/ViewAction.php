@@ -10,6 +10,14 @@ class ViewAction extends CAction
         $company = $controller->loadModel($id);
         $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
         
+        // Format variables so we don't need multiple renderers
+        $costBenefitCalculationItems = null;
+        $realizedItems = null;
+        $bankAccounts = null;
+        $OEHrEmployees = null;
+        $OESaleOrders = null;
+        $OEPurchaseOrders = null;
+        
         if($action=='costBenefitCalculation'){
             // Change OpenERP-database
             Yii::app()->dbopenerp->setActive(false);
