@@ -47,7 +47,7 @@ class User extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'token_customer_id'),
+                    'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'token_customer_id'),
 		);
 	}
 
@@ -57,11 +57,11 @@ class User extends ActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'username' => 'Username',
-			'password' => 'Password',
-			'email' => 'Email',
-			'role' => 'Role',
+			'id' => Yii::t('User', 'ID'),
+			'username' => Yii::t('User', 'Username'),
+			'password' => Yii::t('User', 'Password'),
+			'email' => Yii::t('User', 'Email'),
+			'role' => Yii::t('User', 'Role'),
 		);
 	}
 

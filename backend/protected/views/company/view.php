@@ -1,13 +1,15 @@
 <?php
     $this->menu=array(
-        array('label'=>'Company Info', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'info')),
-        array('label'=>'Cost-benefit calculation', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'costBenefitCalculation')),
-        array('label'=>'Bank Accounts', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'bankAccounts')),
-        array('label'=>'Employees', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'employees')),
-        array('label'=>'Sale orders', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'saleOrders')),
-        array('label'=>'Purchase orders', 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'purchaseOrders')),
+        array('label'=>Yii::t('Company', 'CompanyInfo'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'info')),
+        array('label'=>Yii::t('Company', 'CostBenefitCalculation'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'costBenefitCalculation')),
+        array('label'=>Yii::t('Company', 'BankAccounts'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'bankAccounts')),
+        array('label'=>Yii::t('Company', 'Employees'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'employees')),
+        array('label'=>Yii::t('Company', 'SaleOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'saleOrders')),
+        array('label'=>Yii::t('Company', 'PurchaseOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'purchaseOrders')),
     );
 
+    echo "<h1>{$company->name}</h1>";
+    
     if($action=='info' OR $action=='null'){
         $this->renderPartial('_viewCompanyInfo',array(
         'company'=>$company,

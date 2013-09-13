@@ -1,15 +1,15 @@
 <?php
     // Company info
-    echo "<h2>Company Info</h2>";
+    echo "<h2>".Yii::t('Company', 'CompanyInfo')."</h2>";
     
     $this->widget('bootstrap.widgets.TbDetailView', array(
         'data'=>$company,
         'attributes'=>array(
-            array('name'=>'name', 'label'=>'Name'),
-            array('name'=>'tag', 'label'=>'Tag'),
-            array('name'=>'business_id', 'label'=>'Business ID'),
-            array('name'=>'email', 'label'=>'Email'),
-            array('name'=>'create_time', 'label'=>'Created'),
+            array('name'=>'name'),
+            array('name'=>'tag'),
+            array('name'=>'business_id'),
+            array('name'=>'email'),
+            array('name'=>'create_time'),
         ),
     ));
  ?>

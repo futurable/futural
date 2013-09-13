@@ -1,5 +1,5 @@
 <?php
-    echo "<h2>Employees</h2>";
+    echo "<h2>".Yii::t('Company', 'Employees')."</h2>";
     $gridDataProvider = new CArrayDataProvider($OEHrEmployees, array(           
         'pagination'=>array(
             'pageSize' => 5,
@@ -7,13 +7,13 @@
     ));
 
     $gridColumns = array(
-        array('name'=>'name_related', 'header'=>'Name'),
-        array('name'=>'create_date', 'header'=>'Created'),
+        array('name'=>'name_related', 'header' => Yii::t('Company', 'Name')),
+        array('name'=>'create_date', 'header' => Yii::t('Company', 'CreateDate')),
         array(
-            'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
-            'viewButtonUrl'=>'Yii::app()->createUrl("/bankAccount/view", array("id" => $data["id"]))',
+            'viewButtonUrl'=>'Yii::app()->createUrl("/", array("id" => $data["id"]))',
             'buttons'=>array(
+                'view'=>array('visible'=>'false',),
                 'update'=>array('visible'=>'false',),
                 'delete'=>array('visible'=>'false',),
             ),

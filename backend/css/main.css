@@ -48,10 +48,13 @@
         text-align: center;
 }
 
-#mainmenu ul li a:hover, #mainmenu ul li.active a
+#mainmenu ul li a:hover{
+    color: #fff;
+}
+
+#mainmenu ul li.active a
 {
-	color: #fff;
-	background-color:#transparent;
+	background-color:#0088CC;
 	text-decoration:none;
 }
 

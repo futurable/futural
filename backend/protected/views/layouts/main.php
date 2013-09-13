@@ -34,10 +34,11 @@
 <div class="container" id="page">
     
 	<div id="header">
-		<div id="logo">
-            <?php echo CHtml::image(Yii::app()->request->baseUrl.'/css/img/futural-logo-backend_h128.png'); ?>
-            <?php //echo CHtml::encode(Yii::app()->name); ?>
-        </div>
+            <div id="logo">
+                <?php echo CHtml::image(Yii::app()->request->baseUrl.'/css/img/futural-logo-backend_h128.png'); ?>
+                <?php //echo CHtml::encode(Yii::app()->name); ?>
+            </div>
+                <?php $this->widget('application.components.LangBox'); ?>
 	</div><!-- header -->
         
 	<div id="mainmenu">
@@ -47,27 +48,28 @@
             else $role = 0;
             
             $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-                // For instructors and higher
-				array('label'=>'Home', 'url'=>array('/site/index'), 'visible'=>$role>0),
-				array('label'=>'Companies', 'url'=>array('/company/index'), 'visible'=>$role>0),
-				array('label'=>'Keys', 'url'=>array('/tokenKey/index'), 'visible'=>$role>0),
-                
-                // For managers and higher
-                array('label'=>'Orders', 'url'=>array('/order/index'), 'visible'=>$role>1),
-                
-                // For admins
-                array('label'=>'Customers', 'url'=>array('/tokenCustomer/index'), 'visible'=>$role>2),
-                
-                array('label'=>'Logout', 
-                    'url'=>array('/site/logout'), 
-                    'visible'=>!Yii::app()->user->isGuest,
-                    'linkOptions'=>array(
-                        'submit' => array('site/logout'), 
-                        'confirm' => 'Logout?',
+                'items'=>array(
+                    // For instructors and higher
+                    array('label'=>Yii::t('Menu', 'Home'), 'url'=>array('/site/index'), 'visible'=>$role>0),
+                    array('label'=>Yii::t('Menu', 'Companies'), 'url'=>array('/company/index'), 'visible'=>$role>0),
+                    array('label'=>Yii::t('Menu', 'Keys'), 'url'=>array('/tokenKey/index'), 'visible'=>$role>0),
+
+                    // For managers and higher
+                    array('label'=>Yii::t('Menu', 'Orders'), 'url'=>array('/order/index'), 'visible'=>$role>1),
+
+                    // For admins
+                    array('label'=>Yii::t('Menu', 'Customers'), 'url'=>array('/tokenCustomer/index'), 'visible'=>$role>2),
+
+                    array('label'=>Yii::t('Menu', 'Logout'), 
+                        'url'=>array('/site/logout'), 
+                        'visible'=>!Yii::app()->user->isGuest,
+                        'linkOptions'=>array(
+                            'submit' => array('site/logout'), 
+                            'confirm' => Yii::t('Menu', 'Logout').'?',
+                            'id'=>'logoutButton',
+                        ),
                     ),
                 ),
-           ),
 		)); ?>
 	</div><!-- mainmenu -->
         

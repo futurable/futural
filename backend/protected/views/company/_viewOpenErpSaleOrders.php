@@ -1,5 +1,5 @@
 <?php
-    echo "<h2>Sale orders</h2>";
+    echo "<h2>".Yii::t('Company', 'SaleOrders')."</h2>";
     
     $gridDataProvider = new CArrayDataProvider($OESaleOrders, array(           
         'pagination'=>array(
@@ -8,14 +8,14 @@
     ));
 
     $gridColumns = array(
-        array('name'=>'create_date', 'header'=>'Created'),
-        array('name'=>'amount_total', 'header'=>'Order total'),
-        array('name'=>'state', 'header'=>'Order state'),
+        array('name'=>'create_date', 'header'=>Yii::t('Company', 'CreateDate')),
+        array('name'=>'amount_total', 'header'=>Yii::t('Company', 'TotalAmount')),
+        array('name'=>'state', 'header'=>Yii::t('Company', 'OrderState')),
         array(
-            'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'viewButtonUrl'=>null,
             'buttons'=>array(
+                'view'=>array('visible'=>'false',),
                 'update'=>array('visible'=>'false',),
                 'delete'=>array('visible'=>'false',),
             ),
