@@ -47,7 +47,7 @@ class User extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'token_customer_id'),
+                    'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'token_customer_id'),
 		);
 	}
 
