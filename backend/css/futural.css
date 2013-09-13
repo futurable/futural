@@ -115,3 +115,7 @@ a:hover{
     background-color: #C8DA30;
     color: #fff;
 }
+#langdrop{
+    float: right;
+    margin-right: 40px;
+}
