@@ -17,6 +17,11 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'BusinessId' => 'Business Id',
+  'Companies' => '',
+  'CreateTime' => 'Create time',
+  'Email' => '',
+  'Name' => '',
   'Communication' => 'Data communications',
   'Expenses' => 'Expenses',
   'FacilityExpenses' => 'Facility expenses',
