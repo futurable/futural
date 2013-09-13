@@ -18,11 +18,12 @@ class ViewAction extends CAction
         $OESaleOrders = null;
         $OEPurchaseOrders = null;
         
+        // Change OpenERP-database
+        Yii::app()->dbopenerp->setActive(false);
+        Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
+        Yii::app()->dbopenerp->setActive(true);
+        
         if($action=='costBenefitCalculation'){
-            // Change OpenERP-database
-            Yii::app()->dbopenerp->setActive(false);
-            Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
-            Yii::app()->dbopenerp->setActive(true);
 
             $costBenefitCalculation = CostbenefitCalculation::model()->findByAttributes(array('company_id'=>$company->id));
             $costBenefitCalculationItems = array();
