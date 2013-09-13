@@ -12,7 +12,6 @@
         array('name'=>'amount_total', 'header' => Yii::t('Company', 'TotalAmount')),
         array('name'=>'state', 'header' => Yii::t('Company', 'OrderState')),
         array(
-            'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'viewButtonUrl'=>null,
             'buttons'=>array(
