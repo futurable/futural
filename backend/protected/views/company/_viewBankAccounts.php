@@ -1,13 +1,13 @@
 <?php
 // Bank accounts info
-    echo "<h2>Bank Accounts</h2>";
+    echo "<h2>".Yii::t('Company', 'BankAccounts')."</h2>";
     
     $gridDataProvider = new CArrayDataProvider($bankAccounts);
 
     $gridColumns = array(
-        array('name'=>'iban', 'header'=>'Name'),
-        array('name'=>'name', 'header'=>'Account name'),
-        array('name'=>'status', 'header'=>'Status'),
+        array('name'=>'iban'),
+        array('name'=>'name'),
+        array('name'=>'status'),
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
