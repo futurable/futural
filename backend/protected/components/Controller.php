@@ -12,9 +12,22 @@ define('ADMIN', 3);
 class Controller extends CController
 {  
     public $userData; // Holds an activeRecord with current user. NULL if guest
-
-    public function init() {
-        // Load the user
+    
+    public function init()
+    {
+        parent::init();
+        $app = Yii::app();
+        if (isset($_POST['_lang']))
+        {
+            $app->language = $_POST['_lang'];
+            $app->session['_lang'] = $app->language;
+        }
+        else if (isset($app->session['_lang']))
+        {
+            $app->language = $app->session['_lang'];
+        }
+        
+                // Load the user
         if (!Yii::app()->user->isGuest)
             $this->userData = User::model()->findByPk(Yii::app()->user->id);
     }
