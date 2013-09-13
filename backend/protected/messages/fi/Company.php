@@ -17,6 +17,11 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'BusinessId' => 'Y-tunnus',
+  'Companies' => 'Yritykset',
+  'CreateTime' => 'Luontiaika',
+  'Email' => 'Sähköposti',
+  'Name' => 'Nimi',
   'Communication' => 'Tietoliikenneyhteydet',
   'Expenses' => 'Materiaalikulut',
   'FacilityExpenses' => 'Toimitilakulut',
