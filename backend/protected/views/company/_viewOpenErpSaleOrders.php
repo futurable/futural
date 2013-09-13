@@ -9,7 +9,7 @@
 
     $gridColumns = array(
         array('name'=>'create_date', 'header'=>Yii::t('Company', 'Created')),
-        array('name'=>'amount_total', 'header'=>Yii::t('Company', 'OrderTotal')),
+        array('name'=>'amount_total', 'header'=>Yii::t('Company', 'TotalAmount')),
         array('name'=>'state', 'header'=>Yii::t('Company', 'OrderState')),
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
