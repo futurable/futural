@@ -7,7 +7,7 @@
     $gridColumns = array(
         array('name'=>'iban', 'header' => Yii::t('BankAccount', 'iban')),
         array('name'=>'name', 'header' => Yii::t('BankAccount', 'name')),
-        array('name'=>'status', 'header' => Yii::t('BankAccount', 'name')),
+        array('name'=>'status', 'header' => Yii::t('BankAccount', 'status')),
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
