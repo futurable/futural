@@ -9,7 +9,6 @@
         array('name'=>'name', 'header' => Yii::t('BankAccount', 'name')),
         array('name'=>'status', 'header' => Yii::t('BankAccount', 'status')),
         array(
-            'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'viewButtonUrl'=>'Yii::app()->createUrl("/bankAccount/view", array("id" => $data["id"]))',
             'buttons'=>array(
