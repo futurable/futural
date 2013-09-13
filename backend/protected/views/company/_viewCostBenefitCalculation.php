@@ -40,14 +40,15 @@
         // Remove the negative operator
         if($CBCItem->costbenefitItemType->name != 'turnover') $realized *= -1;
         // Add 2 decimals
-        $realized = number_format($realized, 2, ',', ' ');
+        $realized = number_format($realized, 2, '.', ' ');
+        $planned = number_format($CBCItem->value, 2, '.', ' ');
         
         $header = !empty($label) ? $label : ucfirst($CBCItem->costbenefitItemType->name);
         
         $row = "
         <tr>
             <th>{$header}</th>
-            <td>{$CBCItem->value} &euro;</td>
+            <td>{$planned} &euro;</td>
             <td>{$realized} &euro;</td>
         </tr>";
         
