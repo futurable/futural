@@ -4,7 +4,7 @@
     
     $week = date('W');
     
-    echo "<table>";
+    echo "<table class='table-striped table-condensed'>";
         echo "<tr>";
             echo "<th></th>";
             echo "<th>".Yii::t('Company', 'Planned')."</th>";
