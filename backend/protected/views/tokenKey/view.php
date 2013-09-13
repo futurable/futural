@@ -3,7 +3,6 @@
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
 		'token_key',
 		'lifetime',
 		'create_date',
