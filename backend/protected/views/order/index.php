@@ -1,6 +1,7 @@
-<h1>Orders</h1>
+<?php 
+echo "<h1>".Yii::t('Order', 'Orders')."</h1>";
 
-<?php $this->widget('zii.widgets.CListView', array(
+$this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
 )); ?>
