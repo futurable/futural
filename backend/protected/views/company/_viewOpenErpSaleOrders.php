@@ -8,7 +8,7 @@
     ));
 
     $gridColumns = array(
-        array('name'=>'create_date', 'header'=>Yii::t('Company', 'Created')),
+        array('name'=>'create_date', 'header'=>Yii::t('Company', 'CreateDate')),
         array('name'=>'amount_total', 'header'=>Yii::t('Company', 'TotalAmount')),
         array('name'=>'state', 'header'=>Yii::t('Company', 'OrderState')),
         array(
