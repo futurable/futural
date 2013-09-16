@@ -1,18 +1,17 @@
-<h1>Companies</h1>
-
-<div class="">
 <?php
+    echo "<h1>".Yii::t('Company', 'Companies')."</h1>";
+
     $gridDataProvider = new CArrayDataProvider($suppliers);
 
     $gridColumns = array(
-        array('name'=>'name', 'header'=>'Name'),
-        array('name'=>'business_id', 'header'=>'Business ID'),
-        array('name'=>'email', 'header'=>'Email'),
-        array('name'=>'create_time', 'header'=>'Create time'),
+        array('name'=>'name', 'header'=>Yii::t('Company', 'Name')),
+        array('name'=>'business_id', 'header'=>Yii::t('Company', 'BusinessId')),
+        array('name'=>'email', 'header'=>Yii::t('Company', 'Email')),
+        array('name'=>'create_time', 'header'=>Yii::t('Company', 'CreateTime')),
         array(
             'htmlOptions' => array('nowrap'=>'nowrap'),
             'class'=>'bootstrap.widgets.TbButtonColumn',
-            'viewButtonUrl'=>'Yii::app()->createUrl("/company/view", array("id" => $data["id"]))',
+            'viewButtonUrl'=>'Yii::app()->createUrl("/company/view", array("id" => $data["id"], "action" => "info"))',
             'buttons'=>array(
                 'update'=>array('visible'=>'false',),
                 'delete'=>array('visible'=>'false',),
@@ -28,4 +27,3 @@
     ));
 
 ?>
-</div>

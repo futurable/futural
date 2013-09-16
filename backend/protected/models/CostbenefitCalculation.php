@@ -1,23 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "user".
+ * This is the model class for table "costbenefit_calculation".
  *
- * The followings are the available columns in table 'user':
- * @property string $id
- * @property string $username
- * @property string $password
- * @property string $email
- * @property integer $role
+ * The followings are the available columns in table 'costbenefit_calculation':
+ * @property integer $id
+ * @property string $create_date
+ * @property integer $company_id
+ *
+ * The followings are the available model relations:
+ * @property Company $company
+ * @property CostbenefitItem[] $costbenefitItems
  */
-class User extends ActiveRecord
+class CostbenefitCalculation extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'user';
+		return 'costbenefit_calculation';
 	}
 
 	/**
@@ -28,14 +30,12 @@ class User extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email', 'required'),
-			array('role', 'numerical', 'integerOnly'=>true),
-			array('username', 'length', 'max'=>32),
-			array('password', 'length', 'max'=>128),
-			array('email', 'length', 'max'=>255),
+			array('company_id', 'required'),
+			array('company_id', 'numerical', 'integerOnly'=>true),
+			array('create_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, password, email, role', 'safe', 'on'=>'search'),
+			array('id, create_date, company_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,7 +47,8 @@ class User extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-                    'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'token_customer_id'),
+			'company' => array(self::BELONGS_TO, 'Company', 'company_id'),
+			'costbenefitItems' => array(self::HAS_MANY, 'CostbenefitItem', 'costbenefit_calculation_id'),
 		);
 	}
 
@@ -57,11 +58,9 @@ class User extends ActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => Yii::t('User', 'ID'),
-			'username' => Yii::t('User', 'Username'),
-			'password' => Yii::t('User', 'Password'),
-			'email' => Yii::t('User', 'Email'),
-			'role' => Yii::t('User', 'Role'),
+			'id' => 'ID',
+			'create_date' => 'Create Date',
+			'company_id' => 'Company',
 		);
 	}
 
@@ -83,11 +82,9 @@ class User extends ActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('username',$this->username,true);
-		$criteria->compare('password',$this->password,true);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('role',$this->role);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('create_date',$this->create_date,true);
+		$criteria->compare('company_id',$this->company_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -98,7 +95,7 @@ class User extends ActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return User the static model class
+	 * @return CostbenefitCalculation the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

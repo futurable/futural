@@ -1,23 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "user".
+ * This is the model class for table "token_setup".
  *
- * The followings are the available columns in table 'user':
- * @property string $id
- * @property string $username
- * @property string $password
- * @property string $email
- * @property integer $role
+ * The followings are the available columns in table 'token_setup':
+ * @property integer $id
+ * @property string $description
+ * @property integer $create_init_data
+ * @property integer $create_demo_data
+ * @property integer $create_purchasing_orders
+ * @property integer $token_customer_id
+ *
+ * The followings are the available model relations:
+ * @property TokenKey[] $tokenKeys
+ * @property TokenCustomer $tokenCustomer
  */
-class User extends ActiveRecord
+class TokenSetup extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'user';
+		return 'token_setup';
 	}
 
 	/**
@@ -28,14 +33,12 @@ class User extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email', 'required'),
-			array('role', 'numerical', 'integerOnly'=>true),
-			array('username', 'length', 'max'=>32),
-			array('password', 'length', 'max'=>128),
-			array('email', 'length', 'max'=>255),
+			array('description, token_customer_id', 'required'),
+			array('create_init_data, create_demo_data, create_purchasing_orders, token_customer_id', 'numerical', 'integerOnly'=>true),
+			array('description', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, password, email, role', 'safe', 'on'=>'search'),
+			array('id, description, create_init_data, create_demo_data, create_purchasing_orders, token_customer_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,7 +50,8 @@ class User extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-                    'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'token_customer_id'),
+			'tokenKeys' => array(self::HAS_MANY, 'TokenKey', 'token_setup_id'),
+			'tokenCustomer' => array(self::BELONGS_TO, 'TokenCustomer', 'token_customer_id'),
 		);
 	}
 
@@ -57,11 +61,12 @@ class User extends ActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => Yii::t('User', 'ID'),
-			'username' => Yii::t('User', 'Username'),
-			'password' => Yii::t('User', 'Password'),
-			'email' => Yii::t('User', 'Email'),
-			'role' => Yii::t('User', 'Role'),
+			'id' => 'ID',
+			'description' => 'Description',
+			'create_init_data' => 'Create Init Data',
+			'create_demo_data' => 'Create Demo Data',
+			'create_purchasing_orders' => 'Create Purchasing Orders',
+			'token_customer_id' => 'Token Customer',
 		);
 	}
 
@@ -83,11 +88,12 @@ class User extends ActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('username',$this->username,true);
-		$criteria->compare('password',$this->password,true);
-		$criteria->compare('email',$this->email,true);
-		$criteria->compare('role',$this->role);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('create_init_data',$this->create_init_data);
+		$criteria->compare('create_demo_data',$this->create_demo_data);
+		$criteria->compare('create_purchasing_orders',$this->create_purchasing_orders);
+		$criteria->compare('token_customer_id',$this->token_customer_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -98,7 +104,7 @@ class User extends ActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return User the static model class
+	 * @return TokenSetup the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

@@ -3,14 +3,11 @@
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
 		'token_key',
 		'lifetime',
 		'create_date',
 		'reclaim_date',
 		'expiration_date',
-		'token_customer_id',
-		'token_setup_id',
 	),
 )); 
 
