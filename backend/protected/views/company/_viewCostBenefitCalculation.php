@@ -7,8 +7,9 @@
     echo "<table class='table-striped table-condensed'>";
         echo "<tr>";
             echo "<th></th>";
-            echo "<th>".Yii::t('Company', 'Planned')."</th>";
-            echo "<th>".Yii::t('Company', 'Realized')."</th>";
+            echo "<th>".Yii::t('Company', 'Planned')." (".Yii::t('Company', 'year').")</th>";
+            echo "<th>".Yii::t('Company', 'Planned')." (".Yii::t('Company', 'month').")</th>";
+            echo "<th>".Yii::t('Company', 'Realized')." (".Yii::t('Company', 'month').")</th>";
         echo "</tr>";
         
         echo getTableRow($costBenefitCalculationItems['turnover'], $realizedItems, array('300000'));
@@ -41,14 +42,16 @@
         if($CBCItem->costbenefitItemType->name != 'turnover') $realized *= -1;
         // Add 2 decimals
         $realized = number_format($realized, 2, '.', ' ');
-        $planned = number_format($CBCItem->value, 2, '.', ' ');
+        $monthly = number_format($CBCItem->value, 2, '.', ' ');
+        $yearly = number_format($CBCItem->value*12, 2, '.', ' ');
         
         $header = !empty($label) ? $label : ucfirst($CBCItem->costbenefitItemType->name);
         
         $row = "
         <tr>
             <th>".Yii::t('Company',$header)."</th>
-            <td>{$planned} &euro;</td>
+            <td>{$yearly} &euro;</td>
+            <td>{$monthly} &euro;</td>
             <td>{$realized} &euro;</td>
         </tr>";
         
