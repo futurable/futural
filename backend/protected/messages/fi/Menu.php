@@ -17,6 +17,7 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'Back' => 'Takaisin',
   'Companies' => 'Yritykset',
   'Customers' => 'Asiakkaat',
   'Home' => 'Etusivu',

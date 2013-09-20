@@ -18,11 +18,15 @@
  */
 return array (
   'Companies' => '',
-  'Created' => '',
   'Email' => '',
   'Employees' => '',
+  'Id' => 'ID',
+  'Industry' => '',
   'Name' => '',
+  'Tag' => '',
+  'TokenKey' => 'Token key',
   'Communication' => 'Data communications',
+  'Created' => '',
   'Expenses' => 'Expenses',
   'FacilityExpenses' => 'Facility expenses',
   'Health' => 'Health',
