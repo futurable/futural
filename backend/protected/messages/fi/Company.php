@@ -17,7 +17,12 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'Id' => 'ID',
+  'Industry' => 'Toimiala',
+  'Tag' => 'Tunnus',
+  'TokenKey' => 'Perustamisavain',
   'Communication' => 'Tietoliikenneyhteydet',
+  'Created' => 'Luotu',
   'Expenses' => 'Materiaalikulut',
   'FacilityExpenses' => 'Toimitilakulut',
   'Health' => 'Terveyskulut',
@@ -33,7 +38,6 @@ return array (
   'CostBenefitCalculation' => 'Kannattavuuslaskelma',
   'CreateDate' => 'Luontipäivä',
   'CreateTime' => 'Luontiaika',
-  'Created' => 'Luotu',
   'Email' => 'Sähköposti',
   'Employees' => 'Työntekijät',
   'Name' => 'Nimi',
