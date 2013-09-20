@@ -63,11 +63,14 @@ class Company extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'tag' => 'Tag',
-			'token_key_id' => 'Token Key',
-			'industry_id' => 'Industry',
+			'id' => Yii::t('Company', 'Id'),
+			'name' => Yii::t('Company', 'Name'),
+            'email' => Yii::t('Company', 'Email'),
+			'tag' => Yii::t('Company', 'Tag'),
+			'business_id' => Yii::t('Company', 'BusinessId'),
+			'create_time' => Yii::t('Company', 'CreateTime'),
+			'token_key_id' => Yii::t('Company', 'TokenKey'),
+			'industry_id' => Yii::t('Company', 'Industry')
 		);
 	}
 
