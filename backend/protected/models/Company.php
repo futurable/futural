@@ -68,6 +68,7 @@ class Company extends CActiveRecord
             'email' => Yii::t('Company', 'Email'),
 			'tag' => Yii::t('Company', 'Tag'),
 			'business_id' => Yii::t('Company', 'BusinessId'),
+			'employees' => Yii::t('Company', 'Employees'),
 			'create_time' => Yii::t('Company', 'CreateTime'),
 			'token_key_id' => Yii::t('Company', 'TokenKey'),
 			'industry_id' => Yii::t('Company', 'Industry')

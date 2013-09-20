@@ -10,6 +10,7 @@
             array('name'=>'business_id'),
             array('name'=>'email'),
             array('name'=>'create_time'),
+            array('name'=>'employees'),
         ),
     ));
  ?>
