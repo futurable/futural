@@ -15,20 +15,17 @@ class CreateOrdersCommand extends CConsoleCommand
         }
         // No automation run for this week. Continue
         
+        # 2. Get all the suppliers
         $suppliers = Suppliers::getAll();
-        $businessCenterDb = Yii::app()->params['businessCenterDb'];
         
-        // Change OpenERP-database
-        Yii::app()->dbopenerp->setActive(false);
-        Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$businessCenterDb}";
-        Yii::app()->dbopenerp->setActive(true);
+        # 3. Get the order setups
+       $orderSetups = OrderSetup::model()->findAll();
         
-        $customers = ResCompany::model()->findAll();
-        
+        # 4. Run through each firm
         foreach($suppliers as $supplier){
             echo( "Using company '{$supplier->name}'\n" );
         }
-        
+
         echo( date('Y-m-d H:i:s').": CreateOrders run ended.\n\n" );
     }
 }
