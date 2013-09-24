@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'order_automation':
  * @property integer $id
  * @property string $create_date
+ * @property string $year
  * @property integer $week
  *
  * The followings are the available model relations:
@@ -29,12 +30,13 @@ class OrderAutomation extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
+			array('id, year', 'required'),
 			array('id, week', 'numerical', 'integerOnly'=>true),
+			array('year', 'length', 'max'=>4),
 			array('create_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, create_date, week', 'safe', 'on'=>'search'),
+			array('id, create_date, year, week', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,6 +60,7 @@ class OrderAutomation extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'create_date' => 'Create Date',
+			'year' => 'Year',
 			'week' => 'Week',
 		);
 	}
@@ -82,6 +85,7 @@ class OrderAutomation extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('create_date',$this->create_date,true);
+		$criteria->compare('year',$this->year,true);
 		$criteria->compare('week',$this->week);
 
 		return new CActiveDataProvider($this, array(
