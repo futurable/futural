@@ -8,8 +8,8 @@ class CreateOrdersCommand extends CConsoleCommand
         $criteria = new CDbCriteria;
         $criteria->condition='year=:year OR week=:week';
         $criteria->params=array(':year'=>date('Y'), ':week'=>date('W'));
-        
         $latestOrder = OrderAutomation::model()->find( $criteria );
+        
         if(!empty($latestOrder)){
             die( "Orders for this week already made. Exiting\n" );
         }
@@ -24,6 +24,15 @@ class CreateOrdersCommand extends CConsoleCommand
         # 4. Run through each firm
         foreach($suppliers as $supplier){
             echo( "Using company '{$supplier->name}'\n" );
+            
+            // Use the first cost-benefit calculation
+            $costBenefitCalculation = $supplier->costbenefitCalculations[0];
+            // Get the turnover
+            $criteria = new CDbCriteria;
+            $criteria->condition = 'costbenefit_calculation_id=:id AND costbenefit_item_type_id=1';
+            $criteria->params = array(':id'=>$costBenefitCalculation->id);
+            $turnover = CostbenefitItem::model()->find($criteria);
+
         }
 
         echo( date('Y-m-d H:i:s').": CreateOrders run ended.\n\n" );
