@@ -20,7 +20,7 @@ class CreateOrdersCommand extends CConsoleCommand
         
         # 3. Get the order setups
         $orderSetups = GetOrderSetupArray::run();
- 
+       
         # 4. Run through each firm
         foreach($suppliers as $supplier){
             echo( "Using company '{$supplier->name}'\n" );
@@ -39,12 +39,13 @@ class CreateOrdersCommand extends CConsoleCommand
             $turnover = CostbenefitItem::model()->find($criteria)->value;
 
             // Decide how many orders will be made in week
-
             $orderAmount = 0;
             $orderAmount += $orderSetup[ 'product' ]->amount;
             $orderAmount += $orderSetup[ 'group' ]->amount;
             $orderAmount += $orderSetup[ 'random' ]->amount;
-
+            
+            // Divide the turnover to the orders
+            $portions = GetRandomPercentagePortions::run($orderAmount);
         }
 
         echo( date('Y-m-d H:i:s').": CreateOrders run ended.\n\n" );
