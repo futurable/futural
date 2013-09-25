@@ -20,8 +20,18 @@ class CreateOrdersCommand extends CConsoleCommand
         
         # 3. Get the order setups
         $orderSetups = GetOrderSetupArray::run();
-       
-        # 4. Run through each firm
+        
+        # 4. Set automation run as done
+        $transaction = Yii::app()->db->beginTransaction();
+        $orderAutomation = new OrderAutomation();
+        $orderAutomation->year = date('Y');
+        $orderAutomation->week = date('W');
+        
+        if($orderAutomation->validate()){
+            $headerSuccess = $orderAutomation->save();
+        }
+        
+        # 5. Run through each firm
         foreach($suppliers as $supplier){
             echo( "Using company '{$supplier->name}'\n" );
 
@@ -55,20 +65,27 @@ class CreateOrdersCommand extends CConsoleCommand
             foreach($portions as $portion){
                 // Decide the order type
                 if($productOrders > 0){
-                    $orderSetup = $orderSetup[ 'product' ];
+                    //$orderSetup = $orderSetup[ 'product' ];
                     $productOrders--;        
                 }
                 elseif($groupOrders > 0){
-                    $orderSetup = $orderSetup[ 'group' ];
+                    //$orderSetup = $orderSetup[ 'group' ];
                     $groupOrders--;
                 }
                 elseif($randomOrders > 0){
-                    $orderSetup = $orderSetup[ 'product' ];
+                    //$orderSetup = $orderSetup[ 'random' ];
                     $randomOrders--;
                 }
                 
                 $order = new Order();
             }
+        }
+        
+        if($headerSuccess){
+            $transaction->commit();
+        }
+        else {
+            $transaction->rollback();
         }
 
         echo( date('Y-m-d H:i:s').": CreateOrders run ended.\n\n" );
