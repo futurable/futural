@@ -30,7 +30,7 @@ class OrderAutomation extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, year', 'required'),
+			array('year', 'required'),
 			array('id, week', 'numerical', 'integerOnly'=>true),
 			array('year', 'length', 'max'=>4),
 			array('create_date', 'safe'),
