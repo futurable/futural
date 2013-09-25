@@ -40,12 +40,35 @@ class CreateOrdersCommand extends CConsoleCommand
 
             // Decide how many orders will be made in week
             $orderAmount = 0;
-            $orderAmount += $orderSetup[ 'product' ]->amount;
-            $orderAmount += $orderSetup[ 'group' ]->amount;
-            $orderAmount += $orderSetup[ 'random' ]->amount;
+            $productOrders = $orderSetup[ 'product' ]->amount;
+            $groupOrders = $orderSetup[ 'group' ]->amount;
+            $randomOrders = $orderSetup[ 'random' ]->amount;
+            
+            $orderAmount += $productOrders;
+            $orderAmount += $groupOrders;
+            $orderAmount += $randomOrders;
             
             // Divide the turnover to the orders
             $portions = GetRandomPercentagePortions::run($orderAmount);
+            
+            // Create the orders
+            foreach($portions as $portion){
+                // Decide the order type
+                if($productOrders > 0){
+                    $orderSetup = $orderSetup[ 'product' ];
+                    $productOrders--;        
+                }
+                elseif($groupOrders > 0){
+                    $orderSetup = $orderSetup[ 'group' ];
+                    $groupOrders--;
+                }
+                elseif($randomOrders > 0){
+                    $orderSetup = $orderSetup[ 'product' ];
+                    $randomOrders--;
+                }
+                
+                $order = new Order();
+            }
         }
 
         echo( date('Y-m-d H:i:s').": CreateOrders run ended.\n\n" );
