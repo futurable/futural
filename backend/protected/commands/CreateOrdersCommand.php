@@ -60,7 +60,10 @@ class CreateOrdersCommand extends CConsoleCommand
             
             // Divide the turnover to the orders
             $portions = GetRandomPercentagePortions::run($orderAmount);
-
+            
+            $supplierOrderTotalAmount = 0;
+            $supplierOrderTotalRows = 0;
+            $supplierOrderTotalValue = 0;
             // Create the orders
             foreach($portions as $portion){
                 // Decide the order type
@@ -78,14 +81,37 @@ class CreateOrdersCommand extends CConsoleCommand
                 }
                 
                 $order = new Order();
+
                 $order->event_time = GetRandomDateTimeForWeek::run();
+                $order->rows = $currentSetup->rows;
+                $order->value = round($turnover * $currentSetup->weight * $portion);
+                $order->company_id = $supplier->id;
+                $order->order_setup_id = $currentSetup->id;
+                $order->order_automation_id = $orderAutomation->id;
+                
+                $supplierOrderTotalAmount++;
+                $supplierOrderTotalRows = $order->rows;
+                $supplierOrderTotalValue += $order->value;
+                
+                if( $order->save() ){
+                    $rowsSuccess = true;
+                    echo( "Created an {$currentSetup->type} order with {$order->rows} rows and value of {$order->value}\n" );
+                    continue;
+                }
+                else {
+                    $rowsSuccess = false;
+                    break;
+                }
             }
+            echo( "Total of {$supplierOrderTotalAmount} orders and {$supplierOrderTotalRows} rows with a total value of {$supplierOrderTotalValue}\n\n");
         }
         
-        if($headerSuccess){
+        if($headerSuccess AND $rowsSuccess){
+            echo( "Orders saved\n" );
             $transaction->commit();
         }
         else {
+            echo( "Error. Orders not saved\n");
             $transaction->rollback();
         }
 
