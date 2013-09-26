@@ -13,8 +13,8 @@
 	<?php echo CHtml::encode($data->created); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('execution_time')); ?>:</b>
-	<?php echo CHtml::encode($data->execution_time); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('event_time')); ?>:</b>
+	<?php echo CHtml::encode($data->event_time); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('executed')); ?>:</b>
