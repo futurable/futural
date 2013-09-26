@@ -6,7 +6,7 @@ class CreateOrdersCommand extends CConsoleCommand
         
         # 1. Check when the last run was made
         $criteria = new CDbCriteria;
-        $criteria->condition='year=:year OR week=:week';
+        $criteria->condition='year=:year AND week=:week';
         $criteria->params=array(':year'=>date('Y'), ':week'=>date('W'));
         $latestOrder = OrderAutomation::model()->find( $criteria );
         
