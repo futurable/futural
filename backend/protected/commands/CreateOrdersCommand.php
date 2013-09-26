@@ -60,24 +60,25 @@ class CreateOrdersCommand extends CConsoleCommand
             
             // Divide the turnover to the orders
             $portions = GetRandomPercentagePortions::run($orderAmount);
-            
+
             // Create the orders
             foreach($portions as $portion){
                 // Decide the order type
                 if($productOrders > 0){
-                    //$orderSetup = $orderSetup[ 'product' ];
-                    $productOrders--;        
+                    $currentSetup = $orderSetup[ 'product' ];
+                    $productOrders--;
                 }
                 elseif($groupOrders > 0){
-                    //$orderSetup = $orderSetup[ 'group' ];
+                    $currentSetup = $orderSetup[ 'group' ];
                     $groupOrders--;
                 }
                 elseif($randomOrders > 0){
-                    //$orderSetup = $orderSetup[ 'random' ];
+                    $currentSetup = $orderSetup[ 'random' ];
                     $randomOrders--;
                 }
                 
                 $order = new Order();
+                $order->event_time = GetRandomDateTimeForWeek::run();
             }
         }
         
