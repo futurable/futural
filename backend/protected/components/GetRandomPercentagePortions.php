@@ -11,7 +11,7 @@ Class GetRandomPercentagePortions {
         $numbers = array();
         $portions = array();
 
-        while($parts > 1){
+        while($parts > 0){
             $numbers[] = rand(1,100);
             $parts--;
         }
