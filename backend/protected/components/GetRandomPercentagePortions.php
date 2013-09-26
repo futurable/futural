@@ -18,7 +18,7 @@ Class GetRandomPercentagePortions {
         $sum = array_sum($numbers);
         
         foreach($numbers as $number){
-            $portions[] = round( ($number/$sum)*$parts*100 );
+            $portions[] = $number/$sum;
         }
      
         return $portions;
