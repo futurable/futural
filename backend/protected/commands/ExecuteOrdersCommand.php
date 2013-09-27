@@ -13,7 +13,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             die( "No executable orders. Exiting.\n" );
         }
         else{
-            echo( count($orders)." orders found\n" );
+            echo( count($orders)." due orders found\n" );
         }
         
         # 2. Get all customers
@@ -25,6 +25,15 @@ class ExecuteOrdersCommand extends CConsoleCommand
         Yii::app()->dbopenerp->setActive(true);
         
         $customers = ResCompany::model()->findAll();
+        
+        echo( count($customers)." customers found\n" );
+        
+        # 3. Run through each order
+        foreach($orders as $order){
+            // Get the supplier
+            $supplier = Company::model()->findByPk($order->company_id);
+            echo( "Creating order for $supplier->name\n" );
+        }
         
         echo( date('Y-m-d H:i:s').": ExecuteOrders run ended.\n" );
     }
