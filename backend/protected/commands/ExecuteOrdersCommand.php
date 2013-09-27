@@ -42,18 +42,24 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $customer = $customers[ rand( 0, count($customers)-1 ) ];
             echo( "Using customer {$customer->name}\n" );
             
+            // Get the partner
+            $criteria = new CDbCriteria( array('condition'=>"comment LIKE '{$supplier->tag}%'") );
+            $resPartner = ResPartner::model()->find( $criteria );
+            $resPartnerComment = explode(":", $resPartner->comment);
+            $supplierCategory = intval($resPartnerComment[1]);
+            
             // Get products
             if($order->orderSetup->type=='product'){
                 // Order supplier-spesific products
                 echo( "Ordering supplier-spesific products\n" );
+                $purchaseProducts = ProductProduct::model()
+                    ->with(array(
+                        'productTmpl.productSupplierinfos'=>array('alias'=>'psi')
+                    ))->findAll(array('condition'=>"psi.name={$resPartner->id}"));
             }
             elseif($order->orderSetup->type=='group'){
                 // Order products from product category
                 echo( "Ordering category products\n" );
-                $criteria = new CDbCriteria( array('condition'=>"comment LIKE '{$supplier->tag}%'") );
-                $resPartner = ResPartner::model()->find( $criteria );
-                $resPartnerComment = explode(":", $resPartner->comment);
-                $supplierCategory = intval($resPartnerComment[1]);
                 
                 if(empty($supplierCategory)){
                     echo( "Customer has no category. Skipping the order\n");
