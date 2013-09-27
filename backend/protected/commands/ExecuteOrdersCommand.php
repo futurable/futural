@@ -32,9 +32,12 @@ class ExecuteOrdersCommand extends CConsoleCommand
         foreach($orders as $order){
             // Get the supplier
             $supplier = Company::model()->findByPk($order->company_id);
-            echo( "Creating order for $supplier->name\n" );
+            echo( "Creating order for {$supplier->name}\n" );
+            
+            // Get the customer
+            $customer = $customers[ rand( 0, count($customers)-1 ) ];
+            echo( "Using customer {$customer->name}\n" );
         }
-        
         echo( date('Y-m-d H:i:s').": ExecuteOrders run ended.\n" );
     }
 }
