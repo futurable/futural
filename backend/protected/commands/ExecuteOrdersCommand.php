@@ -79,6 +79,18 @@ class ExecuteOrdersCommand extends CConsoleCommand
             
             $validProductsAmount = count($purchaseProducts);
             echo( "Ordering {$order->rows} rows worth of {$order->value} from {$validProductsAmount} products\n");
+            
+            $orderRows = $validProductsAmount <= $order->rows ? $validProductsAmount : $order->rows;
+            // Divide the value between products
+            $portions = GetRandomPercentagePortions::run($orderRows);
+            
+            // Make the invoice header
+            
+            // Get the products
+            foreach($portions as $portion){
+                // Get a product
+                // Make an invoice row
+            }
         }
         echo( date('Y-m-d H:i:s').": ExecuteOrders run ended.\n" );
     }
