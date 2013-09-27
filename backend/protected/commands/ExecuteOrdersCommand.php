@@ -45,14 +45,14 @@ class ExecuteOrdersCommand extends CConsoleCommand
             // Get products
             if($order->orderSetup->type='product'){
                 // Order supplier-spesific products
-                echo( "Ordering supplier-spesific products\." );
+                echo( "Ordering supplier-spesific products\n" );
             }
             elseif($order->orderSetup->type='group'){
-                echo( "Ordering category products\." );
+                echo( "Ordering category products\n" );
                 // Order products from product category
             }
             elseif($order->orderSetup->type='random'){
-                echo( "Ordering random products ");
+                echo( "Ordering random products\n");
                 // Order any products
             }
             
