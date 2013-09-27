@@ -74,9 +74,11 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 echo( "Ordering random products\n");
                 // Order any products
                 // Get a random category
-                $purchaseProducts = array_rand( $products );
+                $purchaseProducts = $products[array_rand( $products )];
             }
             
+            $validProductsAmount = count($purchaseProducts);
+            echo( "Ordering {$order->rows} rows worth of {$order->value} from {$validProductsAmount} products\n");
         }
         echo( date('Y-m-d H:i:s').": ExecuteOrders run ended.\n" );
     }
