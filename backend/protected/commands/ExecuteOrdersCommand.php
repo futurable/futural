@@ -31,7 +31,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
         // Get all products in their categories
         $products = GetProductsArray::run(true); 
         echo( count($products)." product categories found\n" );
-        
+
         # 3. Run through each order
         foreach($orders as $order){
             // Get the supplier
@@ -43,17 +43,32 @@ class ExecuteOrdersCommand extends CConsoleCommand
             echo( "Using customer {$customer->name}\n" );
             
             // Get products
-            if($order->orderSetup->type='product'){
+            if($order->orderSetup->type=='product'){
                 // Order supplier-spesific products
                 echo( "Ordering supplier-spesific products\n" );
             }
-            elseif($order->orderSetup->type='group'){
-                echo( "Ordering category products\n" );
+            elseif($order->orderSetup->type=='group'){
                 // Order products from product category
+                echo( "Ordering category products\n" );
+                $criteria = new CDbCriteria( array('condition'=>"comment LIKE '{$supplier->tag}%'") );
+                $resPartner = ResPartner::model()->find( $criteria );
+                $resPartnerComment = explode(":", $resPartner->comment);
+                $supplierCategory = intval($resPartnerComment[1]);
+                
+                if(empty($supplierCategory)){
+                    echo( "Customer has no category. Skipping the order\n");
+                    continue;
+                }
+                else{
+                    $purchaseProducts = $products[ $supplierCategory ];
+                }
+                
             }
-            elseif($order->orderSetup->type='random'){
+            elseif($order->orderSetup->type=='random'){
                 echo( "Ordering random products\n");
                 // Order any products
+                // Get a random category
+                $purchaseProducts = array_rand( $products );
             }
             
         }
