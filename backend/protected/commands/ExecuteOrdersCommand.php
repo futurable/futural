@@ -28,6 +28,10 @@ class ExecuteOrdersCommand extends CConsoleCommand
         
         echo( count($customers)." customers found\n" );
         
+        // Get all products in their categories
+        $products = GetProductsArray::run(true); 
+        echo( count($products)." product categories found\n" );
+        
         # 3. Run through each order
         foreach($orders as $order){
             // Get the supplier
@@ -37,6 +41,21 @@ class ExecuteOrdersCommand extends CConsoleCommand
             // Get the customer
             $customer = $customers[ rand( 0, count($customers)-1 ) ];
             echo( "Using customer {$customer->name}\n" );
+            
+            // Get products
+            if($order->orderSetup->type='product'){
+                // Order supplier-spesific products
+                echo( "Ordering supplier-spesific products\." );
+            }
+            elseif($order->orderSetup->type='group'){
+                echo( "Ordering category products\." );
+                // Order products from product category
+            }
+            elseif($order->orderSetup->type='random'){
+                echo( "Ordering random products ");
+                // Order any products
+            }
+            
         }
         echo( date('Y-m-d H:i:s').": ExecuteOrders run ended.\n" );
     }
