@@ -1,5 +1,5 @@
 <?php
-class ExcecuteOrdersCommand extends CConsoleCommand
+class ExecuteOrdersCommand extends CConsoleCommand
 {
     public function run($args)
     {   
