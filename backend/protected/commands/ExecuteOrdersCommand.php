@@ -148,6 +148,15 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 $invoiceLine->company_id = $customer->id;
                 $invoiceLine->partner_id = $supplier->id;
                 $invoiceLine->product_id = $product->id;
+                
+                if($invoiceLine->save()){
+                    $linesSuccess = true;
+                }
+                else{
+                    $linesSuccess = false;
+                    echo( "Error while saving invoice line. Skipping\n" );
+                    break;
+                }
             }
             
             if($invoiceHeaderSuccess AND $linesSuccess){
