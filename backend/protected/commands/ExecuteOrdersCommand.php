@@ -85,6 +85,13 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $portions = GetRandomPercentagePortions::run($orderRows);
             
             // Make the invoice header
+            $taxAmount = intval($order->value)*0.24; // @TODO: get the percentage from somewhere
+            $header = new AccountInvoice();
+            $header->check_total = $order->value;
+            $header->amount_tax = $taxAmount;
+            $header->amount_untaxed = $order->value;
+            $header->amount_total = $order->value + $taxAmount;
+            $header->company_id = $resPartner->id;
             
             // Get the products
             foreach($portions as $portion){
