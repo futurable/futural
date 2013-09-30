@@ -123,10 +123,21 @@ class ExecuteOrdersCommand extends CConsoleCommand
                     }
                     $break++;
                 }
-                echo( "Using product {$product->productTmpl->name}\n" );
                 
                 $amount = ceil($order->value / $product->productTmpl->standard_price);
-                echo( "Ordering {$amount}(s) of '{$product->productTmpl->name}'\n");
+                
+                // Trim the amount if they are large
+                if($amount > 1000){
+                    $amount = ceil($amount/100)*100;
+                }
+                else if($amount > 100){
+                    $amount = ceil($amount/10)*10;
+                }
+                else if($amount > 10){
+                    $amount = ceil($amount/5)*5;
+                }
+                    
+                echo( "Ordering {$amount} x '{$product->productTmpl->name}'\n");
                 // Make an invoice row
             }
             
