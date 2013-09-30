@@ -143,6 +143,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 $invoiceLine->name = $product->productTmpl->name;
                 $invoiceLine->price_unit = $product->productTmpl->standard_price;
                 $invoiceLine->price_subtotal = $subTotal;
+                $invoiceLine->invoice_id = $invoiceHeader->id;
                 $invoiceLine->company_id = $customer->id;
                 $invoiceLine->partner_id = $supplier->id;
                 $invoiceLine->product_id = $product->id;
@@ -162,7 +163,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $invoiceHeader->amount_tax = $taxAmount;
             $invoiceHeader->amount_untaxed = $invoiceTotalAmount;
             $invoiceHeader->amount_total = $invoiceTotalAmount + $taxAmount;
-            echo( "Total order value {$invoiceTotalAmount} + tax {$taxAmount}");
+            echo( "Total order value {$invoiceTotalAmount} + tax {$taxAmount}\n");
             $invoiceHeaderSuccess = $invoiceHeader->save();
             
             if($invoiceHeaderSuccess AND $linesSuccess){
