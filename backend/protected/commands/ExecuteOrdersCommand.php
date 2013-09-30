@@ -143,11 +143,12 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 $invoiceLine->name = $product->productTmpl->name;
                 $invoiceLine->price_unit = $product->productTmpl->standard_price;
                 $invoiceLine->price_subtotal = $subTotal;
+                $invoiceLine->quantity = $amount;
                 $invoiceLine->invoice_id = $invoiceHeader->id;
                 $invoiceLine->company_id = $customer->id;
                 $invoiceLine->partner_id = $supplier->id;
                 $invoiceLine->product_id = $product->id;
-                
+
                 if($invoiceLine->save()){
                     $linesSuccess = true;
                 }
@@ -168,7 +169,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             
             if($invoiceHeaderSuccess AND $linesSuccess){
                 echo( "Transactions successful\n" );
-                $transaction->commit();
+                $transaction->rollback();
             }
             else{
                 echo( "Transactions failed\n" );
