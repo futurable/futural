@@ -93,6 +93,7 @@ class AccountInvoice extends CActiveRecord
             array('create_date,write_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
             array('create_uid,write_uid,currency_id_user_id','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
             array('account_id','default', 'value'=>'13', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('reference_type','default', 'value'=>'none', 'setOnEmpty'=>false,'on'=>'insert'),
         );
 	}
 
