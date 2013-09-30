@@ -175,7 +175,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 $POLine->name = $product->productTmpl->name;
                 $POLine->product_qty = $amount;
                 $POLine->company_id = $customer->id;
-                $POLine->validate(); print_r($POLine->getErrors()); exit;
+                $POLine->validate();
                 if($POLine->save()){
                     $POLSuccess = true;
                 }
