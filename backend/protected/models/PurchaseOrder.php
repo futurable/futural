@@ -83,6 +83,7 @@ class PurchaseOrder extends CActiveRecord
             array('pricelist_id','default', 'value'=>'2', 'setOnEmpty'=>false,'on'=>'insert'),
             array('location_id','default', 'value'=>'12', 'setOnEmpty'=>false,'on'=>'insert'),
             array('state','default', 'value'=>'approved', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('invoice_mehtod','default', 'value'=>'other', 'setOnEmpty'=>false,'on'=>'insert'),
         );
 	}
 
