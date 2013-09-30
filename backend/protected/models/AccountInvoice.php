@@ -40,7 +40,6 @@
  * @property string $name
  * @property string $comment
  * @property boolean $sent
- * @property integer $commercial_partner_id
  * @property integer $section_id
  *
  * The followings are the available model relations:
@@ -89,7 +88,7 @@ class AccountInvoice extends CActiveRecord
 			array('create_date, write_date, date_due, check_total, amount_tax, state, type, reconciled, residual, date_invoice, amount_untaxed, amount_total, comment, sent', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, create_uid, create_date, write_date, write_uid, origin, date_due, check_total, reference, supplier_invoice_number, number, account_id, company_id, currency_id, partner_id, fiscal_position, user_id, partner_bank_id, payment_term, reference_type, journal_id, amount_tax, state, type, internal_number, reconciled, residual, move_name, date_invoice, period_id, amount_untaxed, move_id, amount_total, name, comment, sent, commercial_partner_id, section_id', 'safe', 'on'=>'search'),
+			array('id, create_uid, create_date, write_date, write_uid, origin, date_due, check_total, reference, supplier_invoice_number, number, account_id, company_id, currency_id, partner_id, fiscal_position, user_id, partner_bank_id, payment_term, reference_type, journal_id, amount_tax, state, type, internal_number, reconciled, residual, move_name, date_invoice, period_id, amount_untaxed, move_id, amount_total, name, comment, sent, section_id', 'safe', 'on'=>'search'),
             array('create_date,write_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
             array('create_uid,write_uid,currency_id_user_id','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
             array('account_id','default', 'value'=>'13', 'setOnEmpty'=>false,'on'=>'insert'),
@@ -172,7 +171,6 @@ class AccountInvoice extends CActiveRecord
 			'name' => 'Name',
 			'comment' => 'Comment',
 			'sent' => 'Sent',
-			'commercial_partner_id' => 'Commercial Partner',
 			'section_id' => 'Section',
 		);
 	}
@@ -231,7 +229,6 @@ class AccountInvoice extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('comment',$this->comment,true);
 		$criteria->compare('sent',$this->sent);
-		$criteria->compare('commercial_partner_id',$this->commercial_partner_id);
 		$criteria->compare('section_id',$this->section_id);
 
 		return new CActiveDataProvider($this, array(
