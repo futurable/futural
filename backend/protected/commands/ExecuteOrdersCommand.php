@@ -109,7 +109,8 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $POHeader->partner_id = $resPartner->id;
             $POHeader->company_id = $customer->id;
             $POHeader->name = $invoiceOrigin;
-            $POHeader->notes = "Automated invoice";
+            $POHeader->notes = "Automated invoice"; $POHeader->validate();
+            $POHeader->save();
             
             $linesSuccess = false;
             $invoiceTotalAmount = 0;
@@ -155,13 +156,30 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 $invoiceLine->company_id = $customer->id;
                 $invoiceLine->partner_id = $supplier->id;
                 $invoiceLine->product_id = $product->id;
-
+                
                 if($invoiceLine->save()){
                     $linesSuccess = true;
                 }
                 else{
                     $linesSuccess = false;
                     echo( "Error while saving invoice line. Skipping\n" );
+                    break;
+                }
+                
+                // Make a purchase order line
+                $POLine = new PurchaseOrderLine();
+                $POLine->order_id = $POHeader->id;
+                $POLine->price_unit = $product->productTmpl->standard_price;
+                $POLine->partner_id = $resPartner->id;
+                $POLIne->name = $product->productTmpl->name;
+                $POLIne->company_id = $customer->id;
+                
+                if($POLine->save()){
+                    $POLSuccess = true;
+                }
+                else{
+                    $POLSuccess = false;
+                    echo( "Error while saving purchase order line. Skipping\n" );
                     break;
                 }
             }
@@ -172,13 +190,14 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $invoiceHeader->amount_tax = $taxAmount;
             $invoiceHeader->amount_untaxed = $invoiceTotalAmount;
             $invoiceHeader->amount_total = $invoiceTotalAmount + $taxAmount;
+            $invoiceHeaderSuccess = $invoiceHeader->save();
             
             $POHeader->amount_untaxed = $invoiceTotalAmount;
             $POHeader->amount_tax = $taxAmount;
             $POHeader->amount_total = $invoiceTotalAmount + $taxAmount;
+            $POHSuccess = $POHeader->save();
             
             echo( "Total order value {$invoiceTotalAmount} + tax {$taxAmount}\n");
-            $invoiceHeaderSuccess = $invoiceHeader->save();
             
             if($invoiceHeaderSuccess AND $linesSuccess){
                 echo( "Transactions successful\n" );
