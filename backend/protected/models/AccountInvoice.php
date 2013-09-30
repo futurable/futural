@@ -90,7 +90,7 @@ class AccountInvoice extends CActiveRecord
 			// @todo Please remove those attributes that should not be searched.
 			array('id, create_uid, create_date, write_date, write_uid, origin, date_due, check_total, reference, supplier_invoice_number, number, account_id, company_id, currency_id, partner_id, fiscal_position, user_id, partner_bank_id, payment_term, reference_type, journal_id, amount_tax, state, type, internal_number, reconciled, residual, move_name, date_invoice, period_id, amount_untaxed, move_id, amount_total, name, comment, sent, section_id', 'safe', 'on'=>'search'),
             array('create_date,write_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
-            array('create_uid,write_uid,currency_id_user_id','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('create_uid,write_uid,currency_id,user_id','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
             array('account_id','default', 'value'=>'13', 'setOnEmpty'=>false,'on'=>'insert'),
             array('journal_id','default', 'value'=>'340', 'setOnEmpty'=>false,'on'=>'insert'),
             array('reference_type','default', 'value'=>'none', 'setOnEmpty'=>false,'on'=>'insert'),
