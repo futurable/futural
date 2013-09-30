@@ -108,9 +108,25 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $transaction = Yii::app()->db->beginTransaction();
             $headerSuccess = $header->save();
             
+            $linesSuccess = false;
             // Get the products
             foreach($portions as $portion){
                 // Get a product
+                $product = $purchaseProducts[ array_rand($purchaseProducts) ];
+                
+                $break = 10;
+                while($product->productTmpl->standard_price == 0){
+                    $product = $purchaseProducts[ array_rand($purchaseProducts) ];
+                    if($break > 10){
+                        echo( "No products with price. Breaking\n");
+                        break 2;
+                    }
+                    $break++;
+                }
+                echo( "Using product {$product->productTmpl->name}\n" );
+                
+                $amount = ceil($order->value / $product->productTmpl->standard_price);
+                echo( "Ordering {$amount}(s) of '{$product->productTmpl->name}'\n");
                 // Make an invoice row
             }
             
