@@ -95,6 +95,7 @@ class AccountInvoice extends CActiveRecord
             array('account_id','default', 'value'=>'13', 'setOnEmpty'=>false,'on'=>'insert'),
             array('journal_id','default', 'value'=>'340', 'setOnEmpty'=>false,'on'=>'insert'),
             array('reference_type','default', 'value'=>'none', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('type','default', 'value'=>'in_invoice', 'setOnEmpty'=>false,'on'=>'insert'),
         );
 	}
 
