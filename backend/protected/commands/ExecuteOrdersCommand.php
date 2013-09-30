@@ -112,7 +112,8 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $POHeader->notes = "Automated invoice"; $POHeader->validate();
             $POHeader->save();
             
-            $linesSuccess = false;
+            $ILSuccess = false;
+            $POLSuccess = false;
             $invoiceTotalAmount = 0;
             // Get the products
             foreach($portions as $portion){
@@ -158,10 +159,10 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 $invoiceLine->product_id = $product->id;
                 
                 if($invoiceLine->save()){
-                    $linesSuccess = true;
+                    $ILSuccess = true;
                 }
                 else{
-                    $linesSuccess = false;
+                    $ILSuccess = false;
                     echo( "Error while saving invoice line. Skipping\n" );
                     break;
                 }
@@ -172,6 +173,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 $POLine->price_unit = $product->productTmpl->standard_price;
                 $POLine->partner_id = $resPartner->id;
                 $POLIne->name = $product->productTmpl->name;
+                $POLIne->product_qty = $amount;
                 $POLIne->company_id = $customer->id;
                 
                 if($POLine->save()){
@@ -190,7 +192,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $invoiceHeader->amount_tax = $taxAmount;
             $invoiceHeader->amount_untaxed = $invoiceTotalAmount;
             $invoiceHeader->amount_total = $invoiceTotalAmount + $taxAmount;
-            $invoiceHeaderSuccess = $invoiceHeader->save();
+            $IHSuccess = $invoiceHeader->save();
             
             $POHeader->amount_untaxed = $invoiceTotalAmount;
             $POHeader->amount_tax = $taxAmount;
@@ -199,7 +201,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             
             echo( "Total order value {$invoiceTotalAmount} + tax {$taxAmount}\n");
             
-            if($invoiceHeaderSuccess AND $linesSuccess){
+            if($IHSuccess AND $ILSuccess AND $POHSuccess AND $POLSuccess){
                 echo( "Transactions successful\n" );
                 $transaction->rollback();
             }
