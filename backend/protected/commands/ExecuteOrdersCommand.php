@@ -94,19 +94,19 @@ class ExecuteOrdersCommand extends CConsoleCommand
             
             // Make the invoice header
             $taxAmount = intval($order->value)*0.24; // @TODO: get the percentage from somewhere
-            $header = new AccountInvoice();
-            $header->check_total = $order->value;
-            $header->amount_tax = $taxAmount;
-            $header->amount_untaxed = $order->value;
-            $header->amount_total = $order->value + $taxAmount;
-            $header->partner_id = $resPartner->id;
-            $header->company_id = $customer->id; 
-            $header->origin = $invoiceOrigin;
-            $header->reference = $invoiceOrigin;
-            $header->name = $invoiceOrigin;
+            $invoiceHeader = new AccountInvoice();
+            $invoiceHeader->check_total = $order->value;
+            $invoiceHeader->amount_tax = $taxAmount;
+            $invoiceHeader->amount_untaxed = $order->value;
+            $invoiceHeader->amount_total = $order->value + $taxAmount;
+            $invoiceHeader->partner_id = $resPartner->id;
+            $invoiceHeader->company_id = $customer->id; 
+            $invoiceHeader->origin = $invoiceOrigin;
+            $invoiceHeader->reference = $invoiceOrigin;
+            $invoiceHeader->name = $invoiceOrigin;
             
             $transaction = Yii::app()->db->beginTransaction();
-            $headerSuccess = $header->save();
+            $invoiceHeaderSuccess = $invoiceHeader->save();
             
             $linesSuccess = false;
             // Get the products
@@ -150,7 +150,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 $invoiceLine->product_id = $product->id;
             }
             
-            if($headerSuccess AND $linesSuccess){
+            if($invoiceHeaderSuccess AND $linesSuccess){
                 echo( "Transactions successful\n" );
                 $transaction->commit();
             }
