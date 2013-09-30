@@ -104,6 +104,13 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $transaction = Yii::app()->db->beginTransaction();
             $invoiceHeader->save();
             
+            // Make the purchase order header
+            $POHeader = new PurchaseOrder();
+            $POHeader->partner_id = $resPartner->id;
+            $POHeader->company_id = $customer->id;
+            $POHeader->name = $invoiceOrigin;
+            $POHeader->notes = "Automated invoice";
+            
             $linesSuccess = false;
             $invoiceTotalAmount = 0;
             // Get the products
@@ -159,17 +166,23 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 }
             }
             
+            // Save the real values
             $taxAmount = $invoiceTotalAmount*0.24; // @TODO: get the percentage from somewhere
             $invoiceHeader->check_total = $invoiceTotalAmount;
             $invoiceHeader->amount_tax = $taxAmount;
             $invoiceHeader->amount_untaxed = $invoiceTotalAmount;
             $invoiceHeader->amount_total = $invoiceTotalAmount + $taxAmount;
+            
+            $POHeader->amount_untaxed = $invoiceTotalAmount;
+            $POHeader->amount_tax = $taxAmount;
+            $POHeader->amount_total = $invoiceTotalAmount + $taxAmount;
+            
             echo( "Total order value {$invoiceTotalAmount} + tax {$taxAmount}\n");
             $invoiceHeaderSuccess = $invoiceHeader->save();
             
             if($invoiceHeaderSuccess AND $linesSuccess){
                 echo( "Transactions successful\n" );
-                $transaction->commit();
+                $transaction->rollback();
             }
             else{
                 echo( "Transactions failed\n" );
