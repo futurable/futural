@@ -202,11 +202,11 @@ class ExecuteOrdersCommand extends CConsoleCommand
             echo( "Total order value {$invoiceTotalAmount} + tax {$taxAmount}\n");
             
             if($IHSuccess AND $ILSuccess AND $POHSuccess AND $POLSuccess){
-                echo( "Transactions successful\n" );
-                $transaction->rollback();
+                echo( "Transaction successful\n" );
+                $transaction->commit();
             }
             else{
-                echo( "Transactions failed\n" );
+                echo( "Transaction failed\n" );
                 $transaction->rollback();
             }
         }
