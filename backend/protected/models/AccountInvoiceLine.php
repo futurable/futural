@@ -64,6 +64,7 @@ class AccountInvoiceLine extends CActiveRecord
             array('create_date,write_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
             array('create_uid,write_uid','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
             array('create_uid,write_uid,uos_id','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('account_id','default', 'value'=>'23', 'setOnEmpty'=>false,'on'=>'insert'),
         );
 	}
 
