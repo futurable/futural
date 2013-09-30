@@ -104,11 +104,23 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $header->origin = $invoiceOrigin;
             $header->reference = $invoiceOrigin;
             $header->name = $invoiceOrigin;
- 
+            
+            $transaction = Yii::app()->db->beginTransaction();
+            $headerSuccess = $header->save();
+            
             // Get the products
             foreach($portions as $portion){
                 // Get a product
                 // Make an invoice row
+            }
+            
+            if($headerSuccess AND $linesSuccess){
+                echo( "Transactions successful\n" );
+                $transaction->commit();
+            }
+            else{
+                echo( "Transactions failed\n" );
+                $transaction->rollback();
             }
         }
         echo( date('Y-m-d H:i:s').": ExecuteOrders run ended.\n" );
