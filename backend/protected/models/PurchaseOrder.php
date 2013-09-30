@@ -69,7 +69,7 @@ class PurchaseOrder extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('date_order, partner_id, location_id, company_id, pricelist_id, name, invoice_method', 'required'),
+			array('partner_id, company_id, name', 'required'),
 			array('create_uid, write_uid, journal_id, partner_id, dest_address_id, fiscal_position, location_id, company_id, pricelist_id, warehouse_id, payment_term_id, validator', 'numerical', 'integerOnly'=>true),
 			array('origin, partner_ref, name', 'length', 'max'=>64),
 			array('create_date, write_date, amount_untaxed, amount_tax, state, date_approve, amount_total, notes, shipped, minimum_planned_date', 'safe'),
