@@ -83,7 +83,7 @@ class AccountInvoice extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('account_id, company_id, currency_id, partner_id, reference_type, journal_id', 'required'),
-			array('create_uid, write_uid, account_id, company_id, currency_id, partner_id, fiscal_position, user_id, partner_bank_id, payment_term, journal_id, period_id, move_id, commercial_partner_id, section_id', 'numerical', 'integerOnly'=>true),
+			array('create_uid, write_uid, account_id, company_id, currency_id, partner_id, fiscal_position, user_id, partner_bank_id, payment_term, journal_id, period_id, move_id, section_id', 'numerical', 'integerOnly'=>true),
 			array('origin, reference, supplier_invoice_number, number, move_name, name', 'length', 'max'=>64),
 			array('internal_number', 'length', 'max'=>32),
 			array('create_date, write_date, date_due, check_total, amount_tax, state, type, reconciled, residual, date_invoice, amount_untaxed, amount_total, comment, sent', 'safe'),
