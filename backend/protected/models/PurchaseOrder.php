@@ -79,6 +79,7 @@ class PurchaseOrder extends CActiveRecord
             array('create_date,write_date,date_order','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
             array('create_uid,write_uid','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
             array('journal_id','default', 'value'=>'3', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('pricelist_id','default', 'value'=>'2', 'setOnEmpty'=>false,'on'=>'insert'),
             array('location_id','default', 'value'=>'12', 'setOnEmpty'=>false,'on'=>'insert'),
             array('state','default', 'value'=>'approved', 'setOnEmpty'=>false,'on'=>'insert'),
         );
