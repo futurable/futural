@@ -54,7 +54,7 @@ class AccountInvoiceLine extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('account_id, name, price_unit, quantity', 'required'),
+			array('name, price_unit, quantity', 'required'),
 			array('create_uid, write_uid, uos_id, account_id, sequence, invoice_id, company_id, account_analytic_id, partner_id, product_id', 'numerical', 'integerOnly'=>true),
 			array('origin', 'length', 'max'=>256),
 			array('create_date, write_date, price_subtotal, discount', 'safe'),
