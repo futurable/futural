@@ -169,13 +169,13 @@ class ExecuteOrdersCommand extends CConsoleCommand
             
             if($invoiceHeaderSuccess AND $linesSuccess){
                 echo( "Transactions successful\n" );
-                $transaction->rollback();
+                $transaction->commit();
             }
             else{
                 echo( "Transactions failed\n" );
                 $transaction->rollback();
             }
         }
-        echo( date('Y-m-d H:i:s').": ExecuteOrders run ended.\n" );
+        echo( date('Y-m-d H:i:s').": ExecuteOrders run ended.\n\n" );
     }
 }
