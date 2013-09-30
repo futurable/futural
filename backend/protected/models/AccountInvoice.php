@@ -96,6 +96,7 @@ class AccountInvoice extends CActiveRecord
             array('reference_type','default', 'value'=>'none', 'setOnEmpty'=>false,'on'=>'insert'),
             array('type','default', 'value'=>'in_invoice', 'setOnEmpty'=>false,'on'=>'insert'),
             array('state','default', 'value'=>'draft', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('sent, reconciled','default', 'value'=>new CDbExpression('false'), 'setOnEmpty'=>false,'on'=>'insert'),
         );
 	}
 
