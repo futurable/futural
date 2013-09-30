@@ -92,7 +92,8 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $header->amount_untaxed = $order->value;
             $header->amount_total = $order->value + $taxAmount;
             $header->partner_id = $resPartner->id;
-            $header->company_id = 1; 
+            $header->company_id = $customer->id; 
+
             
             // Get the products
             foreach($portions as $portion){
