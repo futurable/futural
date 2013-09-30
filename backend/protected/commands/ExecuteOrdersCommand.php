@@ -93,12 +93,8 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $invoiceOrigin = substr($lastInvoice->origin, 0, 2).( str_pad( intval(substr($lastInvoice->origin, 2))+1, $padLength, '0', STR_PAD_LEFT ) );
             
             // Make the invoice header
-            $taxAmount = intval($order->value)*0.24; // @TODO: get the percentage from somewhere
             $invoiceHeader = new AccountInvoice();
-            $invoiceHeader->check_total = $order->value;
-            $invoiceHeader->amount_tax = $taxAmount;
-            $invoiceHeader->amount_untaxed = $order->value;
-            $invoiceHeader->amount_total = $order->value + $taxAmount;
+            
             $invoiceHeader->partner_id = $resPartner->id;
             $invoiceHeader->company_id = $customer->id; 
             $invoiceHeader->origin = $invoiceOrigin;
@@ -106,9 +102,10 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $invoiceHeader->name = $invoiceOrigin;
             
             $transaction = Yii::app()->db->beginTransaction();
-            $invoiceHeaderSuccess = $invoiceHeader->save();
+            $invoiceHeader->save();
             
             $linesSuccess = false;
+            $invoiceTotalAmount = 0;
             // Get the products
             foreach($portions as $portion){
                 // Get a product
@@ -137,6 +134,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                     $amount = ceil($amount/5)*5;
                 }
                 $subTotal = $amount * $product->productTmpl->standard_price;
+                $invoiceTotalAmount += $subTotal;
                     
                 echo( "Ordering {$amount} x '{$product->productTmpl->name}' worth of {$subTotal}\n");
                 
@@ -158,6 +156,13 @@ class ExecuteOrdersCommand extends CConsoleCommand
                     break;
                 }
             }
+            
+            $taxAmount = $invoiceTotalAmount*0.24; // @TODO: get the percentage from somewhere
+            $invoiceHeader->check_total = $invoiceTotalAmount;
+            $invoiceHeader->amount_tax = $taxAmount;
+            $invoiceHeader->amount_untaxed = $invoiceTotalAmount;
+            $invoiceHeader->amount_total = $invoiceTotalAmount + $taxAmount;
+            $invoiceHeaderSuccess = $invoiceHeader->save();
             
             if($invoiceHeaderSuccess AND $linesSuccess){
                 echo( "Transactions successful\n" );
