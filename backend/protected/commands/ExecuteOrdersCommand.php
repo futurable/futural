@@ -84,6 +84,14 @@ class ExecuteOrdersCommand extends CConsoleCommand
             // Divide the value between products
             $portions = GetRandomPercentagePortions::run($orderRows);
             
+            // Decide the last invoice made
+            $criteria = new CDbCriteria();
+            $criteria->order = 'id DESC';
+            $lastInvoice = AccountInvoice::model()->find($criteria);
+            
+            $padLength = strlen($lastInvoice->origin)-2;
+            $invoiceOrigin = substr($lastInvoice->origin, 0, 2).( str_pad( intval(substr($lastInvoice->origin, 2))+1, $padLength, '0', STR_PAD_LEFT ) );
+            
             // Make the invoice header
             $taxAmount = intval($order->value)*0.24; // @TODO: get the percentage from somewhere
             $header = new AccountInvoice();
@@ -93,8 +101,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $header->amount_total = $order->value + $taxAmount;
             $header->partner_id = $resPartner->id;
             $header->company_id = $customer->id; 
-
-            
+ 
             // Get the products
             foreach($portions as $portion){
                 // Get a product
