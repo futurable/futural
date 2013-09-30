@@ -81,7 +81,7 @@ class AccountInvoice extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('account_id, company_id, currency_id, partner_id, reference_type, journal_id', 'required'),
+			array('company_id, partner_id', 'required'),
 			array('create_uid, write_uid, account_id, company_id, currency_id, partner_id, fiscal_position, user_id, partner_bank_id, payment_term, journal_id, period_id, move_id, section_id', 'numerical', 'integerOnly'=>true),
 			array('origin, reference, supplier_invoice_number, number, move_name, name', 'length', 'max'=>64),
 			array('internal_number', 'length', 'max'=>32),
