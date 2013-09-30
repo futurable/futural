@@ -61,7 +61,8 @@ class AccountInvoiceLine extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, create_uid, create_date, write_date, write_uid, origin, uos_id, account_id, name, sequence, invoice_id, price_unit, price_subtotal, company_id, discount, account_analytic_id, quantity, partner_id, product_id', 'safe', 'on'=>'search'),
-		);
+            array('create_date,write_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
+        );
 	}
 
 	/**
