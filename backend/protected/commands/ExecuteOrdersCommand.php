@@ -162,6 +162,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $invoiceHeader->amount_tax = $taxAmount;
             $invoiceHeader->amount_untaxed = $invoiceTotalAmount;
             $invoiceHeader->amount_total = $invoiceTotalAmount + $taxAmount;
+            echo( "Total order value {$invoiceTotalAmount} + tax {$taxAmount}");
             $invoiceHeaderSuccess = $invoiceHeader->save();
             
             if($invoiceHeaderSuccess AND $linesSuccess){
