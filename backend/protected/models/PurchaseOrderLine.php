@@ -53,7 +53,7 @@ class PurchaseOrderLine extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('product_uom, order_id, price_unit, product_qty, name, date_planned, state', 'required'),
+			array('order_id, price_unit, product_qty, name', 'required'),
 			array('create_uid, write_uid, product_uom, order_id, move_dest_id, partner_id, company_id, product_id, account_analytic_id', 'numerical', 'integerOnly'=>true),
 			array('create_date, write_date, invoiced', 'safe'),
 			// The following rule is used by search().
