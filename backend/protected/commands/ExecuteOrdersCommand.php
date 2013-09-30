@@ -109,7 +109,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $POHeader->partner_id = $resPartner->id;
             $POHeader->company_id = $customer->id;
             $POHeader->name = $invoiceOrigin;
-            $POHeader->notes = "Automated invoice"; $POHeader->validate();
+            $POHeader->notes = "Automated invoice";
             $POHeader->save();
             
             $ILSuccess = false;
