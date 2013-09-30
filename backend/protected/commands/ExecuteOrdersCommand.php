@@ -201,7 +201,11 @@ class ExecuteOrdersCommand extends CConsoleCommand
             
             echo( "Total order value {$invoiceTotalAmount} + tax {$taxAmount}\n");
             
-            if($IHSuccess AND $ILSuccess AND $POHSuccess AND $POLSuccess){
+            // Mark the order as done
+            $order->executed=date('Y-m-d H:i:s');
+            $orderSuccess = $order->save();
+            
+            if($IHSuccess AND $ILSuccess AND $POHSuccess AND $POLSuccess AND $orderSuccess){
                 echo( "Transaction successful\n" );
                 $transaction->commit();
             }
