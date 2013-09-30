@@ -59,7 +59,8 @@ class PurchaseOrderLine extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, create_uid, create_date, write_date, write_uid, product_uom, order_id, price_unit, move_dest_id, product_qty, partner_id, invoiced, name, date_planned, company_id, state, product_id, account_analytic_id', 'safe', 'on'=>'search'),
-		);
+            array('create_date,write_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
+        );
 	}
 
 	/**
