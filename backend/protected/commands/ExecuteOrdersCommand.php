@@ -136,9 +136,18 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 else if($amount > 10){
                     $amount = ceil($amount/5)*5;
                 }
+                $subTotal = $amount * $product->productTmpl->standard_price;
                     
-                echo( "Ordering {$amount} x '{$product->productTmpl->name}'\n");
+                echo( "Ordering {$amount} x '{$product->productTmpl->name}' worth of {$subTotal}\n");
+                
                 // Make an invoice row
+                $invoiceLine = new AccountInvoiceLine();
+                $invoiceLine->name = $product->productTmpl->name;
+                $invoiceLine->price_unit = $product->productTmpl->standard_price;
+                $invoiceLine->price_subtotal = $subTotal;
+                $invoiceLine->company_id = $customer->id;
+                $invoiceLine->partner_id = $supplier->id;
+                $invoiceLine->product_id = $product->id;
             }
             
             if($headerSuccess AND $linesSuccess){
