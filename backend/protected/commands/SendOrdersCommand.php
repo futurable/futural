@@ -35,11 +35,38 @@ class SendOrdersCommand extends CConsoleCommand
             // create new PDF document
             $invoicePDF = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
             
+            $invoiceTitle = $company->name.' '.$OEOrder->name;
+            $logo = null; // @TODO: get logo
+            $contact = ResPartner::model()->findByPk($OEOrder->createU->partner_id);
+            $contactName = $contact->name;
+            
             // set document information
-            $invoicePDF->SetCreator(PDF_CREATOR);
-            $invoicePDF->SetAuthor($OEOrder->writeU->login);
+            $invoicePDF->SetCreator($contactName);
+            $invoicePDF->SetAuthor($contactName);
             $invoicePDF->SetTitle('Purchase order');
-            $invoicePDF->SetSubject($company->name.' '.$OEOrder->name);
+            $invoicePDF->SetSubject($invoiceTitle);
+
+            // set default header data
+            $invoicePDF->SetHeaderData( $logo, 20, $company->name , Yii::t('Order', 'PurchaseOrder').' '.$OEOrder->name, array(0,0,0), array(0,0,0));
+            $invoicePDF->setFooterData(array(0,64,0), array(0,64,128));
+            
+            // set header and footer fonts
+            $invoicePDF->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+            $invoicePDF->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+            // set default monospaced font
+            $invoicePDF->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+            // set margins
+            $invoicePDF->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+            $invoicePDF->SetHeaderMargin(PDF_MARGIN_HEADER);
+            $invoicePDF->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+            // set auto page breaks
+            $invoicePDF->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+            // set image scale factor
+            $invoicePDF->setImageScale(PDF_IMAGE_SCALE_RATIO);
             
             $filename = $company->name."_".$OEOrder->name.'.pdf';
             $invoicePDF->Output($filename, 'F');
