@@ -27,6 +27,22 @@ class SendOrdersCommand extends CConsoleCommand
             
             // Get the OpenERP order
             $OEOrder = PurchaseOrder::model()->findByPk($order->openerp_purchase_order_id);
+            
+            /**
+             *  Create the PDF
+             */
+            
+            // create new PDF document
+            $invoicePDF = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+            
+            // set document information
+            $invoicePDF->SetCreator(PDF_CREATOR);
+            $invoicePDF->SetAuthor($OEOrder->writeU->login);
+            $invoicePDF->SetTitle('Purchase order');
+            $invoicePDF->SetSubject($company->name.' '.$OEOrder->name);
+            
+            $filename = $company->name."_".$OEOrder->name.'.pdf';
+            $invoicePDF->Output($filename, 'F');
         }
             
         $transaction = Yii::app()->db->beginTransaction();
