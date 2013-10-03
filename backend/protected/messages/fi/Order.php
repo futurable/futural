@@ -18,4 +18,5 @@
  */
 return array (
   'Orders' => 'Tilaukset',
+  'PurchaseOrder' => 'Ostotilaus',
 );
