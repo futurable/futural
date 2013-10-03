@@ -22,6 +22,10 @@ class SendOrdersCommand extends CConsoleCommand
             // Get the supplier
             $company = Company::model()->findByPk($order->company_id);
             echo( "Using company {$company->name}\n" );
+            
+            // Get the OpenERP company
+            $criteria = new CDbCriteria( array('condition'=>"comment LIKE '{$company->tag}%'") );
+            $OECompany = ResPartner::model()->find( $criteria );
         }
             
         $transaction = Yii::app()->db->beginTransaction();
