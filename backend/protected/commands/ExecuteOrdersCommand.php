@@ -48,6 +48,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             if(empty($customerContact)){
                 $customerContact = ResUsers::model()->findByPk(1);
             }
+            echo( "Using contact person '{$customerContact->login}'\n" );
             
             // Get the partner
             $criteria = new CDbCriteria( array('condition'=>"comment LIKE '{$supplier->tag}%'") );
@@ -224,7 +225,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             
             if($IHSuccess AND $ILSuccess AND $POHSuccess AND $POLSuccess AND $orderSuccess){
                 echo( "Transaction successful\n" );
-                $transaction->commit();
+                $transaction->rollback();
             }
             else{
                 echo( "Transaction failed\n" );
