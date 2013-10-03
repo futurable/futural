@@ -68,6 +68,19 @@ class SendOrdersCommand extends CConsoleCommand
             // set image scale factor
             $invoicePDF->setImageScale(PDF_IMAGE_SCALE_RATIO);
             
+            // set default font subsetting mode
+            $invoicePDF->setFontSubsetting(true);
+
+            // Set font
+            // dejavusans is a UTF-8 Unicode font, if you only need to
+            // print standard ASCII chars, you can use core fonts like
+            // helvetica or times to reduce file size.
+            $invoicePDF->SetFont('dejavusans', '', 14, '', true);
+
+            // Add a page
+            // This method has several options, check the source code documentation for more information.
+            $invoicePDF->AddPage();
+            
             $filename = $company->name."_".$OEOrder->name.'.pdf';
             $invoicePDF->Output($filename, 'F');
         }
