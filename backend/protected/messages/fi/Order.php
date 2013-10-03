@@ -23,4 +23,5 @@ return array (
   'Description' => 'Kuvaus',
   'Quantity' => 'Määrä',
   'Regards' => 'Terveisin',
+  'Units' => 'Kpl',
 );
