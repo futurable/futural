@@ -82,10 +82,18 @@ class SendOrdersCommand extends CConsoleCommand
             $invoicePDF->AddPage();
             
             $customer = $OEOrder->company->partner;
-            $html = "<p>{$customer->name}"; // Set customer info
+            
+            // The message content
+            $html = "<p>";
+            $html .= "{$customer->name}"; // Set customer info
             $html .= "<br/>{$customer->street}"; // Set customer info
             $html .= "<br/>{$customer->zip} {$customer->city}"; // Set customer info
             $html .= "<br/>{$customer->country->name}"; // Set customer info
+            $html .= "<p>";
+            
+            $html .= "<p>";
+            $html .= "{$customer->email}";
+            $html .= "<p>";
             
             // Print text using writeHTMLCell()
             $invoicePDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
