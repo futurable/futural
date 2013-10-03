@@ -18,5 +18,6 @@
  */
 return array (
   'Orders' => 'Tilaukset',
+  'Order' => 'Tilaus',
   'PurchaseOrder' => 'Ostotilaus',
 );
