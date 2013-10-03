@@ -99,7 +99,7 @@ class SendOrdersCommand extends CConsoleCommand
             $html .= "<p> </p>";
             
             $html .= "<p><strong>";
-            $html .= Yii::t("Order", "PurhcaseOrder")." $OEOrder->name ";
+            $html .= Yii::t("Order", "PurchaseOrder")." $OEOrder->name ";
             $html .= "</strong></p>";
             
             $html .= "<table>";
@@ -112,10 +112,14 @@ class SendOrdersCommand extends CConsoleCommand
             foreach($orderLines AS $orderLine){
                 $html .= "<tr>";
                     $html .= "<td>{$orderLine->name}</td>";
-                    $html .= "<td>{$orderLine->product_qty}</td>";
+                    $html .= "<td>{$orderLine->product_qty} ".Yii::t('Order', 'Units')."</td>";
                 $html .= "</tr>";
             }
             $html .= "</table>";
+            
+            $html .= "<p> </p>";
+            
+            $html .= "<p>".Yii::t('Order', 'Regards')." {$contactName}</p>";
             
             // Print text using writeHTMLCell()
             $invoicePDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
