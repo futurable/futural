@@ -77,7 +77,7 @@ class PurchaseOrder extends CActiveRecord
 			// @todo Please remove those attributes that should not be searched.
 			array('id, create_uid, create_date, write_date, write_uid, origin, journal_id, date_order, partner_id, dest_address_id, fiscal_position, amount_untaxed, location_id, company_id, amount_tax, state, pricelist_id, warehouse_id, payment_term_id, partner_ref, date_approve, amount_total, name, notes, invoice_method, shipped, validator, minimum_planned_date', 'safe', 'on'=>'search'),
             array('create_date,write_date,date_order,date_approve,minimum_planned_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
-            array('validator','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('warehouse_id,validator','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
             array('payment_term_id','default', 'value'=>'2', 'setOnEmpty'=>false,'on'=>'insert'),
             array('journal_id','default', 'value'=>'3', 'setOnEmpty'=>false,'on'=>'insert'),
             array('pricelist_id','default', 'value'=>'2', 'setOnEmpty'=>false,'on'=>'insert'),
