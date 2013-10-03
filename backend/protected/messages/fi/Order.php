@@ -20,4 +20,6 @@ return array (
   'Orders' => 'Tilaukset',
   'Order' => 'Tilaus',
   'PurchaseOrder' => 'Ostotilaus',
+  'Description' => 'Kuvaus',
+  'Quantity' => 'Määrä',
 );
