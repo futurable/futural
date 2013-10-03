@@ -75,11 +75,20 @@ class SendOrdersCommand extends CConsoleCommand
             // dejavusans is a UTF-8 Unicode font, if you only need to
             // print standard ASCII chars, you can use core fonts like
             // helvetica or times to reduce file size.
-            $invoicePDF->SetFont('dejavusans', '', 14, '', true);
+            $invoicePDF->SetFont('dejavusans', '', 10, '', true);
 
             // Add a page
             // This method has several options, check the source code documentation for more information.
             $invoicePDF->AddPage();
+            
+            $customer = $OEOrder->company->partner;
+            $html = "<p>{$customer->name}"; // Set customer info
+            $html .= "<br/>{$customer->street}"; // Set customer info
+            $html .= "<br/>{$customer->zip} {$customer->city}"; // Set customer info
+            $html .= "<br/>{$customer->country->name}"; // Set customer info
+            
+            // Print text using writeHTMLCell()
+            $invoicePDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
             
             $filename = $company->name."_".$OEOrder->name.'.pdf';
             $invoicePDF->Output($filename, 'F');
