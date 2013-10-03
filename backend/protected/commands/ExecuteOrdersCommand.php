@@ -225,7 +225,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             
             if($IHSuccess AND $ILSuccess AND $POHSuccess AND $POLSuccess AND $orderSuccess){
                 echo( "Transaction successful\n" );
-                $transaction->rollback();
+                $transaction->commit();
             }
             else{
                 echo( "Transaction failed\n" );
