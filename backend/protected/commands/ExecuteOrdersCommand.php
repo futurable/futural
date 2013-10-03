@@ -42,6 +42,10 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $customer = $customers[ rand( 1, count($customers)-1 ) ];
             echo( "Using customer {$customer->name}\n" );
             
+            // Get the customer contact
+            $CCcriteria = new CDbCriteria( array('condition'=>"company_id={$customer->id}") );
+            $customerContact = ResUsers::model()->find($CCcriteria);
+            
             // Get the partner
             $criteria = new CDbCriteria( array('condition'=>"comment LIKE '{$supplier->tag}%'") );
             $resPartner = ResPartner::model()->find( $criteria );
