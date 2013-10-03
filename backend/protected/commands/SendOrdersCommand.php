@@ -17,15 +17,16 @@ class SendOrdersCommand extends CConsoleCommand
             echo( count($orders)." unsent orders found\n" );
         }
         
+        require_once('../tcpdf/tcpdf.php');
+        
         # 2. Run through each order
         foreach($orders as $order){
             // Get the supplier
             $company = Company::model()->findByPk($order->company_id);
             echo( "Using company {$company->name}\n" );
             
-            // Get the OpenERP company
-            $criteria = new CDbCriteria( array('condition'=>"comment LIKE '{$company->tag}%'") );
-            $OECompany = ResPartner::model()->find( $criteria );
+            // Get the OpenERP order
+            $OEOrder = PurchaseOrder::model()->findByPk($order->openerp_purchase_order_id);
         }
             
         $transaction = Yii::app()->db->beginTransaction();
