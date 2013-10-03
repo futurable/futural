@@ -16,6 +16,13 @@ class SendOrdersCommand extends CConsoleCommand
         else{
             echo( count($orders)." unsent orders found\n" );
         }
+        
+        # 2. Run through each order
+        foreach($orders as $order){
+            // Get the supplier
+            $company = Company::model()->findByPk($order->company_id);
+            echo( "Using company {$company->name}\n" );
+        }
             
         $transaction = Yii::app()->db->beginTransaction();
         $success = false;
