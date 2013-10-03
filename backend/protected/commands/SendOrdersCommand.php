@@ -47,7 +47,7 @@ class SendOrdersCommand extends CConsoleCommand
             $invoicePDF->SetSubject($invoiceTitle);
 
             // set default header data
-            $invoicePDF->SetHeaderData( $logo, 20, $company->name , Yii::t('Order', 'PurchaseOrder').' '.$OEOrder->name, array(0,0,0), array(0,0,0));
+            $invoicePDF->SetHeaderData( $logo, 20, $company->name , date('d.m.Y'), array(0,0,0), array(0,0,0));
             $invoicePDF->setFooterData(array(0,64,0), array(0,64,128));
             
             // set header and footer fonts
@@ -94,6 +94,28 @@ class SendOrdersCommand extends CConsoleCommand
             $html .= "<p>";
             $html .= "{$customer->email}";
             $html .= "<p>";
+            
+            $html .= "<p> </p>";
+            $html .= "<p> </p>";
+            
+            $html .= "<p><strong>";
+            $html .= Yii::t("Order", "PurhcaseOrder")." $OEOrder->name ";
+            $html .= "</strong></p>";
+            
+            $html .= "<table>";
+                $html .= "<tr>";
+                    $html .= "<td><strong>".Yii::t('Order', 'Description')."</strong></td>";
+                    $html .= "<td><strong>".Yii::t('Order', 'Quantity')."</strong></td>";
+                $html .= "</tr>";
+           
+            $orderLines = PurchaseOrderLine::model()->findall(array('condition'=>"order_id={$OEOrder->id}"));
+            foreach($orderLines AS $orderLine){
+                $html .= "<tr>";
+                    $html .= "<td>{$orderLine->name}</td>";
+                    $html .= "<td>{$orderLine->product_qty}</td>";
+                $html .= "</tr>";
+            }
+            $html .= "</table>";
             
             // Print text using writeHTMLCell()
             $invoicePDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
