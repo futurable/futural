@@ -22,4 +22,5 @@ return array (
   'PurchaseOrder' => 'Ostotilaus',
   'Description' => 'Kuvaus',
   'Quantity' => 'Määrä',
+  'Regards' => 'Terveisin',
 );
