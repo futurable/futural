@@ -45,6 +45,10 @@ class ExecuteOrdersCommand extends CConsoleCommand
             // Get the partner
             $criteria = new CDbCriteria( array('condition'=>"comment LIKE '{$supplier->tag}%'") );
             $resPartner = ResPartner::model()->find( $criteria );
+            if(empty($resPartner)){
+                echo( "No supplier set. Skipping.\n" );
+                continue;
+            }
             $resPartnerComment = explode(":", $resPartner->comment);
             $supplierCategory = intval($resPartnerComment[1]);
             
@@ -203,6 +207,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             
             // Mark the order as done
             $order->executed=date('Y-m-d H:i:s');
+            $order->openerp_purchase_order_id = $POHeader->id;
             $orderSuccess = $order->save();
             
             if($IHSuccess AND $ILSuccess AND $POHSuccess AND $POLSuccess AND $orderSuccess){
