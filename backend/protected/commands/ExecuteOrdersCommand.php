@@ -108,6 +108,9 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $invoiceHeader->origin = $invoiceOrigin;
             $invoiceHeader->reference = $invoiceOrigin;
             $invoiceHeader->name = $invoiceOrigin;
+            $invoiceHeader->user_id = $customerContact->id;
+            $invoiceHeader->create_uid = $customerContact->id;
+            $invoiceHeader->write_uid = $customerContact->id;
             
             $transaction = Yii::app()->db->beginTransaction();
             $invoiceHeader->save();
@@ -118,6 +121,8 @@ class ExecuteOrdersCommand extends CConsoleCommand
             $POHeader->company_id = $customer->id;
             $POHeader->name = $invoiceOrigin;
             $POHeader->notes = "Automated invoice ({$order->orderSetup->type} order)";
+            $POHeader->create_uid = $customerContact->id;
+            $POHeader->write_uid = $customerContact->id;
             $POHeader->save();
             
             $ILSuccess = false;
