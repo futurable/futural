@@ -45,6 +45,9 @@ class ExecuteOrdersCommand extends CConsoleCommand
             // Get the customer contact
             $CCcriteria = new CDbCriteria( array('condition'=>"company_id={$customer->id}") );
             $customerContact = ResUsers::model()->find($CCcriteria);
+            if(empty($customerContact)){
+                $customerContact = ResUsers::model()->findByPk(1);
+            }
             
             // Get the partner
             $criteria = new CDbCriteria( array('condition'=>"comment LIKE '{$supplier->tag}%'") );
