@@ -39,7 +39,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             echo( "Creating order for {$supplier->name}\n" );
             
             // Get the customer
-            $customer = $customers[ rand( 1, count($customers)-1 ) ];
+            $customer = $customers[ rand( 2, count($customers) ) ];
             echo( "Using customer {$customer->name}\n" );
             
             // Get the customer contact
