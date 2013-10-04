@@ -119,7 +119,7 @@ class SendOrdersCommand extends CConsoleCommand
             
             $html .= "<p> </p>";
             
-            $html .= "<p>".Yii::t('Order', 'Regards')." {$contactName}</p>";
+            $html .= "<p>--<br/>".Yii::t('Order', 'Contact').":<br/>{$contactName}</p>";
             
             // Print text using writeHTMLCell()
             $invoicePDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
