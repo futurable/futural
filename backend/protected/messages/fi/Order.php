@@ -24,4 +24,5 @@ return array (
   'Quantity' => 'Määrä',
   'Regards' => 'Terveisin',
   'Units' => 'Kpl',
+  'Contact' => 'Asiaa hoitaa',
 );
