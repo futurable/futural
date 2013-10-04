@@ -147,7 +147,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                     $break++;
                 }
                 
-                $amount = ceil($order->value / $product->productTmpl->standard_price);
+                $amount = ceil($order->value / $product->productTmpl->standard_price)*$portion;
                 
                 // Trim the amount if they are large
                 if($amount > 1000){
