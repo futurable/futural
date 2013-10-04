@@ -35,6 +35,7 @@ class SendOrdersCommand extends CConsoleCommand
             // create new PDF document
             $invoicePDF = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
             
+            echo( "Creating order {$OEOrder->name}\n");
             $invoiceTitle = $company->name.' '.$OEOrder->name;
             $logo = null; // @TODO: get logo
             $contact = ResPartner::model()->findByPk($OEOrder->createU->partner_id);
@@ -82,6 +83,7 @@ class SendOrdersCommand extends CConsoleCommand
             $invoicePDF->AddPage();
             
             $customer = $OEOrder->company->partner;
+            echo( "Using customer {$customer->name}\n" );
             
             // The message content
             $html = "<p>";
