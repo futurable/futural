@@ -105,6 +105,9 @@ class SendOrdersCommand extends CConsoleCommand
             $html .= Yii::t("Order", "PurchaseOrder")." $OEOrder->name ";
             $html .= "</strong></p>";
             
+            $html .= "<p>".Yii::t('Order','Honorable')." <strong>{$company->name}</strong>,<br/>";
+            $html .= Yii::t('Order','WeWouldLikeToOrderTheFollowingItemsFromYou').":</p>"; 
+            
             $html .= "<table>";
                 $html .= "<tr>";
                     $html .= "<td><strong>".Yii::t('Order', 'Description')."</strong></td>";
@@ -147,11 +150,11 @@ class SendOrdersCommand extends CConsoleCommand
             $message->attach($attachment);
 
             if($success){
-                Yii::app()->mail->send($message);
+                //Yii::app()->mail->send($message);
                 echo( "Message sent to $company->email\n" );
             
                 echo( "Transaction successful\n" );
-                $transaction->rollback();
+                $transaction->commit();
             }
             else{
                 echo( "Transaction failed\n" );
