@@ -129,17 +129,20 @@ class SendOrdersCommand extends CConsoleCommand
             
             $filename = $company->name."_".$OEOrder->name.'.pdf';
             $invoicePDF->Output($filename, 'F');
-        }
             
-        $transaction = Yii::app()->db->beginTransaction();
-        $success = false;
-        if($success){
-            echo( "Transaction successful\n" );
-            $transaction->commit();
-        }
-        else{
-            echo( "Transaction failed\n" );
-            $transaction->rollback();
+            $transaction = Yii::app()->db->beginTransaction();
+            
+            $order->sent = date('Y-m-d H:i:s');
+            $success = $order->save();
+
+            if($success){
+                echo( "Transaction successful\n" );
+                $transaction->commit();
+            }
+            else{
+                echo( "Transaction failed\n" );
+                $transaction->rollback();
+            }
         }
         
         echo( date('Y-m-d H:i:s').": SendOrders run ended.\n\n" );
