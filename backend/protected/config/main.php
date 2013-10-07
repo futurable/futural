@@ -101,7 +101,7 @@ return array(
                 'transportType' => 'smtp',
                 'transportOptions' => array(
                     'host'=>'futurality.fi',
-                    'username'=>'helpdesk@futurality.fi',
+                    'username'=>'businesscenter@futurality.fi',
                     'password'=>'password',
                     'port'=>25,
                 ),
