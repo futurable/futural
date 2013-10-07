@@ -27,6 +27,14 @@ class PaySalariesCommand extends CConsoleCommand
             }
             
             echo( "Salary payment pending\n" );
+            // Get the bank user
+            $bankUser = BankUser::model()->FindByAttributes(array('username'=>$company->tag));
+            if(empty($bankUser)){
+                echo( "Company has no bank user. Skipping\n" );
+                continue;
+            }
+            
+            
             // Do the payment
             $bankTransaction = new BankTransaction;
         }
