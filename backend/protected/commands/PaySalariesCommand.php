@@ -6,7 +6,7 @@ class PaySalariesCommand extends CConsoleCommand
         echo( date('Y-m-d H:i:s').": PaySalaries run started.\n" );
 
         # 1. Get all companies
-        $companies = Company::model()->findAll();
+        $companies = Company::model()->findAll(array('condition'=>'active=1'));
         
         echo( "Found ".count($companies)." companies\n");
         
@@ -43,6 +43,10 @@ class PaySalariesCommand extends CConsoleCommand
             $criteria = new CDbCriteria();
             $criteria->addCondition("id={$company->id}");
             $criteria->order = 'create_date DESC';
+            if(empty($CBC)){
+                echo( "No cost-benefit calculation found. Skipping\n" );
+                continue;
+            }
             $CBC = CostbenefitCalculation::model()->find( $criteria );
             $CBCSalaries = CostbenefitItem::model()->findByAttributes( array('costbenefit_calculation_id'=>$CBC->id, 'costbenefit_item_type_id'=>2) );
             $CBCSideExpenses = CostbenefitItem::model()->findByAttributes( array('costbenefit_calculation_id'=>$CBC->id, 'costbenefit_item_type_id'=>8) );
