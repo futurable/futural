@@ -33,14 +33,20 @@ class PaySalariesCommand extends CConsoleCommand
                 echo( "Company has no bank user. Skipping\n" );
                 continue;
             }
+            // Get a bank account
             $bankAccount = BankAccount::model()->FindByAttributes(array('bank_user_id'=>$bankUser->id, 'bank_account_type_id'=>1, 'status'=>'enabled'));
             if(empty($bankAccount)){
                 echo( "Company has no bank account. Skipping\n" );
                 continue;
             }
+            // Get the latest cost-benefit calculation
+            $criteria = new CDbCriteria();
+            $criteria->addCondition("id={$company->id}");
+            $criteria->order = 'create_date DESC';
+            $CBC = CostbenefitCalculation::model()->find( $criteria );
             
             // Do the payment
-            $bankTransaction = new BankTransaction;
+            $bankTransaction = new BankAccountTransaction;
         }
         
         $transaction = Yii::app()->db->beginTransaction();
