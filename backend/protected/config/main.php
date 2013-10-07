@@ -16,8 +16,9 @@ return array(
 
 	// autoloading model and component classes
 	'import'=>array(
-            'application.models.*',
-            'application.components.*',
+        'application.models.*',
+        'application.components.*',
+        'ext.mail.YiiMailMessage',
 	),
 
 	'modules'=>array(
@@ -94,6 +95,19 @@ return array(
                     ),
                     //*/
                 ),
+            ),
+            'mail' => array(
+                'class' => 'ext.mail.YiiMail',
+                'transportType' => 'smtp',
+                'transportOptions' => array(
+                    'host'=>'futurality.fi',
+                    'username'=>'helpdesk@futurality.fi',
+                    'password'=>'password',
+                    'port'=>25,
+                ),
+                'viewPath' => 'application.views.mail',
+                'logging' => true,
+                'dryRun' => false
             ),
 	),
 
