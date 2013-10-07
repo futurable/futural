@@ -25,4 +25,6 @@ return array (
   'Regards' => 'Terveisin',
   'Units' => 'Kpl',
   'Contact' => 'Asiaa hoitaa',
+'WeWouldLikeToOrderTheFollowingItemsFromYou' => 'Haluaisimme tilata teiltä seuraavat tuotteet',
+  'Honorable'=> 'Arvoisa',
 );
