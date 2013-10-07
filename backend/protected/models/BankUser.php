@@ -58,6 +58,7 @@ class BankUser extends CActiveRecord
 		return array(
 			'bankAccounts' => array(self::HAS_MANY, 'BankAccount', 'bank_user_id'),
 			'bankLoans' => array(self::HAS_MANY, 'BankLoan', 'bank_user_id'),
+            'bankProfile' => array(self::HAS_ONE, 'BankProfile', 'user_id'),
 		);
 	}
 
