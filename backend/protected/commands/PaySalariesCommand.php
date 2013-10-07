@@ -84,7 +84,7 @@ class PaySalariesCommand extends CConsoleCommand
             
             if($BTSuccess AND $SSuccess){
                 echo( "Transaction successful\n" );
-                $transaction->rollback();
+                $transaction->commit();
             }
             else{
                 echo( "Transaction failed\n" );
