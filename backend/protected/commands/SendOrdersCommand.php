@@ -17,6 +17,7 @@ class SendOrdersCommand extends CConsoleCommand
             echo( count($orders)." unsent orders found\n" );
         }
         
+        define ('K_PATH_IMAGES', Yii::app()->getBasePath().'/img/logo/');
         require_once('../tcpdf/tcpdf.php');
         
         # 2. Run through each order
@@ -37,7 +38,7 @@ class SendOrdersCommand extends CConsoleCommand
             
             echo( "Creating order {$OEOrder->name}\n");
             $invoiceTitle = $company->name.' '.$OEOrder->name;
-            $logo = null; // @TODO: get logo
+            $logo = $OEOrder->company->partner->id.".png";
             $contact = ResPartner::model()->findByPk($OEOrder->createU->partner_id);
             $contactName = $contact->name;
             
@@ -48,8 +49,8 @@ class SendOrdersCommand extends CConsoleCommand
             $invoicePDF->SetSubject($invoiceTitle);
 
             // set default header data
-            $invoicePDF->SetHeaderData( $logo, 20, $company->name , date('d.m.Y'), array(0,0,0), array(0,0,0));
-            $invoicePDF->setFooterData(array(0,64,0), array(0,64,128));
+            $invoicePDF->SetHeaderData($logo, 20, $OEOrder->company->partner->name , date('d.m.Y'), array(0,0,0), array(0,0,0));
+            $invoicePDF->SetFooterData(array(0,64,0), array(0,64,128));
             
             // set header and footer fonts
             $invoicePDF->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
