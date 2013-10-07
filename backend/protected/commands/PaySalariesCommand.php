@@ -10,6 +10,17 @@ class PaySalariesCommand extends CConsoleCommand
         
         echo( "Found ".count($companies)." companies\n");
         
+        # 2. Run through each company
+        foreach($companies as $company){
+            echo( "Using company {$company->name}\n");
+            
+            # 3. Check if there are salaries to be paid
+            $criteria = new CDbCriteria();
+            $criteria->addCondition("id={$company->id}");
+            $criteria->order = 'create_date DESC';
+            $lastSalary = Salary::model()->find( $criteria );
+        }
+        
         $transaction = Yii::app()->db->beginTransaction();
 
         $success = false;
