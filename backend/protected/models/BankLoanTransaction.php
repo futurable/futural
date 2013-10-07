@@ -1,25 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "bank_currency".
+ * This is the model class for table "bank_loan_transaction".
  *
- * The followings are the available columns in table 'bank_currency':
+ * The followings are the available columns in table 'bank_loan_transaction':
  * @property integer $id
- * @property string $code
- * @property string $exchange_rate
- *
- * The followings are the available model relations:
- * @property BankAccount[] $bankAccounts
- * @property BankLoan[] $bankLoans
+ * @property integer $sequence_number
+ * @property string $instalment_amount
+ * @property string $interest_amount
+ * @property string $notification_penalty_sent
+ * @property string $create_date
+ * @property string $due_date
+ * @property string $event_date
+ * @property integer $bank_loan_id
+ * @property integer $bank_account_transaction_id
  */
-class BankCurrency extends CActiveRecord
+class BankLoanTransaction extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'bank_currency';
+		return 'bank_loan_transaction';
 	}
 
 	/**
@@ -30,11 +33,14 @@ class BankCurrency extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('code', 'length', 'max'=>3),
-			array('exchange_rate', 'length', 'max'=>11),
+			array('bank_loan_id, bank_account_transaction_id', 'required'),
+			array('sequence_number, bank_loan_id, bank_account_transaction_id', 'numerical', 'integerOnly'=>true),
+			array('instalment_amount, interest_amount', 'length', 'max'=>19),
+			array('notification_penalty_sent', 'length', 'max'=>5),
+			array('create_date, due_date, event_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, code, exchange_rate', 'safe', 'on'=>'search'),
+			array('id, sequence_number, instalment_amount, interest_amount, notification_penalty_sent, create_date, due_date, event_date, bank_loan_id, bank_account_transaction_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,8 +52,6 @@ class BankCurrency extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'bankAccounts' => array(self::HAS_MANY, 'BankAccount', 'bank_currency_id'),
-			'bankLoans' => array(self::HAS_MANY, 'BankLoan', 'bank_currency_id'),
 		);
 	}
 
@@ -58,8 +62,15 @@ class BankCurrency extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'code' => 'Code',
-			'exchange_rate' => 'Exchange Rate',
+			'sequence_number' => 'Sequence Number',
+			'instalment_amount' => 'Instalment Amount',
+			'interest_amount' => 'Interest Amount',
+			'notification_penalty_sent' => 'Notification Penalty Sent',
+			'create_date' => 'Create Date',
+			'due_date' => 'Due Date',
+			'event_date' => 'Event Date',
+			'bank_loan_id' => 'Bank Loan',
+			'bank_account_transaction_id' => 'Bank Account Transaction',
 		);
 	}
 
@@ -82,8 +93,15 @@ class BankCurrency extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('code',$this->code,true);
-		$criteria->compare('exchange_rate',$this->exchange_rate,true);
+		$criteria->compare('sequence_number',$this->sequence_number);
+		$criteria->compare('instalment_amount',$this->instalment_amount,true);
+		$criteria->compare('interest_amount',$this->interest_amount,true);
+		$criteria->compare('notification_penalty_sent',$this->notification_penalty_sent,true);
+		$criteria->compare('create_date',$this->create_date,true);
+		$criteria->compare('due_date',$this->due_date,true);
+		$criteria->compare('event_date',$this->event_date,true);
+		$criteria->compare('bank_loan_id',$this->bank_loan_id);
+		$criteria->compare('bank_account_transaction_id',$this->bank_account_transaction_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -102,7 +120,7 @@ class BankCurrency extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return BankCurrency the static model class
+	 * @return BankLoanTransaction the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
