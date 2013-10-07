@@ -16,7 +16,7 @@ class PaySalariesCommand extends CConsoleCommand
             
             # 3. Check if there are salaries to be paid
             $criteria = new CDbCriteria();
-            $criteria->addCondition("id={$company->id}");
+            $criteria->addCondition("company_id={$company->id}");
             $criteria->order = 'create_date DESC';
             $lastSalary = Salary::model()->find( $criteria );
             
@@ -64,7 +64,7 @@ class PaySalariesCommand extends CConsoleCommand
             $bankTransaction->payer_iban = $payerAccount->iban;
             $bankTransaction->payer_bic = $payerAccount->bankBic->bic;
             $bankTransaction->payer_name = $payerAccount->bankUser->bankProfile->company;    
-            $bankTransaction->event_date = date('d.m.Y');
+            $bankTransaction->event_date = date('Y-m-d');
             $bankTransaction->amount = $amount;
             $bankTransaction->message = "Futurality palkat ja sivukulut, viikko ".date("W");
             
@@ -84,7 +84,7 @@ class PaySalariesCommand extends CConsoleCommand
             
             if($BTSuccess AND $SSuccess){
                 echo( "Transaction successful\n" );
-                $transaction->commit();
+                $transaction->rollback();
             }
             else{
                 echo( "Transaction failed\n" );
