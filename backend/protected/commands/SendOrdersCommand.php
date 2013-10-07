@@ -135,9 +135,23 @@ class SendOrdersCommand extends CConsoleCommand
             $order->sent = date('Y-m-d H:i:s');
             $success = $order->save();
 
+            $messageContent = "test";
+            $message = new YiiMailMessage;
+            $message->subject = Yii::t('Company', "FuturalityAccount");
+            $message->setBody($messageContent, 'text/html');
+            $message->addTo($company->email, $company->name);
+            $message->addTo('webadmin@futurable.fi');
+            $message->from = 'businesscenter@futurality.fi';
+            $message->sender = 'businesscenter@futurality.fi';
+            $attachment = Swift_Attachment::fromPath($filename, 'application/pdf');
+            $message->attach($attachment);
+
             if($success){
+                Yii::app()->mail->send($message);
+                echo( "Message sent to $company->email\n" );
+            
                 echo( "Transaction successful\n" );
-                $transaction->commit();
+                $transaction->rollback();
             }
             else{
                 echo( "Transaction failed\n" );
