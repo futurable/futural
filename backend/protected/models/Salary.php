@@ -42,6 +42,7 @@ class Salary extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, create_date, employees, amount, week, bank_transaction_id, company_id, year', 'safe', 'on'=>'search'),
+            array('create_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
 		);
 	}
 
