@@ -64,10 +64,21 @@ class ExecuteOrdersCommand extends CConsoleCommand
             if($order->orderSetup->type=='product'){
                 // Order supplier-spesific products
                 echo( "Ordering supplier-spesific products\n" );
+                
+                // Change OpenERP-database
+                Yii::app()->dbopenerp->setActive(false);
+                Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$order->company->tag}";
+                Yii::app()->dbopenerp->setActive(true);
+                
                 $purchaseProducts = ProductProduct::model()
                     ->with(array(
                         'productTmpl.productSupplierinfos'=>array('alias'=>'psi')
-                    ))->findAll(array('condition'=>"psi.name={$resPartner->id}"));
+                    ))->findAll(array('condition'=>"psi.sale_ok=true AND psi.procure_method='make_to_stock'"));
+                    
+                // Change OpenERP-database
+                Yii::app()->dbopenerp->setActive(false);
+                Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$businessCenterDb}";
+                Yii::app()->dbopenerp->setActive(true);
             }
             elseif($order->orderSetup->type=='group'){
                 // Order products from product category
@@ -138,7 +149,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 $product = $purchaseProducts[ array_rand($purchaseProducts) ];
                 
                 $break = 10;
-                while($product->productTmpl->standard_price == 0){
+                while($product->productTmpl->list_price == 0){
                     $product = $purchaseProducts[ array_rand($purchaseProducts) ];
                     if($break > 10){
                         echo( "No products with price. Breaking\n");
@@ -147,7 +158,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                     $break++;
                 }
                 
-                $amount = ceil( ($order->value*$portion) / $product->productTmpl->standard_price);
+                $amount = ceil( ($order->value*$portion) / $product->productTmpl->list_price);
                 
                 // Trim the amount if they are large
                 if($amount > 1000){
@@ -159,7 +170,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 else if($amount > 10){
                     $amount = ceil($amount/5)*5;
                 }
-                $subTotal = $amount * $product->productTmpl->standard_price;
+                $subTotal = $amount * $product->productTmpl->list_price;
                 $invoiceTotalAmount += $subTotal;
                     
                 echo( "Ordering {$amount} x '{$product->productTmpl->name}' worth of {$subTotal}\n");
@@ -167,7 +178,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 // Make an invoice row
                 $invoiceLine = new AccountInvoiceLine();
                 $invoiceLine->name = $product->productTmpl->name;
-                $invoiceLine->price_unit = $product->productTmpl->standard_price;
+                $invoiceLine->price_unit = $product->productTmpl->list_price;
                 $invoiceLine->price_subtotal = $subTotal;
                 $invoiceLine->quantity = $amount;
                 $invoiceLine->invoice_id = $invoiceHeader->id;
@@ -187,7 +198,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 // Make a purchase order line
                 $POLine = new PurchaseOrderLine();
                 $POLine->order_id = $POHeader->id;
-                $POLine->price_unit = $product->productTmpl->standard_price;
+                $POLine->price_unit = $product->productTmpl->list_price;
                 $POLine->partner_id = $resPartner->id;
                 $POLine->name = $product->productTmpl->name;
                 $POLine->product_qty = $amount;
