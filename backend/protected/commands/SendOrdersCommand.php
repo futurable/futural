@@ -49,7 +49,7 @@ class SendOrdersCommand extends CConsoleCommand
             $invoicePDF->SetSubject($invoiceTitle);
 
             // set default header data
-            $invoicePDF->SetHeaderData($logo, 20, $OEOrder->company->partner->name , date('d.m.Y'), array(0,0,0), array(0,0,0));
+            $invoicePDF->SetHeaderData($logo, 40, $OEOrder->company->partner->name , date('d.m.Y'), array(0,0,0), array(0,0,0));
             $invoicePDF->SetFooterData(array(0,64,0), array(0,64,128));
             
             // set header and footer fonts
@@ -60,7 +60,7 @@ class SendOrdersCommand extends CConsoleCommand
             $invoicePDF->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
             // set margins
-            $invoicePDF->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+            $invoicePDF->SetMargins(PDF_MARGIN_LEFT, 40, PDF_MARGIN_RIGHT);
             $invoicePDF->SetHeaderMargin(PDF_MARGIN_HEADER);
             $invoicePDF->SetFooterMargin(PDF_MARGIN_FOOTER);
 
