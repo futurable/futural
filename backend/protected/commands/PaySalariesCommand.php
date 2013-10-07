@@ -55,13 +55,13 @@ class PaySalariesCommand extends CConsoleCommand
             $bankTransaction = new BankAccountTransaction;
             $bankTransaction->recipient_iban = $recipientAccount->iban;
             $bankTransaction->recipient_bic = $recipientAccount->bankBic->bic;
-            $bankTransaction->recipient_name = $recipientAccount->bankUser->profile->company;
+            $bankTransaction->recipient_name = $recipientAccount->bankUser->bankProfile->company;
             $bankTransaction->payer_iban = $payerAccount->iban;
             $bankTransaction->payer_bic = $payerAccount->bankBic->bic;
-            $bankTransaction->payer_name = $payerAccount->bankUser->profile->company;    
+            $bankTransaction->payer_name = $payerAccount->bankUser->bankProfile->company;    
             $bankTransaction->event_date = date('d.m.Y');
             $bankTransaction->amount = $amount;
-            $bankTransaction->message = "Futurality palkat, viikko ".date("W"); 
+            $bankTransaction->message = "Futurality palkat ja sivukulut, viikko ".date("W"); 
         }
         
         $transaction = Yii::app()->db->beginTransaction();
