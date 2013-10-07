@@ -33,7 +33,11 @@ class PaySalariesCommand extends CConsoleCommand
                 echo( "Company has no bank user. Skipping\n" );
                 continue;
             }
-            
+            $bankAccount = BankAccount::model()->FindByAttributes(array('bank_user_id'=>$bankUser->id, 'bank_account_type_id'=>1, 'status'=>'enabled'));
+            if(empty($bankAccount)){
+                echo( "Company has no bank account. Skipping\n" );
+                continue;
+            }
             
             // Do the payment
             $bankTransaction = new BankTransaction;
