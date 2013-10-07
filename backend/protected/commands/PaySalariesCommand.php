@@ -34,8 +34,8 @@ class PaySalariesCommand extends CConsoleCommand
                 continue;
             }
             // Get a bank account
-            $bankAccount = BankAccount::model()->FindByAttributes(array('bank_user_id'=>$bankUser->id, 'bank_account_type_id'=>1, 'status'=>'enabled'));
-            if(empty($bankAccount)){
+            $payerAccount = BankAccount::model()->FindByAttributes(array('bank_user_id'=>$bankUser->id, 'bank_account_type_id'=>1, 'status'=>'enabled'));
+            if(empty($payerAccount)){
                 echo( "Company has no bank account. Skipping\n" );
                 continue;
             }
@@ -45,8 +45,19 @@ class PaySalariesCommand extends CConsoleCommand
             $criteria->order = 'create_date DESC';
             $CBC = CostbenefitCalculation::model()->find( $criteria );
             
+            $recipientAccount = BankAccount::model()->findByPk(5); // @TODO: get the id from somewhere
+            
             // Do the payment
             $bankTransaction = new BankAccountTransaction;
+            $bankTransaction->recipipent_iban = $recipientAccount->iban;
+            $bankTransaction->recipient_bic = $recipientAccount->bankBic->bic;
+            $bankTransaction->recipient_name = $recipientAccount->bankUser->profile->company;
+            $bankTransaction->payer_iban = $payerAccount->iban;
+            $bankTransaction->payer_bic = $payerAccount->bankBic->bic;
+            $bankTransaction->payer_name = $payerAccount->bankUser->profile->company;    
+            $accountTransaction->event_date = date('d.m.Y');
+            $accountTransaction->amount = 0;
+            $accountTransaction->message = "Futurality palkat, viikko ".date("W"); 
         }
         
         $transaction = Yii::app()->db->beginTransaction();
