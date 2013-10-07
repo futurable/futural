@@ -41,13 +41,14 @@ class PaySalariesCommand extends CConsoleCommand
             }
             // Get the latest cost-benefit calculation
             $criteria = new CDbCriteria();
-            $criteria->addCondition("id={$company->id}");
+            $criteria->addCondition("company_id={$company->id}");
             $criteria->order = 'create_date DESC';
+            $CBC = CostbenefitCalculation::model()->find( $criteria );
             if(empty($CBC)){
                 echo( "No cost-benefit calculation found. Skipping\n" );
                 continue;
             }
-            $CBC = CostbenefitCalculation::model()->find( $criteria );
+            
             $CBCSalaries = CostbenefitItem::model()->findByAttributes( array('costbenefit_calculation_id'=>$CBC->id, 'costbenefit_item_type_id'=>2) );
             $CBCSideExpenses = CostbenefitItem::model()->findByAttributes( array('costbenefit_calculation_id'=>$CBC->id, 'costbenefit_item_type_id'=>8) );
             $recipientAccount = BankAccount::model()->findByPk(5); // @TODO: get the id from somewhere
@@ -65,19 +66,30 @@ class PaySalariesCommand extends CConsoleCommand
             $bankTransaction->payer_name = $payerAccount->bankUser->bankProfile->company;    
             $bankTransaction->event_date = date('d.m.Y');
             $bankTransaction->amount = $amount;
-            $bankTransaction->message = "Futurality palkat ja sivukulut, viikko ".date("W"); 
-        }
-        
-        $transaction = Yii::app()->db->beginTransaction();
-
-        $success = false;
-        if($success){
-            echo( "Transaction successful\n" );
-            $transaction->commit();
-        }
-        else{
-            echo( "Transaction failed\n" );
-            $transaction->rollback();
+            $bankTransaction->message = "Futurality palkat ja sivukulut, viikko ".date("W");
+            
+            $transaction = Yii::app()->db->beginTransaction();
+            $BTSuccess = $bankTransaction->save();
+            
+            // Mark the payment as done
+            $salary = new Salary();
+            $salary->company_id = $company->id;
+            $salary->employees = $company->employees;
+            $salary->amount = $amount;
+            $salary->week = date('W');
+            $salary->year = date('Y');
+            $salary->bank_transaction_id = $bankTransaction->id;
+            
+            $SSuccess = $salary->save();
+            
+            if($BTSuccess AND $SSuccess){
+                echo( "Transaction successful\n" );
+                $transaction->rollback();
+            }
+            else{
+                echo( "Transaction failed\n" );
+                $transaction->rollback();
+            }
         }
         
         echo( date('Y-m-d H:i:s').": PaySalaries run ended.\n\n" );
