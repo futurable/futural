@@ -19,6 +19,17 @@ class PaySalariesCommand extends CConsoleCommand
             $criteria->addCondition("id={$company->id}");
             $criteria->order = 'create_date DESC';
             $lastSalary = Salary::model()->find( $criteria );
+            
+            if(empty($lastSalary) OR $lastSalary->week < date('W')){
+                echo( "Salary payment pending\n" );
+                // Do the payment
+                $bankTransaction = new BankTransaction;
+            }
+            else{
+                echo( "No salary payment pending\n" );
+                // Do nothing
+                continue;
+            }
         }
         
         $transaction = Yii::app()->db->beginTransaction();
