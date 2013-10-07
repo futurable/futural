@@ -64,21 +64,10 @@ class ExecuteOrdersCommand extends CConsoleCommand
             if($order->orderSetup->type=='product'){
                 // Order supplier-spesific products
                 echo( "Ordering supplier-spesific products\n" );
-                
-                // Change OpenERP-database
-                Yii::app()->dbopenerp->setActive(false);
-                Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$order->company->tag}";
-                Yii::app()->dbopenerp->setActive(true);
-                
                 $purchaseProducts = ProductProduct::model()
                     ->with(array(
                         'productTmpl.productSupplierinfos'=>array('alias'=>'psi')
-                    ))->findAll(array('condition'=>"psi.sale_ok=true AND psi.procure_method='make_to_stock'"));
-                    
-                // Change OpenERP-database
-                Yii::app()->dbopenerp->setActive(false);
-                Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$businessCenterDb}";
-                Yii::app()->dbopenerp->setActive(true);
+                    ))->findAll(array('condition'=>"psi.name={$resPartner->id}"));
             }
             elseif($order->orderSetup->type=='group'){
                 // Order products from product category
@@ -198,7 +187,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
                 // Make a purchase order line
                 $POLine = new PurchaseOrderLine();
                 $POLine->order_id = $POHeader->id;
-                $POLine->price_unit = $product->productTmpl->list_price;
+                $POLine->price_unit = $product->productTmpl->standard_price;
                 $POLine->partner_id = $resPartner->id;
                 $POLine->name = $product->productTmpl->name;
                 $POLine->product_qty = $amount;
