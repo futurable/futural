@@ -44,20 +44,24 @@ class PaySalariesCommand extends CConsoleCommand
             $criteria->addCondition("id={$company->id}");
             $criteria->order = 'create_date DESC';
             $CBC = CostbenefitCalculation::model()->find( $criteria );
-            
+            $CBCSalaries = CostbenefitItem::model()->findByAttributes( array('costbenefit_calculation_id'=>$CBC->id, 'costbenefit_item_type_id'=>2) );
+            $CBCSideExpenses = CostbenefitItem::model()->findByAttributes( array('costbenefit_calculation_id'=>$CBC->id, 'costbenefit_item_type_id'=>8) );
             $recipientAccount = BankAccount::model()->findByPk(5); // @TODO: get the id from somewhere
+            
+            $amount = $CBCSalaries->value + $CBCSideExpenses->value;
+            echo( "Payment amount $amount EUR\n" );
             
             // Do the payment
             $bankTransaction = new BankAccountTransaction;
-            $bankTransaction->recipipent_iban = $recipientAccount->iban;
+            $bankTransaction->recipient_iban = $recipientAccount->iban;
             $bankTransaction->recipient_bic = $recipientAccount->bankBic->bic;
             $bankTransaction->recipient_name = $recipientAccount->bankUser->profile->company;
             $bankTransaction->payer_iban = $payerAccount->iban;
             $bankTransaction->payer_bic = $payerAccount->bankBic->bic;
             $bankTransaction->payer_name = $payerAccount->bankUser->profile->company;    
-            $accountTransaction->event_date = date('d.m.Y');
-            $accountTransaction->amount = 0;
-            $accountTransaction->message = "Futurality palkat, viikko ".date("W"); 
+            $bankTransaction->event_date = date('d.m.Y');
+            $bankTransaction->amount = $amount;
+            $bankTransaction->message = "Futurality palkat, viikko ".date("W"); 
         }
         
         $transaction = Yii::app()->db->beginTransaction();
