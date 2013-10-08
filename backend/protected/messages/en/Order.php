@@ -19,9 +19,10 @@
 return array (
   'Contact' => '',
   'Description' => '',
+  'Hello' => '',
   'Honorable' => '',
   'Orders' => '',
-  'PurchaseOrderAsAttachment' => 'Purchase order as attachment',
+  'OurPurchaseOrderAsAttachment' => 'Our urchase order as attachment',
   'Quantity' => '',
   'Units' => '',
   'PurchaseOrder' => 'Purchase order',
