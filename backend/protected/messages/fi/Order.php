@@ -17,11 +17,12 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'PurchaseOrderAsAttachment' => 'Hei! Ostotilaus liitteenä.',
+  'OurPurchaseOrderAsAttachment' => 'Ostotilauksemme liitteenä.',
   'Order' => 'Tilaus',
   'Regards' => 'Terveisin',
   'Contact' => 'Asiaa hoitaa',
   'Description' => 'Kuvaus',
+  'Hello' => 'Hei',
   'Honorable' => 'Arvoisa',
   'Orders' => 'Tilaukset',
   'PurchaseOrder' => 'Ostotilaus',
