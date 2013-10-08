@@ -7,7 +7,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
         
         # 1. See if there are orders to be made
         $criteria = new CDbCriteria();
-        $criteria->addCondition('executed IS NULL');
+        $criteria->addCondition('executed IS NULL AND event_time < now()');
         $orders = Order::model()->findAll( $criteria );
         if(empty($orders)){
             die( "No executable orders. Exiting.\n" );
@@ -39,7 +39,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             echo( "Creating order for {$supplier->name}\n" );
             
             // Get the customer
-            $customer = $customers[ rand( 2, count($customers) ) ];
+            $customer = $customers[ rand( 2, count($customers)-1 ) ];
             echo( "Using customer {$customer->name}\n" );
             
             // Get the customer contact

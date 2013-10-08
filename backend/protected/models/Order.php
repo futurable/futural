@@ -39,8 +39,8 @@ class Order extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('openerp_purchase_order_id, company_id, order_setup_id, order_automation_id', 'required'),
-			array('rows, openerp_purchase_order_id, company_id, order_setup_id, order_automation_id', 'numerical', 'integerOnly'=>true),
+			array('company_id, order_setup_id, order_automation_id', 'required'),
+			array('openerp_purchase_order_id, rows, openerp_purchase_order_id, company_id, order_setup_id, order_automation_id', 'numerical', 'integerOnly'=>true),
 			array('value', 'length', 'max'=>19),
 			array('created, event_time, executed, sent', 'safe'),
 			// The following rule is used by search().
