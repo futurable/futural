@@ -138,9 +138,10 @@ class SendOrdersCommand extends CConsoleCommand
             $order->sent = date('Y-m-d H:i:s');
             $success = $order->save();
 
-            $messageContent = "test";
+            $recipientMail = $OEOrder->company->partner->email;
+            $messageContent = Yii::t('Order', 'PurchaseOrderAsAttachment');
             $message = new YiiMailMessage;
-            $message->subject = Yii::t('Company', "FuturalityAccount");
+            $message->subject = "Futurality ".Yii::t('Order', 'PurchaseOrder')." {$OEOrder->name}";
             $message->setBody($messageContent, 'text/html');
             $message->addTo($company->email, $company->name);
             $message->addTo('webadmin@futurable.fi');
@@ -151,7 +152,7 @@ class SendOrdersCommand extends CConsoleCommand
 
             if($success){
                 Yii::app()->mail->send($message);
-                echo( "Message sent to $company->email\n" );
+                echo( "Message sent to $OEOrder>-email\n" );
             
                 echo( "Transaction successful\n" );
                 $transaction->commit();
