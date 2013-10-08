@@ -139,9 +139,9 @@ class SendOrdersCommand extends CConsoleCommand
             $success = $order->save();
 
             $recipientMail = $OEOrder->company->partner->email;
-            $messageContent = "Futurality ".Yii::t('Order', 'PurchaseOrder')." {$OEOrder->name}";
+            $messageContent = Yii::t('Order', 'PurchaseOrderAsAttachment');
             $message = new YiiMailMessage;
-            $message->subject = Yii::t('Company', Yii::t('Order', 'PurchaseOrder'));
+            $message->subject = "Futurality ".Yii::t('Order', 'PurchaseOrder')." {$OEOrder->name}";
             $message->setBody($messageContent, 'text/html');
             $message->addTo($company->email, $company->name);
             $message->addTo('webadmin@futurable.fi');
