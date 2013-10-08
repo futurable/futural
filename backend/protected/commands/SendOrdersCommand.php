@@ -139,8 +139,8 @@ class SendOrdersCommand extends CConsoleCommand
             $success = $order->save();
 
             $recipientMail = $OEOrder->company->partner->email;
-            $messageContent = Yii::t('Order', 'Hello')." {$company->name}!";
-                Yii::t('Order', 'OurPurchaseOrderAsAttachment');
+            $messageContent = Yii::t('Order', 'Hello')." {$company->name}!
+                ".Yii::t('Order', 'OurPurchaseOrderAsAttachment');
             
             $message = new YiiMailMessage;
             $message->subject = "Futurality ".Yii::t('Order', 'PurchaseOrder')." {$OEOrder->name}";
