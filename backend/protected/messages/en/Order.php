@@ -17,8 +17,13 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'Contact' => '',
+  'Description' => '',
+  'Honorable' => '',
   'Orders' => '',
+  'PurchaseOrderAsAttachment' => 'Purchase order as attachment',
+  'Quantity' => '',
+  'Units' => '',
   'PurchaseOrder' => 'Purchase order',
   'WeWouldLikeToOrderTheFollowingItemsFromYou' => 'We would like to order the following items from you',
-  'Honorable'=> '',
 );
