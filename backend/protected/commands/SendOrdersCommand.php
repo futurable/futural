@@ -16,9 +16,9 @@ class SendOrdersCommand extends CConsoleCommand
         else{
             echo( count($orders)." unsent orders found\n" );
         }
-        
+
         define ('K_PATH_IMAGES', Yii::app()->getBasePath().'/img/logo/');
-        require_once('../tcpdf/tcpdf.php');
+        require_once(dirname(Yii::app()->request->scriptFile).'/extensions/'.'tcpdf/tcpdf.php');
         
         # 2. Run through each order
         foreach($orders as $order){
