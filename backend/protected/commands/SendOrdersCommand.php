@@ -18,7 +18,7 @@ class SendOrdersCommand extends CConsoleCommand
         }
 
         define ('K_PATH_IMAGES', Yii::app()->getBasePath().'/img/logo/');
-        require_once(dirname(Yii::app()->request->scriptFile).'/extensions/'.'tcpdf/tcpdf.php');
+        require_once( Yii::app()->getBasePath().'/extensions/'.'tcpdf/tcpdf.php' );
         
         # 2. Run through each order
         foreach($orders as $order){
@@ -150,7 +150,7 @@ class SendOrdersCommand extends CConsoleCommand
             $message->attach($attachment);
 
             if($success){
-                //Yii::app()->mail->send($message);
+                Yii::app()->mail->send($message);
                 echo( "Message sent to $company->email\n" );
             
                 echo( "Transaction successful\n" );
