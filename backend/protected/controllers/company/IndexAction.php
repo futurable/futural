@@ -6,7 +6,7 @@ class IndexAction extends CAction
         $controller=$this->getController();
         $controller->allowUser(MANAGER);
         
-        $suppliers = $controller->getSuppliers();
+        $suppliers = Suppliers::get();
         
         $controller->render('index',array(
             'suppliers'=>$suppliers,

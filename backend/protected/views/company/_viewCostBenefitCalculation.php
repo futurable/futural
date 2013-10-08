@@ -12,6 +12,9 @@
             echo "<th>".Yii::t('Company', 'Realized')." (".Yii::t('Company', 'month').")</th>";
         echo "</tr>";
         
+        // Add side expenses to the same column
+        $costBenefitCalculationItems['salaries']->value += $costBenefitCalculationItems['sideExpenses']->value;
+        
         echo getTableRow($costBenefitCalculationItems['turnover'], $realizedItems, array('300000'));
         echo getTableRow($costBenefitCalculationItems['expenses'], $realizedItems, array('400000'));
         echo getTableRow($costBenefitCalculationItems['salaries'], $realizedItems, array('500000'), 'SalariesAndSideExpenses');

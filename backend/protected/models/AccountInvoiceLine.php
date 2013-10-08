@@ -54,14 +54,19 @@ class AccountInvoiceLine extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('account_id, name, price_unit, quantity', 'required'),
+			array('name, price_unit, quantity', 'required'),
 			array('create_uid, write_uid, uos_id, account_id, sequence, invoice_id, company_id, account_analytic_id, partner_id, product_id', 'numerical', 'integerOnly'=>true),
 			array('origin', 'length', 'max'=>256),
 			array('create_date, write_date, price_subtotal, discount', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, create_uid, create_date, write_date, write_uid, origin, uos_id, account_id, name, sequence, invoice_id, price_unit, price_subtotal, company_id, discount, account_analytic_id, quantity, partner_id, product_id', 'safe', 'on'=>'search'),
-		);
+            array('create_date,write_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
+            array('create_uid,write_uid','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('create_uid,write_uid,uos_id','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('account_id','default', 'value'=>'23', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('discount','default', 'value'=>'0', 'setOnEmpty'=>false,'on'=>'insert'),
+        );
 	}
 
 	/**

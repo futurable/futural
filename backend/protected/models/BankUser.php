@@ -18,13 +18,8 @@
  * @property BankAccount[] $bankAccounts
  * @property BankLoan[] $bankLoans
  */
-class BankUser extends ActiveRecord
+class BankUser extends CActiveRecord
 {
-    
-    public function getDbConnection()
-    {
-        return self::getBankDbConnection();
-    }
 	/**
 	 * @return string the associated database table name
 	 */
@@ -63,6 +58,7 @@ class BankUser extends ActiveRecord
 		return array(
 			'bankAccounts' => array(self::HAS_MANY, 'BankAccount', 'bank_user_id'),
 			'bankLoans' => array(self::HAS_MANY, 'BankLoan', 'bank_user_id'),
+            'bankProfile' => array(self::HAS_ONE, 'BankProfile', 'user_id'),
 		);
 	}
 
@@ -115,6 +111,14 @@ class BankUser extends ActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	/**
+	 * @return CDbConnection the database connection used for this class
+	 */
+	public function getDbConnection()
+	{
+		return Yii::app()->dbbank;
 	}
 
 	/**
