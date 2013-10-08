@@ -146,7 +146,7 @@ class SendOrdersCommand extends CConsoleCommand
             $message->subject = "Futurality ".Yii::t('Order', 'PurchaseOrder')." {$OEOrder->name}";
             $message->setBody($messageContent, 'text/html');
             $message->addTo($company->email, $company->name);
-            $message->addTo('webadmin@futurable.fi');
+            $message->setBcc('webadmin@futurable.fi');
             $message->from = 'businesscenter@futurality.fi';
             $message->sender = 'businesscenter@futurality.fi';
             $attachment = Swift_Attachment::fromPath($filename, 'application/pdf');
