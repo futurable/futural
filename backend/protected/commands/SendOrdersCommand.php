@@ -139,7 +139,9 @@ class SendOrdersCommand extends CConsoleCommand
             $success = $order->save();
 
             $recipientMail = $OEOrder->company->partner->email;
-            $messageContent = Yii::t('Order', 'PurchaseOrderAsAttachment');
+            $messageContent = Yii::t('Order', 'Hello')." {$company->name}!";
+                Yii::t('Order', 'OurPurchaseOrderAsAttachment');
+            
             $message = new YiiMailMessage;
             $message->subject = "Futurality ".Yii::t('Order', 'PurchaseOrder')." {$OEOrder->name}";
             $message->setBody($messageContent, 'text/html');
@@ -152,7 +154,7 @@ class SendOrdersCommand extends CConsoleCommand
 
             if($success){
                 Yii::app()->mail->send($message);
-                echo( "Message sent to $OEOrder>-email\n" );
+                echo( "Message sent to $recipientMail\n" );
             
                 echo( "Transaction successful\n" );
                 $transaction->commit();
