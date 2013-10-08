@@ -43,5 +43,5 @@
         ));
     }
     
-    echo CHtml::link('Back',array('company/index'),array('class'=>'btn'));
+    echo CHtml::link(Yii::t('Menu', 'Back'),array('company/index'),array('class'=>'btn'));
 ?>

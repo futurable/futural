@@ -69,14 +69,23 @@ class PurchaseOrder extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('date_order, partner_id, location_id, company_id, pricelist_id, name, invoice_method', 'required'),
+			array('partner_id, company_id, name', 'required'),
 			array('create_uid, write_uid, journal_id, partner_id, dest_address_id, fiscal_position, location_id, company_id, pricelist_id, warehouse_id, payment_term_id, validator', 'numerical', 'integerOnly'=>true),
 			array('origin, partner_ref, name', 'length', 'max'=>64),
 			array('create_date, write_date, amount_untaxed, amount_tax, state, date_approve, amount_total, notes, shipped, minimum_planned_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, create_uid, create_date, write_date, write_uid, origin, journal_id, date_order, partner_id, dest_address_id, fiscal_position, amount_untaxed, location_id, company_id, amount_tax, state, pricelist_id, warehouse_id, payment_term_id, partner_ref, date_approve, amount_total, name, notes, invoice_method, shipped, validator, minimum_planned_date', 'safe', 'on'=>'search'),
-		);
+            array('create_date,write_date,date_order,date_approve,minimum_planned_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
+            array('warehouse_id,validator','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('payment_term_id','default', 'value'=>'2', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('journal_id','default', 'value'=>'3', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('pricelist_id','default', 'value'=>'2', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('location_id','default', 'value'=>'12', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('state','default', 'value'=>'draft', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('invoice_method','default', 'value'=>'other', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('shipped','default', 'value'=>new CDbExpression('false'), 'setOnEmpty'=>false,'on'=>'insert'),
+        );
 	}
 
 	/**

@@ -53,13 +53,17 @@ class PurchaseOrderLine extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('product_uom, order_id, price_unit, product_qty, name, date_planned, state', 'required'),
+			array('order_id, price_unit, product_qty, name', 'required'),
 			array('create_uid, write_uid, product_uom, order_id, move_dest_id, partner_id, company_id, product_id, account_analytic_id', 'numerical', 'integerOnly'=>true),
 			array('create_date, write_date, invoiced', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, create_uid, create_date, write_date, write_uid, product_uom, order_id, price_unit, move_dest_id, product_qty, partner_id, invoiced, name, date_planned, company_id, state, product_id, account_analytic_id', 'safe', 'on'=>'search'),
-		);
+            array('create_date,write_date,date_planned','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
+            array('create_uid,write_uid,product_uom','default', 'value'=>'1', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('state','default', 'value'=>'draft', 'setOnEmpty'=>false,'on'=>'insert'),
+            array('invoiced','default', 'value'=>new CDbExpression('false'), 'setOnEmpty'=>false,'on'=>'insert'),
+        );
 	}
 
 	/**

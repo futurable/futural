@@ -18,4 +18,7 @@
  */
 return array (
   'Orders' => '',
+  'PurchaseOrder' => 'Purchase order',
+  'WeWouldLikeToOrderTheFollowingItemsFromYou' => 'We would like to order the following items from you',
+  'Honorable'=> '',
 );

@@ -6,18 +6,20 @@
  * The followings are the available columns in table 'order':
  * @property integer $id
  * @property string $created
- * @property string $execution_time
+ * @property string $event_time
  * @property string $executed
+ * @property string $sent
  * @property integer $rows
  * @property string $value
+ * @property integer $openerp_purchase_order_id
  * @property integer $company_id
  * @property integer $order_setup_id
  * @property integer $order_automation_id
  *
  * The followings are the available model relations:
  * @property Company $company
- * @property OrderSetup $orderSetup
  * @property OrderAutomation $orderAutomation
+ * @property OrderSetup $orderSetup
  */
 class Order extends CActiveRecord
 {
@@ -37,13 +39,13 @@ class Order extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, company_id, order_setup_id, order_automation_id', 'required'),
-			array('id, rows, company_id, order_setup_id, order_automation_id', 'numerical', 'integerOnly'=>true),
+			array('openerp_purchase_order_id, company_id, order_setup_id, order_automation_id', 'required'),
+			array('rows, openerp_purchase_order_id, company_id, order_setup_id, order_automation_id', 'numerical', 'integerOnly'=>true),
 			array('value', 'length', 'max'=>19),
-			array('created, execution_time, executed', 'safe'),
+			array('created, event_time, executed, sent', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, created, execution_time, executed, rows, value, company_id, order_setup_id, order_automation_id', 'safe', 'on'=>'search'),
+			array('id, created, event_time, executed, sent, rows, value, openerp_purchase_order_id, company_id, order_setup_id, order_automation_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,8 +58,8 @@ class Order extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'company' => array(self::BELONGS_TO, 'Company', 'company_id'),
-			'orderSetup' => array(self::BELONGS_TO, 'OrderSetup', 'order_setup_id'),
 			'orderAutomation' => array(self::BELONGS_TO, 'OrderAutomation', 'order_automation_id'),
+			'orderSetup' => array(self::BELONGS_TO, 'OrderSetup', 'order_setup_id'),
 		);
 	}
 
@@ -69,10 +71,12 @@ class Order extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'created' => 'Created',
-			'execution_time' => 'Execution Time',
+			'event_time' => 'Event Time',
 			'executed' => 'Executed',
+			'sent' => 'Sent',
 			'rows' => 'Rows',
 			'value' => 'Value',
+			'openerp_purchase_order_id' => 'Openerp Purchase Order',
 			'company_id' => 'Company',
 			'order_setup_id' => 'Order Setup',
 			'order_automation_id' => 'Order Automation',
@@ -99,10 +103,12 @@ class Order extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('created',$this->created,true);
-		$criteria->compare('execution_time',$this->execution_time,true);
+		$criteria->compare('event_time',$this->event_time,true);
 		$criteria->compare('executed',$this->executed,true);
+		$criteria->compare('sent',$this->sent,true);
 		$criteria->compare('rows',$this->rows);
 		$criteria->compare('value',$this->value,true);
+		$criteria->compare('openerp_purchase_order_id',$this->openerp_purchase_order_id);
 		$criteria->compare('company_id',$this->company_id);
 		$criteria->compare('order_setup_id',$this->order_setup_id);
 		$criteria->compare('order_automation_id',$this->order_automation_id);
