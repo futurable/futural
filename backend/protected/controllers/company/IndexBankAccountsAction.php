@@ -6,10 +6,11 @@ class IndexBankAccountsAction extends CAction
         $controller=$this->getController();
         $controller->allowUser(MANAGER);
         
-        $suppliers = Suppliers::get();
+        // Get 'checking account'-type bank accounts 
+        $bankAccounts = BankAccount::model()->findAll(array('condition'=>'bank_account_type_id = 1 AND status="enabled"'));
         
-        $controller->render('index',array(
-            'suppliers'=>$suppliers,
+        $controller->render('indexBankAccounts',array(
+            'bankAccounts'=>$bankAccounts,
         ));
     }
 }
