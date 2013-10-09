@@ -24,4 +24,5 @@ return array (
   'Keys' => '',
   'Logout' => '',
   'Orders' => '',
+  'BankAccounts' => 'Bank accounts',
 );
