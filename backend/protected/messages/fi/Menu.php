@@ -24,4 +24,5 @@ return array (
   'Keys' => 'Avaimet',
   'Logout' => 'Kirjaudu ulos',
   'Orders' => 'Tilaukset',
+  'BankAccounts' => 'Pankkitilit',
 );
