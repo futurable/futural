@@ -22,7 +22,8 @@ class CompanyController extends Controller
     {
         return array(
             'index'=>'application.controllers.company.IndexAction',
-            'view'=>'application.controllers.company.ViewAction'
+            'view'=>'application.controllers.company.ViewAction',
+            'bankAccounts'=>'application.controllers.company.IndexBankAccountsAction',
         );
     }
 
