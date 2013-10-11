@@ -20,4 +20,6 @@ return array (
   'status' => 'Tila',
   'iban' => 'IBAN',
   'name' => 'Nimi',
+  'Saldo' => 'Saldo',
+  'Type' => 'Tyyppi',
 );

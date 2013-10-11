@@ -17,9 +17,8 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'month' => 'kuukausi',
-  'year' => 'vuosi',
   'Communication' => 'Tietoliikenneyhteydet',
+  'Company' => 'Yritys',
   'Created' => 'Luotu',
   'Expenses' => 'Materiaalikulut',
   'FacilityExpenses' => 'Toimitilakulut',
@@ -37,6 +36,7 @@ return array (
   'CreateDate' => 'Luontipäivä',
   'CreateTime' => 'Luontiaika',
   'Email' => 'Sähköposti',
+  'Employee' => 'Työntekijä',
   'Employees' => 'Työntekijät',
   'Id' => 'ID',
   'Industry' => 'Toimiala',
@@ -49,4 +49,8 @@ return array (
   'Tag' => 'Tunnus',
   'TokenKey' => 'Perustamisavain',
   'TotalAmount' => 'Kokonaissumma',
+  'User' => 'Käyttäjä',
+  'Users' => 'Käyttäjät',
+  'month' => 'kuukausi',
+  'year' => 'vuosi',
 );

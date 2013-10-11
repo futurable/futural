@@ -2,7 +2,7 @@
     echo "<h2>".Yii::t('Company', 'Employees')."</h2>";
     $gridDataProvider = new CArrayDataProvider($OEHrEmployees, array(           
         'pagination'=>array(
-            'pageSize' => 5,
+            'pageSize' => 20,
          ),
     ));
 
