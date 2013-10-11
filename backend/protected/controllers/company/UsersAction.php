@@ -7,10 +7,10 @@ class UsersAction extends CAction
         $controller->allowUser(MANAGER);
         
         // Get all suppliers
-        $suppliers = Suppliers::get();
+        $companies = Suppliers::get();
         
         $controller->render('users',array(
-            'suppliers'=>$suppliers,
+            'companies'=>$companies,
         ));
     }
 }
