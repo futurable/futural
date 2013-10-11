@@ -4,7 +4,7 @@ class BankSaldo {
         if(!DataValidator::isDateISOSyntaxValid($end_date)) $end_date = date('Y-m-d');
         
         // Count bank saldo
-        $record = Yii::app()->db->createCommand()
+        $record = Yii::app()->dbbank->createCommand()
         ->select("sum(if( recipient_iban = '$iban', amount, -amount )) AS saldo")
         ->from('bank_account_transaction')
         ->where("event_date <= '$end_date'")
