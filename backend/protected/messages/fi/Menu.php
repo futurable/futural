@@ -25,4 +25,5 @@ return array (
   'Logout' => 'Kirjaudu ulos',
   'Orders' => 'Tilaukset',
   'BankAccounts' => 'Pankkitilit',
+  'Users' => 'Käyttäjät',
 );
