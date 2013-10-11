@@ -112,7 +112,7 @@ class TokenKeyController extends Controller
         }
         else $condition = null;
         
-		$tokenKeys= TokenKey::model()->findAll(array('condition'=>$condition, 'order'=>'create_date DESC'));
+		$tokenKeys= TokenKey::model()->findAll(array('condition'=>$condition, 'order'=>'reclaim_date DESC, create_date DESC'));
 		$this->render('index',array(
 			'tokenKeys'=>$tokenKeys,
 		));
