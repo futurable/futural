@@ -30,7 +30,12 @@
                 echo "</strong></td>"; 
             echo "</tr>";
 
+            $netWorth = 0;
             foreach($bankUser->bankAccounts as $bankAccount){
+                $accountSaldo = BankSaldo::getAccountSaldo($bankAccount->iban);
+                $netWorth += $accountSaldo;
+                $accountSaldo = number_format($accountSaldo, 2, '.', ' ');
+                
                 echo "<tr>";
                     echo "<td/>";
                     echo "<td>";
@@ -39,8 +44,20 @@
                     echo "<td>";
                         echo $bankAccount->iban;
                     echo "</td>"; 
+                    echo "<td>";
+                        echo $accountSaldo." ".$bankAccount->bankCurrency->code;
+                    echo "</td>"; 
                 echo "</tr>";
             }
+            
+            echo "<tr>";
+                echo "<td/>";
+                echo "<td/>";
+                echo "<td/>";
+                echo "<td><strong>";
+                    echo number_format($netWorth, 2, '.', ' ')." ".$bankAccount->bankCurrency->code; // @TODO: this code is wrong if we have multi-currency accounts
+                echo "</td></strong>";
+            echo "</tr>";
         }
         echo "</table>";
         
