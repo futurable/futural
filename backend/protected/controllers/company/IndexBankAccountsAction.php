@@ -10,14 +10,17 @@ class IndexBankAccountsAction extends CAction
         $suppliers = Suppliers::get();
         
         // Get bank accounts for the suppliers
+        $bankUsers = array();
         foreach($suppliers as $key => $supplier){
             $bankUser = BankUser::model()
                     ->with('bankAccounts')
-                    ->findByAttributes(array('username'=>$supplier['id']));
+                    ->findByAttributes(array('username'=>$supplier['tag']));
+            $bankUsers[ $key ] = $bankUser;
         }
         
         $controller->render('indexBankAccounts',array(
             'suppliers'=>$suppliers,
+            'bankUsers'=>$bankUsers,
         ));
     }
 }
