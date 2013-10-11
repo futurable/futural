@@ -9,7 +9,7 @@ class UsersAction extends CAction
         // Get all suppliers
         $suppliers = Suppliers::get();
         
-        $controller->render('indexBankAccounts',array(
+        $controller->render('users',array(
             'suppliers'=>$suppliers,
         ));
     }
