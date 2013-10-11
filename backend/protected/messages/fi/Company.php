@@ -50,6 +50,7 @@ return array (
   'TokenKey' => 'Perustamisavain',
   'TotalAmount' => 'Kokonaissumma',
   'User' => 'Käyttäjä',
+  'Users' => 'Käyttäjät',
   'month' => 'kuukausi',
   'year' => 'vuosi',
 );
