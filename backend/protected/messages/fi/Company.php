@@ -48,6 +48,7 @@ return array (
   'Tag' => 'Tunnus',
   'TokenKey' => 'Perustamisavain',
   'TotalAmount' => 'Kokonaissumma',
+  'User' => 'Käyttäjä',
   'month' => 'kuukausi',
   'year' => 'vuosi',
 );
