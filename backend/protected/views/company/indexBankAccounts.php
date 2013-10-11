@@ -25,9 +25,9 @@
             $bankUser = $bankUsers[$key];
 
             echo "<tr>";
-                echo "<td>";
+                echo "<td><strong>";
                     echo $bankUser->bankProfile->company;
-                echo "</td>"; 
+                echo "</strong></td>"; 
             echo "</tr>";
 
             foreach($bankUser->bankAccounts as $bankAccount){
