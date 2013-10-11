@@ -36,6 +36,7 @@ return array (
   'CreateDate' => 'Luontipäivä',
   'CreateTime' => 'Luontiaika',
   'Email' => 'Sähköposti',
+  'Employee' => 'Työntekijä',
   'Employees' => 'Työntekijät',
   'Id' => 'ID',
   'Industry' => 'Toimiala',
