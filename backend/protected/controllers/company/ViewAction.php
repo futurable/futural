@@ -11,7 +11,7 @@ class ViewAction extends CAction
         $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
         
         // Format variables so we don't need multiple renderers
-        $costBenefitCalculationItems = null;
+        $costBenefitCalculationsArray = null;
         $realizedItems = null;
         $bankAccounts = null;
         $OEHrEmployees = null;
