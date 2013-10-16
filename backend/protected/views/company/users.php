@@ -33,10 +33,12 @@
             $OEEmployees = HrEmployee::model()->findAll();
             
             foreach($OEEmployees as $OEEmployee){
+                $userName = isset($OEEmployee->resource->user->partner->name) ? $OEEmployee->resource->user->partner->name : "-";   
+                
                 echo "<tr>";
                     echo "<td/>";
                     echo "<td>";
-                        echo "{$OEEmployee->name_related} ({$OEEmployee->resource->user->partner->name})";
+                        echo "{$OEEmployee->name_related} ({$userName})"; 
                     echo "</td>"; 
                 echo "</tr>";
             }
