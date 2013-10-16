@@ -40,12 +40,17 @@ class CreateOrdersCommand extends CConsoleCommand
             // Get the customer setup
             $orderSetup = isset($orderSetups[ $customerTag ]) ? $orderSetups[ $customerTag ] : $orderSetups[ 'default' ];
 
-            // Use the first cost-benefit calculation
-            $costBenefitCalculation = $supplier->costbenefitCalculations[0];
+            // Use the latest cost-benefit calculation
+            // Get the latest cost-benefit calculation
+            $criteria = new CDbCriteria();
+            $criteria->addCondition("company_id={$supplier->id}");
+            $criteria->order = 'create_date DESC';
+            $CBC = CostbenefitCalculation::model()->find( $criteria );
+            
             // Get the turnover
             $criteria = new CDbCriteria;
             $criteria->condition = 'costbenefit_calculation_id=:id AND costbenefit_item_type_id=1';
-            $criteria->params = array(':id'=>$costBenefitCalculation->id);
+            $criteria->params = array(':id'=>$CBC->id);
             $turnover = CostbenefitItem::model()->find($criteria)->value;
 
             // Decide how many orders will be made in week

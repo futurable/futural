@@ -3,7 +3,9 @@
     
     echo "<div class=grid-view>";
     
-        echo "<table class='items table table-striped'>";
+        $weeks = range(date('W', strtotime("-1 month")), date('W'));
+    
+        echo "<table class='items table table-striped verticalBorders'>";
             echo "<thead>";
                 echo "<tr>";
                     echo "<th>";
@@ -11,33 +13,54 @@
                     echo "</th>"; 
                     echo "<th>";
                         echo Yii::t('Company', 'Employee');
-                    echo "</th>"; 
+                    echo "</th>";
+                    echo "<th colspan='".count($weeks)."'>".Yii::t('Company', 'Timesheets');
                 echo "</tr>";
             echo "</thead>";
-
+      
         foreach($companies as $company){
-            // Switch to the right company
-            Yii::app()->dbopenerp->setActive(false);
-            Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company['tag']}";
-            Yii::app()->dbopenerp->setActive(true);
+            $OECompany = $company['OECompany'];
+            $OEEmployees = $company['OEEmployees'];
             
-            $OECompany = ResCompany::model()->find();
-           
             echo "<tr>";
                 echo "<td><strong>";
                     echo $OECompany->name;
-                echo "</strong></td>"; 
+                echo "</strong></td>";
+                echo "<td/>";
+                foreach($weeks as $week){
+                    echo "<td><strong>";
+                        echo $week;
+                    echo "</strong></td>";
+                } 
             echo "</tr>";
             
-            // Get company users
-            $OEEmployees = HrEmployee::model()->findAll();
-            
             foreach($OEEmployees as $OEEmployee){
+                $userName = isset($OEEmployee->resource->user->partner->name) ? $OEEmployee->resource->user->partner->name : "-";   
+                // Get timesheets
+                $criteria = new CDbCriteria();
+                $criteria->select = 'date_trunc(\'week\', date) AS "week" , SUM(unit_amount) AS "hours"';
+                $criteria->addCondition( "user_id={$OEEmployee->id}" );
+                $criteria->addCondition( "date > now() - interval '3 months'" );
+                $criteria->group = '"week"';
+                $criteria->order = '"week" DESC';
+                $OETimesheets = AccountAnalyticLine::model()->findAll($criteria);
+
+                // Set the hour records to an array
+                $HourRecords = array();
+                foreach($OETimesheets as $OETimesheet){
+                    $HourRecords[ date('W', strtotime($OETimesheet->week)) ] = $OETimesheet->hours;
+                }
+                
                 echo "<tr>";
                     echo "<td/>";
                     echo "<td>";
-                        echo "{$OEEmployee->name_related} ({$OEEmployee->resource->user->partner->name})";
-                    echo "</td>"; 
+                        echo "{$OEEmployee->name_related} ({$userName})";
+                    echo "</td>";
+                    foreach($weeks as $week){
+                        echo "<td>";
+                        if(array_key_exists($week, $HourRecords)) echo $HourRecords[$week];
+                        echo "</td>";
+                    }
                 echo "</tr>";
             }
         }

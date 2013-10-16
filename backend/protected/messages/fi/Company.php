@@ -33,6 +33,7 @@ return array (
   'Companies' => 'Yritykset',
   'CompanyInfo' => 'Yrityksen tiedot',
   'CostBenefitCalculation' => 'Kannattavuuslaskelma',
+  'CostBenefitCalculations' => 'Kannattavuuslaskelmat',
   'CreateDate' => 'Luontipäivä',
   'CreateTime' => 'Luontiaika',
   'Email' => 'Sähköposti',

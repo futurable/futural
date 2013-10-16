@@ -11,7 +11,7 @@ class ViewAction extends CAction
         $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
         
         // Format variables so we don't need multiple renderers
-        $costBenefitCalculationItems = null;
+        $costBenefitCalculationsArray = null;
         $realizedItems = null;
         $bankAccounts = null;
         $OEHrEmployees = null;
@@ -25,12 +25,16 @@ class ViewAction extends CAction
         
         if($action=='costBenefitCalculation'){
 
-            $costBenefitCalculation = CostbenefitCalculation::model()->findByAttributes(array('company_id'=>$company->id));
-            $costBenefitCalculationItems = array();
-            foreach($costBenefitCalculation->costbenefitItems as $CBCItem){
-                $key = $CBCItem->costbenefitItemType->name;
-                $costBenefitCalculationItems[ $key ] = $CBCItem;
-            };
+            $costBenefitCalculations = CostbenefitCalculation::model()->findAllByAttributes(array('company_id'=>$company->id));
+            $costBenefitCalculationsArray = array();
+            foreach($costBenefitCalculations as $costBenefitCalculation){
+                $costBenefitCalculationsArray[ $costBenefitCalculation->id ][ 'create_date' ] = date('d.m.Y', strtotime($costBenefitCalculation->create_date));
+                
+                foreach($costBenefitCalculation->costbenefitItems as $CBCItem){
+                    $key = $CBCItem->costbenefitItemType->name;
+                    $costBenefitCalculationsArray[ $costBenefitCalculation->id ][ $key ] = $CBCItem;
+                };
+            }
 
             // Get the realized sales
             $criteria=new CDbCriteria;
@@ -69,7 +73,7 @@ class ViewAction extends CAction
         $controller->render('view',array(
             'action'=>$action,
             'company'=>$company,
-            'costBenefitCalculationItems'=>$costBenefitCalculationItems,
+            'costBenefitCalculations'=>$costBenefitCalculationsArray,
             'realizedItems'=>$realizedItems,
             'bankAccounts'=>$bankAccounts,
             'OEHrEmployees'=>$OEHrEmployees,

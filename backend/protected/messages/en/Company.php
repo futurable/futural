@@ -39,6 +39,7 @@ return array (
   'BusinessId' => 'Business Id',
   'CompanyInfo' => 'Company info',
   'CostBenefitCalculation' => 'Cost-benefit calculation',
+  'CostBenefitCalculations' => 'Cost-benefit calculations',
   'CreateDate' => 'Create date',
   'CreateTime' => 'Create time',
   'Id' => 'ID',

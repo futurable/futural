@@ -7,18 +7,17 @@ class Suppliers {
         $customer_id = Yii::app()->user->getTokenCustomer()->id;
         $role = Yii::app()->user->getRole();
         
+        $criteria = new CDbCriteria();
+        $criteria->alias = 'company';
+        $criteria->order = 'company.name';
+        
         // Get all suppliers
-        if($role<3){
-            $suppliers = Yii::app()->db->createCommand()
-                ->select('c.*')
-                ->from('company c')
-                ->join('token_key t', 'c.token_key_id=t.id')
-                ->where('t.token_customer_id=:id', array(':id'=>$customer_id))
-                ->order('name')
-                ->queryAll();
-        } else {
-            $suppliers = Company::model()->findAll(array('order'=>'name'));
+        if($role<3){         
+            $criteria->addCondition('tokenKey.token_customer_id=:id');
+            $criteria->params = array(':id'=>$customer_id);
+            $criteria->with = array('tokenKey');
         }
+        $suppliers = Company::model()->findAll($criteria);
         
         return self::trimSuppliers($suppliers);
     }

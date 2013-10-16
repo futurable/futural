@@ -44,6 +44,8 @@
  */
 class AccountAnalyticLine extends CActiveRecord
 {
+    public $hours;
+    public $week;
 	/**
 	 * @return string the associated database table name
 	 */
