@@ -13,12 +13,8 @@
                     echo "</th>"; 
                     echo "<th>";
                         echo Yii::t('Company', 'Employee');
-                    echo "</th>"; 
-                    foreach($weeks as $week){
-                        echo "<th>";
-                            echo $week;
-                        echo "</th>";
-                    } 
+                    echo "</th>";
+                    echo "<th colspan='".count($weeks)."'>".Yii::t('Company', 'Timesheets');
                 echo "</tr>";
             echo "</thead>";
       
@@ -29,7 +25,13 @@
             echo "<tr>";
                 echo "<td><strong>";
                     echo $OECompany->name;
-                echo "</strong></td>"; 
+                echo "</strong></td>";
+                echo "<td/>";
+                foreach($weeks as $week){
+                    echo "<td><strong>";
+                        echo $week;
+                    echo "</strong></td>";
+                } 
             echo "</tr>";
             
             foreach($OEEmployees as $OEEmployee){
