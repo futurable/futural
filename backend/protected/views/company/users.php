@@ -12,25 +12,21 @@
                     echo "<th>";
                         echo Yii::t('Company', 'Employee');
                     echo "</th>"; 
+                    echo "<th>";
+                        echo Yii::t('Company', 'Hours');
+                    echo "</th>"; 
                 echo "</tr>";
             echo "</thead>";
 
         foreach($companies as $company){
-            // Switch to the right company
-            Yii::app()->dbopenerp->setActive(false);
-            Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company['tag']}";
-            Yii::app()->dbopenerp->setActive(true);
+            $OECompany = $company['OECompany'];
+            $OEEmployees = $company['OEEmployees'];
             
-            $OECompany = ResCompany::model()->find();
-           
             echo "<tr>";
                 echo "<td><strong>";
                     echo $OECompany->name;
                 echo "</strong></td>"; 
             echo "</tr>";
-            
-            // Get company users
-            $OEEmployees = HrEmployee::model()->findAll();
             
             foreach($OEEmployees as $OEEmployee){
                 $userName = isset($OEEmployee->resource->user->partner->name) ? $OEEmployee->resource->user->partner->name : "-";   
