@@ -40,8 +40,8 @@ class CreateOrdersCommand extends CConsoleCommand
             // Get the customer setup
             $orderSetup = isset($orderSetups[ $customerTag ]) ? $orderSetups[ $customerTag ] : $orderSetups[ 'default' ];
 
-            // Use the first cost-benefit calculation
-            $costBenefitCalculation = $supplier->costbenefitCalculations[0];
+            // Use the latest cost-benefit calculation
+            $costBenefitCalculation = CostbenefitCalculation::model()->find(array('condition'=>"company_id={$supplier->id}", 'order' => 'create_date DESC'));
             // Get the turnover
             $criteria = new CDbCriteria;
             $criteria->condition = 'costbenefit_calculation_id=:id AND costbenefit_item_type_id=1';
@@ -108,7 +108,7 @@ class CreateOrdersCommand extends CConsoleCommand
         
         if($headerSuccess AND $rowsSuccess){
             echo( "Orders saved\n" );
-            $transaction->commit();
+            $transaction->rollback();
         }
         else {
             echo( "Error. Orders not saved\n");
