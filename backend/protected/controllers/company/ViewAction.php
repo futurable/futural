@@ -28,7 +28,7 @@ class ViewAction extends CAction
             $costBenefitCalculations = CostbenefitCalculation::model()->findAllByAttributes(array('company_id'=>$company->id));
             $costBenefitCalculationsArray = array();
             foreach($costBenefitCalculations as $costBenefitCalculation){
-                $costBenefitCalculationsArray[ $costBenefitCalculation->id ][ 'create_date' ] = $costBenefitCalculation->create_date;
+                $costBenefitCalculationsArray[ $costBenefitCalculation->id ][ 'create_date' ] = date('d.m.Y', strtotime($costBenefitCalculation->create_date));
                 
                 foreach($costBenefitCalculation->costbenefitItems as $CBCItem){
                     $key = $CBCItem->costbenefitItemType->name;
