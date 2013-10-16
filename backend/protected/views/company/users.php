@@ -5,7 +5,7 @@
     
         $weeks = range(date('W', strtotime("-1 month")), date('W'));
     
-        echo "<table class='items table table-striped'>";
+        echo "<table class='items table table-striped verticalBorders'>";
             echo "<thead>";
                 echo "<tr>";
                     echo "<th>";
