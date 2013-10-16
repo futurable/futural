@@ -113,7 +113,7 @@ class CreateOrdersCommand extends CConsoleCommand
         
         if($headerSuccess AND $rowsSuccess){
             echo( "Orders saved\n" );
-            $transaction->rollback();
+            $transaction->commit();
         }
         else {
             echo( "Error. Orders not saved\n");
