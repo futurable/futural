@@ -35,7 +35,6 @@
             echo "</tr>";
             
             foreach($OEEmployees as $OEEmployee){
-                $userName = isset($OEEmployee->resource->user->partner->name) ? $OEEmployee->resource->user->partner->name : "-";   
                 // Get timesheets
                 $criteria = new CDbCriteria();
                 $criteria->select = 'date_trunc(\'week\', date) AS "week" , SUM(unit_amount) AS "hours"';
@@ -54,7 +53,7 @@
                 echo "<tr>";
                     echo "<td/>";
                     echo "<td>";
-                        echo "{$OEEmployee->name_related} ({$userName})";
+                        echo $OEEmployee->name_related;
                     echo "</td>";
                     foreach($weeks as $week){
                         echo "<td>";
