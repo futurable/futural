@@ -95,14 +95,14 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/costBene
         <span id="Company_industry_description"></span>
 	</div>
         
-        <div class="row">
-                <?php echo $form->label($company, "employees");?>
-		<?php echo $form->dropDownList($company, 'employees', array_merge( range(1,9),range(10,100,10)), 
+    <div class="row">
+        <?php echo $form->label($company, "employees");?>
+		<?php echo $form->dropDownList($company, 'employees',  array_combine( range(1,10), range(1,10) ) + array_combine( range(10,100,10), range(10,100,10) ), 
             array(
                 'rel'=>'tooltip',
                 'title'=>Yii::t('Company', 'TooltipEmployees')
             )); ?>
-	</div>
+    </div>
         
         <div class="row">
             <table id='costBenefitCalculationTable'>
