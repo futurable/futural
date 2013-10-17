@@ -42,10 +42,10 @@ class ViewAction extends CAction
             $criteria->group='week, account_id';
             $criteria->order='week, account_id';
 
-            $realizedItems = array();
+            $realizedItemsArray = array();
             $accountMoveLines = AccountMoveLine::model()->findAll($criteria);
             foreach($accountMoveLines as $accountMoveLine){
-                $realizedItems[ date('W', strtotime($accountMoveLine->week)) ][ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
+                $realizedItemsArray[ date('W', strtotime($accountMoveLine->week)) ][ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
             }
         }
 
@@ -74,7 +74,7 @@ class ViewAction extends CAction
             'action'=>$action,
             'company'=>$company,
             'costBenefitCalculations'=>$costBenefitCalculationsArray,
-            'realizedItems'=>$realizedItems,
+            'realizedItemsArray'=>$realizedItemsArray,
             'bankAccounts'=>$bankAccounts,
             'OEHrEmployees'=>$OEHrEmployees,
             'OESaleOrders'=>$OESaleOrders,
