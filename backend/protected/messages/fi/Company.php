@@ -54,4 +54,5 @@ return array (
   'Users' => 'Käyttäjät',
   'month' => 'kuukausi',
   'year' => 'vuosi',
+  'week' => 'viikko',
 );
