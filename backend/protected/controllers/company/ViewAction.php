@@ -45,7 +45,7 @@ class ViewAction extends CAction
             $realizedItems = array();
             $accountMoveLines = AccountMoveLine::model()->findAll($criteria);
             foreach($accountMoveLines as $accountMoveLine){
-                $realizedItems[ $accountMoveLine->week ][ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
+                $realizedItems[ date('W', strtotime($accountMoveLine->week) ][ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
             }
         }
 
