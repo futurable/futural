@@ -2,31 +2,39 @@
     // Company info
     echo "<h2>".Yii::t('Company', 'CostBenefitCalculations')."</h2>";
     
-    $week = date('W');
+    $weeks = range(date('W', strtotime("-1 month")), date('W'));
     
     foreach($costBenefitCalculations as $costBenefitCalculationItems){
         echo "<h3>{$costBenefitCalculationItems['create_date']}</h3>";
-        
+               
         echo "<table class='table-striped table-condensed'>";
             echo "<tr>";
                 echo "<th></th>";
                 echo "<th>".Yii::t('Company', 'Planned')." (".Yii::t('Company', 'year').")</th>";
-                echo "<th>".Yii::t('Company', 'Planned')." (".Yii::t('Company', 'month').")</th>";
-                echo "<th>".Yii::t('Company', 'Realized')." (".Yii::t('Company', 'month').")</th>";
+                echo "<th>".Yii::t('Company', 'Planned')." (".Yii::t('Company', 'week').")</th>";
+                foreach($weeks as $week){
+                    echo "<td><strong>";
+                        echo $week;
+                    echo "</strong></td>";
+                }
             echo "</tr>";
 
+            foreach($weeks as $week){
+                if(array_key_exists($week, $realizedItemsArray)){
+                    $realizedItems = $realizedItemsArray[$week];
+                    // Add side expenses to the same column
+                    $costBenefitCalculationItems['salaries']->value += $costBenefitCalculationItems['sideExpenses']->value;
 
-            // Add side expenses to the same column
-            $costBenefitCalculationItems['salaries']->value += $costBenefitCalculationItems['sideExpenses']->value;
-
-            echo getTableRow($costBenefitCalculationItems['turnover'], $realizedItems, array('300000'));
-            echo getTableRow($costBenefitCalculationItems['expenses'], $realizedItems, array('400000'));
-            echo getTableRow($costBenefitCalculationItems['salaries'], $realizedItems, array('500000'), 'SalariesAndSideExpenses');
-            echo getTableRow($costBenefitCalculationItems['loans'], $realizedItems);
-            echo getTableRow($costBenefitCalculationItems['rents'], $realizedItems, array('701010', '701080'), 'FacilityExpenses');
-            echo getTableRow($costBenefitCalculationItems['communication'], $realizedItems, array('703000'));
-            echo getTableRow($costBenefitCalculationItems['health'], $realizedItems, array('70000'));
-            echo getTableRow($costBenefitCalculationItems['otherExpenses'], $realizedItems, array('707010'));
+                    echo getTableRow($costBenefitCalculationItems['turnover'], $realizedItems, array('300000'));
+                    echo getTableRow($costBenefitCalculationItems['expenses'], $realizedItems, array('400000'));
+                    echo getTableRow($costBenefitCalculationItems['salaries'], $realizedItems, array('500000'), 'SalariesAndSideExpenses');
+                    echo getTableRow($costBenefitCalculationItems['loans'], $realizedItems);
+                    echo getTableRow($costBenefitCalculationItems['rents'], $realizedItems, array('701010', '701080'), 'FacilityExpenses');
+                    echo getTableRow($costBenefitCalculationItems['communication'], $realizedItems, array('703000'));
+                    echo getTableRow($costBenefitCalculationItems['health'], $realizedItems, array('70000'));
+                    echo getTableRow($costBenefitCalculationItems['otherExpenses'], $realizedItems, array('707010'));
+                }
+            }
         echo "</table>";
     }
     /**
