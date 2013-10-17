@@ -38,14 +38,14 @@ class ViewAction extends CAction
 
             // Get the realized sales
             $criteria=new CDbCriteria;
-            $criteria->select='account_id, sum(credit) AS credit, sum(debit) AS debit';
-            $criteria->group='account_id';
-            $criteria->order='account_id';
+            $criteria->select='date_trunc(\'week\', create_date) AS week, account_id, SUM(credit) AS credit, SUM(debit) AS debit';
+            $criteria->group='week, account_id';
+            $criteria->order='week, account_id';
 
             $realizedItems = array();
             $accountMoveLines = AccountMoveLine::model()->findAll($criteria);
             foreach($accountMoveLines as $accountMoveLine){
-                $realizedItems[ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
+                $realizedItems[ $accountMoveLine->week ][ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
             }
         }
 
