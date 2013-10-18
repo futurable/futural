@@ -57,11 +57,16 @@
                     
                 if(array_key_exists($week, $realizedItemsArray)){
                     $realizedItem = $realizedItemsArray[$week];
+                    // Get company loan accounts
+                    $loanAccounts = array();
+                    foreach($bankAccounts as $bankAccount){
+                        if($bankAccount->bank_account_type_id == 2) $loanAccounts[] = $bankAccount->iban;
+                    }
 
                     echo getRealizedValue($realizedItem, array('300000'), false); // Turnover
                     echo getRealizedValue($realizedItem, array('400000')); // Expenses
                     echo getRealizedValue($realizedItem, array('500000')); // Salaries
-                    echo "<td>".BankSaldo::getSalaryPaymentsSaldo('FI5697030000014473', $week)."&euro;</td>"; // Loans
+                    echo "<td>".BankSaldo::getSalaryPaymentsSaldo($loanAccounts, $week)."&euro;</td>"; // Loans
                     echo getRealizedValue($realizedItem, array('701010', '701080')); // FacilityExpenses
                     echo getRealizedValue($realizedItem, array('703000')); // Communications
                     echo getRealizedValue($realizedItem, array('70000')); // Health
