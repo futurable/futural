@@ -12,7 +12,7 @@ class ViewAction extends CAction
         
         // Format variables so we don't need multiple renderers
         $costBenefitCalculationsArray = null;
-        $realizedItems = null;
+        $realizedItemsArray = null;
         $bankAccounts = null;
         $OEHrEmployees = null;
         $OESaleOrders = null;
@@ -22,6 +22,15 @@ class ViewAction extends CAction
         Yii::app()->dbopenerp->setActive(false);
         Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
         Yii::app()->dbopenerp->setActive(true);
+        
+        if($action=='bankAccounts' OR $action=='costBenefitCalculation'){
+            $bankAccounts = BankAccount::model()->findAll(
+                array(
+                    'condition'=>'bank_user_id=:bank_user_id', 
+                    'params'=>array('bank_user_id'=>$bankUser->id),
+                )
+            );
+        }
         
         if($action=='costBenefitCalculation'){
 
@@ -34,30 +43,22 @@ class ViewAction extends CAction
                     $key = $CBCItem->costbenefitItemType->name;
                     $costBenefitCalculationsArray[ $costBenefitCalculation->id ][ $key ] = $CBCItem;
                 };
+                // Add side expenses to the salaries
+                $costBenefitCalculationsArray[ $costBenefitCalculation->id ][ 'salaries' ]->value += $costBenefitCalculationsArray[ $costBenefitCalculation->id ][ 'sideExpenses' ]->value;
             }
 
             // Get the realized sales
             $criteria=new CDbCriteria;
-            $criteria->select='account_id, sum(credit) AS credit, sum(debit) AS debit';
-            $criteria->group='account_id';
-            $criteria->order='account_id';
+            $criteria->select='date_trunc(\'week\', create_date) AS week, account_id, SUM(credit) AS credit, SUM(debit) AS debit';
+            $criteria->group='week, account_id';
+            $criteria->order='week, account_id';
 
-            $realizedItems = array();
+            $realizedItemsArray = array();
             $accountMoveLines = AccountMoveLine::model()->findAll($criteria);
             foreach($accountMoveLines as $accountMoveLine){
-                $realizedItems[ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
+                $realizedItemsArray[ date('W', strtotime($accountMoveLine->week)) ][ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
             }
         }
-
-        elseif($action=='bankAccounts'){
-            $bankAccounts = BankAccount::model()->findAll(
-                array(
-                    'condition'=>'bank_user_id=:bank_user_id', 
-                    'params'=>array('bank_user_id'=>$bankUser->id),
-                )
-            );
-        }
-        
         elseif($action=='employees'){
             $OEHrEmployees = HrEmployee::model()->findAll(array('order'=>'name_related'));
         }
@@ -74,7 +75,7 @@ class ViewAction extends CAction
             'action'=>$action,
             'company'=>$company,
             'costBenefitCalculations'=>$costBenefitCalculationsArray,
-            'realizedItems'=>$realizedItems,
+            'realizedItemsArray'=>$realizedItemsArray,
             'bankAccounts'=>$bankAccounts,
             'OEHrEmployees'=>$OEHrEmployees,
             'OESaleOrders'=>$OESaleOrders,

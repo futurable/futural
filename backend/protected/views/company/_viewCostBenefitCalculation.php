@@ -2,66 +2,108 @@
     // Company info
     echo "<h2>".Yii::t('Company', 'CostBenefitCalculations')."</h2>";
     
-    $week = date('W');
+    $weeks = range(date('W', strtotime("-1 month")), date('W'));
+    $CBCValues = array();
+    $CBCHeaders = array('turnover', 'expenses', 'salaries', 'loans', 'rents', 'communication', 'health', 'otherExpenses');
     
+    $costBenefitCalculations = array_reverse($costBenefitCalculations, true);
     foreach($costBenefitCalculations as $costBenefitCalculationItems){
         echo "<h3>{$costBenefitCalculationItems['create_date']}</h3>";
-        
+               
         echo "<table class='table-striped table-condensed'>";
             echo "<tr>";
-                echo "<th></th>";
-                echo "<th>".Yii::t('Company', 'Planned')." (".Yii::t('Company', 'year').")</th>";
-                echo "<th>".Yii::t('Company', 'Planned')." (".Yii::t('Company', 'month').")</th>";
-                echo "<th>".Yii::t('Company', 'Realized')." (".Yii::t('Company', 'month').")</th>";
+                echo "<th/>";
+                echo "<th>".Yii::t('Company','Turnover')."</th>";
+                echo "<th>".Yii::t('Company','Expenses')."</th>";
+                echo "<th>".Yii::t('Company','SalariesAndSideExpenses')."</th>";
+                echo "<th>".Yii::t('Company','Loans')."</th>";
+                echo "<th>".Yii::t('Company','FacilityExpenses')."</th>";
+                echo "<th>".Yii::t('Company','Communication')."</th>";
+                echo "<th>".Yii::t('Company','Health')."</th>";
+                echo "<th>".Yii::t('Company','OtherExpenses')."</th>";
             echo "</tr>";
+            
+            $plannedRows =  getPlannedRows($costBenefitCalculationItems);
+            
+            // Print yearly planned
+            echo "<tr>";
+                echo "<th>".Yii::t('Company', 'Planned')." (".Yii::t('Company', 'year').")</th>";
+                foreach($CBCHeaders as $CBCHeader){
+                    echo "<td>";
+                        echo $plannedRows['yearly'][$costBenefitCalculationItems[$CBCHeader]->costbenefitItemType->name]."&euro;";
+                    echo "</td>";
+                }
+            echo "</tr>";
+            
+            // Print weekly planned
+            echo "<tr>";
+                echo "<th>".Yii::t('Company', 'Planned')." (".Yii::t('Company', 'week').")</th>";
+                foreach($CBCHeaders as $CBCHeader){
+                    echo "<td>";
+                        echo $plannedRows['monthly'][$costBenefitCalculationItems[$CBCHeader]->costbenefitItemType->name]."&euro;";
+                    echo "</td>";
+                }
+            echo "</tr>"; 
+            
+            echo "<tr>";
+                echo "<th>".Yii::t('Company', 'Realized')."</th>";
+            echo "</tr>";
+            
+            foreach($weeks as $week){
+                echo "<tr>";
+                    echo "<td><strong>";
+                        echo Yii::t('Company', 'week')." ".$week;
+                    echo "</strong></td>";
+                    
+                if(array_key_exists($week, $realizedItemsArray)){
+                    $realizedItem = $realizedItemsArray[$week];
+                    // Get company loan accounts
+                    $loanAccounts = array();
+                    foreach($bankAccounts as $bankAccount){
+                        if($bankAccount->bank_account_type_id == 2) $loanAccounts[] = $bankAccount->iban;
+                    }
 
-
-            // Add side expenses to the same column
-            $costBenefitCalculationItems['salaries']->value += $costBenefitCalculationItems['sideExpenses']->value;
-
-            echo getTableRow($costBenefitCalculationItems['turnover'], $realizedItems, array('300000'));
-            echo getTableRow($costBenefitCalculationItems['expenses'], $realizedItems, array('400000'));
-            echo getTableRow($costBenefitCalculationItems['salaries'], $realizedItems, array('500000'), 'SalariesAndSideExpenses');
-            echo getTableRow($costBenefitCalculationItems['loans'], $realizedItems);
-            echo getTableRow($costBenefitCalculationItems['rents'], $realizedItems, array('701010', '701080'), 'FacilityExpenses');
-            echo getTableRow($costBenefitCalculationItems['communication'], $realizedItems, array('703000'));
-            echo getTableRow($costBenefitCalculationItems['health'], $realizedItems, array('70000'));
-            echo getTableRow($costBenefitCalculationItems['otherExpenses'], $realizedItems, array('707010'));
+                    echo getRealizedValue($realizedItem, array('300000'), false); // Turnover
+                    echo getRealizedValue($realizedItem, array('400000')); // Expenses
+                    echo getRealizedValue($realizedItem, array('500000')); // Salaries
+                    echo "<td>".BankSaldo::getSalaryPaymentsSaldo($loanAccounts, $week)."&euro;</td>"; // Loans
+                    echo getRealizedValue($realizedItem, array('701010', '701080')); // FacilityExpenses
+                    echo getRealizedValue($realizedItem, array('703000')); // Communications
+                    echo getRealizedValue($realizedItem, array('70000')); // Health
+                    echo getRealizedValue($realizedItem, array('707010')); // Other expenses
+                }
+                
+                echo "</tr>";
+            }
+            
         echo "</table>";
     }
-    /**
-     * Function for getting printed rows
-     * 
-     * @param array $CBCItem // Cost-benefit calculation items
-     * @param array $realizedItems // Realized values
-     * @param array $account // Accounts to calculate
-     * @param type $label // Lavel for the row
-     * @return string
-     */
-    function getTableRow($CBCItem, $realizedItems, $account = false, $label = false){
+    function getPlannedRows($CBCItems){
+        $returnItems = array();
+        
+        foreach($CBCItems as $CBCItem){
+            if(is_object($CBCItem)){
+                $monthly = number_format($CBCItem->value, 2, '.', ' ');
+                $yearly = number_format($CBCItem->value*12, 2, '.', ' ');
+
+                $returnItems['yearly'][$CBCItem->costbenefitItemType->name] = $yearly;
+                $returnItems['monthly'][$CBCItem->costbenefitItemType->name] = $monthly;  
+            }
+        }
+        return $returnItems;
+    }
+    
+    function getRealizedValue($realizedItem, $account = false, $negate = true){
         $realized = 0;
         if(is_array($account)){
             foreach($account as $value){
-                $realized += isset($realizedItems[$value]) ? $realizedItems[$value] : 0;
-            }  
+                $realized += isset($realizedItem[$value]) ? $realizedItem[$value] : 0;
+            }
+            if($negate) $realized *= -1;
         }
-        // Remove the negative operator
-        if($CBCItem->costbenefitItemType->name != 'turnover') $realized *= -1;
-        // Add 2 decimals
-        $realized = number_format($realized, 2, '.', ' ');
-        $monthly = number_format($CBCItem->value, 2, '.', ' ');
-        $yearly = number_format($CBCItem->value*12, 2, '.', ' ');
         
-        $header = !empty($label) ? $label : ucfirst($CBCItem->costbenefitItemType->name);
+        $realized = "<td>".number_format($realized, 2, '.', ' ')."&euro;</td>";
         
-        $row = "
-        <tr>
-            <th>".Yii::t('Company',$header)."</th>
-            <td>{$yearly} &euro;</td>
-            <td>{$monthly} &euro;</td>
-            <td>{$realized} &euro;</td>
-        </tr>";
-        
-        return $row;
+        return $realized;
     };
  ?>

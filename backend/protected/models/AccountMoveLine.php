@@ -59,6 +59,7 @@
  */
 class AccountMoveLine extends CActiveRecord
 {
+    public $week;
 	/**
 	 * @return string the associated database table name
 	 */

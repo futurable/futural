@@ -68,6 +68,7 @@ class BankAccountTransaction extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'payerIban' => array(self::BELONGS_TO, 'BankAccount', 'payer_iban'),
+            'bankLoanTransaction' => array(self::HAS_ONE, 'BankLoanTransaction', 'bank_account_transaction_id')
 		);
 	}
 
