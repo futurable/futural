@@ -34,6 +34,8 @@ class ViewAction extends CAction
                     $key = $CBCItem->costbenefitItemType->name;
                     $costBenefitCalculationsArray[ $costBenefitCalculation->id ][ $key ] = $CBCItem;
                 };
+                // Add side expenses to the salaries
+                $costBenefitCalculationsArray[ $costBenefitCalculation->id ][ 'salaries' ]->value += $costBenefitCalculationsArray[ $costBenefitCalculation->id ][ 'sideExpenses' ]->value;
             }
 
             // Get the realized sales
