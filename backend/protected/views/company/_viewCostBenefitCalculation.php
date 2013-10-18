@@ -61,7 +61,7 @@
                     echo getRealizedValue($realizedItem, array('300000'), false); // Turnover
                     echo getRealizedValue($realizedItem, array('400000')); // Expenses
                     echo getRealizedValue($realizedItem, array('500000')); // Salaries
-                    echo getRealizedValue($realizedItem); // Loans
+                    echo "<td>".BankSaldo::getSalaryPaymentsSaldo('FI5697030000014473', $week)."&euro;</td>"; // Loans
                     echo getRealizedValue($realizedItem, array('701010', '701080')); // FacilityExpenses
                     echo getRealizedValue($realizedItem, array('703000')); // Communications
                     echo getRealizedValue($realizedItem, array('70000')); // Health
@@ -97,7 +97,7 @@
             if($negate) $realized *= -1;
         }
         
-        $realized = "<td>".number_format($realized, 2, '.', ' ')."</td>";
+        $realized = "<td>".number_format($realized, 2, '.', ' ')."&euro;</td>";
         
         return $realized;
     };
