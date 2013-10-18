@@ -12,7 +12,7 @@ class ViewAction extends CAction
         
         // Format variables so we don't need multiple renderers
         $costBenefitCalculationsArray = null;
-        $realizedItems = null;
+        $realizedItemsArray = null;
         $bankAccounts = null;
         $OEHrEmployees = null;
         $OESaleOrders = null;
