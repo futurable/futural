@@ -23,6 +23,15 @@ class ViewAction extends CAction
         Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
         Yii::app()->dbopenerp->setActive(true);
         
+        if($action=='bankAccounts' OR $action=='costBenefitCalculation'){
+            $bankAccounts = BankAccount::model()->findAll(
+                array(
+                    'condition'=>'bank_user_id=:bank_user_id', 
+                    'params'=>array('bank_user_id'=>$bankUser->id),
+                )
+            );
+        }
+        
         if($action=='costBenefitCalculation'){
 
             $costBenefitCalculations = CostbenefitCalculation::model()->findAllByAttributes(array('company_id'=>$company->id));
@@ -50,16 +59,6 @@ class ViewAction extends CAction
                 $realizedItemsArray[ date('W', strtotime($accountMoveLine->week)) ][ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
             }
         }
-
-        elseif($action=='bankAccounts'){
-            $bankAccounts = BankAccount::model()->findAll(
-                array(
-                    'condition'=>'bank_user_id=:bank_user_id', 
-                    'params'=>array('bank_user_id'=>$bankUser->id),
-                )
-            );
-        }
-        
         elseif($action=='employees'){
             $OEHrEmployees = HrEmployee::model()->findAll(array('order'=>'name_related'));
         }
