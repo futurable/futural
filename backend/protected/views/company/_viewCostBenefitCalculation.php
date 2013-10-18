@@ -6,6 +6,7 @@
     $CBCValues = array();
     $CBCHeaders = array('turnover', 'expenses', 'salaries', 'loans', 'rents', 'communication', 'health', 'otherExpenses');
     
+    $costBenefitCalculations = array_reverse($costBenefitCalculations, true);
     foreach($costBenefitCalculations as $costBenefitCalculationItems){
         echo "<h3>{$costBenefitCalculationItems['create_date']}</h3>";
                
