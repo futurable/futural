@@ -24,7 +24,7 @@ class Suppliers {
     }
     
     public function getAll(){
-        $suppliers = Company::model()->findAll(array('order'=>'name'));
+        $suppliers = Company::model()->findAll(array('order'=>'name', 'condition'=>'active=1'));
         
         return self::trimSuppliers($suppliers);
     }
