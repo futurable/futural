@@ -144,7 +144,7 @@ class SendOrdersCommand extends CConsoleCommand
             
             $message = new YiiMailMessage;
             $message->subject = "Futurality ".Yii::t('Order', 'PurchaseOrder')." {$OEOrder->name}";
-            $message->setBody($messageContent, 'text/html');
+            $message->setBody($messageContent, 'text/html'); 
             $message->addTo($company->email, $company->name);
             $message->setBcc('webadmin@futurable.fi');
             $message->from = 'businesscenter@futurality.fi';
