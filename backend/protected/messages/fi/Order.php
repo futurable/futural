@@ -9,7 +9,7 @@
  * Each array element represents the translation (value) of a message (key).
  * If the value is empty, the message is considered as not translated.
  * Messages that no longer need translation will have their translations
- * enclosed between a pair of '' marks.
+ * enclosed between a pair of '@@' marks.
  *
  * Message string can be used with plural forms format. Check i18n section
  * of the guide for details.
@@ -17,16 +17,14 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'OurPurchaseOrderAsAttachment' => 'Ostotilauksemme liitteenä.',
-  'Order' => 'Tilaus',
-  'Regards' => 'Terveisin',
-  'Contact' => 'Asiaa hoitaa',
-  'Description' => 'Kuvaus',
-  'Hello' => 'Hei',
-  'Honorable' => 'Arvoisa',
   'Orders' => 'Tilaukset',
+  'Order' => 'Tilaus',
   'PurchaseOrder' => 'Ostotilaus',
+  'Description' => 'Kuvaus',
   'Quantity' => 'Määrä',
+  'Regards' => 'Terveisin',
   'Units' => 'Kpl',
-  'WeWouldLikeToOrderTheFollowingItemsFromYou' => 'Haluaisimme tilata teiltä seuraavat tuotteet',
+  'Contact' => 'Asiaa hoitaa',
+'WeWouldLikeToOrderTheFollowingItemsFromYou' => 'Haluaisimme tilata teiltä seuraavat tuotteet',
+  'Honorable'=> 'Arvoisa',
 );

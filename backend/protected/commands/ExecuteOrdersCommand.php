@@ -24,7 +24,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
         Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$businessCenterDb}";
         Yii::app()->dbopenerp->setActive(true);
         
-        $customers = ResCompany::model()->findAll();
+        $customers = ResCompany::model()->findAll(array('condition'=>'id>1'));
         
         echo( count($customers)." customers found\n" );
         
@@ -39,7 +39,7 @@ class ExecuteOrdersCommand extends CConsoleCommand
             echo( "Creating order for {$supplier->name}\n" );
             
             // Get the customer
-            $customer = $customers[ rand( 2, count($customers)-1 ) ];
+            $customer = $customers[ rand( 0, count($customers)-1 ) ];
             echo( "Using customer {$customer->name}\n" );
             
             // Get the customer contact
