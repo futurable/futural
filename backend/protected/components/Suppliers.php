@@ -10,6 +10,7 @@ class Suppliers {
         $criteria = new CDbCriteria();
         $criteria->alias = 'company';
         $criteria->order = 'company.name';
+        $criteria->addCondition('company.active = 1');
         
         // Get all suppliers
         if($role<3){         
