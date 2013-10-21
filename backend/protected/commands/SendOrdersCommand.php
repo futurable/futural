@@ -18,7 +18,7 @@ class SendOrdersCommand extends CConsoleCommand
         }
 
         define ('K_PATH_IMAGES', Yii::app()->getBasePath().'/img/logo/');
-        require_once(dirname(Yii::app()->request->scriptFile).'/extensions/'.'tcpdf/tcpdf.php');
+        require_once(Yii::app()->getBasePath().'/extensions/'.'tcpdf/tcpdf.php');
         
         # 2. Run through each order
         foreach($orders as $order){
