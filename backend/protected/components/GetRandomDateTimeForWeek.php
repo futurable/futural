@@ -9,7 +9,7 @@ Class GetRandomDateTimeForWeek{
         // Set random time from office hours
         $date->setTime(rand(6,17), rand(0,60));
         
-        return $date->format('Y-m-d H:i:s')."\n";
+        return $date->format('Y-m-d H:i:s');
     }
 }
 ?>
