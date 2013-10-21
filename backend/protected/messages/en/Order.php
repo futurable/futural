@@ -22,7 +22,7 @@ return array (
   'Hello' => '',
   'Honorable' => '',
   'Orders' => '',
-  'OurPurchaseOrderAsAttachment' => 'Our urchase order as attachment',
+  'OurPurchaseOrderAsAttachment' => 'Our purchase order as attachment',
   'Quantity' => '',
   'Units' => '',
   'PurchaseOrder' => 'Purchase order',
