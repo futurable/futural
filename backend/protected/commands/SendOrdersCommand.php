@@ -7,7 +7,7 @@ class SendOrdersCommand extends CConsoleCommand
         
         # 1. See if there are orders to be sent
         $criteria = new CDbCriteria();
-        $criteria->addCondition('sent IS NULL AND executed IS NOT NULL');
+        $criteria->addCondition('sent IS NULL');
         $orders = Order::model()->findAll( $criteria );
         
         if(empty($orders)){
@@ -18,7 +18,7 @@ class SendOrdersCommand extends CConsoleCommand
         }
 
         define ('K_PATH_IMAGES', Yii::app()->getBasePath().'/img/logo/');
-        require_once(Yii::app()->getBasePath().'/extensions/'.'tcpdf/tcpdf.php');
+        require_once( Yii::app()->getBasePath().'/extensions/'.'tcpdf/tcpdf.php' );
         
         # 2. Run through each order
         foreach($orders as $order){
@@ -135,26 +135,26 @@ class SendOrdersCommand extends CConsoleCommand
             
             $transaction = Yii::app()->db->beginTransaction();
             
-            $OEOrder->state = 'approved';
-            $OESuccess = $OEOrder->save();
-            
             $order->sent = date('Y-m-d H:i:s');
-            $OSuccess = $order->save();
+            $success = $order->save();
 
-            $messageContent = "test";
+            $recipientMail = $OEOrder->partner->email;
+            $messageContent = Yii::t('Order', 'Hello')." {$company->name}!
+                ".Yii::t('Order', 'OurPurchaseOrderAsAttachment');
+            
             $message = new YiiMailMessage;
-            $message->subject = Yii::t('Company', "FuturalityAccount");
-            $message->setBody($messageContent, 'text/html');
+            $message->subject = "Futurality ".Yii::t('Order', 'PurchaseOrder')." {$OEOrder->name}";
+            $message->setBody($messageContent, 'text/html'); 
             $message->addTo($company->email, $company->name);
-            $message->addTo('webadmin@futurable.fi');
+            $message->setBcc('webadmin@futurable.fi');
             $message->from = 'businesscenter@futurality.fi';
             $message->sender = 'businesscenter@futurality.fi';
             $attachment = Swift_Attachment::fromPath($filename, 'application/pdf');
             $message->attach($attachment);
 
-            if($OESuccess && $OSuccess){
+            if($success){
                 Yii::app()->mail->send($message);
-                echo( "Message sent to $company->email\n" );
+                echo( "Message sent to $recipientMail\n" );
             
                 echo( "Transaction successful\n" );
                 $transaction->commit();
@@ -163,7 +163,6 @@ class SendOrdersCommand extends CConsoleCommand
                 echo( "Transaction failed\n" );
                 $transaction->rollback();
             }
-            echo "\n";
         }
         
         echo( date('Y-m-d H:i:s').": SendOrders run ended.\n\n" );
