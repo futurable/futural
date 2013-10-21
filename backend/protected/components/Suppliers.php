@@ -10,6 +10,7 @@ class Suppliers {
         $criteria = new CDbCriteria();
         $criteria->alias = 'company';
         $criteria->order = 'company.name';
+        $criteria->addCondition('company.active = 1');
         
         // Get all suppliers
         if($role<3){         
@@ -23,7 +24,7 @@ class Suppliers {
     }
     
     public function getAll(){
-        $suppliers = Company::model()->findAll(array('order'=>'name'));
+        $suppliers = Company::model()->findAll(array('order'=>'name', 'condition'=>'active=1'));
         
         return self::trimSuppliers($suppliers);
     }
