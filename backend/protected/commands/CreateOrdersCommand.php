@@ -86,8 +86,10 @@ class CreateOrdersCommand extends CConsoleCommand
                 }
                 
                 $order = new Order();
-
-                $order->event_time = GetRandomDateTimeForWeek::run();
+                $eventTime = GetRandomDateTimeForWeek::run();
+                echo( "Using event time '{$eventTime}'\n" );
+                
+                $order->event_time = $eventTime;
                 $order->rows = $currentSetup->rows;
                 $order->value = round($turnover * $currentSetup->weight * $portion);
                 $order->company_id = $supplier->id;
