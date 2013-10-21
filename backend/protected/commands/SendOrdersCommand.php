@@ -7,7 +7,7 @@ class SendOrdersCommand extends CConsoleCommand
         
         # 1. See if there are orders to be sent
         $criteria = new CDbCriteria();
-        $criteria->addCondition('sent IS NULL');
+        $criteria->addCondition('sent IS NULL AND executed IS NOT NULL');
         $orders = Order::model()->findAll( $criteria );
         
         if(empty($orders)){
@@ -135,8 +135,11 @@ class SendOrdersCommand extends CConsoleCommand
             
             $transaction = Yii::app()->db->beginTransaction();
             
+            $OEOrder->state = 'approved';
+            $OESuccess = $OEOrder->save();
+            
             $order->sent = date('Y-m-d H:i:s');
-            $success = $order->save();
+            $OSuccess = $order->save();
 
             $messageContent = "test";
             $message = new YiiMailMessage;
@@ -149,8 +152,8 @@ class SendOrdersCommand extends CConsoleCommand
             $attachment = Swift_Attachment::fromPath($filename, 'application/pdf');
             $message->attach($attachment);
 
-            if($success){
-                //Yii::app()->mail->send($message);
+            if($OESuccess && $OSuccess){
+                Yii::app()->mail->send($message);
                 echo( "Message sent to $company->email\n" );
             
                 echo( "Transaction successful\n" );
@@ -160,6 +163,7 @@ class SendOrdersCommand extends CConsoleCommand
                 echo( "Transaction failed\n" );
                 $transaction->rollback();
             }
+            echo "\n";
         }
         
         echo( date('Y-m-d H:i:s').": SendOrders run ended.\n\n" );
