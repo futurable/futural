@@ -7,7 +7,7 @@ class SendOrdersCommand extends CConsoleCommand
         
         # 1. See if there are orders to be sent
         $criteria = new CDbCriteria();
-        $criteria->addCondition('sent IS NULL');
+        $criteria->addCondition('sent IS NULL AND executed IS NOT NULL');
         $orders = Order::model()->findAll( $criteria );
         
         if(empty($orders)){
@@ -18,7 +18,7 @@ class SendOrdersCommand extends CConsoleCommand
         }
 
         define ('K_PATH_IMAGES', Yii::app()->getBasePath().'/img/logo/');
-        require_once( Yii::app()->getBasePath().'/extensions/'.'tcpdf/tcpdf.php' );
+        require_once(Yii::app()->getBasePath().'/extensions/'.'tcpdf/tcpdf.php');
         
         # 2. Run through each order
         foreach($orders as $order){
@@ -135,8 +135,11 @@ class SendOrdersCommand extends CConsoleCommand
             
             $transaction = Yii::app()->db->beginTransaction();
             
+            $OEOrder->state = 'approved';
+            $OESuccess = $OEOrder->save();
+            
             $order->sent = date('Y-m-d H:i:s');
-            $success = $order->save();
+            $OSuccess = $order->save();
 
             $recipientMail = $OEOrder->partner->email;
             $messageContent = Yii::t('Order', 'Hello')." {$company->name}!
@@ -152,9 +155,9 @@ class SendOrdersCommand extends CConsoleCommand
             $attachment = Swift_Attachment::fromPath($filename, 'application/pdf');
             $message->attach($attachment);
 
-            if($success){
+            if($OESuccess && $OSuccess){
                 Yii::app()->mail->send($message);
-                echo( "Message sent to $recipientMail\n" );
+                echo( "Message sent to $company->email\n" );
             
                 echo( "Transaction successful\n" );
                 $transaction->commit();
@@ -163,6 +166,7 @@ class SendOrdersCommand extends CConsoleCommand
                 echo( "Transaction failed\n" );
                 $transaction->rollback();
             }
+            echo "\n";
         }
         
         echo( date('Y-m-d H:i:s').": SendOrders run ended.\n\n" );
