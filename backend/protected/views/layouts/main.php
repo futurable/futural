@@ -52,13 +52,12 @@
                     // For instructors and higher
                     array('label'=>Yii::t('Menu', 'Home'), 'url'=>array('/site/index'), 'visible'=>$role>0),
                     array('label'=>Yii::t('Menu', 'Companies'), 'url'=>array('/company/index'), 'visible'=>$role>0),
-                    array('label'=>Yii::t('Menu', 'Keys'), 'url'=>array('/tokenKey/index'), 'visible'=>$role>0),
-                    array('label'=>Yii::t('Menu', 'Companies'), 'url'=>array('/company/index'), 'visible'=>$role>0), 
+                    array('label'=>Yii::t('Menu', 'Keys'), 'url'=>array('/tokenKey/index'), 'visible'=>$role>0), 
                     array('label'=>Yii::t('Menu', 'BankAccounts'), 'url'=>array('/company/bankAccounts'), 'visible'=>$role>0), 
                     array('label'=>Yii::t('Menu', 'Users'), 'url'=>array('/company/users'), 'visible'=>$role>0), 
 
                     // For managers and higher
-                    array('label'=>Yii::t('Menu', 'Orders'), 'url'=>array('/order/index'), 'visible'=>$role>1),
+                    array('label'=>Yii::t('Menu', 'Orders'), 'url'=>array('/order/index'), 'visible'=>$role>2),
 
                     // For admins
                     array('label'=>Yii::t('Menu', 'Customers'), 'url'=>array('/tokenCustomer/index'), 'visible'=>$role>2),
