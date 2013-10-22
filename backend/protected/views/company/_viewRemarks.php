@@ -10,7 +10,10 @@ if(!empty($remarks)){
             echo "<th>".Yii::t('Company', 'Remark')."</th>";
             echo "<th>".Yii::t('Company', 'Significance')."</th>";
         echo "</tr>";
+    
+    $sum = 0;
     foreach($remarks as $remark){
+        $sum += $remark->significance;
         $remark->significance = $remark->significance >= 0 ? "+".$remark->significance : $remark->significance;
         
         echo "<tr>";
@@ -20,6 +23,13 @@ if(!empty($remarks)){
             echo "<td>{$remark->significance}</td>";
         echo "</tr>";
     }
+    $sum = $sum >= 0 ? "+".$sum : $sum;
+    echo "<tr>";
+        echo "<th colspan='2' />";
+        echo "<th>".Yii::t('Company', 'Sum').":</th>";
+        echo "<th>{$sum}</th>";
+    echo "</tr>";
+    
     echo "</table>";
 }
 else{
