@@ -13,7 +13,7 @@ if(!empty($remarks)){
         echo "<tr>";
             echo "<td>{$remark->create_date}</td>";
             echo "<td>{$remark->description}</td>";
-            echo "<td>{$remark->sigificance}</td>";
+            echo "<td>{$remark->significance}</td>";
         echo "</tr>";
     }
     echo "</table>";
@@ -26,7 +26,6 @@ else{
 if(!Yii::app()->user->isGuest) $role = Yii::app()->user->getRole();
 if($role >= 2){
     echo "<h3>".Yii::t('Company', 'CreateARemark')."</h3>";
-        $remark = new Remark();
-        $this->renderPartial('_createRemark', array('remark'=>$remark));
+        $this->renderPartial('_createRemark', array('remark'=>$newRemark));
 }
 ?>
