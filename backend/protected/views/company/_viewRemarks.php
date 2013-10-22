@@ -6,12 +6,16 @@ if(!empty($remarks)){
     echo "<table>";
         echo "<tr>";
             echo "<th>".Yii::t('Company', 'CreateDate')."</th>";
+            echo "<th>".Yii::t('Company', 'EventDate')."</th>";
             echo "<th>".Yii::t('Company', 'Remark')."</th>";
             echo "<th>".Yii::t('Company', 'Significance')."</th>";
         echo "</tr>";
     foreach($remarks as $remark){
+        $remark->significance = $remark->significance >= 0 ? "+".$remark->significance : $remark->significance;
+        
         echo "<tr>";
             echo "<td>{$remark->create_date}</td>";
+            echo "<td>{$remark->event_date}</td>";
             echo "<td>{$remark->description}</td>";
             echo "<td>{$remark->significance}</td>";
         echo "</tr>";
