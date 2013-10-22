@@ -6,7 +6,7 @@
 )); ?>
 
 	<?php echo $form->errorSummary($remark); ?>
-
+    
 	<table>
 		<tr>
             <th>
@@ -32,6 +32,7 @@
                     // additional javascript options for the date picker plugin
                     'options'=>array(
                         'defaultDate'=>$remark->event_date,
+                        'maxDate'=>date('d.m.Y'),
                     ),
                 ));
                 ?>
