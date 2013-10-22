@@ -15,5 +15,5 @@
     ));
     
     $loginUrl = "http://erp.futurality.fi/?db={$company->tag}";
-    echo "<p>OpenERP ".Yii::t('Company', 'Login').":<br/> <a href={$loginUrl}>{$loginUrl}</a></p>";
+    echo "<p>OpenERP ".Yii::t('Company', 'login').":<br/> <a href={$loginUrl}>{$loginUrl}</a></p>";
  ?>
