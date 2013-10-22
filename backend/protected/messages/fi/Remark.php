@@ -17,8 +17,8 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Excellent' => 'Loistavaa ajattelua',
-  'GreatWork' => 'Mainiosti tehty',
+  'Excellent' => 'Esimerkillistä paneutumista',
+  'GreatWork' => 'Loistavasti tehty',
   'Late' => 'Myöhässä',
   'Neglect' => 'Laiminlyöntiä',
   'NoSignificance' => 'Ei vaikutusta',
