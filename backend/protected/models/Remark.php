@@ -106,4 +106,18 @@ class Remark extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    public function getSignificanceArray(){
+        $array = array(
+            '-3' => '-3 ('.Yii::t('Remark', 'Neglect').")",
+            '-2' => '-2 ('.Yii::t('Remark', 'Slacking').")",
+            '-1' => '-1 ('.Yii::t('Remark', 'Late').")",
+            '0' => '0 ('.Yii::t('Remark', 'NoSignificance').")",
+            '1' => '+1 ('.Yii::t('Remark', 'WellDone').")",
+            '2' => '+2 ('.Yii::t('Remark', 'GreatWork').")",
+            '3' => '+3 ('.Yii::t('Remark', 'Excellent').")",
+        );
+        
+        return $array;
+    }
 }
