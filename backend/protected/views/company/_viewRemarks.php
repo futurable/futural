@@ -1,6 +1,7 @@
 <?php
 echo "<h2>".Yii::t('Company', 'Remarks')."</h2>";
 
+// Printing remarks
 if(!empty($remarks)){
     echo "<table>";
         echo "<tr>";
@@ -19,5 +20,13 @@ if(!empty($remarks)){
 }
 else{
     echo "<p>".Yii::t('Company','NoRemarks')."</p>";
+}
+
+// Creating remarks
+if(!Yii::app()->user->isGuest) $role = Yii::app()->user->getRole();
+if($role >= 2){
+    echo "<h3>".Yii::t('Company', 'CreateARemark')."</h3>";
+        $remark = new Remark();
+        $this->renderPartial('_createRemark', array('remark'=>$remark));
 }
 ?>
