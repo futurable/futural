@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'remark':
  * @property integer $id
  * @property string $description
+ * @property string $event_date
  * @property string $create_date
  * @property integer $significance
  * @property integer $company_id
@@ -31,13 +32,13 @@ class Remark extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('company_id', 'required'),
+			array('event_date, company_id', 'required'),
 			array('significance, company_id', 'numerical', 'integerOnly'=>true),
 			array('description', 'length', 'max'=>1024),
 			array('create_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, description, create_date, significance, company_id', 'safe', 'on'=>'search'),
+			array('id, description, event_date, create_date, significance, company_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +62,7 @@ class Remark extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'description' => 'Description',
+			'event_date' => 'Event Date',
 			'create_date' => 'Create Date',
 			'significance' => 'Significance',
 			'company_id' => 'Company',
@@ -87,6 +89,7 @@ class Remark extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('event_date',$this->event_date,true);
 		$criteria->compare('create_date',$this->create_date,true);
 		$criteria->compare('significance',$this->significance);
 		$criteria->compare('company_id',$this->company_id);
@@ -119,5 +122,4 @@ class Remark extends CActiveRecord
         );
         
         return $array;
-    }
 }
