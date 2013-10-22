@@ -19,8 +19,8 @@
 return array (
   'CreateDate' => 'Create date',
   'ExpirationDate' => 'Expiration date',
-  'Key' => '',
-  'Lifetime' => '',
+  'Key' => 'Key',
+  'Lifetime' => 'Lifetime',
   'ReclaimDate' => 'Reclaim date',
   'TokenKeys' => 'Token keys',
 );

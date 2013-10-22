@@ -17,5 +17,11 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'YouAreLoggedInAs' => 'Kirjautuneena sisään',
+  'Excellent' => 'Loistavaa ajattelua',
+  'GreatWork' => 'Mainiosti tehty',
+  'Late' => 'Myöhässä',
+  'Neglect' => 'Laiminlyöntiä',
+  'NoSignificance' => 'Ei vaikutusta',
+  'Slacking' => 'Laiskottelua',
+  'WellDone' => 'Hyvää työtä',
 );

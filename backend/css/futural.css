@@ -128,3 +128,9 @@ a:hover{
 table td{
     white-space: nowrap;
 }
+#createRemark table{
+    width: auto;
+}
+#createRemark label{
+    display: inline;
+}

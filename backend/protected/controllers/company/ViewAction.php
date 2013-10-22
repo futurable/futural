@@ -10,6 +10,17 @@ class ViewAction extends CAction
         $company = $controller->loadModel($id);
         $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
         
+        $newRemark=new Remark;
+        $newRemark->company_id = $company->id; 
+        if(isset($_POST['Remark'])){
+            $newRemark->attributes=$_POST['Remark'];
+            $newRemark->event_date = date('Y-m-d', strtotime($newRemark->event_date));
+            if($newRemark->validate()){
+                $newRemark->save();
+                $controller->redirect(array('','id'=>$company->id,'action'=>'remarks'));
+            }
+        }
+
         // Format variables so we don't need multiple renderers
         $costBenefitCalculationsArray = null;
         $realizedItemsArray = null;
@@ -17,6 +28,7 @@ class ViewAction extends CAction
         $OEHrEmployees = null;
         $OESaleOrders = null;
         $OEPurchaseOrders = null;
+        $remarks = null;
         
         // Change OpenERP-database
         Yii::app()->dbopenerp->setActive(false);
@@ -70,6 +82,9 @@ class ViewAction extends CAction
         elseif($action=='purchaseOrders'){
             $OEPurchaseOrders = PurchaseOrder::model()->findAll(array('order'=>'create_date DESC'));
         }
+        elseif($action=='remarks'){
+            $remarks = Remark::model()->findAll(array('condition'=>"company_id={$company->id}"));
+        }
 
         $controller->render('view',array(
             'action'=>$action,
@@ -80,6 +95,8 @@ class ViewAction extends CAction
             'OEHrEmployees'=>$OEHrEmployees,
             'OESaleOrders'=>$OESaleOrders,
             'OEPurchaseOrders'=>$OEPurchaseOrders,
+            'remarks'=>$remarks,
+            'newRemark'=>$newRemark
         ));
     }
 }
