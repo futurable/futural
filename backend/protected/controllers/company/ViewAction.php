@@ -10,6 +10,16 @@ class ViewAction extends CAction
         $company = $controller->loadModel($id);
         $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
         
+        $newRemark=new Remark;
+        $newRemark->company_id = $company->id; 
+        if(isset($_POST['Remark'])){
+            $newRemark->attributes=$_POST['Remark'];
+            $newRemark->event_date = date('Y-m-d', strtotime($newRemark->event_date));
+            if($newRemark->validate()){
+                $newRemark->save();
+            }
+        }
+
         // Format variables so we don't need multiple renderers
         $costBenefitCalculationsArray = null;
         $realizedItemsArray = null;
@@ -85,6 +95,7 @@ class ViewAction extends CAction
             'OESaleOrders'=>$OESaleOrders,
             'OEPurchaseOrders'=>$OEPurchaseOrders,
             'remarks'=>$remarks,
+            'newRemark'=>$newRemark
         ));
     }
 }
