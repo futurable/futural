@@ -17,6 +17,7 @@ class ViewAction extends CAction
         $OEHrEmployees = null;
         $OESaleOrders = null;
         $OEPurchaseOrders = null;
+        $remarks = null;
         
         // Change OpenERP-database
         Yii::app()->dbopenerp->setActive(false);
@@ -70,6 +71,9 @@ class ViewAction extends CAction
         elseif($action=='purchaseOrders'){
             $OEPurchaseOrders = PurchaseOrder::model()->findAll(array('order'=>'create_date DESC'));
         }
+        elseif($action=='remarks'){
+            $remarks = Remark::model()->findAll(array('condition'=>"company_id={$company->id}"));
+        }
 
         $controller->render('view',array(
             'action'=>$action,
@@ -80,6 +84,7 @@ class ViewAction extends CAction
             'OEHrEmployees'=>$OEHrEmployees,
             'OESaleOrders'=>$OESaleOrders,
             'OEPurchaseOrders'=>$OEPurchaseOrders,
+            'remarks'=>$remarks,
         ));
     }
 }
