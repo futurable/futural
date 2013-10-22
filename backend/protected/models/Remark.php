@@ -122,4 +122,5 @@ class Remark extends CActiveRecord
         );
         
         return $array;
+   }
 }
