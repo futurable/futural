@@ -32,12 +32,13 @@ class Remark extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('event_date, create_date, company_id', 'required'),
+			array('event_date, company_id', 'required'),
 			array('significance, company_id', 'numerical', 'integerOnly'=>true),
 			array('description', 'length', 'max'=>1024),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, description, event_date, create_date, significance, company_id', 'safe', 'on'=>'search'),
+            array('create_date','default', 'value'=>new CDbExpression('NOW()'), 'setOnEmpty'=>false,'on'=>'insert'),
 		);
 	}
 
