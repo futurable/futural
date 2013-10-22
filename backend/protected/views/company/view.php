@@ -47,6 +47,7 @@
     elseif($action=='remarks'){
         $this->renderPartial('_viewRemarks',array(
             'remarks'=>$remarks,
+            'newRemark'=>$newRemark,
         ));
     }
     
