@@ -17,6 +17,13 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'Contact' => 'Asiaa hoitaa',
+  'OurPurchaseOrderAsAttachment' => 'Ostotilauksemme liitteenä.',
+  'Order' => 'Tilaus',
+  'Regards' => 'Terveisin',
+  'Description' => 'Kuvaus',
+  'Hello' => 'Hei',
+  'Honorable' => 'Arvoisa',
   'Orders' => 'Tilaukset',
   'Order' => 'Tilaus',
   'PurchaseOrder' => 'Ostotilaus',

@@ -18,6 +18,9 @@
  */
 return array (
   'Orders' => '',
+  'OurPurchaseOrderAsAttachment' => 'Our purchase order as attachment',
+  'Quantity' => '',
+  'Units' => '',
   'PurchaseOrder' => 'Purchase order',
   'WeWouldLikeToOrderTheFollowingItemsFromYou' => 'We would like to order the following items from you',
   'Honorable'=> '',
