@@ -134,6 +134,3 @@ table td{
 #createRemark label{
     display: inline;
 }
-#createRemark select{
-    width: 60px;
-}
