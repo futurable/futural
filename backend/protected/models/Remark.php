@@ -61,11 +61,11 @@ class Remark extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'description' => 'Description',
-			'event_date' => 'Event Date',
-			'create_date' => 'Create Date',
-			'significance' => 'Significance',
-			'company_id' => 'Company',
+			'description' => Yii::t('Company', 'Description'),
+			'event_date' => Yii::t('Company', 'EventDate'),
+			'create_date' => Yii::t('Company', 'CreateDate'),
+			'significance' => Yii::t('Company', 'Significance'),
+			'company_id' => Yii::t('Company', 'Company'),
 		);
 	}
 
