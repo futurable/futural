@@ -17,6 +17,7 @@ class ViewAction extends CAction
             $newRemark->event_date = date('Y-m-d', strtotime($newRemark->event_date));
             if($newRemark->validate()){
                 $newRemark->save();
+                $controller->redirect(array('','id'=>$company->id,'action'=>'remarks'));
             }
         }
 
