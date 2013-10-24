@@ -21,8 +21,8 @@
                          echo "<td>{$PurchaseOrder->createU->partner->name}</td>";
                          echo "<td>{$createDate}</td>";
                          echo "<td>{$PurchaseOrder->amount_untaxed}&euro;</td>";
-                         echo "<td>{$PurchaseOrder->amount_tax}</td>";
-                         echo "<td>{$PurchaseOrder->amount_total}</td>";
+                         echo "<td>{$PurchaseOrder->amount_tax}&euro;</td>";
+                         echo "<td>{$PurchaseOrder->amount_total}&euro;</td>";
                          echo "<td>{$PurchaseOrder->state}</td>";
                     echo "</tr>";
                 }
