@@ -70,8 +70,8 @@
                         echo "<td>".BankSaldo::getSalaryPaymentsSaldo($loanAccounts, $week)."&euro;</td>"; // Loans
                         echo getRealizedValue($realizedItem, array('701010', '701080')); // FacilityExpenses
                         echo getRealizedValue($realizedItem, array('703000')); // Communications
-                        echo getRealizedValue($realizedItem, array('70000')); // Health
-                        echo getRealizedValue($realizedItem, array('707010', '709100')); // Other expenses
+                        echo getRealizedValue($realizedItem, array('700000')); // Health
+                        echo getRealizedValue($realizedItem, array('707010', '709100', '709115', '702070')); // Other expenses
                     }
 
                     echo "</tr>";
