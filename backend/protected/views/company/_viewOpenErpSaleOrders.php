@@ -1,31 +1,34 @@
 <?php
     echo "<h2>".Yii::t('Company', 'SaleOrders')."</h2>";
     
-    $gridDataProvider = new CArrayDataProvider($OESaleOrders, array(           
-        'pagination'=>array(
-            'pageSize' => 5,
-         ),
-    ));
+    echo "<div class='grid-view'>";
+    
+        echo "<table class='items table table-striped'>";
+            echo "<thead>";
+                echo "<tr>";
+                     echo "<th>".Yii::t('Order', 'Creator')."</th>";
+                     echo "<th>".Yii::t('Order', 'CreateDate')."</th>";
+                     echo "<th>".Yii::t('Order', 'AmountUntaxed')."</th>";
+                     echo "<th>".Yii::t('Order', 'AmountTax')."</th>";
+                     echo "<th>".Yii::t('Order', 'TotalAmount')."</th>";
+                     echo "<th>".Yii::t('Order', 'OrderState')."</th>";
+                echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
+                foreach($OESaleOrders as $SaleOrder){
+                    $createDate = date('d.m.Y', strtotime($SaleOrder->create_date));
+                    echo "<tr>";
+                         echo "<td>{$SaleOrder->createU->partner->name}</td>";
+                         echo "<td>{$createDate}</td>";
+                         echo "<td>{$SaleOrder->amount_untaxed}&euro;</td>";
+                         echo "<td>{$SaleOrder->amount_tax}</td>";
+                         echo "<td>{$SaleOrder->amount_total}</td>";
+                         echo "<td>{$SaleOrder->state}</td>";
+                    echo "</tr>";
+                }
+            echo "</tbody>";
 
-    $gridColumns = array(
-        array('name'=>'create_date', 'header'=>Yii::t('Company', 'CreateDate')),
-        array('name'=>'amount_total', 'header'=>Yii::t('Company', 'TotalAmount')),
-        array('name'=>'state', 'header'=>Yii::t('Company', 'OrderState')),
-        array(
-            'class'=>'bootstrap.widgets.TbButtonColumn',
-            'viewButtonUrl'=>null,
-            'buttons'=>array(
-                'view'=>array('visible'=>'false',),
-                'update'=>array('visible'=>'false',),
-                'delete'=>array('visible'=>'false',),
-            ),
-        )
-    );
+        echo "</table>";
 
-    $this->widget('bootstrap.widgets.TbGridView', array(
-        'type'=>'striped',
-        'dataProvider'=>$gridDataProvider,
-        'template'=>"{items}{pager}",
-        'columns'=>$gridColumns,
-    ));
+    echo "</div>";
 ?>
