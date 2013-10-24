@@ -17,6 +17,11 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'CreateDate' => 'Create date',
+  'AmountUntaxed' => 'Untaxed',
+  'AmountTax' => 'Tax',
+  'AmountTotal' => 'Total',
+  'OrderState' => 'State',
   'Contact' => '',
   'Description' => '',
   'Hello' => '',

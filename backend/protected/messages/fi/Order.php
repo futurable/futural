@@ -17,6 +17,12 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'Creator' => 'Luoja',
+  'CreateDate' => 'Luontipäivä',
+  'AmountUntaxed' => 'Veroton',
+  'AmountTax' => 'Vero',
+  'AmountTotal' => 'Verollinen',
+  'OrderState' => 'Tila',
   'Order' => 'Tilaus',
   'Regards' => 'Terveisin',
   'Contact' => 'Asiaa hoitaa',
