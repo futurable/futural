@@ -10,7 +10,7 @@
                      echo "<th>".Yii::t('Order', 'CreateDate')."</th>";
                      echo "<th>".Yii::t('Order', 'AmountUntaxed')."</th>";
                      echo "<th>".Yii::t('Order', 'AmountTax')."</th>";
-                     echo "<th>".Yii::t('Order', 'TotalAmount')."</th>";
+                     echo "<th>".Yii::t('Order', 'AmountTotal')."</th>";
                      echo "<th>".Yii::t('Order', 'OrderState')."</th>";
                 echo "</tr>";
             echo "</thead>";
