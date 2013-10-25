@@ -11,7 +11,7 @@
         echo "<h3>{$costBenefitCalculationItems['create_date']}</h3>";
         
         echo "<div class='grid-view'>";
-            echo "<table class='items table table-striped'>";
+            echo "<table class='items table table-striped nowrap'>";
                 echo "<tr>";
                     echo "<th/>";
                     echo "<th>".Yii::t('Company','Turnover')."</th>";

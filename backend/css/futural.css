@@ -125,7 +125,7 @@ a:hover{
 .verticalBorders td, .verticalBorders th{
     border-left: 1px solid #C8DA30;
 }
-table td{
+.nowrap{
     white-space: nowrap;
 }
 #createRemark table{
@@ -133,4 +133,7 @@ table td{
 }
 #createRemark label{
     display: inline;
+}
+h2{
+    padding: 60px 0 20px 0;
 }
