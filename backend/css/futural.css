@@ -125,6 +125,9 @@ a:hover{
 .verticalBorders td, .verticalBorders th{
     border-left: 1px solid #C8DA30;
 }
+.nowrap{
+    white-space: nowrap;
+}
 #createRemark table{
     width: auto;
 }
