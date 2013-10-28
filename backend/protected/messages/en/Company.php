@@ -17,6 +17,7 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'AutomatedOrders' => 'Automated orders',
   'Companies' => '',
   'Company' => '',
   'Create' => '',
@@ -26,7 +27,6 @@ return array (
   'Employees' => '',
   'EventDate' => '',
   'Industry' => '',
-  'Login' => '',
   'Name' => '',
   'NoRemarks' => '',
   'Remark' => '',
@@ -36,10 +36,14 @@ return array (
   'Tag' => '',
   'Timesheets' => '',
   'Users' => '',
+  'login' => '',
   'week' => '',
   'year' => '',
   'Created' => '',
+  'Login' => '',
+  'OrderState' => 'Order state',
   'OrderTotal' => 'Order total',
+  'TotalAmount' => 'Total amount',
   'month' => '',
   'BankAccounts' => 'Bank accounts',
   'BusinessId' => 'Business Id',
@@ -55,7 +59,6 @@ return array (
   'Health' => 'Health',
   'Id' => 'ID',
   'Loans' => 'Loans',
-  'OrderState' => 'Order state',
   'OtherExpenses' => 'Other expensest',
   'Planned' => 'Planned',
   'PurchaseOrders' => 'Purchase orders',
@@ -63,6 +66,5 @@ return array (
   'SalariesAndSideExpenses' => 'Salaries and side expenses',
   'SaleOrders' => 'Sale orders',
   'TokenKey' => 'Token key',
-  'TotalAmount' => 'Total amount',
   'Turnover' => 'Turnover',
 );

@@ -6,6 +6,7 @@
         array('label'=>Yii::t('Company', 'Employees'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'employees')),
         array('label'=>Yii::t('Company', 'SaleOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'saleOrders')),
         array('label'=>Yii::t('Company', 'PurchaseOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'purchaseOrders')),
+        array('label'=>Yii::t('Company', 'AutomatedOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'automatedOrders')),
         array('label'=>Yii::t('Company', 'Remarks'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'remarks')),
     );
 
@@ -48,6 +49,11 @@
         $this->renderPartial('_viewRemarks',array(
             'remarks'=>$remarks,
             'newRemark'=>$newRemark,
+        ));
+    }
+    elseif($action=='automatedOrders'){
+        $this->renderPartial('_viewAutomatedOrders',array(
+            'automatedOrders'=>$automatedOrders,
         ));
     }
     

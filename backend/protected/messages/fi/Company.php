@@ -17,11 +17,12 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Description' => 'Kuvaus',
-  'Login' => 'Kirjautuminen',
-  'login' => 'kirjautuminen',
+  'AutomatedOrders' => 'Automaattitilaukset',
   'Created' => 'Luotu',
+  'Login' => 'Kirjautuminen',
+  'OrderState' => 'Tila',
   'OrderTotal' => 'Kokonaissumma',
+  'TotalAmount' => 'Kokonaissumma',
   'User' => 'Käyttäjä',
   'month' => 'kuukausi',
   'BankAccounts' => 'Pankkitilit',
@@ -36,6 +37,7 @@ return array (
   'CreateARemark' => 'Luo huomio',
   'CreateDate' => 'Luontipäivä',
   'CreateTime' => 'Luontiaika',
+  'Description' => 'Kuvaus',
   'Email' => 'Sähköposti',
   'Employee' => 'Työntekijä',
   'Employees' => 'Työntekijät',
@@ -48,7 +50,6 @@ return array (
   'Loans' => 'Lainat',
   'Name' => 'Nimi',
   'NoRemarks' => 'Ei huomioita',
-  'OrderState' => 'Tila',
   'OtherExpenses' => 'Muut kulut',
   'Planned' => 'Suunniteltu',
   'PurchaseOrders' => 'Ostotilaukset',
@@ -62,9 +63,9 @@ return array (
   'Tag' => 'Tunnus',
   'Timesheets' => 'Tuntilomakkeet',
   'TokenKey' => 'Perustamisavain',
-  'TotalAmount' => 'Kokonaissumma',
   'Turnover' => 'Liikevaihto',
   'Users' => 'Käyttäjät',
+  'login' => 'kirjautuminen',
   'week' => 'viikko',
   'year' => 'vuosi',
 );
