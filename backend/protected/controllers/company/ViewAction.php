@@ -95,7 +95,7 @@ class ViewAction extends CAction
             $automatedOrders = Order::model()->findAll($criteria);
         }
 
-        $controller->render("view',array(
+        $controller->render("view",array(
             'action'=>$action,
             'company'=>$company,
             'automatedOrders'=>$automatedOrders,
