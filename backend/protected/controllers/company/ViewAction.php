@@ -21,7 +21,8 @@ class ViewAction extends CAction
             }
         }
 
-        // Format variables so we don't need multiple renderers
+        // Format variables
+        $automatedOrders = null;
         $costBenefitCalculationsArray = null;
         $realizedItemsArray = null;
         $bankAccounts = null;
