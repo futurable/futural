@@ -90,7 +90,7 @@ class ViewAction extends CAction
         elseif($action=='automatedOrders'){
             $criteria = new CDbCriteria();
             $criteria->addCondition("company_id={$company->id}");
-            $criteria->order = "event_date DESC";
+            $criteria->order = "event_time DESC";
             
             $automatedOrders = Order::model()->findAll($criteria);
         }
