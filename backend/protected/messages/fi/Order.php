@@ -41,4 +41,6 @@ return array (
   'Quantity' => 'Määrä',
   'Units' => 'Kpl',
   'WeWouldLikeToOrderTheFollowingItemsFromYou' => 'Haluaisimme tilata teiltä seuraavat tuotteet',
+  'type_product' => 'Kokoonpantavat',
+  'type_group' => 'Jälleenmyytävät',
 );
