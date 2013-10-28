@@ -50,6 +50,11 @@
             'newRemark'=>$newRemark,
         ));
     }
+    elseif($action=='automatedOrders'){
+        $this->renderPartial('_viewAutomatedOrders',array(
+            'automatedOrders'=>$automatedOrders,
+        ));
+    }
     
     echo CHtml::link(Yii::t('Menu', 'Back'),array('company/index'),array('class'=>'btn'));
 ?>
