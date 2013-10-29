@@ -8,6 +8,7 @@
                 echo "<tr>";
                      echo "<th>".Yii::t('Company', 'Name')."</th>";
                      echo "<th>".Yii::t('Company', 'CreateDate')."</th>";
+                     echo "<th>".Yii::t('Company', 'Email')."</th>";
                 echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
@@ -16,6 +17,7 @@
                     echo "<tr>";
                          echo "<td>{$OEEmployee->name_related}</td>";
                          echo "<td>{$createDate}</td>";
+                         echo "<td>{$OEEmployee->work_email}</td>";
                     echo "</tr>";
                 }
             echo "</tbody>";
