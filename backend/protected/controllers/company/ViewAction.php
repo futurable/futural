@@ -74,7 +74,13 @@ class ViewAction extends CAction
             }
         }
         elseif($action=='employees'){
-            $OEHrEmployees = HrEmployee::model()->findAll(array('order'=>'name_related'));
+            $criteria = new CDbCriteria();
+            $criteria->alias = 'employee';
+            $criteria->with = 'resource.user';
+            $criteria->with = 'resource.user.purchaseOrders2';
+            $criteria->order = 'name_related DESC';
+
+            $OEHrEmployees = HrEmployee::model()->findAll($criteria);
         }
         
         elseif($action=='saleOrders'){

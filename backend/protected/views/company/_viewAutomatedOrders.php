@@ -6,6 +6,7 @@
         echo "<table class='items table table-striped'>";
             echo "<thead>";
                 echo "<tr>";
+                     echo "<th>".Yii::t('Company', 'Company')."</th>";
                      echo "<th>".Yii::t('Order', 'EventTime')."</th>";
                      echo "<th>".Yii::t('Order', 'Value')."</th>";
                      echo "<th>".Yii::t('Order', 'Rows')."</th>";
@@ -20,6 +21,7 @@
                     
                     
                     echo "<tr>"; 
+                         echo "<td>{$automatedOrder->company->name}</td>";
                          echo "<td>{$eventTime}</td>";
                          echo "<td>{$automatedOrder->value}&euro;</td>";
                          echo "<td>{$automatedOrder->rows}</td>";
