@@ -43,4 +43,5 @@ return array (
   'WeWouldLikeToOrderTheFollowingItemsFromYou' => 'Haluaisimme tilata teiltä seuraavat tuotteet',
   'type_product' => 'Kokoonpantavat',
   'type_group' => 'Jälleenmyytävät',
+  'type_random' => 'Satunnaiset',
 );
