@@ -25,6 +25,7 @@ class CompanyController extends Controller
             'view'=>'application.controllers.company.ViewAction',
             'bankAccounts'=>'application.controllers.company.IndexBankAccountsAction',
             'users'=>'application.controllers.company.UsersAction',
+            'orders'=>'application.controllers.company.OrdersAction',
         );
     }
 
