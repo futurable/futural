@@ -68,4 +68,5 @@ return array (
   'login' => 'kirjautuminen',
   'week' => 'viikko',
   'year' => 'vuosi',
+  'CustomerPayments' => 'Asiakkaiden maksut',
 );
