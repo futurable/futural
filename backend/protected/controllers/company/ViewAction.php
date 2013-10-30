@@ -116,9 +116,12 @@ class ViewAction extends CAction
             
             // Business center bank transactions
             $criteria = new CDbCriteria();
+            $criteria->addCondition("status='active'");
             $criteria->addCondition("recipient_iban IN ({$bankAccountsString})");
             $criteria->addCondition("payer_iban = '{$businessCenterIban}'");
                     
+            $criteria->order = "event_date DESC";
+            
             $CustomerPayments = BankAccountTransaction::model()->findAll($criteria);
         }
         
