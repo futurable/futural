@@ -67,4 +67,5 @@ return array (
   'SaleOrders' => 'Sale orders',
   'TokenKey' => 'Token key',
   'Turnover' => 'Turnover',
+  'CustomerPaymetnts' => 'Customer payments',
 );

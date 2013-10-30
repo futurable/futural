@@ -22,4 +22,7 @@ return array (
   'iban' => 'IBAN',
   'name' => 'Name',
   'status' => 'Status',
+  'EventDate'=>'Event date',
+  'Message'=>'',
+  'Amount'=>'',
 );
