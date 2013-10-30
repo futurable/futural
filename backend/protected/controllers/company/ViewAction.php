@@ -30,20 +30,26 @@ class ViewAction extends CAction
         $OESaleOrders = null;
         $OEPurchaseOrders = null;
         $remarks = null;
-        $BCBankTransactions = null;
+        $CustomerPayments = null;
         
         // Change OpenERP-database
         Yii::app()->dbopenerp->setActive(false);
         Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
         Yii::app()->dbopenerp->setActive(true);
         
-        if($action=='bankAccounts' OR $action=='costBenefitCalculation'){
+        if($action=='bankAccounts' OR $action=='costBenefitCalculation' OR $action=='CustomerPayments'){
             $bankAccounts = BankAccount::model()->findAll(
                 array(
                     'condition'=>'bank_user_id=:bank_user_id', 
                     'params'=>array('bank_user_id'=>$bankUser->id),
                 )
             );
+            
+            $bankAccountsString = null;
+            foreach($bankAccounts as $bankAccount){
+                  $bankAccountsString .= "'".$bankAccount->iban."',";
+            }
+            $bankAccountsString = substr($bankAccountsString,0,-1);
         }
         
         if($action=='costBenefitCalculation'){
@@ -105,6 +111,17 @@ class ViewAction extends CAction
             $automatedOrders = Order::model()->findAll($criteria);
         }
 
+        elseif($action=='CustomerPayments'){
+            $businessCenterIban = 'FI1297030000008863'; // @TODO: get this from somewhere
+            
+            // Business center bank transactions
+            $criteria = new CDbCriteria();
+            $criteria->addCondition("recipient_iban IN ({$bankAccountsString})");
+            $criteria->addCondition("payer_iban = '{$businessCenterIban}'");
+                    
+            $CustomerPayments = BankAccountTransaction::model()->findAll($criteria);
+        }
+        
         $controller->render("view",array(
             'action'=>$action,
             'company'=>$company,
@@ -112,6 +129,7 @@ class ViewAction extends CAction
             'costBenefitCalculations'=>$costBenefitCalculationsArray,
             'realizedItemsArray'=>$realizedItemsArray,
             'bankAccounts'=>$bankAccounts,
+            'CustomerPayments'=>$CustomerPayments,
             'OEHrEmployees'=>$OEHrEmployees,
             'OESaleOrders'=>$OESaleOrders,
             'OEPurchaseOrders'=>$OEPurchaseOrders,
