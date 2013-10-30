@@ -30,6 +30,7 @@ class ViewAction extends CAction
         $OESaleOrders = null;
         $OEPurchaseOrders = null;
         $remarks = null;
+        $BCBankTransactions = null;
         
         // Change OpenERP-database
         Yii::app()->dbopenerp->setActive(false);
@@ -46,7 +47,6 @@ class ViewAction extends CAction
         }
         
         if($action=='costBenefitCalculation'){
-
             $costBenefitCalculations = CostbenefitCalculation::model()->findAllByAttributes(array('company_id'=>$company->id));
             $costBenefitCalculationsArray = array();
             foreach($costBenefitCalculations as $costBenefitCalculation){
@@ -73,6 +73,7 @@ class ViewAction extends CAction
                 $realizedItemsArray[ date('W', strtotime($accountMoveLine->week)) ][ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
             }
         }
+        
         elseif($action=='employees'){
             $criteria = new CDbCriteria();
             $criteria->alias = 'employee';
@@ -90,9 +91,11 @@ class ViewAction extends CAction
         elseif($action=='purchaseOrders'){
             $OEPurchaseOrders = PurchaseOrder::model()->findAll(array('order'=>'create_date DESC'));
         }
+        
         elseif($action=='remarks'){
             $remarks = Remark::model()->findAll(array('condition'=>"company_id={$company->id}"));
         }
+        
         elseif($action=='automatedOrders'){
             $criteria = new CDbCriteria();
             $criteria->addCondition("company_id={$company->id}");
