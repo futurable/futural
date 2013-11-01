@@ -23,13 +23,17 @@ class OrderValueMultiplier{
         $facilityMultiplier = self::getMultiplierValue( $journalValues, array('701010', '701080') );
         if($debug) echo( "Facility multiplier {$facilityMultiplier}\n" );
         
+        // Get the others multiplier
+        $othersMultiplier = self::getMultiplierValue( $journalValues, array('707010', '709100', '709115', '702070') );
+        if($debug) echo( "Others multiplier {$othersMultiplier}\n" );
+        
         // Get the remarks multiplier
         $remarkMultiplier = self::getRemarkMultiplier($company);
         if($debug) echo( "Remarks multiplier {$remarkMultiplier}\n" );
 
         // Calculate the final multiplier
-        $orderValueMultiplier += $salaryMultiplier + $communicationsMultiplier + $facilityMultiplier;
-        $orderValueMultiplier = $orderValueMultiplier / 3; // Avg multiplier
+        $orderValueMultiplier += $salaryMultiplier + $communicationsMultiplier + $facilityMultiplier + $othersMultiplier;
+        $orderValueMultiplier = $orderValueMultiplier / 4; // Avg multiplier
         
         $orderValueMultiplier *= $remarkMultiplier; // Add remarks
         
@@ -44,6 +48,10 @@ class OrderValueMultiplier{
             '701010' => '3000', // Leases
             '701080' => '200', // Electricity
             '703000' => '800', // Communications
+            '702070' => '300', // Insurances
+            '707010' => '300', // Marketing
+            '709100' => '300', // Other business expenses
+            '709115' => '300', // Logistics and storage
         );
         
         $baseLine = $baseLineValues[$account];
@@ -72,7 +80,6 @@ class OrderValueMultiplier{
             
             $journalValue = abs($journalValues[$account]);
             $baseLine = self::getBaseLineValue($account);
-            
             $factor += $journalValue / ($baseLine/10);
             $divider++;
         }
