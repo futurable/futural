@@ -56,23 +56,24 @@
                             echo Yii::t('Company', 'week')." ".$week;
                         echo "</strong></td>";
 
-                    if(array_key_exists($week, $realizedItemsArray)){
-                        $realizedItem = $realizedItemsArray[$week];
-                        // Get company loan accounts
-                        $loanAccounts = array();
-                        foreach($bankAccounts as $bankAccount){
-                            if($bankAccount->bank_account_type_id == 2) $loanAccounts[] = $bankAccount->iban;
-                        }
-
-                        echo getRealizedValue($realizedItem, array('300000'), false); // Turnover
-                        echo getRealizedValue($realizedItem, array('400000')); // Expenses
-                        echo getRealizedValue($realizedItem, array('500000')); // Salaries
-                        echo "<td>".BankSaldo::getLoansSaldo($loanAccounts, $week)."&euro;</td>"; // Loans
-                        echo getRealizedValue($realizedItem, array('701010', '701080')); // FacilityExpenses
-                        echo getRealizedValue($realizedItem, array('703000')); // Communications
-                        echo getRealizedValue($realizedItem, array('700000')); // Health
-                        echo getRealizedValue($realizedItem, array('707010', '709100', '709115', '702070')); // Other expenses
+                    if(!array_key_exists($week, $realizedItemsArray)) $realizedItem = array();
+                    else $realizedItem = $realizedItemsArray[$week];
+                    
+                    // Get company loan accounts
+                    $loanAccounts = array();
+                    foreach($bankAccounts as $bankAccount){
+                        if($bankAccount->bank_account_type_id == 2) $loanAccounts[] = $bankAccount->iban;
                     }
+
+                    echo getRealizedValue($realizedItem, array('300000'), false); // Turnover
+                    echo getRealizedValue($realizedItem, array('400000')); // Expenses
+                    echo getRealizedValue($realizedItem, array('500000')); // Salaries
+                    echo "<td>".BankSaldo::getLoansSaldo($loanAccounts, $week)."&euro;</td>"; // Loans
+                    echo getRealizedValue($realizedItem, array('701010', '701080')); // FacilityExpenses
+                    echo getRealizedValue($realizedItem, array('703000')); // Communications
+                    echo getRealizedValue($realizedItem, array('700000')); // Health
+                    echo getRealizedValue($realizedItem, array('707010', '709100', '709115', '702070')); // Other expenses
+                    
 
                     echo "</tr>";
                 }
