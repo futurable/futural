@@ -1,8 +1,8 @@
 <?php
-    $companies = Suppliers::get();
+    $menuItems = Suppliers::get();
     $subMenu = array();
-    foreach($companies as $company){
-        $subMenu[] = array('label'=>$company->name, 'url'=>array("/company/view", 'id' => $company->id, 'action'=>$action));
+    foreach($menuItems as $menuItem){
+        $subMenu[] = array('label'=>$menuItem->name, 'url'=>array("/company/view", 'id' => $menuItem->id, 'action'=>$action));
     }
 
     echo "<div id='submenu'>";
