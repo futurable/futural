@@ -2,11 +2,12 @@
     // Company info
     echo "<h2>".Yii::t('Company', 'CostBenefitCalculations')."</h2>";
     
-    $weeks = range(date('W', strtotime("-1 month")), date('W'));
+    $weeks = range(date('W', strtotime("-2 month")), date('W'));
     $CBCValues = array();
     $CBCHeaders = array('turnover', 'expenses', 'salaries', 'loans', 'rents', 'communication', 'health', 'otherExpenses');
     
     $costBenefitCalculations = array_reverse($costBenefitCalculations, true);
+    $first = true;
     foreach($costBenefitCalculations as $costBenefitCalculationItems){
         echo "<h3>{$costBenefitCalculationItems['create_date']}</h3>";
         
@@ -45,41 +46,44 @@
                         echo "</td>";
                     }
                 echo "</tr>"; 
-
-                echo "<tr>";
-                    echo "<td><strong>".Yii::t('Company', 'Realized')."</strong></td>";
-                echo "</tr>";
-
-                foreach($weeks as $week){
+                
+                if($first){
                     echo "<tr>";
-                        echo "<td><strong>";
-                            echo Yii::t('Company', 'week')." ".$week;
-                        echo "</strong></td>";
-
-                    if(!array_key_exists($week, $realizedItemsArray)) $realizedItem = array();
-                    else $realizedItem = $realizedItemsArray[$week];
-                    
-                    // Get company loan accounts
-                    $loanAccounts = array();
-                    foreach($bankAccounts as $bankAccount){
-                        if($bankAccount->bank_account_type_id == 2) $loanAccounts[] = $bankAccount->iban;
-                    }
-
-                    echo getRealizedValue($realizedItem, array('300000'), false); // Turnover
-                    echo getRealizedValue($realizedItem, array('400000')); // Expenses
-                    echo getRealizedValue($realizedItem, array('500000')); // Salaries
-                    echo "<td>".BankSaldo::getLoansSaldo($loanAccounts, $week)."&euro;</td>"; // Loans
-                    echo getRealizedValue($realizedItem, array('701010', '701080')); // FacilityExpenses
-                    echo getRealizedValue($realizedItem, array('703000')); // Communications
-                    echo getRealizedValue($realizedItem, array('700000')); // Health
-                    echo getRealizedValue($realizedItem, array('707010', '709100', '709115', '702070')); // Other expenses
-                    
-
+                        echo "<td><strong>".Yii::t('Company', 'Realized')."</strong></td>";
                     echo "</tr>";
+
+                    foreach($weeks as $week){
+                        echo "<tr>";
+                            echo "<td><strong>";
+                                echo Yii::t('Company', 'week')." ".$week;
+                            echo "</strong></td>";
+
+                        if(!array_key_exists($week, $realizedItemsArray)) $realizedItem = array();
+                        else $realizedItem = $realizedItemsArray[$week];
+
+                        // Get company loan accounts
+                        $loanAccounts = array();
+                        foreach($bankAccounts as $bankAccount){
+                            if($bankAccount->bank_account_type_id == 2) $loanAccounts[] = $bankAccount->iban;
+                        }
+
+                        echo getRealizedValue($realizedItem, array('300000'), false); // Turnover
+                        echo getRealizedValue($realizedItem, array('400000')); // Expenses
+                        echo getRealizedValue($realizedItem, array('500000')); // Salaries
+                        echo "<td>".BankSaldo::getLoansSaldo($loanAccounts, $week)."&euro;</td>"; // Loans
+                        echo getRealizedValue($realizedItem, array('701010', '701080')); // FacilityExpenses
+                        echo getRealizedValue($realizedItem, array('703000')); // Communications
+                        echo getRealizedValue($realizedItem, array('700000')); // Health
+                        echo getRealizedValue($realizedItem, array('707010', '709100', '709115', '702070')); // Other expenses
+
+
+                        echo "</tr>";
+                    }
                 }
 
             echo "</table>";
         echo "</div>";
+        $first = false;
     }
     function getPlannedRows($CBCItems){
         $returnItems = array();
