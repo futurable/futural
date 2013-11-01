@@ -1,4 +1,16 @@
 <?php
+    $companies = Suppliers::get();
+    $subMenu = array();
+    foreach($companies as $company){
+        $subMenu[] = array('label'=>$company->name, 'url'=>array("/company/view", 'id' => $company->id, 'action'=>$action));
+    }
+
+    echo "<div id='submenu'>";
+        $this->widget('zii.widgets.CMenu',array(
+            'items'=>$subMenu,
+        ));
+    echo "</div>";
+
     $this->menu=array(
         array('label'=>Yii::t('Company', 'CompanyInfo'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'info')),
         array('label'=>Yii::t('Company', 'CostBenefitCalculation'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'costBenefitCalculation')),
