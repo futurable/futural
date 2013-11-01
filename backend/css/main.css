@@ -19,40 +19,50 @@
 
 #mainmenu
 {
-	background:white;
+	
 }
 
-#mainmenu ul
-{
+#submenu, #submenu ul{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#mainmenu ul{
 	padding:6px 20px 5px 20px;
 	margin:0px;
 }
 
-#mainmenu ul li
-{
+#mainmenu ul li, #submenu ul li{
 	display: inline;
 }
 
-#mainmenu ul li a
-{
+#mainmenu ul li a{
 	color:#000;
 	background-color:#C8DA30;
 	font-size:12px;
 	font-weight:bold;
 	text-decoration:none;
 	padding: 6px 8px;
-        border-radius: 15px;
-        margin-right: 2px;
-        display: inline-block;
-        width: 100px;
-        text-align: center;
+    border-radius: 15px;
+    margin-right: 2px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+#submenu ul li a{
+    font-size: 10px;
+    color: #000;
+    padding: 5px 10px;
+}
+#submenu li a:hover{
+    color: #C8DA30;
 }
 
 #mainmenu ul li a:hover{
     color: #fff;
 }
 
-#mainmenu ul li.active a
+#mainmenu ul li .active a, #submenu ul li .active a
 {
 	background-color:#0088CC;
 	text-decoration:none;
