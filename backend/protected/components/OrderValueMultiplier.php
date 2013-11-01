@@ -8,22 +8,35 @@ class OrderValueMultiplier{
         Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$company->tag}";
         Yii::app()->dbopenerp->setActive(true);
 
-        $orderValueMultiplier = 1;
-        $journalValues = GetRealizedJournalValues::run();
+        $orderValueMultiplier = 0;
+        $journalValues = GetRealizedJournalValues::run(false, '1');
 
+        // Get facility expenses
+        $facilityMultiplier = self::getMultiplierValue( $journalValues, array('701010', '701080') );
+        if($debug) echo( "Facility multiplier {$facilityMultiplier}\n" );
+        
         // Remarks
         $remarkMultiplier = self::getRemarkMultiplier($company);
-        if($debug) echo( "Remarks multiplier {$remarkMultiplier}\n");
+        if($debug) echo( "Remarks multiplier {$remarkMultiplier}\n" );
+
+        // Calculate the final multiplier
+        $orderValueMultiplier += $remarkMultiplier + $facilityMultiplier;
+        $orderValueMultiplier = $orderValueMultiplier / 2; // Avg multiplier
         
         return $orderValueMultiplier;
     }
     
-    private function getBaseLineValues(){
+    private function getBaseLineValue($account){
+        if(!is_int((int)$account)) die("Only accepting integers");
+        
         $baseLineValues = array(
-            
+            '701010' => '3000', // Leases
+            '701080' => '200', // Electricity
         );
         
-        return $baseLineValues;
+        $baseLine = $baseLineValues[$account];
+        
+        return $baseLine;
     }
     
     private function getRemarkMultiplier(Company $company){
@@ -35,6 +48,25 @@ class OrderValueMultiplier{
         $remarkMultiplier = 1+($remarks['significance']/100);
         
         return $remarkMultiplier;
+    }
+    
+    private function getMultiplierValue($journalValues, $accounts){
+        if(!is_array($accounts)) die("Only accepting arrays");
+        
+        $factor = 0;
+        $divider = 0;
+        foreach($accounts as $account){
+            $baseLine = self::getBaseLineValue($account);
+            $factor += abs($journalValues[$account]) / ($baseLine/10);
+            $divider++;
+        }
+        $factor = $factor/$divider;
+        
+        if($factor>20) $factor = 20; // Maximum factor
+        
+        $multiplier = log10($factor);
+        
+        return $multiplier;
     }
 }
 ?>
