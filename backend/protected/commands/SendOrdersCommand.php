@@ -141,12 +141,15 @@ class SendOrdersCommand extends CConsoleCommand
             $order->sent = date('Y-m-d H:i:s');
             $OSuccess = $order->save();
 
-            $messageContent = "test";
+            $recipientMail = $OEOrder->partner->email;
+            $messageContent = Yii::t('Order', 'Hello')." {$company->name}!
+                ".Yii::t('Order', 'OurPurchaseOrderAsAttachment');
+            
             $message = new YiiMailMessage;
-            $message->subject = Yii::t('Company', "FuturalityAccount");
-            $message->setBody($messageContent, 'text/html');
+            $message->subject = "Futurality ".Yii::t('Order', 'PurchaseOrder')." {$OEOrder->name}";
+            $message->setBody($messageContent, 'text/html'); 
             $message->addTo($company->email, $company->name);
-            $message->addTo('webadmin@futurable.fi');
+            $message->setBcc('webadmin@futurable.fi');
             $message->from = 'businesscenter@futurality.fi';
             $message->sender = 'businesscenter@futurality.fi';
             $attachment = Swift_Attachment::fromPath($filename, 'application/pdf');

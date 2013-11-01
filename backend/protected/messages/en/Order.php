@@ -17,8 +17,26 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'Contact' => '',
+  'Creator' => '',
+  'Description' => '',
+  'EventTime' => 'Event time',
+  'Hello' => '',
+  'Honorable' => '',
   'Orders' => '',
+  'Pending' => '',
+  'Quantity' => '',
+  'Rows' => '',
+  'Sent' => '',
+  'Type' => '',
+  'Units' => '',
+  'Value' => '',
+  'AmountTax' => 'Tax',
+  'AmountTotal' => 'Total',
+  'AmountUntaxed' => 'Untaxed',
+  'CreateDate' => 'Create date',
+  'OrderState' => 'State',
+  'OurPurchaseOrderAsAttachment' => 'Our purchase order as attachment',
   'PurchaseOrder' => 'Purchase order',
   'WeWouldLikeToOrderTheFollowingItemsFromYou' => 'We would like to order the following items from you',
-  'Honorable'=> '',
 );

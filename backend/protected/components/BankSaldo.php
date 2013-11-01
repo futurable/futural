@@ -17,7 +17,7 @@ class BankSaldo {
         return $record['saldo'];
     }
     
-    public function getSalaryPaymentsSaldo($loanAccounts, $week = false){
+    public function getLoansSaldo($loanAccounts, $week = false){
         $criteria = new CDbCriteria();
 
         foreach($loanAccounts as $key => $loanAccount){

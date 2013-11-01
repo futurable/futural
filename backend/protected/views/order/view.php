@@ -23,7 +23,7 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'created',
-		'event_time',
+		'execution_time',
 		'executed',
 		'rows',
 		'value',

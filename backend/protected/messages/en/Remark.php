@@ -17,5 +17,11 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'YouAreLoggedInAs' => 'Kirjautuneena sisään',
+  'Excellent' => 'Excellent',
+  'GreatWork' => 'Great Work',
+  'Late' => 'Late',
+  'Neglect' => 'Neglect',
+  'NoSignificance' => 'No significance',
+  'Slacking' => 'Slacking',
+  'WellDone' => 'WellDone',
 );

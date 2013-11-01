@@ -9,7 +9,7 @@
  * Each array element represents the translation (value) of a message (key).
  * If the value is empty, the message is considered as not translated.
  * Messages that no longer need translation will have their translations
- * enclosed between a pair of '@@' marks.
+ * enclosed between a pair of '' marks.
  *
  * Message string can be used with plural forms format. Check i18n section
  * of the guide for details.
@@ -17,14 +17,31 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Orders' => 'Tilaukset',
+  'EventTime' => 'Tapahtuma-aika',
+  'Pending' => 'Odottaa',
+  'Rows' => 'Rivejä',
+  'Sent' => 'Lähetetty',
+  'Type' => 'Tyyppi',
+  'Value' => 'Arvo',
   'Order' => 'Tilaus',
-  'PurchaseOrder' => 'Ostotilaus',
-  'Description' => 'Kuvaus',
-  'Quantity' => 'Määrä',
   'Regards' => 'Terveisin',
-  'Units' => 'Kpl',
+  'AmountTax' => 'Vero',
+  'AmountTotal' => 'Verollinen',
+  'AmountUntaxed' => 'Veroton',
   'Contact' => 'Asiaa hoitaa',
-'WeWouldLikeToOrderTheFollowingItemsFromYou' => 'Haluaisimme tilata teiltä seuraavat tuotteet',
-  'Honorable'=> 'Arvoisa',
+  'CreateDate' => 'Luontipäivä',
+  'Creator' => 'Luoja',
+  'Description' => 'Kuvaus',
+  'Hello' => 'Hei',
+  'Honorable' => 'Arvoisa',
+  'OrderState' => 'Tila',
+  'Orders' => 'Tilaukset',
+  'OurPurchaseOrderAsAttachment' => 'Ostotilauksemme liitteenä.',
+  'PurchaseOrder' => 'Ostotilaus',
+  'Quantity' => 'Määrä',
+  'Units' => 'Kpl',
+  'WeWouldLikeToOrderTheFollowingItemsFromYou' => 'Haluaisimme tilata teiltä seuraavat tuotteet',
+  'type_product' => 'Kokoonpantavat',
+  'type_group' => 'Jälleenmyytävät',
+  'type_random' => 'Satunnaiset',
 );

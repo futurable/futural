@@ -17,7 +17,12 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'status' => 'Status',
+  'Saldo' => 'Saldo',
+  'Type' => 'Type',
   'iban' => 'IBAN',
   'name' => 'Name',
+  'status' => 'Status',
+  'EventDate'=>'Event date',
+  'Message'=>'',
+  'Amount'=>'',
 );

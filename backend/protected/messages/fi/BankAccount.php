@@ -22,4 +22,7 @@ return array (
   'name' => 'Nimi',
   'Saldo' => 'Saldo',
   'Type' => 'Tyyppi',
+  'EventDate'=>'Tapahtumapäivä',
+  'Message'=>'Viesti',
+  'Amount'=>'Määrä',
 );
