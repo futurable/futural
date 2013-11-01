@@ -11,17 +11,27 @@ class OrderValueMultiplier{
         $orderValueMultiplier = 0;
         $journalValues = GetRealizedJournalValues::run(false, '1');
 
-        // Get facility expenses
+        // Get the salaries multiplier
+        $salaryMultiplier = self::getMultiplierValue( $journalValues, array('500000') );
+        if($debug) echo( "Salaries multiplier {$salaryMultiplier}\n" );
+        
+        // Get the communications multiplier
+        $communicationsMultiplier = self::getMultiplierValue( $journalValues, array('703000') );
+        if($debug) echo( "Communications multiplier {$communicationsMultiplier}\n" );
+        
+        // Get the facility multiplier
         $facilityMultiplier = self::getMultiplierValue( $journalValues, array('701010', '701080') );
         if($debug) echo( "Facility multiplier {$facilityMultiplier}\n" );
         
-        // Remarks
+        // Get the remarks multiplier
         $remarkMultiplier = self::getRemarkMultiplier($company);
         if($debug) echo( "Remarks multiplier {$remarkMultiplier}\n" );
 
         // Calculate the final multiplier
-        $orderValueMultiplier += $remarkMultiplier + $facilityMultiplier;
-        $orderValueMultiplier = $orderValueMultiplier / 2; // Avg multiplier
+        $orderValueMultiplier += $salaryMultiplier + $communicationsMultiplier + $facilityMultiplier;
+        $orderValueMultiplier = $orderValueMultiplier / 3; // Avg multiplier
+        
+        $orderValueMultiplier *= $remarkMultiplier; // Add remarks
         
         return $orderValueMultiplier;
     }
@@ -30,8 +40,10 @@ class OrderValueMultiplier{
         if(!is_int((int)$account)) die("Only accepting integers");
         
         $baseLineValues = array(
+            '500000' => '40000', // Salaries
             '701010' => '3000', // Leases
             '701080' => '200', // Electricity
+            '703000' => '800', // Communications
         );
         
         $baseLine = $baseLineValues[$account];
@@ -56,8 +68,12 @@ class OrderValueMultiplier{
         $factor = 0;
         $divider = 0;
         foreach($accounts as $account){
+            if(!isset($journalValues[$account])) $journalValues[$account] = 0;
+            
+            $journalValue = abs($journalValues[$account]);
             $baseLine = self::getBaseLineValue($account);
-            $factor += abs($journalValues[$account]) / ($baseLine/10);
+            
+            $factor += $journalValue / ($baseLine/10);
             $divider++;
         }
         $factor = $factor/$divider;
