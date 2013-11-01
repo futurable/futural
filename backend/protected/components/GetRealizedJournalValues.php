@@ -8,7 +8,7 @@ class GetRealizedJournalValues {
         $criteria->addCondition("create_date > NOW()::date - INTERVAL '{$intervalMonths} month'");
         
         if($byWeek === true){
-            $criteria->select='date_trunc(\'week\', create_date) AS week, account_id, SUM(credit) AS credit, SUM(debit) AS debit';  
+            $criteria->select='date_trunc(\'week\', date) AS week, account_id, SUM(credit) AS credit, SUM(debit) AS debit';  
             $criteria->group='week, account_id';
             $criteria->order='week, account_id';
         }
