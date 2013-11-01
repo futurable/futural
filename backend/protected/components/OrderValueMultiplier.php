@@ -62,7 +62,8 @@ class OrderValueMultiplier{
         }
         $factor = $factor/$divider;
         
-        if($factor>20) $factor = 20; // Maximum factor
+        if($factor<5) $factor = 5; // Minimum factor
+        if($factor>15) $factor = 15; // Maximum factor
         
         $multiplier = log10($factor);
         
