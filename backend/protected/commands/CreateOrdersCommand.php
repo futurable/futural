@@ -63,8 +63,8 @@ class CreateOrdersCommand extends CConsoleCommand
             $orderAmount += $groupOrders;
             $orderAmount += $randomOrders;
             
-            $orderValueMultiplier= OrderValueMultiplier::get();
-            echo( "Using order value multiplier $orderValueMultiplier");
+            $orderValueMultiplier= OrderValueMultiplier::get($supplier);
+            echo( "Using order value multiplier $orderValueMultiplier\n");
             $orderAmount *= $orderValueMultiplier;
             
             // Divide the turnover to the orders
