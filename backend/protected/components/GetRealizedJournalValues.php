@@ -4,6 +4,7 @@ class GetRealizedJournalValues {
         // Get the realized sales
         $criteria=new CDbCriteria;
         $criteria->select='date_trunc(\'week\', create_date) AS week, account_id, SUM(credit) AS credit, SUM(debit) AS debit';
+        $criteria->addCondition("create_date > NOW()::date - INTERVAL '6 month'");
         $criteria->group='week, account_id';
         $criteria->order='week, account_id';
 
