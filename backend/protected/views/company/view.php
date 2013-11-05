@@ -1,15 +1,18 @@
 <?php
-    $menuItems = Suppliers::get();
-    $subMenu = array();
-    foreach($menuItems as $menuItem){
-        $subMenu[] = array('label'=>$menuItem->name, 'url'=>array("/company/view", 'id' => $menuItem->id, 'action'=>$action));
-    }
+    if(!Yii::app()->user->isGuest) $role = Yii::app()->user->getRole();
+    if($role>0){
+        $menuItems = Suppliers::get();
+        $subMenu = array();
+        foreach($menuItems as $menuItem){
+            $subMenu[] = array('label'=>$menuItem->name, 'url'=>array("/company/view", 'id' => $menuItem->id, 'action'=>$action));
+        }
 
-    echo "<div id='submenu'>";
-        $this->widget('zii.widgets.CMenu',array(
-            'items'=>$subMenu,
-        ));
-    echo "</div>";
+        echo "<div id='submenu'>";
+            $this->widget('zii.widgets.CMenu',array(
+                'items'=>$subMenu,
+            ));
+        echo "</div>";
+    }
 
     $this->menu=array(
         array('label'=>Yii::t('Company', 'CompanyInfo'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'info')),
