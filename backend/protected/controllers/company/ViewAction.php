@@ -4,15 +4,25 @@ class ViewAction extends CAction
     public function run($id)
     {
         $controller=$this->getController();
-        $controller->allowUser(MANAGER);
+        $controller->allowUser(STUDENT);
+        if(!Yii::app()->user->isGuest) $role = Yii::app()->user->getRole();
         
-        $action = isset($_GET['action']) ? $_GET['action'] : null;
-        $company = $controller->loadModel($id);
+        // Only allow own companies for students
+        if($role==0){
+            $user = User::model()->findByPK(Yii::app()->user->id);
+            $company = Company::model()->findByAttributes( array('tag'=>$user->username) );
+        }
+        else{
+            $company = $controller->loadModel($id);
+        }
+        
+        $action = isset($_GET['action']) ? $_GET['action'] : 'info';
         $bankUser = BankUser::model()->findByAttributes(array('username'=>$company->tag));
         
         $newRemark=new Remark;
         $newRemark->company_id = $company->id; 
         if(isset($_POST['Remark'])){
+            $controller->allowUser(MANAGER);
             $newRemark->attributes=$_POST['Remark'];
             $newRemark->event_date = date('Y-m-d', strtotime($newRemark->event_date));
             if($newRemark->validate()){
