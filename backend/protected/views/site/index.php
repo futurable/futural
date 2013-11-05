@@ -14,7 +14,13 @@ $this->pageTitle=Yii::app()->name;
     <h1><?php echo CHtml::encode(Yii::app()->name) ;?></h1>
 
     <p>
-        <?php echo Yii::t('Index', 'YouAreLoggedInAs')."<br/>
-            <strong>".Yii::app()->user->tokenCustomer->name."</strong>";
+        <?php 
+            $user = User::model()->findByPK(Yii::app()->user->id);
+            
+            echo Yii::t('Index', 'YouAreLoggedInAs').":<br/>
+            <strong>
+                {$user->username},</br>
+                ".Yii::app()->user->tokenCustomer->name."
+            </strong>";
          ?>
     </p>
