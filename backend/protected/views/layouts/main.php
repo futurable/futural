@@ -46,9 +46,16 @@
                 // Get user role
                 if(!Yii::app()->user->isGuest) $role = Yii::app()->user->getRole();
                 else $role = 0;
+                
+                if($role == 0){
+                    $user = User::model()->findByPK(Yii::app()->user->id);
+                    $company = Company::model()->findByAttributes( array('tag'=>$user->username) );
+                }
 
                 $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
+                        // For students
+                        array('label'=>Yii::t('Company', 'CompanyInfo'), 'url'=>array("/company/view", 'id' => $company->id), 'visible'=>$role==0),
                         // For instructors and higher
                         array('label'=>Yii::t('Menu', 'Home'), 'url'=>array('/site/index'), 'visible'=>$role>0),
                         array('label'=>Yii::t('Menu', 'Companies'), 'url'=>array('/company/index'), 'visible'=>$role>0),
