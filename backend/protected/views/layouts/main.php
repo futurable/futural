@@ -55,9 +55,10 @@
                 $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
                         // For students
+                        array('label'=>Yii::t('Menu', 'Home'), 'url'=>array('/site/index'), 'visible'=>$role>=0),
                         array('label'=>Yii::t('Company', 'CompanyInfo'), 'url'=>array("/company/view", 'id' => $company->id), 'visible'=>$role==0),
+                        
                         // For instructors and higher
-                        array('label'=>Yii::t('Menu', 'Home'), 'url'=>array('/site/index'), 'visible'=>$role>0),
                         array('label'=>Yii::t('Menu', 'Companies'), 'url'=>array('/company/index'), 'visible'=>$role>0),
                         array('label'=>Yii::t('Menu', 'BankAccounts'), 'url'=>array('/company/bankAccounts'), 'visible'=>$role>0), 
                         array('label'=>Yii::t('Menu', 'Users'), 'url'=>array('/company/users'), 'visible'=>$role>0),
