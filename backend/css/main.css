@@ -37,11 +37,11 @@
 }
 
 #mainmenu ul li a{
-	color:#000;
-	background-color:#C8DA30;
-	font-size:12px;
-	font-weight:bold;
-	text-decoration:none;
+	color: #000;
+	background-color: #C8DA30;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
 	padding: 6px 8px;
     border-radius: 15px;
     margin-right: 2px;
@@ -62,10 +62,9 @@
     color: #fff;
 }
 
-#mainmenu ul li .active a, #submenu ul li .active a
-{
-	background-color:#0088CC;
-	text-decoration:none;
+#mainmenu .active a{
+	background-color: #0088CC;
+	text-decoration: none;
 }
 
 div.flash-error, div.flash-notice, div.flash-success
