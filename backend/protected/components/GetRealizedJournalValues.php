@@ -8,7 +8,7 @@ class GetRealizedJournalValues {
         $criteria->addCondition("create_date > NOW()::date - INTERVAL '{$intervalMonths} month'");
         
         if($byWeek === true){
-            $criteria->select='date_trunc(\'week\', date) AS week, account_id, SUM(credit) AS credit, SUM(debit) AS debit';  
+            $criteria->select='to_char(date, \'WW\') AS week, account_id, SUM(credit) AS credit, SUM(debit) AS debit';  
             $criteria->group='week, account_id';
             $criteria->order='week, account_id';
         }
@@ -24,7 +24,7 @@ class GetRealizedJournalValues {
         
         if($byWeek === true){
             foreach($accountMoveLines as $accountMoveLine){
-                $realizedItemsArray[ date('W', strtotime($accountMoveLine->week)) ][ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
+                $realizedItemsArray[ $accountMoveLine->week ][ $accountMoveLine->account->code ] = $accountMoveLine['credit'] - $accountMoveLine['debit'];
             }
         }
         else{
