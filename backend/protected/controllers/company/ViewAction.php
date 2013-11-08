@@ -5,7 +5,7 @@ class ViewAction extends CAction
     {
         $controller=$this->getController();
         $controller->allowUser(STUDENT);
-        if(!Yii::app()->user->isGuest) $role = Yii::app()->user->getRole();
+        $role = Yii::app()->user->isGuest ? null : $role = Yii::app()->user->getRole();
         
         // Only allow own companies for students
         if($role==0){
