@@ -18,11 +18,11 @@
         array('label'=>Yii::t('Company', 'CompanyInfo'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'info')),
         array('label'=>Yii::t('Company', 'CostBenefitCalculation'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'costBenefitCalculation')),
         array('label'=>Yii::t('Company', 'BankAccounts'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'bankAccounts')),
-        array('label'=>Yii::t('Company', 'CustomerPayments'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'CustomerPayments')),
+        array('label'=>Yii::t('Company', 'CustomerPayments'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'CustomerPayments'), 'visible'=>$role>0),
         array('label'=>Yii::t('Company', 'Employees'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'employees')),
         array('label'=>Yii::t('Company', 'SaleOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'saleOrders')),
         array('label'=>Yii::t('Company', 'PurchaseOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'purchaseOrders')),
-        array('label'=>Yii::t('Company', 'AutomatedOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'automatedOrders')),
+        array('label'=>Yii::t('Company', 'AutomatedOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'automatedOrders'), 'visible'=>$role>0),
         array('label'=>Yii::t('Company', 'Remarks'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'remarks')),
     );
 
