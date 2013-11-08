@@ -67,10 +67,13 @@
  */
 class HrEmployee extends ActiveRecord
 {
-        public function getDbConnection()
-        {
-            return self::getOpenerpDbConnection();
-        }
+    public $purchaseOrdersCreated;
+    public $saleOrdersCreated;
+    
+    public function getDbConnection()
+    {
+        return self::getOpenerpDbConnection();
+    }
     
 	/**
 	 * @return string the associated database table name
