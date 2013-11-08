@@ -81,11 +81,12 @@ class ViewAction extends CAction
         
         elseif($action=='employees'){
             $criteria = new CDbCriteria();
+            //$criteria->select = 'SUM("purchaseOrdersCreated"."id") AS purchaseOrdersCreated';
             $criteria->alias = 'employee';
-            $criteria->with = 'resource.user';
-            $criteria->with = 'resource.user.purchaseOrders2';
+            //$criteria->with = 'resource.user.purchaseOrdersCreated';
+            //$criteria->group = 'employee.id';
             $criteria->order = 'name_related DESC';
-
+              
             $OEHrEmployees = HrEmployee::model()->findAll($criteria);
         }
         
