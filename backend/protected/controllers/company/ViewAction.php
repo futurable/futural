@@ -85,9 +85,22 @@ class ViewAction extends CAction
             $criteria->alias = 'employee';
             //$criteria->with = 'resource.user.purchaseOrdersCreated';
             //$criteria->group = 'employee.id';
-            $criteria->order = 'name_related DESC';
+            $criteria->order = 'name_related ASC';
               
             $OEHrEmployees = HrEmployee::model()->findAll($criteria);
+            
+            // @TODO: this should be implemented into the initial query, 
+            // but the active record handles the select grouping in multiple joins too fancy
+            foreach($OEHrEmployees AS $OEHrEmployee){
+                $uid = $OEHrEmployee->resource->user->id;
+
+                $criteria = new CDbCriteria();
+                $criteria->select = "COUNT(create_uid) AS create_uid";
+                $criteria->condition = "create_uid = {$uid}";
+                
+                $OEHrEmployee->purchaseOrdersCreated = PurchaseOrder::model()->find($criteria)->create_uid;
+                $OEHrEmployee->saleOrdersCreated = SaleOrder::model()->find($criteria)->create_uid;
+            }
         }
         
         elseif($action=='saleOrders'){
