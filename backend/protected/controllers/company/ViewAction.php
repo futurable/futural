@@ -8,7 +8,7 @@ class ViewAction extends CAction
         $role = Yii::app()->user->isGuest ? null : $role = Yii::app()->user->getRole();
         
         // Only allow own companies for students
-        if($role==0){
+        if($role===0){
             $user = User::model()->findByPK(Yii::app()->user->id);
             $company = Company::model()->findByAttributes( array('tag'=>$user->username) );
         }
