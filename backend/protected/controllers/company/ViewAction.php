@@ -102,6 +102,8 @@ class ViewAction extends CAction
         }
         
         elseif($action=='automatedOrders'){
+            $controller->allowUser(MANAGER);
+            
             $criteria = new CDbCriteria();
             $criteria->addCondition("company_id={$company->id}");
             $criteria->addCondition("active=1");
@@ -111,6 +113,7 @@ class ViewAction extends CAction
         }
 
         elseif($action=='CustomerPayments'){
+            $controller->allowUser(MANAGER);
             $businessCenterIban = 'FI1297030000008863'; // @TODO: get this from somewhere
             
             // Business center bank transactions
