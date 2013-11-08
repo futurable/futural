@@ -1,28 +1,51 @@
 <?php
-// Bank accounts info
+    // Bank accounts info
     echo "<h2>".Yii::t('Company', 'BankAccounts')."</h2>";
+      
+    echo "<div class=grid-view>";
     
-    $gridDataProvider = new CArrayDataProvider($bankAccounts);
+        echo "<table class='items table table-striped'>";
+            echo "<thead>";
+                echo "<tr>";
+                    echo "<th>";
+                        echo Yii::t('BankAccount', 'Type');
+                    echo "</th>"; 
+                    echo "<th>";
+                        echo Yii::t('BankAccount', 'iban');
+                    echo "</th>"; 
+                    echo "<th>";
+                        echo Yii::t('BankAccount', 'Saldo');
+                    echo "</th>"; 
+                echo "</tr>";
+            echo "</thead>";
 
-    $gridColumns = array(
-        array('name'=>'iban', 'header' => Yii::t('BankAccount', 'iban')),
-        array('name'=>'name', 'header' => Yii::t('BankAccount', 'name')),
-        array('name'=>'status', 'header' => Yii::t('BankAccount', 'status')),
-        array(
-            'class'=>'bootstrap.widgets.TbButtonColumn',
-            'viewButtonUrl'=>'Yii::app()->createUrl("/bankAccount/view", array("id" => $data["id"]))',
-            'buttons'=>array(
-                'view'=>array('visible'=>'false',),
-                'update'=>array('visible'=>'false',),
-                'delete'=>array('visible'=>'false',),
-            ),
-        )
-    );
-
-    $this->widget('bootstrap.widgets.TbGridView', array(
-        'type'=>'striped',
-        'dataProvider'=>$gridDataProvider,
-        'template'=>"{items}",
-        'columns'=>$gridColumns,
-    ));
+            $netWorth = 0;
+            foreach($bankAccounts as $bankAccount){
+                $accountSaldo = BankSaldo::getAccountSaldo($bankAccount->iban);
+                $netWorth += $accountSaldo;
+                $accountSaldo = number_format($accountSaldo, 2, '.', ' ');
+                
+                echo "<tr>";
+                    echo "<td>";
+                        echo $bankAccount->bankAccountType->description;
+                    echo "</td>"; 
+                    echo "<td>";
+                        echo $bankAccount->iban;
+                    echo "</td>"; 
+                    echo "<td>";
+                        echo $accountSaldo." ".$bankAccount->bankCurrency->code;
+                    echo "</td>"; 
+                echo "</tr>";
+            }
+            
+            echo "<tr>";
+                echo "<td/>";
+                echo "<td/>";
+                echo "<td><strong>";
+                    echo number_format($netWorth, 2, '.', ' ')." ".$bankAccount->bankCurrency->code; // @TODO: this code is wrong if we have multi-currency accounts
+                echo "</td></strong>";
+            echo "</tr>";
+        echo "</table>";
+        
+    echo "</div>";
  ?>
