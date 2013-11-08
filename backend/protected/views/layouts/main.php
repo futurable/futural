@@ -51,12 +51,12 @@
                     $user = User::model()->findByPK(Yii::app()->user->id);
                     $company = Company::model()->findByAttributes( array('tag'=>$user->username) );
                 }
-                else $company = new Company();;
+                else $company = new Company();
 
                 $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
                         // For students
-                        array('label'=>Yii::t('Menu', 'Home'), 'url'=>array('/site/index'), 'visible'=>$role>=0),
+                        array('label'=>Yii::t('Menu', 'Home'), 'url'=>array('/site/index'), 'visible'=>$role!=null),
                         array('label'=>Yii::t('Company', 'CompanyInfo'), 'url'=>array("/company/view", 'id' => $company->id), 'visible'=>$role===0),
                         
                         // For instructors and higher
