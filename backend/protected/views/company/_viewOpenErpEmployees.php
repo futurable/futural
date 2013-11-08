@@ -9,6 +9,8 @@
                      echo "<th>".Yii::t('Company', 'Name')."</th>";
                      echo "<th>".Yii::t('Company', 'CreateDate')."</th>";
                      echo "<th>".Yii::t('Company', 'Email')."</th>";
+                     echo "<th>".Yii::t('Company', 'PurchaseOrders')."</th>";
+                     echo "<th>".Yii::t('Company', 'SaleOrders')."</th>";
                 echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
@@ -18,6 +20,8 @@
                          echo "<td>{$OEEmployee->name_related}</td>";
                          echo "<td>{$createDate}</td>";
                          echo "<td>{$OEEmployee->work_email}</td>";
+                         echo "<td>{$OEEmployee->purchaseOrdersCreated}</td>";
+                         echo "<td>{$OEEmployee->saleOrdersCreated}</td>";
                     echo "</tr>";
                 }
             echo "</tbody>";
