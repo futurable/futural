@@ -7,7 +7,7 @@ Class GetRandomDateTimeForWeek{
         // Set a random time from office hours
         $date->setTime(rand(6,16), rand(0,60));
         // Set a random day
-        $date->setISODate(date('Y'), $week, rand(0,5));
+        $date->setISODate(date('Y'), $week, rand(1,5));
         
         return $date->format('Y-m-d H:i:s');
     }
