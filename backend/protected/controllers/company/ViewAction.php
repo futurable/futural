@@ -92,8 +92,9 @@ class ViewAction extends CAction
             // @TODO: this should be implemented into the initial query, 
             // but the active record handles the select grouping in multiple joins too fancy
             foreach($OEHrEmployees AS $OEHrEmployee){
-                $uid = $OEHrEmployee->resource->user->id;
-
+                $uid = isset($OEHrEmployee->resource->user->id) ? $OEHrEmployee->resource->user->id : null;
+                if($uid===null) continue;
+                
                 $criteria = new CDbCriteria();
                 $criteria->select = "COUNT(create_uid) AS create_uid";
                 $criteria->condition = "create_uid = {$uid}";
