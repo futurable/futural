@@ -18,6 +18,8 @@
  */
 return array (
   'AutomatedOrders' => 'Automaattitilaukset',
+  'BookingEntries' => 'Kirjanpitoviennit',
+  'Products' => 'Tuotteet',
   'Created' => 'Luotu',
   'Login' => 'Kirjautuminen',
   'OrderState' => 'Tila',

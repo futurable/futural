@@ -101,6 +101,8 @@ class ViewAction extends CAction
                 
                 $OEHrEmployee->purchaseOrdersCreated = PurchaseOrder::model()->find($criteria)->create_uid;
                 $OEHrEmployee->saleOrdersCreated = SaleOrder::model()->find($criteria)->create_uid;
+                $OEHrEmployee->accountMoveLinesCreated = AccountMoveLine::model()->find($criteria)->create_uid;
+                $OEHrEmployee->productsCreated = ProductProduct::model()->find($criteria)->create_uid;
             }
         }
         
