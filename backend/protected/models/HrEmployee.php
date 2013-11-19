@@ -69,6 +69,8 @@ class HrEmployee extends ActiveRecord
 {
     public $purchaseOrdersCreated;
     public $saleOrdersCreated;
+    public $accountMoveLinesCreated;
+    public $productsCreated;
     
     public function getDbConnection()
     {
