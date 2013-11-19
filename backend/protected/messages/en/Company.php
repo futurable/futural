@@ -18,6 +18,7 @@
  */
 return array (
   'AutomatedOrders' => 'Automated orders',
+  'BookingEntries' => 'Booking entries',
   'Companies' => '',
   'Company' => '',
   'Create' => '',
