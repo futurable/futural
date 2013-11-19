@@ -33,11 +33,11 @@ class Controller extends CController
     }
 
     public function allowUser($min_level) { //-1 no login required 0..3: admin level
-        $current_level = 0;
+        $current_level = -1;
         if ($this->userData !== null)
             $current_level = $this->userData->role;
         if ($min_level > $current_level) {
-            $this->redirect(array('site/index'));
+            $this->redirect(array('site/login'));
         }
     }
     
