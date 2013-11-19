@@ -1,4 +1,5 @@
 <?php
+    $role = null;
     if(!Yii::app()->user->isGuest) $role = Yii::app()->user->getRole();
     if($role>0){
         $menuItems = Suppliers::get();
