@@ -138,7 +138,7 @@ class ViewAction extends CAction
                 FROM hr_attendance a 
                 WHERE a.action = 'sign_out'
             ) duration
-            ORDER BY create_uid";
+            ORDER BY duration.login_date";
 
             $AttendanceRecords = Yii::app()->dbopenerp->createCommand($query)->queryAll();
             
