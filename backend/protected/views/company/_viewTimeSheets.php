@@ -5,7 +5,7 @@
     
     echo "<div class='grid-view' id='HrTimesheets'>";
     
-        echo "<table class='items table table-striped'>";
+        echo "<table class='items table table-striped verticalBorders'>";
             echo "<thead>";
                 echo "<tr>";
                      echo "<th>".Yii::t('Company', 'Employee')."</th>";
