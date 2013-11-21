@@ -57,6 +57,16 @@
             'OEHrEmployees'=>$OEHrEmployees,
         ));
     }
+    elseif($action=='timesheets'){
+        $this->renderPartial('_viewTimesheets',array(
+            'OEHrTimesheets'=>$OEHrTimesheets,
+        ));
+    }
+    elseif($action=='attendance'){
+        $this->renderPartial('_viewAttendance',array(
+            'OEHrEmployees'=>$OEHrEmployees,
+        ));
+    }
     elseif($action=='saleOrders'){
         $this->renderPartial('_viewOpenErpSaleOrders',array(
             'OESaleOrders'=>$OESaleOrders,
