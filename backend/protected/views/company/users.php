@@ -64,6 +64,8 @@
                     $HourRecords[ $OETimesheet->week ] = $HoursFormatted;
                 }
                 $HourSum = array_sum($HourRecords);
+                $hours = floor($HourSum);
+                $minutes = round( ($HourSum - $hours) * 60 );
                 
                 echo "<tr>";
                     echo "<td/>";
@@ -74,7 +76,7 @@
                             if(array_key_exists($week, $HourRecords)) echo $HourRecords[$week];
                         echo "</td>";
                     }
-                    echo "<td>{$HourSum}</td>";
+                    echo "<td>{$hours}h {$minutes}m</td>";
                 echo "</tr>";
             }
         }
