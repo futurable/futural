@@ -25,7 +25,7 @@
 	padding:6px 20px 5px 20px;
 	margin:0px;
 }
-#mainmenu ul li, #companymenu ul li, #submenu ul li{
+#mainmenu ul li, #companymenu ul li{
 	display: inline;
 }
 #mainmenu ul li a{
@@ -61,6 +61,26 @@
 }
 #companymenu li a:hover{
     color: #C8DA30;
+}
+
+#submenu{
+    position: fixed;
+    top: 50px;
+    left: 20px;
+}
+#submenu ul{
+    list-style-type: none;
+}
+#submenu ul li{
+    margin-bottom: 5px;
+}
+#submenu ul li a{
+    display: block;
+    width: 200px;
+    padding: 5px 0;
+    background-color:rgba(255,255,255,0.5);
+    text-align: center;
+    border-radius: 15px;
 }
 
 div.flash-error, div.flash-notice, div.flash-success
