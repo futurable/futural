@@ -64,6 +64,7 @@ return array (
   'Sum' => 'Summa',
   'Tag' => 'Tunnus',
   'Timesheets' => 'Tuntilomakkeet',
+  'Timecards' => 'Kellokortit',
   'TokenKey' => 'Perustamisavain',
   'Turnover' => 'Liikevaihto',
   'Users' => 'Käyttäjät',
