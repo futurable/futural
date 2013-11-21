@@ -37,6 +37,7 @@ class ViewAction extends CAction
         $realizedItemsArray = null;
         $bankAccounts = null;
         $OEHrEmployees = null;
+        $OEHrTimesheets = null;
         $OESaleOrders = null;
         $OEPurchaseOrders = null;
         $remarks = null;
@@ -106,6 +107,16 @@ class ViewAction extends CAction
             }
         }
         
+        elseif($action=='timesheets'){
+            // Get timesheets
+            $criteria = new CDbCriteria();
+            $criteria->select = 'user_id, to_char(date, \'WW\') AS week , SUM(unit_amount) AS "hours"';
+            $criteria->addCondition( "date > now() - interval '3 months'" );
+            $criteria->group = '"week", user_id';
+            $criteria->order = 'user_id, "week" DESC';
+            $OEHrTimesheets = AccountAnalyticLine::model()->findAll($criteria); 
+        }
+       
         elseif($action=='saleOrders'){
             $OESaleOrders = SaleOrder::model()->findAll(array('order'=>'create_date DESC'));
         }
@@ -153,6 +164,7 @@ class ViewAction extends CAction
             'bankAccounts'=>$bankAccounts,
             'CustomerPayments'=>$CustomerPayments,
             'OEHrEmployees'=>$OEHrEmployees,
+            'OEHrTimesheets'=>$OEHrTimesheets,
             'OESaleOrders'=>$OESaleOrders,
             'OEPurchaseOrders'=>$OEPurchaseOrders,
             'remarks'=>$remarks,
