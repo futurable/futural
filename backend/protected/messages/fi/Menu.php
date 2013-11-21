@@ -22,6 +22,7 @@ return array (
   'Customers' => 'Asiakkaat',
   'Home' => 'Etusivu',
   'Keys' => 'Avaimet',
+  'Login' => 'Kirjaudu sisään',
   'Logout' => 'Kirjaudu ulos',
   'Orders' => 'Tilaukset',
   'BankAccounts' => 'Pankkitilit',
