@@ -59,12 +59,11 @@
 
                 // Set the hour records to an array
                 $HourRecords = array();
-                $HoursSum = 0;
                 foreach($OETimesheets as $OETimesheet){
                     $HoursFormatted = number_format($OETimesheet->hours, 2);
                     $HourRecords[ $OETimesheet->week ] = $HoursFormatted;
-                    $HoursSum += $HoursFormatted;
                 }
+                $HourSum = array_sum($HourRecords);
                 
                 echo "<tr>";
                     echo "<td/>";
@@ -75,7 +74,7 @@
                             if(array_key_exists($week, $HourRecords)) echo $HourRecords[$week];
                         echo "</td>";
                     }
-                    echo "<td>{$HoursSum}</td>";
+                    echo "<td>{$HourSum}</td>";
                 echo "</tr>";
             }
         }
