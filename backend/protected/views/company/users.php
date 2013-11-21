@@ -3,7 +3,7 @@
     
     echo "<div class=grid-view>";
     
-        $weeks = range(date('W', strtotime("-1 month")), date('W'));
+        $weeks = range(date('W', strtotime("-2 month")), date('W'));
     
         echo "<table class='items table table-striped verticalBorders'>";
             echo "<thead>";
@@ -15,12 +15,21 @@
                         echo Yii::t('Company', 'Employee');
                     echo "</th>";
                     echo "<th colspan='".count($weeks)."'>".Yii::t('Company', 'Timesheets');
+                    echo "<th>";
+                        echo Yii::t('Company', 'Sum');
+                    echo "</th>"; 
                 echo "</tr>";
             echo "</thead>";
       
         foreach($companies as $company){
+            $CoreCompany = $company['company'];
             $OECompany = $company['OECompany'];
             $OEEmployees = $company['OEEmployees'];
+            
+            // Change OpenERP-database
+            Yii::app()->dbopenerp->setActive(false);
+            Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$CoreCompany['tag']}";
+            Yii::app()->dbopenerp->setActive(true);
             
             echo "<tr>";
                 echo "<td><strong>";
@@ -46,20 +55,22 @@
 
                 // Set the hour records to an array
                 $HourRecords = array();
+                $HoursSum = 0;
                 foreach($OETimesheets as $OETimesheet){
-                    $HourRecords[ $OETimesheet->week ] = $OETimesheet->hours;
+                    $HoursFormatted = number_format($OETimesheet->hours, 2);
+                    $HourRecords[ $OETimesheet->week ] = $HoursFormatted;
+                    $HoursSum += $HoursFormatted;
                 }
                 
                 echo "<tr>";
                     echo "<td/>";
-                    echo "<td>";
-                        echo $OEEmployee->name_related;
-                    echo "</td>";
+                    echo "<td>{$OEEmployee->name_related}</td>";
                     foreach($weeks as $week){
                         echo "<td>";
                         if(array_key_exists($week, $HourRecords)) echo $HourRecords[$week];
                         echo "</td>";
                     }
+                    echo "<td>{$HoursSum}</td>";
                 echo "</tr>";
             }
         }
