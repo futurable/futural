@@ -37,7 +37,7 @@
             foreach($OEEmployees as $OEEmployee){
                 // Get timesheets
                 $criteria = new CDbCriteria();
-                $criteria->select = 'date_trunc(\'week\', date) AS "week" , SUM(unit_amount) AS "hours"';
+                $criteria->select = 'to_char(date, \'WW\') AS week , SUM(unit_amount) AS "hours"';
                 $criteria->addCondition( "user_id={$OEEmployee->id}" );
                 $criteria->addCondition( "date > now() - interval '3 months'" );
                 $criteria->group = '"week"';
@@ -47,7 +47,7 @@
                 // Set the hour records to an array
                 $HourRecords = array();
                 foreach($OETimesheets as $OETimesheet){
-                    $HourRecords[ date('W', strtotime($OETimesheet->week)) ] = $OETimesheet->hours;
+                    $HourRecords[ $OETimesheet->week ] = $OETimesheet->hours;
                 }
                 
                 echo "<tr>";
