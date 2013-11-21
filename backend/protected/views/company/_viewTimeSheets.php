@@ -32,6 +32,9 @@
                 $UserRecords = $HourRecords[$key];
                 $User = ResourceResource::model()->findByAttributes( array('user_id' => $key) );
                 $HourSum = array_sum($UserRecords);
+                
+                $hours = floor($HourSum);
+                $minutes = round( ($HourSum - $hours) * 60 );
 
                 echo "<tr>";
                     echo "<td>{$User->name}</td>";
@@ -40,7 +43,7 @@
                             if(array_key_exists($week, $UserRecords)) echo $UserRecords[$week];
                         echo "</td>";
                     }
-                    echo "<td>{$HourSum}</td>";
+                    echo "<td>{$hours}h {$minutes}m</td>";
                echo "</tr>";
             }
             echo "</tbody>";
