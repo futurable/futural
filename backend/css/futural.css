@@ -134,9 +134,3 @@ a:hover{
 #createRemark label{
     display: inline;
 }
-h2{
-    padding: 60px 0 20px 0;
-}
-#CostBenefitCalculation, #HrEmployees{
-    margin-top: 60px;
-}

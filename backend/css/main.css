@@ -21,21 +21,13 @@
 {
 	
 }
-
-#submenu, #submenu ul{
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
 #mainmenu ul{
 	padding:6px 20px 5px 20px;
 	margin:0px;
 }
-
-#mainmenu ul li, #submenu ul li{
+#mainmenu ul li, #companymenu ul li{
 	display: inline;
 }
-
 #mainmenu ul li a{
 	color: #000;
 	background-color: #C8DA30;
@@ -49,15 +41,6 @@
     width: 100px;
     text-align: center;
 }
-#submenu ul li a{
-    font-size: 10px;
-    color: #000;
-    padding: 5px 10px;
-}
-#submenu li a:hover{
-    color: #C8DA30;
-}
-
 #mainmenu ul li a:hover{
     color: #fff;
 }
@@ -65,6 +48,43 @@
 #mainmenu .active a{
 	background-color: #0088CC;
 	text-decoration: none;
+}
+
+#companymenu, #companymenu ul{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+#companymenu ul li a{
+    font-size: 10px;
+    color: #000;
+    padding: 5px 10px;
+}
+#companymenu li a:hover{
+    color: #C8DA30;
+}
+
+#submenu{
+    position: fixed;
+    top: 50px;
+    left: 20px;
+}
+#submenu ul{
+    list-style-type: none;
+}
+#submenu ul li{
+    margin-bottom: 5px;
+}
+#submenu .active a{
+    background-color: #C8DA30;
+}
+#submenu ul li a{
+    display: block;
+    width: 200px;
+    padding: 5px 0;
+    background-color:rgba(255,255,255,0.9);
+    text-align: center;
+    border-radius: 15px;
+    opacity: 0.9;
 }
 
 div.flash-error, div.flash-notice, div.flash-success

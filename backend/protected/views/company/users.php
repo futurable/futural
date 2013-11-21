@@ -3,7 +3,7 @@
     
     echo "<div class=grid-view>";
     
-        $weeks = range(date('W', strtotime("-1 month")), date('W'));
+        $weeks = range(date('W', strtotime("-2 month")), date('W'));
     
         echo "<table class='items table table-striped verticalBorders'>";
             echo "<thead>";
@@ -14,18 +14,31 @@
                     echo "<th>";
                         echo Yii::t('Company', 'Employee');
                     echo "</th>";
+                    echo "<th>";
+                        echo Yii::t('Company', 'Tag');
+                    echo "</th>";
                     echo "<th colspan='".count($weeks)."'>".Yii::t('Company', 'Timesheets');
+                    echo "<th>";
+                        echo Yii::t('Company', 'Sum');
+                    echo "</th>"; 
                 echo "</tr>";
             echo "</thead>";
       
         foreach($companies as $company){
+            $CoreCompany = $company['company'];
             $OECompany = $company['OECompany'];
             $OEEmployees = $company['OEEmployees'];
+            
+            // Change OpenERP-database
+            Yii::app()->dbopenerp->setActive(false);
+            Yii::app()->dbopenerp->connectionString = "pgsql:host=erp.futurality.fi;dbname={$CoreCompany['tag']}";
+            Yii::app()->dbopenerp->setActive(true);
             
             echo "<tr>";
                 echo "<td><strong>";
                     echo $OECompany->name;
                 echo "</strong></td>";
+                echo "<td/>";
                 echo "<td/>";
                 foreach($weeks as $week){
                     echo "<td><strong>";
@@ -37,7 +50,7 @@
             foreach($OEEmployees as $OEEmployee){
                 // Get timesheets
                 $criteria = new CDbCriteria();
-                $criteria->select = 'date_trunc(\'week\', date) AS "week" , SUM(unit_amount) AS "hours"';
+                $criteria->select = 'to_char(date, \'WW\') AS week , SUM(unit_amount) AS "hours"';
                 $criteria->addCondition( "user_id={$OEEmployee->id}" );
                 $criteria->addCondition( "date > now() - interval '3 months'" );
                 $criteria->group = '"week"';
@@ -47,19 +60,21 @@
                 // Set the hour records to an array
                 $HourRecords = array();
                 foreach($OETimesheets as $OETimesheet){
-                    $HourRecords[ date('W', strtotime($OETimesheet->week)) ] = $OETimesheet->hours;
+                    $HoursFormatted = number_format($OETimesheet->hours, 2);
+                    $HourRecords[ $OETimesheet->week ] = $HoursFormatted;
                 }
+                $HourSum = array_sum($HourRecords);
                 
                 echo "<tr>";
                     echo "<td/>";
-                    echo "<td>";
-                        echo $OEEmployee->name_related;
-                    echo "</td>";
+                    echo "<td>{$OEEmployee->name_related}</td>";
+                    echo "<td>{$OEEmployee->resource->user->login}</td>";
                     foreach($weeks as $week){
                         echo "<td>";
-                        if(array_key_exists($week, $HourRecords)) echo $HourRecords[$week];
+                            if(array_key_exists($week, $HourRecords)) echo $HourRecords[$week];
                         echo "</td>";
                     }
+                    echo "<td>{$HourSum}</td>";
                 echo "</tr>";
             }
         }

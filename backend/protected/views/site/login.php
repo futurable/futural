@@ -1,4 +1,4 @@
-<h1><?php echo Yii::t('yii', 'Login'); ?></h1>
+<h1><?php echo Yii::t('Menu', 'Login'); ?></h1>
 
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>Yii::t('Menu', 'Login'))); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

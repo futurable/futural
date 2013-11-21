@@ -37,6 +37,8 @@ class ViewAction extends CAction
         $realizedItemsArray = null;
         $bankAccounts = null;
         $OEHrEmployees = null;
+        $OEHrTimesheets = null;
+        $OEHrTimecards = null;
         $OESaleOrders = null;
         $OEPurchaseOrders = null;
         $remarks = null;
@@ -106,6 +108,46 @@ class ViewAction extends CAction
             }
         }
         
+        elseif($action=='timesheets'){
+            // Get timesheets
+            $criteria = new CDbCriteria();
+            $criteria->select = 'user_id, to_char(date, \'WW\') AS week , SUM(unit_amount) AS "hours"';
+            $criteria->addCondition( "date > now() - interval '3 months'" );
+            $criteria->group = '"week", user_id';
+            $criteria->order = 'user_id, "week" DESC';
+            $OEHrTimesheets = AccountAnalyticLine::model()->findAll($criteria); 
+        }
+        
+        elseif($action=='timecards'){
+            $query =
+            "SELECT
+            duration.create_uid
+            , duration.login_date
+            , duration.logout_date
+            , EXTRACT(EPOCH FROM (duration.logout_date - duration.login_date)) AS duration
+            FROM
+            (
+                SELECT a.create_uid, a.create_date as logout_date, 
+                    ( 	
+                    SELECT MAX(b.create_date) 
+                    FROM hr_attendance b 
+                    WHERE b.create_date < a.create_date 
+                    AND b.create_uid = a.create_uid 
+                    AND b.action = 'sign_in'
+                    ) AS login_date    
+                FROM hr_attendance a 
+                WHERE a.action = 'sign_out'
+            ) duration
+            ORDER BY duration.login_date";
+
+            $AttendanceRecords = Yii::app()->dbopenerp->createCommand($query)->queryAll();
+            
+            $OEHrTimecards = array();
+            foreach($AttendanceRecords as $AttendanceRecord){
+                $OEHrTimecards[$AttendanceRecord['create_uid']][] = $AttendanceRecord;
+            }
+        }
+       
         elseif($action=='saleOrders'){
             $OESaleOrders = SaleOrder::model()->findAll(array('order'=>'create_date DESC'));
         }
@@ -153,6 +195,8 @@ class ViewAction extends CAction
             'bankAccounts'=>$bankAccounts,
             'CustomerPayments'=>$CustomerPayments,
             'OEHrEmployees'=>$OEHrEmployees,
+            'OEHrTimesheets'=>$OEHrTimesheets,
+            'OEHrTimecards'=>$OEHrTimecards,
             'OESaleOrders'=>$OESaleOrders,
             'OEPurchaseOrders'=>$OEPurchaseOrders,
             'remarks'=>$remarks,
