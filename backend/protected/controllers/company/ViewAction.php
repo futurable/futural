@@ -140,7 +140,12 @@ class ViewAction extends CAction
             ) duration
             ORDER BY create_uid";
 
-            $OEHrTimecards = Yii::app()->dbopenerp->createCommand($query)->queryAll();
+            $AttendanceRecords = Yii::app()->dbopenerp->createCommand($query)->queryAll();
+            
+            $OEHrTimecards = array();
+            foreach($AttendanceRecords as $AttendanceRecord){
+                $OEHrTimecards[$AttendanceRecord['create_uid']][] = $AttendanceRecord;
+            }
         }
        
         elseif($action=='saleOrders'){
