@@ -62,7 +62,7 @@
             'OEHrTimesheets'=>$OEHrTimesheets,
         ));
     }
-    elseif($action=='attendance'){
+    elseif($action=='timecards'){
         $this->renderPartial('_viewTimecards',array(
             'OEHrTimecards'=>$OEHrTimecards,
         ));
