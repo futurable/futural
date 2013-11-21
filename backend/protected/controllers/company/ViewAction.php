@@ -38,6 +38,7 @@ class ViewAction extends CAction
         $bankAccounts = null;
         $OEHrEmployees = null;
         $OEHrTimesheets = null;
+        $OEHrTimecards = null;
         $OESaleOrders = null;
         $OEPurchaseOrders = null;
         $remarks = null;
@@ -116,6 +117,31 @@ class ViewAction extends CAction
             $criteria->order = 'user_id, "week" DESC';
             $OEHrTimesheets = AccountAnalyticLine::model()->findAll($criteria); 
         }
+        
+        elseif($action=='timecards'){
+            $query =
+            "SELECT
+            duration.create_uid
+            , duration.login_date
+            , duration.logout_date
+            , EXTRACT(EPOCH FROM (duration.logout_date - duration.login_date)) AS duration
+            FROM
+            (
+                SELECT a.create_uid, a.create_date as logout_date, 
+                    ( 	
+                    SELECT MAX(b.create_date) 
+                    FROM hr_attendance b 
+                    WHERE b.create_date < a.create_date 
+                    AND b.create_uid = a.create_uid 
+                    AND b.action = 'sign_in'
+                    ) AS login_date    
+                FROM hr_attendance a 
+                WHERE a.action = 'sign_out'
+            ) duration
+            ORDER BY create_uid";
+
+            $OEHrTimecards = Yii::app()->dbopenerp->createCommand($query)->queryAll();
+        }
        
         elseif($action=='saleOrders'){
             $OESaleOrders = SaleOrder::model()->findAll(array('order'=>'create_date DESC'));
@@ -165,6 +191,7 @@ class ViewAction extends CAction
             'CustomerPayments'=>$CustomerPayments,
             'OEHrEmployees'=>$OEHrEmployees,
             'OEHrTimesheets'=>$OEHrTimesheets,
+            'OEHrTimecards'=>$OEHrTimecards,
             'OESaleOrders'=>$OESaleOrders,
             'OEPurchaseOrders'=>$OEPurchaseOrders,
             'remarks'=>$remarks,
