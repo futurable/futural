@@ -19,7 +19,9 @@
                     
                     echo "<tr>";
                         echo "<td>{$User->name}</td>";
+                        $HourSum = 0;
                         foreach($OEHrTimecardEmployee as $OEHrTimeCard){
+                            $HourSum += ($OEHrTimeCard['duration'] / 3600);
                             $hours = floor($OEHrTimeCard['duration'] / 3600);
                             $minutes = round( ($OEHrTimeCard['duration'] / 3600 - $hours) * 60 );
                             
@@ -30,6 +32,12 @@
                                 echo "<td>{$hours}h {$minutes}m</td>";
                             echo "</tr>";
                         }
+                        $hours = floor($HourSum);
+                        $minutes = round( ($HourSum - $hours) * 60 );
+                    echo "</tr>";
+                    echo "<tr>";
+                        echo "<td colspan='3'/>";
+                        echo "<td><strong>{$hours}h {$minutes}m</strong></td>";
                     echo "</tr>";
                 }
             echo "</tbody>";
