@@ -24,7 +24,7 @@
                 array('label'=>Yii::t('Company', 'CustomerPayments'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'CustomerPayments'), 'visible'=>$role>0),
                 array('label'=>Yii::t('Company', 'Employees'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'employees')),
                 array('label'=>Yii::t('Company', 'Timesheets'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'timesheets')),
-                array('label'=>Yii::t('Company', 'Attendance'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'attendance')),
+                array('label'=>Yii::t('Company', 'Timecards'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'attendance')),
                 array('label'=>Yii::t('Company', 'SaleOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'saleOrders')),
                 array('label'=>Yii::t('Company', 'PurchaseOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'purchaseOrders')),
                 array('label'=>Yii::t('Company', 'AutomatedOrders'), 'url'=>array("/company/view", 'id' => $company->id, 'action'=>'automatedOrders'), 'visible'=>$role>0),
@@ -63,8 +63,8 @@
         ));
     }
     elseif($action=='attendance'){
-        $this->renderPartial('_viewAttendance',array(
-            'OEHrEmployees'=>$OEHrEmployees,
+        $this->renderPartial('_viewTimecards',array(
+            'OEHrTimecards'=>$OEHrTimecards,
         ));
     }
     elseif($action=='saleOrders'){
