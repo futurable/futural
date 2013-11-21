@@ -14,6 +14,9 @@
                     echo "<th>";
                         echo Yii::t('Company', 'Employee');
                     echo "</th>";
+                    echo "<th>";
+                        echo Yii::t('Company', 'Tag');
+                    echo "</th>";
                     echo "<th colspan='".count($weeks)."'>".Yii::t('Company', 'Timesheets');
                     echo "<th>";
                         echo Yii::t('Company', 'Sum');
@@ -35,6 +38,7 @@
                 echo "<td><strong>";
                     echo $OECompany->name;
                 echo "</strong></td>";
+                echo "<td/>";
                 echo "<td/>";
                 foreach($weeks as $week){
                     echo "<td><strong>";
@@ -65,9 +69,10 @@
                 echo "<tr>";
                     echo "<td/>";
                     echo "<td>{$OEEmployee->name_related}</td>";
+                    echo "<td>{$OEEmployee->resource->user->login}</td>";
                     foreach($weeks as $week){
                         echo "<td>";
-                        if(array_key_exists($week, $HourRecords)) echo $HourRecords[$week];
+                            if(array_key_exists($week, $HourRecords)) echo $HourRecords[$week];
                         echo "</td>";
                     }
                     echo "<td>{$HoursSum}</td>";
