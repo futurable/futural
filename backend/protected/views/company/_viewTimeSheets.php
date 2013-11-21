@@ -30,11 +30,11 @@
             echo "<tbody>";
             foreach($HourRecords as $key => $HourRecord){
                 $UserRecords = $HourRecords[$key];
-                $User = ResUsers::model()->findByPk($key);
+                $User = ResourceResource::model()->findByAttributes( array('user_id' => $key) );
                 $HourSum = array_sum($UserRecords);
 
                 echo "<tr>";
-                    echo "<td>{$User->login}</td>";
+                    echo "<td>{$User->name}</td>";
                     foreach($weeks as $week){
                         echo "<td>";
                             if(array_key_exists($week, $UserRecords)) echo $UserRecords[$week];
