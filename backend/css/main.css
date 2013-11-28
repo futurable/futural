@@ -26,7 +26,8 @@
 	margin:0px;
 }
 #mainmenu ul li, #companymenu ul li{
-	display: inline;
+	display: inline-block;
+    margin-bottom: 5px;
 }
 #mainmenu ul li a{
 	color: #000;
@@ -65,14 +66,15 @@
 
 #submenu{
     position: fixed;
-    top: 200px;
-    left: 20px;
+    bottom: 5px;
+    left: 5px;
 }
 #submenu ul{
     list-style-type: none;
 }
 #submenu ul li{
-    margin-bottom: 5px;
+    display: inline-block;
+    margin-bottom: 3px;
 }
 #submenu .active a{
     background-color: #C8DA30;
@@ -86,12 +88,16 @@
     border-radius: 15px;
     opacity: 0.9;
 }
+#submenu ul li a:hover{
+    color: #000;
+    text-decoration: none;
+}
 
 div.flash-error, div.flash-notice, div.flash-success
 {
 	padding:.8em;
 	margin-bottom:1em;
-	border:2px solid #ddd;
+	border: 2px solid #ddd;
 }
 
 div.flash-error
