@@ -77,19 +77,22 @@
     margin-bottom: 3px;
 }
 #submenu .active a{
-    background-color: #fff;
+    color: #000;
+    background-color: #0088CC;
 }
 #submenu ul li a{
+    font-weight: bold;
     display: block;
     width: 200px;
     padding: 5px 0;
+    color: #000;
     background-color: #C8DA30;
     text-align: center;
     border-radius: 15px;
     opacity: 0.8;
 }
 #submenu ul li a:hover{
-    color: #000;
+    color: #fff;
     text-decoration: none;
 }
 
