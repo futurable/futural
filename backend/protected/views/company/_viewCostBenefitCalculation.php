@@ -2,7 +2,7 @@
     // Company info
     echo "<h2>".Yii::t('Company', 'CostBenefitCalculations')."</h2>";
     
-    $weeks = range(date('W', strtotime("-2 month")), date('W'));
+    $weeks = range(date('W', strtotime("-3 month")), date('W'));
     $CBCValues = array();
     $CBCHeaders = array('turnover', 'expenses', 'salaries', 'loans', 'rents', 'communication', 'health', 'otherExpenses');
     
