@@ -2,10 +2,17 @@
     // Company info
     echo "<h2>".Yii::t('Company', 'CostBenefitCalculations')."</h2>";
     
-    $weeks = range(date('W', strtotime("-3 month")), date('W'));
+    $weeks = array();
+    $backTrack = 12; // Weeks
+    
+    while($backTrack > 0){
+        $weeks[] = date('Y-W', strtotime("-$backTrack week"));
+        $backTrack--;
+    }
+    
     $CBCValues = array();
     $CBCHeaders = array('turnover', 'expenses', 'salaries', 'loans', 'rents', 'communication', 'health', 'otherExpenses');
-    
+
     $costBenefitCalculations = array_reverse($costBenefitCalculations, true);
     $first = true;
     foreach($costBenefitCalculations as $costBenefitCalculationItems){
@@ -55,7 +62,7 @@
                     foreach($weeks as $week){
                         echo "<tr>";
                             echo "<td><strong>";
-                                echo Yii::t('Company', 'week')." ".$week;
+                                echo Yii::t('Company', 'week')." ".substr($week, -2);
                             echo "</strong></td>";
 
                         if(!array_key_exists($week, $realizedItemsArray)) $realizedItem = array();
@@ -70,7 +77,7 @@
                         echo getRealizedValue($realizedItem, array('300000'), false); // Turnover
                         echo getRealizedValue($realizedItem, array('400000')); // Expenses
                         echo getRealizedValue($realizedItem, array('500000')); // Salaries
-                        echo "<td>".BankSaldo::getLoansSaldo($loanAccounts, $week)."&euro;</td>"; // Loans
+                        echo "<td>".BankSaldo::getLoansSaldo($loanAccounts, substr($week, -2))."&euro;</td>"; // Loans
                         echo getRealizedValue($realizedItem, array('701010', '701080')); // FacilityExpenses
                         echo getRealizedValue($realizedItem, array('703000')); // Communications
                         echo getRealizedValue($realizedItem, array('700000')); // Health
