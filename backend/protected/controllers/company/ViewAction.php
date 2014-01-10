@@ -111,7 +111,7 @@ class ViewAction extends CAction
         elseif($action=='timesheets'){
             // Get timesheets
             $criteria = new CDbCriteria();
-            $criteria->select = 'user_id, to_char(date, \'WW\') AS week , SUM(unit_amount) AS "hours"';
+            $criteria->select = 'user_id, to_char(date, \'YYYY-WW\') AS week , SUM(unit_amount) AS "hours"';
             $criteria->addCondition( "date > now() - interval '3 months'" );
             $criteria->group = '"week", user_id';
             $criteria->order = 'user_id, "week" DESC';
